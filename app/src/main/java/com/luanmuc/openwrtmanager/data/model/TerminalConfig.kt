@@ -1,5 +1,8 @@
 package com.luanmuc.openwrtmanager.data.model
 
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
+
 /**
  * 终端配置
  */
@@ -15,22 +18,37 @@ data class TerminalConfig(
 /**
  * 终端主题
  */
-enum class TerminalTheme(val displayName: String) {
-    DARK("深色"),
-    LIGHT("浅色"),
-    SOLARIZED_DARK("Solarized 深色"),
-    SOLARIZED_LIGHT("Solarized 浅色"),
-    DRACULA("Dracula"),
-    MONOKAI("Monokai")
+enum class TerminalTheme {
+    DARK,
+    LIGHT,
+    SOLARIZED_DARK,
+    SOLARIZED_LIGHT,
+    DRACULA,
+    MONOKAI;
+    val displayName: String
+        get() = when (this) {
+            DARK -> Loc.s(R.string.enum_053)
+            LIGHT -> Loc.s(R.string.enum_054)
+            SOLARIZED_DARK -> Loc.s(R.string.enum_055)
+            SOLARIZED_LIGHT -> Loc.s(R.string.enum_056)
+            DRACULA -> "Dracula"
+            MONOKAI -> "Monokai"
+        }
 }
 
 /**
  * 光标样式
  */
-enum class CursorStyle(val displayName: String) {
-    BLOCK("块"),
-    UNDERLINE("下划线"),
-    BAR("竖线")
+enum class CursorStyle {
+    BLOCK,
+    UNDERLINE,
+    BAR;
+    val displayName: String
+        get() = when (this) {
+            BLOCK -> Loc.s(R.string.enum_057)
+            UNDERLINE -> Loc.s(R.string.enum_058)
+            BAR -> Loc.s(R.string.enum_059)
+        }
 }
 
 /**
@@ -53,5 +71,5 @@ data class QuickCommand(
     val name: String = "",
     val command: String = "",
     val description: String = "",
-    val category: String = "常用"
+    val category: String = Loc.s(R.string.s0015)
 )

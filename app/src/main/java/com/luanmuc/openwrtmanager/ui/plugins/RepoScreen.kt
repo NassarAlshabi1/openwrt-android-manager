@@ -57,6 +57,7 @@ import com.luanmuc.openwrtmanager.ui.components.MiSwitch
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.util.DebugMode
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 软件源管理页面
@@ -88,12 +89,12 @@ fun RepoScreen(
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "软件源管理",
+                title = Loc.s(R.string.s0608),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             Icons.Default.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -102,7 +103,7 @@ fun RepoScreen(
                     IconButton(onClick = { showAddDialog = true }) {
                         Icon(
                             Icons.Default.Add,
-                            contentDescription = "添加",
+                            contentDescription = Loc.s(R.string.s0328),
                             tint = MiTheme.Primary
                         )
                     }
@@ -126,7 +127,7 @@ fun RepoScreen(
                             modifier = Modifier.size(40.dp)
                         )
                     },
-                    text = "暂无软件源\n点击右上角添加软件源"
+                    text = Loc.s(R.string.s0618)
                 )
             } else {
                 LazyColumn(
@@ -143,7 +144,7 @@ fun RepoScreen(
                     if (officialRepos.isNotEmpty()) {
                         item {
                             Text(
-                                text = "官方镜像源",
+                                text = Loc.s(R.string.s0619),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = MiTheme.TextSecondary,
@@ -168,7 +169,7 @@ fun RepoScreen(
                     if (thirdPartyRepos.isNotEmpty()) {
                         item {
                             Text(
-                                text = "第三方插件源",
+                                text = Loc.s(R.string.s0620),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = MiTheme.TextSecondary,
@@ -193,7 +194,7 @@ fun RepoScreen(
                     if (customRepos.isNotEmpty()) {
                         item {
                             Text(
-                                text = "自定义源",
+                                text = Loc.s(R.string.s0621),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = MiTheme.TextSecondary,
@@ -226,7 +227,7 @@ fun RepoScreen(
             onDismissRequest = { showAddDialog = false },
             title = {
                 Text(
-                    text = "添加软件源",
+                    text = Loc.s(R.string.s0622),
                     fontWeight = FontWeight.SemiBold
                 )
             },
@@ -320,7 +321,7 @@ private fun RepoItem(
                 IconButton(onClick = onDelete) {
                     Icon(
                         Icons.Default.Delete,
-                        contentDescription = "删除",
+                        contentDescription = Loc.s(R.string.s0303),
                         tint = MiTheme.Error
                     )
                 }
@@ -333,7 +334,7 @@ private fun RepoItem(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "启用",
+                    text = Loc.s(R.string.s0623),
                     fontSize = 14.sp,
                     color = MiTheme.TextSecondary,
                     modifier = Modifier.weight(1f)

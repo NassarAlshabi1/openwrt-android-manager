@@ -26,6 +26,7 @@ import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
 import java.text.SimpleDateFormat
 import java.util.*
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 通知设置页面
@@ -49,7 +50,7 @@ fun NotificationScreen(
                 title = { Text(stringResource(R.string.notification_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                        Icon(Icons.Default.ArrowBack, contentDescription = Loc.s(R.string.s0244))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -84,14 +85,14 @@ fun NotificationScreen(
                     ) {
                         Column {
                             Text(
-                                text = "通知总开关",
+                                text = Loc.s(R.string.s0549),
                                 color = MiTheme.TextPrimary,
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Medium
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
-                                text = "开启后接收所有通知",
+                                text = Loc.s(R.string.s0550),
                                 color = MiTheme.TextSecondary,
                                 style = MaterialTheme.typography.bodySmall
                             )
@@ -113,7 +114,7 @@ fun NotificationScreen(
             // 通知渠道设置
             item {
                 Text(
-                    text = "通知渠道",
+                    text = Loc.s(R.string.s0551),
                     color = MiTheme.TextSecondary,
                     style = MaterialTheme.typography.titleSmall,
                     modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp)
@@ -131,8 +132,8 @@ fun NotificationScreen(
                     Column {
                         // 路由器状态
                         ChannelSwitchItem(
-                            title = "路由器状态",
-                            description = "路由器在线/离线状态通知",
+                            title = Loc.s(R.string.s0131),
+                            description = Loc.s(R.string.s0552),
                             checked = routerStatusEnabled,
                             enabled = notificationEnabled,
                             onCheckedChange = { viewModel.setRouterStatusEnabled(it) }
@@ -142,8 +143,8 @@ fun NotificationScreen(
                         
                         // 固件更新
                         ChannelSwitchItem(
-                            title = "固件更新",
-                            description = "新固件版本发布通知",
+                            title = Loc.s(R.string.s0553),
+                            description = Loc.s(R.string.s0554),
                             checked = firmwareEnabled,
                             enabled = notificationEnabled,
                             onCheckedChange = { viewModel.setFirmwareEnabled(it) }
@@ -153,8 +154,8 @@ fun NotificationScreen(
                         
                         // 网络告警
                         ChannelSwitchItem(
-                            title = "网络告警",
-                            description = "网络异常、断网等告警通知",
+                            title = Loc.s(R.string.s0555),
+                            description = Loc.s(R.string.s0556),
                             checked = networkAlertEnabled,
                             enabled = notificationEnabled,
                             onCheckedChange = { viewModel.setNetworkAlertEnabled(it) }
@@ -164,8 +165,8 @@ fun NotificationScreen(
                         
                         // 设备事件
                         ChannelSwitchItem(
-                            title = "设备事件",
-                            description = "新设备上线、设备上下线通知",
+                            title = Loc.s(R.string.s0557),
+                            description = Loc.s(R.string.s0558),
                             checked = deviceEventEnabled,
                             enabled = notificationEnabled,
                             onCheckedChange = { viewModel.setDeviceEventEnabled(it) }
@@ -184,7 +185,7 @@ fun NotificationScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "通知历史",
+                        text = Loc.s(R.string.s0559),
                         color = MiTheme.TextSecondary,
                         style = MaterialTheme.typography.titleSmall,
                         modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp)
@@ -194,7 +195,7 @@ fun NotificationScreen(
                         TextButton(onClick = { viewModel.clearHistory() }) {
                             Icon(
                                 Icons.Default.Delete,
-                                contentDescription = "清空",
+                                contentDescription = Loc.s(R.string.s0560),
                                 modifier = Modifier.size(16.dp)
                             )
                             Spacer(modifier = Modifier.width(4.dp))
@@ -213,7 +214,7 @@ fun NotificationScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "暂无通知记录",
+                            text = Loc.s(R.string.s0561),
                             color = MiTheme.TextTertiary,
                             style = MaterialTheme.typography.bodyMedium
                         )

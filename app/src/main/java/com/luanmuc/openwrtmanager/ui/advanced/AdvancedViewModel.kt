@@ -10,6 +10,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 data class AdvancedUiState(
     val isLoading: Boolean = false,
@@ -39,7 +41,7 @@ class AdvancedViewModel(application: Application) : BaseViewModel(application) {
                 repository.reboot()
                 _uiState.value = _uiState.value.copy(isLoading = false, isRebooting = false, actionSuccess = true)
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(isLoading = false, isRebooting = false, error = e.message ?: "重启失败")
+                _uiState.value = _uiState.value.copy(isLoading = false, isRebooting = false, error = e.message ?: Loc.s(R.string.s0278))
             }
         }
     }
@@ -58,7 +60,7 @@ class AdvancedViewModel(application: Application) : BaseViewModel(application) {
                 repository.shutdown()
                 _uiState.value = _uiState.value.copy(isLoading = false, isShuttingDown = false, actionSuccess = true)
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(isLoading = false, isShuttingDown = false, error = e.message ?: "关机失败")
+                _uiState.value = _uiState.value.copy(isLoading = false, isShuttingDown = false, error = e.message ?: Loc.s(R.string.s0279))
             }
         }
     }

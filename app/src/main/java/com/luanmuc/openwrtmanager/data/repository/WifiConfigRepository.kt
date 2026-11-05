@@ -11,6 +11,8 @@ import com.luanmuc.openwrtmanager.util.DebugMode
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlinx.coroutines.delay
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * WiFi配置Repository
@@ -58,7 +60,7 @@ class WifiConfigRepository private constructor(private val context: Context) {
         return listOf(
             WifiSchedule(
                 id = "night_mode",
-                name = "夜间模式",
+                name = Loc.s(R.string.s0239),
                 interfaceName = "wlan0",
                 enabled = false,
                 startTime = "22:00",

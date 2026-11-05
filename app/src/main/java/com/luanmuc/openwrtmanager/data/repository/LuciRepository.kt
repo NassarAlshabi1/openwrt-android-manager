@@ -10,6 +10,9 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
+import com.luanmuc.openwrtmanager.util.OpenWrtVersions
 
 /**
  * LuCI API 仓库
@@ -187,8 +190,8 @@ class LuciRepository {
         
         // 所有重试都失败了
         isRefreshFailed = true
-        lastRefreshError = "Session续期失败，请重新登录"
-        onRefreshFailed?.invoke(lastRefreshError ?: "续期失败")
+        lastRefreshError = Loc.s(R.string.s0101)
+        onRefreshFailed?.invoke(lastRefreshError ?: Loc.s(R.string.s0102))
         // 清除无效session
         authToken = ""
         sessionExpireTime = 0L
@@ -272,7 +275,7 @@ class LuciRepository {
 
             val result = response.result
             if (result == null || result.size < 2) {
-                throw LuciException(message = "无效的响应格式")
+                throw LuciException(message = Loc.s(R.string.s0103))
             }
 
             val statusCode = (result[0] as? Number)?.toInt() ?: -1
@@ -280,12 +283,12 @@ class LuciRepository {
                 when (statusCode) {
                     -32000, -32002 -> throw LuciException(
                         code = statusCode,
-                        message = "用户名或密码错误",
+                        message = Loc.s(R.string.s0104),
                         type = ErrorType.AUTH_FAILED
                     )
                     else -> throw LuciException(
                         code = statusCode,
-                        message = "认证失败 (错误码: $statusCode)",
+                        message = Loc.s(R.string.s0105, statusCode),
                         type = ErrorType.AUTH_FAILED
                     )
                 }
@@ -294,7 +297,7 @@ class LuciRepository {
             val data = result[1] as? Map<*, *>
             authToken = data?.get("ubus_rpc_session")?.toString() ?: ""
             if (authToken.isEmpty()) {
-                throw LuciException(message = "未获取到会话令牌", type = ErrorType.AUTH_FAILED)
+                throw LuciException(message = Loc.s(R.string.s0106), type = ErrorType.AUTH_FAILED)
             }
             
             // 记录session过期时间
@@ -347,7 +350,7 @@ class LuciRepository {
 
             val result = response.result
             if (result == null || result.size < 2) {
-                throw LuciException(message = "无效的响应格式")
+                throw LuciException(message = Loc.s(R.string.s0103))
             }
 
             val statusCode = (result[0] as? Number)?.toInt() ?: -1
@@ -358,7 +361,7 @@ class LuciRepository {
                 }
                 throw LuciException(
                     code = statusCode,
-                    message = "调用失败 (错误码: $statusCode)"
+                    message = Loc.s(R.string.s0107, statusCode)
                 )
             }
 
@@ -1325,39 +1328,39 @@ class LuciRepository {
         return when (e) {
             is LuciException -> e
             is UnknownHostException -> LuciException(
-                message = "无法连接到路由器，请检查地址是否正确",
+                message = Loc.s(R.string.s0108),
                 type = ErrorType.NETWORK_ERROR
             )
             is ConnectException -> LuciException(
-                message = "连接被拒绝，请检查路由器是否在线",
+                message = Loc.s(R.string.s0109),
                 type = ErrorType.NETWORK_ERROR
             )
             is SocketTimeoutException -> LuciException(
-                message = "连接超时，请检查网络和路由器状态",
+                message = Loc.s(R.string.s0110),
                 type = ErrorType.TIMEOUT
             )
             is retrofit2.HttpException -> {
                 when (e.code()) {
                     404 -> LuciException(
-                        message = "API接口不存在 (404)，请确认路由器已安装LuCI",
+                        message = Loc.s(R.string.s0111),
                         type = ErrorType.NOT_FOUND
                     )
                     403 -> LuciException(
-                        message = "访问被拒绝 (403)",
+                        message = Loc.s(R.string.s0112),
                         type = ErrorType.FORBIDDEN
                     )
                     401 -> LuciException(
-                        message = "认证失败 (401)",
+                        message = Loc.s(R.string.s0113),
                         type = ErrorType.AUTH_FAILED
                     )
                     else -> LuciException(
-                        message = "HTTP错误: ${e.code()}",
+                        message = Loc.s(R.string.s0114, e.code()),
                         type = ErrorType.HTTP_ERROR
                     )
                 }
             }
             else -> LuciException(
-                message = e.message ?: "未知错误",
+                message = e.message ?: Loc.s(R.string.s0115),
                 type = ErrorType.UNKNOWN
             )
         }
@@ -1544,7 +1547,8 @@ class LuciRepository {
             else -> ArchitectureType.UNKNOWN
         }
 
-        val version = systemInfo.firmwareVersion
+        // Normalize firmware version (supports 23.5.x / 23.05.x / "OpenWrt 23.05.x r…")
+        val version = OpenWrtVersions.normalize(systemInfo.firmwareVersion)
         val isApk = systemInfo.packageManager == PackageManagerType.APK
         
         // 根据包管理器选择架构字符串
@@ -1561,8 +1565,8 @@ class LuciRepository {
             // 官方源
             RepoPreset(
                 id = "official",
-                name = "官方源",
-                description = "OpenWrt官方软件源",
+                name = Loc.s(R.string.s0116),
+                description = Loc.s(R.string.s0117),
                 baseUrl = "https://downloads.openwrt.org/$basePath",
                 type = RepoPresetType.OFFICIAL,
                 supportedArchitectures = ArchitectureType.values().toList()
@@ -1570,8 +1574,8 @@ class LuciRepository {
             // 清华源
             RepoPreset(
                 id = "tsinghua",
-                name = "清华源",
-                description = "清华大学TUNA镜像源，国内访问速度快",
+                name = Loc.s(R.string.s0118),
+                description = Loc.s(R.string.s0119),
                 baseUrl = "https://mirrors.tuna.tsinghua.edu.cn/openwrt/$basePath",
                 type = RepoPresetType.TSINGHUA,
                 supportedArchitectures = ArchitectureType.values().toList()
@@ -1579,8 +1583,8 @@ class LuciRepository {
             // 中科大源
             RepoPreset(
                 id = "ustc",
-                name = "中科大源",
-                description = "中国科学技术大学镜像源，同步及时",
+                name = Loc.s(R.string.s0120),
+                description = Loc.s(R.string.s0121),
                 baseUrl = "https://mirrors.ustc.edu.cn/openwrt/$basePath",
                 type = RepoPresetType.USTC,
                 supportedArchitectures = ArchitectureType.values().toList()
@@ -1588,8 +1592,8 @@ class LuciRepository {
             // 阿里云源
             RepoPreset(
                 id = "aliyun",
-                name = "阿里云源",
-                description = "阿里云镜像源，全国节点覆盖",
+                name = Loc.s(R.string.s0122),
+                description = Loc.s(R.string.s0123),
                 baseUrl = "https://mirrors.aliyun.com/openwrt/$basePath",
                 type = RepoPresetType.ALIYUN,
                 supportedArchitectures = ArchitectureType.values().toList()
@@ -1597,8 +1601,8 @@ class LuciRepository {
             // kenzok8源
             RepoPreset(
                 id = "kenzok8",
-                name = "kenzok8插件源",
-                description = "第三方插件源，包含大量常用插件",
+                name = Loc.s(R.string.s0124),
+                description = Loc.s(R.string.s0125),
                 baseUrl = "https://op.dllkids.xyz/packages/$archStr",
                 type = RepoPresetType.KENZOK8,
                 supportedArchitectures = listOf(
@@ -1610,8 +1614,8 @@ class LuciRepository {
             // lienol源
             RepoPreset(
                 id = "lienol",
-                name = "lienol插件源",
-                description = "lienol维护的第三方插件源",
+                name = Loc.s(R.string.s0126),
+                description = Loc.s(R.string.s0127),
                 baseUrl = "https://op.supes.top/packages/$archStr",
                 type = RepoPresetType.LIENOL,
                 supportedArchitectures = listOf(
@@ -1624,8 +1628,8 @@ class LuciRepository {
             // ImmortalWrt源
             RepoPreset(
                 id = "immortalwrt",
-                name = "ImmortalWrt源",
-                description = "ImmortalWrt项目软件源",
+                name = Loc.s(R.string.s0128),
+                description = Loc.s(R.string.s0129),
                 baseUrl = "https://mirrors.tuna.tsinghua.edu.cn/immortalwrt/releases/$version/packages/$archStr",
                 type = RepoPresetType.IMMORTALWRT,
                 supportedArchitectures = listOf(
@@ -1652,8 +1656,9 @@ class LuciRepository {
                 else -> return false
             }
 
-            val version = systemInfo.firmwareVersion
-            if (version == "Unknown") return false
+            // Normalize firmware version (supports 23.5.x / 23.05.x)
+            val version = OpenWrtVersions.normalize(systemInfo.firmwareVersion)
+            if (version == "Unknown" || version.isBlank()) return false
 
             // 备份原有配置
             backupOpkgConfig()
@@ -2073,91 +2078,91 @@ class LuciRepository {
         val preloadItems = listOf(
             PreloadItem(
                 key = CacheRepository.KEY_SYSTEM_INFO,
-                name = "系统信息",
+                name = Loc.s(R.string.s0130),
                 loader = { 
                     try { getFullSystemInfo() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = CacheRepository.KEY_ROUTER_STATUS,
-                name = "路由器状态",
+                name = Loc.s(R.string.s0131),
                 loader = { 
                     try { getRouterStatus() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = CacheRepository.KEY_WAN_STATUS,
-                name = "网络状态",
+                name = Loc.s(R.string.s0132),
                 loader = { 
                     try { getWanStatus() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = CacheRepository.KEY_NETWORK_INTERFACES,
-                name = "网络接口",
+                name = Loc.s(R.string.s0133),
                 loader = { 
                     try { getNetworkInterfaces() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = CacheRepository.KEY_INSTALLED_PACKAGES,
-                name = "已安装插件",
+                name = Loc.s(R.string.s0134),
                 loader = { 
                     try { getInstalledPackages() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = CacheRepository.KEY_AVAILABLE_PACKAGES,
-                name = "可用插件",
+                name = Loc.s(R.string.s0135),
                 loader = { 
                     try { getAvailablePackages() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = CacheRepository.KEY_ONLINE_DEVICES,
-                name = "在线设备",
+                name = Loc.s(R.string.s0076),
                 loader = { 
                     try { getDhcpLeases() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = CacheRepository.KEY_WIFI_DEVICES,
-                name = "WiFi设备",
+                name = Loc.s(R.string.s0136),
                 loader = { 
                     try { getWifiDevices() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = CacheRepository.KEY_PORT_FORWARDS,
-                name = "端口转发",
+                name = Loc.s(R.string.s0137),
                 loader = { 
                     try { getPortForwards() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = CacheRepository.KEY_DDNS_CONFIGS,
-                name = "DDNS配置",
+                name = Loc.s(R.string.s0138),
                 loader = { 
                     try { getDdnsConfigs() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = "package_repos",
-                name = "软件源列表",
+                name = Loc.s(R.string.s0139),
                 loader = { 
                     try { getPackageRepos() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = CacheRepository.KEY_SYSTEM_LOG,
-                name = "系统日志",
+                name = Loc.s(R.string.s0011),
                 loader = { 
                     try { getSystemLog() } catch (e: Exception) { null }
                 }
             ),
             PreloadItem(
                 key = CacheRepository.KEY_PROCESS_LIST,
-                name = "进程列表",
+                name = Loc.s(R.string.s0140),
                 loader = { 
                     try { getProcessList() } catch (e: Exception) { null }
                 }
@@ -2198,7 +2203,7 @@ class LuciRepository {
             PreloadProgress(
                 current = total,
                 total = total,
-                currentItem = "完成",
+                currentItem = Loc.s(R.string.s0024),
                 percentage = 1f
             )
         )
@@ -2511,17 +2516,17 @@ class LuciRepository {
         onProgress: ((Int, String) -> Unit)? = null
     ): Boolean {
         return try {
-            onProgress?.invoke(10, "正在更新软件源...")
+            onProgress?.invoke(10, Loc.s(R.string.s0141))
             val updateResult = executeCommand("opkg update 2>&1")
             if (updateResult == null) {
-                onProgress?.invoke(0, "软件源更新失败")
+                onProgress?.invoke(0, Loc.s(R.string.s0142))
                 return false
             }
             
-            onProgress?.invoke(50, "正在安装 $packageName ...")
+            onProgress?.invoke(50, Loc.s(R.string.s0143, packageName))
             val installResult = executeCommand("opkg install $packageName 2>&1")
             if (installResult == null) {
-                onProgress?.invoke(0, "安装失败：无输出")
+                onProgress?.invoke(0, Loc.s(R.string.s0144))
                 return false
             }
             
@@ -2532,13 +2537,13 @@ class LuciRepository {
                           isPackageInstalled(packageName)
             
             if (success) {
-                onProgress?.invoke(100, "安装成功")
+                onProgress?.invoke(100, Loc.s(R.string.s0145))
             } else {
-                onProgress?.invoke(0, "安装失败：${installResult.take(100)}")
+                onProgress?.invoke(0, Loc.s(R.string.s0146, installResult.take(100)))
             }
             success
         } catch (e: Exception) {
-            onProgress?.invoke(0, "安装异常：${e.message}")
+            onProgress?.invoke(0, Loc.s(R.string.s0147, e.message))
             false
         }
     }

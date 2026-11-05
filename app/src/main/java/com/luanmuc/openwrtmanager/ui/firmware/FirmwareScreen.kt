@@ -27,6 +27,8 @@ import androidx.compose.ui.unit.sp
 import com.luanmuc.openwrtmanager.ui.components.*
 import com.luanmuc.openwrtmanager.ui.components.MiButtonType
 import com.luanmuc.openwrtmanager.data.model.FirmwareUpgradeState
+import com.luanmuc.openwrtmanager.util.Loc
+import com.luanmuc.openwrtmanager.util.OpenWrtVersions
 
 /**
  * 固件升级页面
@@ -45,7 +47,7 @@ fun FirmwareScreen(
     ) { uri ->
         uri?.let {
             val fileName = it.lastPathSegment ?: "firmware.bin"
-            android.widget.Toast.makeText(context, "已选择: $fileName", android.widget.Toast.LENGTH_SHORT).show()
+            android.widget.Toast.makeText(context, Loc.s(R.string.s0419, fileName), android.widget.Toast.LENGTH_SHORT).show()
             viewModel.uploadLocalFirmware(it, fileName)
         }
     }
@@ -60,12 +62,12 @@ fun FirmwareScreen(
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "固件升级",
+                title = Loc.s(R.string.s0420),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -74,7 +76,7 @@ fun FirmwareScreen(
                     IconButton(onClick = { viewModel.checkLatestVersion() }) {
                         Icon(
                             imageVector = Icons.Filled.Refresh,
-                            contentDescription = "检测更新",
+                            contentDescription = Loc.s(R.string.s0421),
                             tint = MiTheme.Primary
                         )
                     }
@@ -209,7 +211,7 @@ private fun CurrentFirmwareCard(
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "当前固件",
+                    text = Loc.s(R.string.s0422),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                     color = MiTheme.TextPrimary
@@ -218,9 +220,19 @@ private fun CurrentFirmwareCard(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            InfoItem(label = "固件版本", value = version.ifEmpty { "未知" })
-            InfoItem(label = "设备型号", value = model.ifEmpty { "未知" })
-            InfoItem(label = "架构", value = architecture.ifEmpty { "未知" })
+            InfoItem(label = Loc.s(R.string.s0073), value = version.ifEmpty { Loc.s(R.string.s0050) })
+            InfoItem(label = Loc.s(R.string.s0423), value = model.ifEmpty { Loc.s(R.string.s0050) })
+            InfoItem(label = Loc.s(R.string.s0424), value = architecture.ifEmpty { Loc.s(R.string.s0050) })
+            // OpenWrt 23.05.0 - 23.05.6 support status
+            val versionSupported = androidx.compose.runtime.remember(version) {
+                OpenWrtVersions.isSupported(version)
+            }
+            InfoItem(
+                label = Loc.s(R.string.version_support_status),
+                value = if (version.isEmpty()) Loc.s(R.string.s0050)
+                    else if (versionSupported) Loc.s(R.string.version_supported_range, OpenWrtVersions.supportedRangeDescription())
+                    else Loc.s(R.string.version_unsupported_range, OpenWrtVersions.supportedRangeDescription())
+            )
         }
     }
 }
@@ -251,7 +263,7 @@ private fun LatestVersionCard(
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "发现新版本",
+                    text = Loc.s(R.string.s0425),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                     color = MiTheme.Success
@@ -266,14 +278,14 @@ private fun LatestVersionCard(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            InfoItem(label = "版本号", value = release.version)
-            InfoItem(label = "发布时间", value = release.releaseDate)
-            InfoItem(label = "文件大小", value = formatFileSize(release.size))
+            InfoItem(label = Loc.s(R.string.s0426), value = release.version)
+            InfoItem(label = Loc.s(R.string.s0427), value = release.releaseDate)
+            InfoItem(label = Loc.s(R.string.s0428), value = formatFileSize(release.size))
 
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(
-                text = "更新日志",
+                text = Loc.s(R.string.s0429),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = MiTheme.TextPrimary
@@ -291,7 +303,7 @@ private fun LatestVersionCard(
             Spacer(modifier = Modifier.height(16.dp))
 
             MiButton(
-                text = "下载并升级",
+                text = Loc.s(R.string.s0430),
                 onClick = onDownloadClick,
                 modifier = Modifier.fillMaxWidth(),
                 enabled = !isChecking
@@ -318,7 +330,7 @@ private fun CheckingCard() {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "正在检测新版本...",
+                text = Loc.s(R.string.s0431),
                 fontSize = 14.sp,
                 color = MiTheme.TextSecondary
             )
@@ -348,20 +360,20 @@ private fun NoUpdateCard(
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "当前已是最新版本",
+                text = Loc.s(R.string.s0432),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 color = MiTheme.TextPrimary
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "点击下方按钮重新检测",
+                text = Loc.s(R.string.s0433),
                 fontSize = 13.sp,
                 color = MiTheme.TextSecondary
             )
             Spacer(modifier = Modifier.height(16.dp))
             MiButton(
-                text = "检测更新",
+                text = Loc.s(R.string.s0421),
                 onClick = onCheckClick,
                 type = MiButtonType.Secondary
             )
@@ -395,7 +407,7 @@ private fun DownloadProgressCard(
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = if (isVerifying) "正在校验固件..." else "正在下载固件",
+                    text = if (isVerifying) Loc.s(R.string.s0434) else Loc.s(R.string.s0435),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                     color = MiTheme.TextPrimary
@@ -416,7 +428,7 @@ private fun DownloadProgressCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "${if (isVerifying) "校验中" else "$progress%"}",
+                    text = "${if (isVerifying) Loc.s(R.string.s0436) else "$progress%"}",
                     fontSize = 13.sp,
                     color = MiTheme.TextSecondary
                 )
@@ -441,9 +453,9 @@ private fun FlashProgressCard(
     state: FirmwareUpgradeState
 ) {
     val statusText = when (state) {
-        FirmwareUpgradeState.FLASHING -> "正在刷写固件..."
-        FirmwareUpgradeState.REBOOTING -> "正在重启路由器..."
-        FirmwareUpgradeState.SUCCESS -> "升级成功！"
+        FirmwareUpgradeState.FLASHING -> Loc.s(R.string.s0437)
+        FirmwareUpgradeState.REBOOTING -> Loc.s(R.string.s0438)
+        FirmwareUpgradeState.SUCCESS -> Loc.s(R.string.s0439)
         else -> ""
     }
 
@@ -503,13 +515,13 @@ private fun FlashProgressCard(
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "请稍候，路由器正在重启...",
+                    text = Loc.s(R.string.s0440),
                     fontSize = 13.sp,
                     color = MiTheme.TextSecondary
                 )
             } else if (state == FirmwareUpgradeState.SUCCESS) {
                 Text(
-                    text = "固件升级成功！路由器已重启完成。",
+                    text = Loc.s(R.string.s0441),
                     fontSize = 14.sp,
                     color = MiTheme.Success
                 )
@@ -533,7 +545,7 @@ private fun UpgradeOptionsCard(
                 .padding(16.dp)
         ) {
             Text(
-                text = "升级选项",
+                text = Loc.s(R.string.s0442),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 color = MiTheme.TextPrimary
@@ -547,13 +559,13 @@ private fun UpgradeOptionsCard(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "保留配置",
+                        text = Loc.s(R.string.s0443),
                         fontSize = 14.sp,
                         color = MiTheme.TextPrimary
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "升级后保留当前路由器配置",
+                        text = Loc.s(R.string.s0444),
                         fontSize = 12.sp,
                         color = MiTheme.TextSecondary
                     )
@@ -591,7 +603,7 @@ private fun LocalUpgradeCard(
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "本地固件升级",
+                    text = Loc.s(R.string.s0445),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                     color = MiTheme.TextPrimary
@@ -601,7 +613,7 @@ private fun LocalUpgradeCard(
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "选择本地固件文件进行升级",
+                text = Loc.s(R.string.s0446),
                 fontSize = 13.sp,
                 color = MiTheme.TextSecondary
             )
@@ -609,7 +621,7 @@ private fun LocalUpgradeCard(
             Spacer(modifier = Modifier.height(12.dp))
 
             MiButton(
-                text = "选择固件文件",
+                text = Loc.s(R.string.s0447),
                 onClick = onSelectFile,
                 type = MiButtonType.Secondary,
                 modifier = Modifier.fillMaxWidth()
@@ -643,7 +655,7 @@ private fun UpgradeConfigCard(
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "升级设置",
+                    text = Loc.s(R.string.s0448),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                     color = MiTheme.TextPrimary
@@ -653,8 +665,8 @@ private fun UpgradeConfigCard(
             Spacer(modifier = Modifier.height(12.dp))
 
             InfoItem(
-                label = "固件仓库",
-                value = repoUrl.ifEmpty { "未配置" }
+                label = Loc.s(R.string.s0449),
+                value = repoUrl.ifEmpty { Loc.s(R.string.s0450) }
             )
         }
     }

@@ -14,6 +14,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 智能诊断增强ViewModel
@@ -97,11 +99,11 @@ class DiagnosticEnhancedViewModel(application: Application) : BaseViewModel(appl
         viewModelScope.launch {
             try {
                 val success = diagnosticRepository.autoFix(suggestionId)
-                _operationResult.value = if (success) "修复成功" else "修复失败"
+                _operationResult.value = if (success) Loc.s(R.string.s0406) else Loc.s(R.string.s0407)
                 // 重新体检
                 startFullDiagnostic()
             } catch (e: Exception) {
-                _operationResult.value = "修复失败: ${e.message}"
+                _operationResult.value = Loc.s(R.string.s0408, e.message)
             }
         }
     }

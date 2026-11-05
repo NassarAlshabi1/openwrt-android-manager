@@ -50,6 +50,8 @@ import com.luanmuc.openwrtmanager.ui.components.MiFeatureIcon
 import com.luanmuc.openwrtmanager.ui.components.MiPrimaryButton
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.util.NetworkDiagnostic
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 智能诊断页面 - 小米路由器风格
@@ -65,12 +67,12 @@ fun DiagnosticScreen(
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "智能诊断",
+                title = Loc.s(R.string.s0368),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "返回"
+                            contentDescription = Loc.s(R.string.s0244)
                         )
                     }
                 }
@@ -104,7 +106,7 @@ fun DiagnosticScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "正在诊断...",
+                            text = Loc.s(R.string.s0369),
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
                             color = MiTheme.TextPrimary
@@ -148,14 +150,14 @@ fun DiagnosticScreen(
                         }
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = if (result.isHealthy) "系统健康" else "发现问题",
+                            text = if (result.isHealthy) Loc.s(R.string.s0370) else Loc.s(R.string.s0371),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             color = MiTheme.TextPrimary
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "共检测 ${result.issues.size} 项",
+                            text = Loc.s(R.string.s0372, result.issues.size),
                             fontSize = 14.sp,
                             color = MiTheme.TextSecondary
                         )
@@ -176,14 +178,14 @@ fun DiagnosticScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "一键智能诊断",
+                            text = Loc.s(R.string.s0373),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             color = MiTheme.TextPrimary
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "全面检测系统状态，快速发现并解决问题",
+                            text = Loc.s(R.string.s0374),
                             fontSize = 14.sp,
                             color = MiTheme.TextSecondary
                         )
@@ -196,7 +198,7 @@ fun DiagnosticScreen(
             // 开始诊断按钮
             if (!uiState.isRunning) {
                 MiPrimaryButton(
-                    text = if (uiState.result != null) "重新诊断" else "开始诊断",
+                    text = if (uiState.result != null) Loc.s(R.string.s0375) else Loc.s(R.string.s0376),
                     onClick = { viewModel.runDiagnostic() },
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -208,7 +210,7 @@ fun DiagnosticScreen(
 
                 // 检测项列表
                 Text(
-                    text = "检测详情",
+                    text = Loc.s(R.string.s0377),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MiTheme.TextPrimary,
@@ -227,7 +229,7 @@ fun DiagnosticScreen(
                     Spacer(modifier = Modifier.height(24.dp))
 
                     Text(
-                        text = "优化建议",
+                        text = Loc.s(R.string.s0378),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MiTheme.TextPrimary,

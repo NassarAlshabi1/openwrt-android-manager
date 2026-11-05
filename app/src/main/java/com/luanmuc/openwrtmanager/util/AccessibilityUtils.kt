@@ -3,6 +3,8 @@ package com.luanmuc.openwrtmanager.util
 import android.content.Context
 import android.provider.Settings
 import android.view.accessibility.AccessibilityManager
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 可访问性工具类
@@ -141,16 +143,16 @@ object AccessibilityUtils {
                 -1
             )
             when (mode) {
-                0 -> "Protanomaly（红色弱）"
-                1 -> "Deuteranomaly（绿色弱）"
-                2 -> "Tritanomaly（蓝色弱）"
-                11 -> "Protanopia（红色盲）"
-                12 -> "Deuteranopia（绿色盲）"
-                13 -> "Tritanopia（蓝色盲）"
-                else -> "未知"
+                0 -> Loc.s(R.string.s0824)
+                1 -> Loc.s(R.string.s0825)
+                2 -> Loc.s(R.string.s0826)
+                11 -> Loc.s(R.string.s0827)
+                12 -> Loc.s(R.string.s0828)
+                13 -> Loc.s(R.string.s0829)
+                else -> Loc.s(R.string.s0050)
             }
         } catch (e: Exception) {
-            "未知"
+            Loc.s(R.string.s0050)
         }
     }
     
@@ -263,19 +265,19 @@ object AccessibilityUtils {
         val summary: String
             get() {
                 val features = mutableListOf<String>()
-                if (isTouchExplorationEnabled) features.add("屏幕阅读器")
-                if (isHighTextContrastEnabled) features.add("高对比度文字")
-                if (isMagnificationEnabled) features.add("放大手势")
-                if (isLargeFont) features.add("大字体(${fontScale}x)")
-                if (isAnimationDisabled) features.add("动画已禁用")
-                if (isColorCorrectionEnabled) features.add("颜色校正")
-                if (isColorInversionEnabled) features.add("颜色反转")
-                if (isCaptioningEnabled) features.add("字幕")
+                if (isTouchExplorationEnabled) features.add(Loc.s(R.string.s0830))
+                if (isHighTextContrastEnabled) features.add(Loc.s(R.string.s0831))
+                if (isMagnificationEnabled) features.add(Loc.s(R.string.s0832))
+                if (isLargeFont) features.add(Loc.s(R.string.s0833, fontScale))
+                if (isAnimationDisabled) features.add(Loc.s(R.string.s0834))
+                if (isColorCorrectionEnabled) features.add(Loc.s(R.string.s0835))
+                if (isColorInversionEnabled) features.add(Loc.s(R.string.s0836))
+                if (isCaptioningEnabled) features.add(Loc.s(R.string.s0837))
                 
                 return if (features.isEmpty()) {
-                    "无特殊可访问性设置"
+                    Loc.s(R.string.s0838)
                 } else {
-                    "已启用: ${features.joinToString("、")}"
+                    Loc.s(R.string.s0839, features.joinToString("、"))
                 }
             }
     }

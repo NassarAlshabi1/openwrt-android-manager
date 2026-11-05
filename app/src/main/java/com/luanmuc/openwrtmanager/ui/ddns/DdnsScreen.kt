@@ -63,6 +63,7 @@ import com.luanmuc.openwrtmanager.ui.components.MiTag
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.ui.components.PluginDependencyCard
 import com.luanmuc.openwrtmanager.ui.components.OfflineBanner
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * DDNS页面 - 小米路由器风格
@@ -102,7 +103,7 @@ fun DdnsScreen(
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -111,7 +112,7 @@ fun DdnsScreen(
                     IconButton(onClick = { viewModel.loadDdnsConfig() }) {
                         Icon(
                             Icons.Default.Refresh,
-                            contentDescription = "刷新",
+                            contentDescription = Loc.s(R.string.s0322),
                             tint = MiTheme.TextSecondary
                         )
                     }
@@ -121,7 +122,7 @@ fun DdnsScreen(
                     }) {
                         Icon(
                             Icons.Default.Add,
-                            contentDescription = "添加",
+                            contentDescription = Loc.s(R.string.s0328),
                             tint = MiColors.Primary
                         )
                     }
@@ -161,7 +162,7 @@ fun DdnsScreen(
                 MiLoadingState()
             } else if (uiState.error != null && uiState.ddnsConfigs.isEmpty()) {
                 MiErrorState(
-                    message = uiState.error ?: "加载失败",
+                    message = uiState.error ?: Loc.s(R.string.s0329),
                     onRetry = { viewModel.loadDdnsConfig() }
                 )
             } else if (uiState.ddnsConfigs.isEmpty()) {
@@ -174,7 +175,7 @@ fun DdnsScreen(
                             modifier = Modifier.size(40.dp)
                         )
                     },
-                    text = "暂无DDNS配置"
+                    text = Loc.s(R.string.s0330)
                 )
             } else {
                 LazyColumn(
@@ -198,7 +199,7 @@ fun DdnsScreen(
 
     if (showAddDialog) {
         DdnsEditDialog(
-            title = "添加DDNS",
+            title = Loc.s(R.string.s0331),
             config = editingConfig,
             onConfigChange = { editingConfig = it },
             onConfirm = {
@@ -213,7 +214,7 @@ fun DdnsScreen(
 
     if (showEditDialog != null) {
         DdnsEditDialog(
-            title = "编辑DDNS",
+            title = Loc.s(R.string.s0332),
             config = editingConfig,
             onConfigChange = { editingConfig = it },
             onConfirm = {
@@ -309,13 +310,13 @@ fun DdnsCard(
                     Spacer(modifier = Modifier.width(8.dp))
                     if (config.enabled) {
                         MiTag(
-                            text = "已启用",
+                            text = Loc.s(R.string.s0333),
                             backgroundColor = MiColors.Success.copy(alpha = 0.1f),
                             textColor = MiColors.Success
                         )
                     } else {
                         MiTag(
-                            text = "已禁用",
+                            text = Loc.s(R.string.s0334),
                             backgroundColor = MiTheme.TextTertiary.copy(alpha = 0.1f),
                             textColor = MiTheme.TextTertiary
                         )
@@ -326,7 +327,7 @@ fun DdnsCard(
                 IconButton(onClick = onEdit, modifier = Modifier.size(36.dp)) {
                     Icon(
                         Icons.Default.Edit,
-                        contentDescription = "编辑",
+                        contentDescription = Loc.s(R.string.s0335),
                         tint = MiColors.Primary,
                         modifier = Modifier.size(18.dp)
                     )
@@ -334,7 +335,7 @@ fun DdnsCard(
                 IconButton(onClick = onDelete, modifier = Modifier.size(36.dp)) {
                     Icon(
                         Icons.Default.Delete,
-                        contentDescription = "删除",
+                        contentDescription = Loc.s(R.string.s0303),
                         tint = MiColors.Error,
                         modifier = Modifier.size(18.dp)
                     )

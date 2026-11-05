@@ -15,6 +15,8 @@ import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
 import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 防火墙 ViewModel
@@ -158,7 +160,7 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
                     )
                 }
             } catch (e: Exception) {
-                handleLoadError(e.message ?: "加载失败")
+                handleLoadError(e.message ?: Loc.s(R.string.s0329))
             }
         }
     }
@@ -203,7 +205,7 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
                     val portForwards = _uiState.value.portForwards.filter { it.name != name }
                     _uiState.value = _uiState.value.copy(
                         portForwards = portForwards,
-                        success = "规则删除成功"
+                        success = Loc.s(R.string.s0415)
                     )
                     return@launch
                 }
@@ -223,9 +225,9 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
 
                 // 重新加载
                 loadFirewallConfig()
-                _uiState.value = _uiState.value.copy(success = "规则删除成功")
+                _uiState.value = _uiState.value.copy(success = Loc.s(R.string.s0415))
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(error = e.message ?: "删除失败")
+                _uiState.value = _uiState.value.copy(error = e.message ?: Loc.s(R.string.s0298))
             }
         }
     }
@@ -239,7 +241,7 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
                     val portForwards = _uiState.value.portForwards + rule
                     _uiState.value = _uiState.value.copy(
                         portForwards = portForwards,
-                        success = "规则添加成功"
+                        success = Loc.s(R.string.s0416)
                     )
                     return@launch
                 }
@@ -259,9 +261,9 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
 
                 // 重新加载
                 loadFirewallConfig()
-                _uiState.value = _uiState.value.copy(success = "规则添加成功")
+                _uiState.value = _uiState.value.copy(success = Loc.s(R.string.s0416))
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(error = e.message ?: "添加失败")
+                _uiState.value = _uiState.value.copy(error = e.message ?: Loc.s(R.string.s0339))
             }
         }
     }
@@ -275,7 +277,7 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
                 if (activeRouter == null) {
                     _uiState.value = _uiState.value.copy(
                         isLoading = false,
-                        error = "未找到活动路由器"
+                        error = Loc.s(R.string.s0417)
                     )
                     return@launch
                 }
@@ -289,7 +291,7 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
                     _uiState.value = _uiState.value.copy(
                         isLoading = false,
                         portForwards = updatedList,
-                        success = "规则更新成功"
+                        success = Loc.s(R.string.s0418)
                     )
                     return@launch
                 }
@@ -306,12 +308,12 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
                 loadFirewallConfig()
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
-                    success = "规则更新成功"
+                    success = Loc.s(R.string.s0418)
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
-                    error = e.message ?: "更新失败"
+                    error = e.message ?: Loc.s(R.string.s0259)
                 )
             }
         }

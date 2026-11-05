@@ -17,6 +17,8 @@ import com.luanmuc.openwrtmanager.data.model.Router
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 固件升级 ViewModel
@@ -100,7 +102,7 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    error = e.message ?: "加载固件信息失败"
+                    error = e.message ?: Loc.s(R.string.s0451)
                 )
             }
         }
@@ -139,7 +141,7 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isChecking = false,
-                    error = e.message ?: "检测新版本失败",
+                    error = e.message ?: Loc.s(R.string.s0452),
                     upgradeState = FirmwareUpgradeState.IDLE
                 )
             }
@@ -195,7 +197,7 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
                     } else {
                         _uiState.value = _uiState.value.copy(
                             isDownloading = false,
-                            error = "下载固件失败",
+                            error = Loc.s(R.string.s0453),
                             upgradeState = FirmwareUpgradeState.FAILED
                         )
                     }
@@ -203,7 +205,7 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isDownloading = false,
-                    error = e.message ?: "下载固件失败",
+                    error = e.message ?: Loc.s(R.string.s0453),
                     upgradeState = FirmwareUpgradeState.FAILED
                 )
             }
@@ -268,14 +270,14 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
                 } else {
                     _uiState.value = _uiState.value.copy(
                         isFlashing = false,
-                        error = "刷写固件失败",
+                        error = Loc.s(R.string.s0454),
                         upgradeState = FirmwareUpgradeState.FAILED
                     )
                 }
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isFlashing = false,
-                    error = e.message ?: "刷写固件失败",
+                    error = e.message ?: Loc.s(R.string.s0454),
                     upgradeState = FirmwareUpgradeState.FAILED
                 )
             }
@@ -332,7 +334,7 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
                 if (!isFirmwareFile) {
                     _uiState.value = _uiState.value.copy(
                         isDownloading = false,
-                        error = "请选择固件文件（.bin/.img/.trx）"
+                        error = Loc.s(R.string.s0455)
                     )
                     return@launch
                 }
@@ -352,7 +354,7 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
                     delay(500)
                     _uiState.value = _uiState.value.copy(
                         upgradeState = FirmwareUpgradeState.IDLE,
-                        success = "固件文件已就绪，请确认后刷写"
+                        success = Loc.s(R.string.s0456)
                     )
                     return@launch
                 }
@@ -365,7 +367,7 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
                 if (fileSize < 1024 * 1024) {
                     _uiState.value = _uiState.value.copy(
                         isDownloading = false,
-                        error = "固件文件过小（小于1MB），可能不是有效固件"
+                        error = Loc.s(R.string.s0457)
                     )
                     return@launch
                 }
@@ -387,12 +389,12 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
                 delay(500)
                 _uiState.value = _uiState.value.copy(
                     upgradeState = FirmwareUpgradeState.IDLE,
-                    success = "固件文件已就绪（${fileSize / 1024 / 1024}MB），请确认后刷写"
+                    success = Loc.s(R.string.s0458, fileSize / 1024 / 1024)
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isDownloading = false,
-                    error = e.message ?: "文件处理失败"
+                    error = e.message ?: Loc.s(R.string.s0459)
                 )
             }
         }

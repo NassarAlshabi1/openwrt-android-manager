@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 设备管理增强ViewModel
@@ -72,10 +74,10 @@ class DeviceManagerViewModel(application: Application) : BaseViewModel(applicati
         viewModelScope.launch {
             try {
                 val success = deviceManagerRepository.blockDevice(mac)
-                _operationResult.value = if (success) "设备已拉黑" else "拉黑失败"
+                _operationResult.value = if (success) Loc.s(R.string.s0345) else Loc.s(R.string.s0346)
                 loadDeviceManagerData()
             } catch (e: Exception) {
-                _operationResult.value = "操作失败: ${e.message}"
+                _operationResult.value = Loc.s(R.string.s0347, e.message)
             }
         }
     }
@@ -87,10 +89,10 @@ class DeviceManagerViewModel(application: Application) : BaseViewModel(applicati
         viewModelScope.launch {
             try {
                 val success = deviceManagerRepository.unblockDevice(mac)
-                _operationResult.value = if (success) "已解除拉黑" else "解除失败"
+                _operationResult.value = if (success) Loc.s(R.string.s0348) else Loc.s(R.string.s0349)
                 loadDeviceManagerData()
             } catch (e: Exception) {
-                _operationResult.value = "操作失败: ${e.message}"
+                _operationResult.value = Loc.s(R.string.s0347, e.message)
             }
         }
     }

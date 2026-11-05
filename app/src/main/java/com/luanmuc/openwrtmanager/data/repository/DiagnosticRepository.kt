@@ -10,7 +10,10 @@ import com.luanmuc.openwrtmanager.data.model.FullDiagnosticResult
 import com.luanmuc.openwrtmanager.data.model.NetworkQuality
 import com.luanmuc.openwrtmanager.data.model.NetworkQualityResult
 import com.luanmuc.openwrtmanager.util.DebugMode
+import com.luanmuc.openwrtmanager.util.OpenWrtVersions
 import kotlinx.coroutines.delay
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 智能诊断Repository
@@ -39,20 +42,20 @@ class DiagnosticRepository private constructor(private val context: Context) {
             val uptime = (systemInfo["uptime"] as? Number)?.toLong() ?: 0L
             items.add(DiagnosticItem(
                 id = "system",
-                name = "系统状态",
+                name = Loc.s(R.string.s0040),
                 status = if (uptime > 0) DiagnosticStatus.GOOD else DiagnosticStatus.WARNING,
-                message = "系统运行正常",
-                detail = "运行时间: ${uptime / 86400}天"
+                message = Loc.s(R.string.s0041),
+                detail = Loc.s(R.string.s0042, uptime / 86400)
             ))
 
             // 网络检测：检查WAN连接
             val wanStatus = luciRepository.getWanStatus()
             items.add(DiagnosticItem(
                 id = "network",
-                name = "网络连接",
+                name = Loc.s(R.string.s0043),
                 status = if (wanStatus?.isUp == true) DiagnosticStatus.GOOD else DiagnosticStatus.ERROR,
-                message = if (wanStatus?.isUp == true) "WAN连接正常" else "WAN未连接",
-                detail = wanStatus?.ipaddr ?: "无IP"
+                message = if (wanStatus?.isUp == true) Loc.s(R.string.s0044) else Loc.s(R.string.s0045),
+                detail = wanStatus?.ipaddr ?: Loc.s(R.string.s0046)
             ))
 
             // 存储检测：执行df命令
@@ -60,11 +63,42 @@ class DiagnosticRepository private constructor(private val context: Context) {
             val storageOk = dfOutput?.contains("/") == true
             items.add(DiagnosticItem(
                 id = "storage",
-                name = "存储空间",
+                name = Loc.s(R.string.s0047),
                 status = if (storageOk) DiagnosticStatus.GOOD else DiagnosticStatus.WARNING,
-                message = if (storageOk) "存储空间正常" else "无法获取存储信息",
-                detail = dfOutput?.trim() ?: "未知"
+                message = if (storageOk) Loc.s(R.string.s0048) else Loc.s(R.string.s0049),
+                detail = dfOutput?.trim() ?: Loc.s(R.string.s0050)
             ))
+
+            // 固件版本检测：支持 OpenWrt 23.05.0 - 23.05.6（兼容 23.5.x 写法）
+            try {
+                val boardInfo = luciRepository.getBoardInfo()
+                @Suppress("UNCHECKED_CAST")
+                val releaseInfo = boardInfo["release"] as? Map<String, Any>
+                val fwVersion = releaseInfo?.get("version")?.toString() ?: ""
+                if (fwVersion.isNotBlank()) {
+                    val supported = OpenWrtVersions.isSupported(fwVersion)
+                    val upToDate = OpenWrtVersions.compareWithLatest(fwVersion) >= 0
+                    items.add(DiagnosticItem(
+                        id = "firmware_version",
+                        name = Loc.s(R.string.s0073),
+                        status = when {
+                            !supported -> DiagnosticStatus.WARNING
+                            upToDate -> DiagnosticStatus.GOOD
+                            else -> DiagnosticStatus.WARNING
+                        },
+                        message = when {
+                            !supported -> Loc.s(R.string.version_unsupported_range, OpenWrtVersions.supportedRangeDescription())
+                            upToDate -> Loc.s(R.string.version_up_to_date)
+                            else -> Loc.s(R.string.version_update_available, OpenWrtVersions.latestSupported())
+                        },
+                        detail = Loc.s(R.string.version_detail_format, OpenWrtVersions.normalize(fwVersion), OpenWrtVersions.supportedRangeDescription()),
+                        category = DiagnosticCategory.SYSTEM,
+                        severity = if (supported) DiagnosticSeverity.LOW else DiagnosticSeverity.MEDIUM
+                    ))
+                }
+            } catch (e: Exception) {
+                // 固件版本检测失败不影响整体诊断
+            }
 
             // 计算总分
             val goodCount = items.count { it.status == DiagnosticStatus.GOOD }
@@ -152,92 +186,92 @@ class DiagnosticRepository private constructor(private val context: Context) {
         val items = listOf(
             DiagnosticItem(
                 id = "system_uptime",
-                name = "系统运行时间",
+                name = Loc.s(R.string.s0051),
                 category = DiagnosticCategory.SYSTEM,
                 status = DiagnosticStatus.GOOD,
-                message = "系统运行稳定",
-                detail = "已运行 3天12小时45分",
+                message = Loc.s(R.string.s0052),
+                detail = Loc.s(R.string.s0053),
                 severity = DiagnosticSeverity.LOW
             ),
             DiagnosticItem(
                 id = "system_load",
-                name = "系统负载",
+                name = Loc.s(R.string.s0054),
                 category = DiagnosticCategory.SYSTEM,
                 status = DiagnosticStatus.GOOD,
-                message = "CPU负载正常",
-                detail = "1分钟负载: 0.23, 5分钟: 0.18, 15分钟: 0.15",
+                message = Loc.s(R.string.s0055),
+                detail = Loc.s(R.string.s0056),
                 severity = DiagnosticSeverity.LOW
             ),
             DiagnosticItem(
                 id = "memory_usage",
-                name = "内存使用率",
+                name = Loc.s(R.string.s0057),
                 category = DiagnosticCategory.PERFORMANCE,
                 status = DiagnosticStatus.WARNING,
-                message = "内存使用率偏高",
-                detail = "已使用 187MB / 512MB (36.5%)",
+                message = Loc.s(R.string.s0058),
+                detail = Loc.s(R.string.s0059),
                 severity = DiagnosticSeverity.MEDIUM
             ),
             DiagnosticItem(
                 id = "storage_usage",
-                name = "存储空间",
+                name = Loc.s(R.string.s0047),
                 category = DiagnosticCategory.STORAGE,
                 status = DiagnosticStatus.GOOD,
-                message = "存储空间充足",
-                detail = "已使用 45MB / 128MB (35.2%)",
+                message = Loc.s(R.string.s0060),
+                detail = Loc.s(R.string.s0061),
                 severity = DiagnosticSeverity.LOW
             ),
             DiagnosticItem(
                 id = "wan_connection",
-                name = "WAN连接",
+                name = Loc.s(R.string.s0062),
                 category = DiagnosticCategory.NETWORK,
                 status = DiagnosticStatus.GOOD,
-                message = "WAN连接正常",
-                detail = "IP: 192.168.1.100, 已连接 2天8小时",
+                message = Loc.s(R.string.s0044),
+                detail = Loc.s(R.string.s0063),
                 severity = DiagnosticSeverity.LOW
             ),
             DiagnosticItem(
                 id = "dns_resolution",
-                name = "DNS解析",
+                name = Loc.s(R.string.s0064),
                 category = DiagnosticCategory.NETWORK,
                 status = DiagnosticStatus.GOOD,
-                message = "DNS解析正常",
-                detail = "主DNS: 114.114.114.114, 备用: 8.8.8.8",
+                message = Loc.s(R.string.s0065),
+                detail = Loc.s(R.string.s0066),
                 severity = DiagnosticSeverity.LOW
             ),
             DiagnosticItem(
                 id = "wifi_signal",
-                name = "WiFi信号",
+                name = Loc.s(R.string.s0067),
                 category = DiagnosticCategory.WIFI,
                 status = DiagnosticStatus.WARNING,
-                message = "部分区域信号较弱",
-                detail = "建议调整路由器位置或添加中继",
+                message = Loc.s(R.string.s0068),
+                detail = Loc.s(R.string.s0069),
                 severity = DiagnosticSeverity.MEDIUM
             ),
             DiagnosticItem(
                 id = "firewall_status",
-                name = "防火墙状态",
+                name = Loc.s(R.string.s0070),
                 category = DiagnosticCategory.SECURITY,
                 status = DiagnosticStatus.GOOD,
-                message = "防火墙已启用",
-                detail = "默认规则已配置，3条端口转发规则",
+                message = Loc.s(R.string.s0071),
+                detail = Loc.s(R.string.s0072),
                 severity = DiagnosticSeverity.LOW
             ),
             DiagnosticItem(
                 id = "firmware_version",
-                name = "固件版本",
+                name = Loc.s(R.string.s0073),
                 category = DiagnosticCategory.SYSTEM,
                 status = DiagnosticStatus.WARNING,
-                message = "有新版本可用",
-                detail = "当前: 23.05.0, 最新: 23.05.2",
+                message = Loc.s(R.string.s0074),
+                detail = Loc.s(R.string.s0075),
                 severity = DiagnosticSeverity.MEDIUM
             ),
             DiagnosticItem(
                 id = "online_devices",
-                name = "在线设备",
+                name = Loc.s(R.string.s0076),
                 category = DiagnosticCategory.NETWORK,
                 status = DiagnosticStatus.GOOD,
-                message = "12台设备在线",
-                detail = "有线: 3台, 无线: 9台",
+                message = Loc.s(R.string.s0077),
+                detail = Loc.s(R.string.s0078),
                 severity = DiagnosticSeverity.LOW
             )
         )
@@ -245,56 +279,56 @@ class DiagnosticRepository private constructor(private val context: Context) {
         val suggestions = listOf(
             DiagnosticSuggestion(
                 id = "update_firmware",
-                title = "升级到最新固件",
-                description = "发现新固件版本 23.05.2，建议升级以获得最新功能和安全修复。",
+                title = Loc.s(R.string.s0079),
+                description = Loc.s(R.string.s0080),
                 category = DiagnosticCategory.SYSTEM,
                 priority = 1,
                 canAutoFix = false,
                 fixSteps = listOf(
-                    "备份当前配置",
-                    "下载最新固件",
-                    "进入固件升级页面",
-                    "上传固件并刷写"
+                    Loc.s(R.string.s0081),
+                    Loc.s(R.string.s0082),
+                    Loc.s(R.string.s0083),
+                    Loc.s(R.string.s0084)
                 )
             ),
             DiagnosticSuggestion(
                 id = "optimize_memory",
-                title = "优化内存使用",
-                description = "当前内存使用率偏高，建议关闭不必要的服务或插件。",
+                title = Loc.s(R.string.s0085),
+                description = Loc.s(R.string.s0086),
                 category = DiagnosticCategory.PERFORMANCE,
                 priority = 2,
                 canAutoFix = true,
                 fixSteps = listOf(
-                    "检查已安装插件",
-                    "禁用不常用的服务",
-                    "清理系统缓存"
+                    Loc.s(R.string.s0087),
+                    Loc.s(R.string.s0088),
+                    Loc.s(R.string.s0089)
                 )
             ),
             DiagnosticSuggestion(
                 id = "wifi_position",
-                title = "优化WiFi信号覆盖",
-                description = "部分区域WiFi信号较弱，建议调整路由器位置。",
+                title = Loc.s(R.string.s0090),
+                description = Loc.s(R.string.s0091),
                 category = DiagnosticCategory.WIFI,
                 priority = 3,
                 canAutoFix = false,
                 fixSteps = listOf(
-                    "将路由器放置在开阔位置",
-                    "避免放在角落或柜子里",
-                    "调整天线方向",
-                    "考虑添加WiFi中继器"
+                    Loc.s(R.string.s0092),
+                    Loc.s(R.string.s0093),
+                    Loc.s(R.string.s0094),
+                    Loc.s(R.string.s0095)
                 )
             ),
             DiagnosticSuggestion(
                 id = "change_password",
-                title = "定期更换管理密码",
-                description = "为了安全，建议定期更换路由器管理密码。",
+                title = Loc.s(R.string.s0096),
+                description = Loc.s(R.string.s0097),
                 category = DiagnosticCategory.SECURITY,
                 priority = 4,
                 canAutoFix = false,
                 fixSteps = listOf(
-                    "进入系统管理页面",
-                    "修改管理密码",
-                    "保存并重新登录"
+                    Loc.s(R.string.s0098),
+                    Loc.s(R.string.s0099),
+                    Loc.s(R.string.s0100)
                 )
             )
         )

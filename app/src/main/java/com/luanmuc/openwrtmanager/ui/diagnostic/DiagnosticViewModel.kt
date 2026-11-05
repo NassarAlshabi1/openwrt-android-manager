@@ -15,6 +15,8 @@ import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 import com.luanmuc.openwrtmanager.util.NetworkDiagnostic
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 智能诊断 ViewModel
@@ -53,21 +55,21 @@ class DiagnosticViewModel(application: Application) : BaseViewModel(application)
                 isRunning = true,
                 error = null,
                 result = null,
-                currentStep = "正在初始化..."
+                currentStep = Loc.s(R.string.s0379)
             )
             try {
                 // 调试模式：使用假数据
                 if (DebugMode.isDebugMode) {
                     DebugMode.simulateDelay(500)
-                    _uiState.value = _uiState.value.copy(currentStep = "正在检查CPU使用率...")
+                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0380))
                     DebugMode.simulateDelay(500)
-                    _uiState.value = _uiState.value.copy(currentStep = "正在检查内存使用率...")
+                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0381))
                     DebugMode.simulateDelay(500)
-                    _uiState.value = _uiState.value.copy(currentStep = "正在检查存储空间...")
+                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0382))
                     DebugMode.simulateDelay(500)
-                    _uiState.value = _uiState.value.copy(currentStep = "正在检查WAN连接...")
+                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0383))
                     DebugMode.simulateDelay(500)
-                    _uiState.value = _uiState.value.copy(currentStep = "正在检查运行时间...")
+                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0384))
                     DebugMode.simulateDelay(500)
 
                     // 生成假的诊断结果
@@ -75,26 +77,26 @@ class DiagnosticViewModel(application: Application) : BaseViewModel(application)
                         NetworkDiagnostic.DiagnosticIssue(
                             type = NetworkDiagnostic.IssueType.CPU_USAGE,
                             severity = NetworkDiagnostic.Severity.WARNING,
-                            description = "CPU使用率偏高",
-                            suggestion = "建议关闭不必要的进程或服务"
+                            description = Loc.s(R.string.s0385),
+                            suggestion = Loc.s(R.string.s0386)
                         ),
                         NetworkDiagnostic.DiagnosticIssue(
                             type = NetworkDiagnostic.IssueType.MEMORY_USAGE,
                             severity = NetworkDiagnostic.Severity.INFO,
-                            description = "内存使用率正常",
-                            suggestion = "内存使用状况良好"
+                            description = Loc.s(R.string.s0387),
+                            suggestion = Loc.s(R.string.s0388)
                         ),
                         NetworkDiagnostic.DiagnosticIssue(
                             type = NetworkDiagnostic.IssueType.STORAGE_USAGE,
                             severity = NetworkDiagnostic.Severity.WARNING,
-                            description = "存储空间使用率较高",
-                            suggestion = "建议清理不必要的日志和缓存文件"
+                            description = Loc.s(R.string.s0389),
+                            suggestion = Loc.s(R.string.s0390)
                         ),
                         NetworkDiagnostic.DiagnosticIssue(
                             type = NetworkDiagnostic.IssueType.UPTIME,
                             severity = NetworkDiagnostic.Severity.INFO,
-                            description = "设备运行稳定",
-                            suggestion = "设备已稳定运行较长时间"
+                            description = Loc.s(R.string.s0391),
+                            suggestion = Loc.s(R.string.s0392)
                         )
                     )
 
@@ -102,9 +104,9 @@ class DiagnosticViewModel(application: Application) : BaseViewModel(application)
                         isHealthy = true,
                         issues = issues,
                         suggestions = listOf(
-                            "系统整体运行良好",
-                            "建议定期清理日志文件",
-                            "关注CPU使用率变化"
+                            Loc.s(R.string.s0393),
+                            Loc.s(R.string.s0394),
+                            Loc.s(R.string.s0395)
                         )
                     )
 
@@ -124,11 +126,11 @@ class DiagnosticViewModel(application: Application) : BaseViewModel(application)
                     }
 
                     // 获取系统信息
-                    _uiState.value = _uiState.value.copy(currentStep = "正在获取系统信息...")
+                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0396))
                     val routerStatus = luciRepository.getRouterStatus()
 
                     // 运行诊断
-                    _uiState.value = _uiState.value.copy(currentStep = "正在运行诊断...")
+                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0397))
                     val result = NetworkDiagnostic.runFullDiagnostic(routerStatus)
 
                     _uiState.value = _uiState.value.copy(
@@ -140,7 +142,7 @@ class DiagnosticViewModel(application: Application) : BaseViewModel(application)
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isRunning = false,
-                    error = e.message ?: "诊断失败",
+                    error = e.message ?: Loc.s(R.string.s0398),
                     currentStep = ""
                 )
             }

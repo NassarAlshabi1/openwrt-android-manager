@@ -61,6 +61,7 @@ import com.luanmuc.openwrtmanager.ui.components.MiLoadingState
 import com.luanmuc.openwrtmanager.ui.components.MiTag
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.ui.components.OfflineBanner
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 防火墙页面 - 小米路由器风格
@@ -79,12 +80,12 @@ fun FirewallScreen(
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "防火墙",
+                title = Loc.s(R.string.s0409),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -93,14 +94,14 @@ fun FirewallScreen(
                     IconButton(onClick = { viewModel.loadFirewallConfig() }) {
                         Icon(
                             Icons.Default.Refresh,
-                            contentDescription = "刷新",
+                            contentDescription = Loc.s(R.string.s0322),
                             tint = MiTheme.TextSecondary
                         )
                     }
                     IconButton(onClick = { showAddDialog = true }) {
                         Icon(
                             Icons.Default.Add,
-                            contentDescription = "添加",
+                            contentDescription = Loc.s(R.string.s0328),
                             tint = MiTheme.TextSecondary
                         )
                     }
@@ -121,7 +122,7 @@ fun FirewallScreen(
                 MiLoadingState()
             } else if (uiState.error != null && uiState.portForwards.isEmpty()) {
                 MiErrorState(
-                    message = uiState.error ?: "加载失败",
+                    message = uiState.error ?: Loc.s(R.string.s0329),
                     onRetry = { viewModel.loadFirewallConfig() }
                 )
             } else if (uiState.portForwards.isEmpty()) {
@@ -134,7 +135,7 @@ fun FirewallScreen(
                             modifier = Modifier.size(40.dp)
                         )
                     },
-                    text = "暂无端口转发规则"
+                    text = Loc.s(R.string.s0410)
                 )
             } else {
                 LazyColumn(
@@ -246,7 +247,7 @@ fun PortForwardCard(
             IconButton(onClick = { onEdit(rule) }) {
                 Icon(
                     Icons.Default.Edit,
-                    contentDescription = "编辑",
+                    contentDescription = Loc.s(R.string.s0335),
                     tint = MiColors.Primary,
                     modifier = Modifier.size(20.dp)
                 )
@@ -254,7 +255,7 @@ fun PortForwardCard(
             IconButton(onClick = { showDeleteDialog = true }) {
                 Icon(
                     Icons.Default.Delete,
-                    contentDescription = "删除",
+                    contentDescription = Loc.s(R.string.s0303),
                     tint = MiColors.Error,
                     modifier = Modifier.size(20.dp)
                 )
@@ -274,7 +275,7 @@ fun PortForwardCard(
             },
             title = {
                 Text(
-                    "删除规则",
+                    Loc.s(R.string.s0411),
                     fontWeight = FontWeight.Bold
                 )
             },
@@ -289,7 +290,7 @@ fun PortForwardCard(
                     }
                 ) {
                     Text(
-                        "删除",
+                        Loc.s(R.string.s0303),
                         color = MiColors.Error,
                         fontWeight = FontWeight.Medium
                     )
@@ -298,7 +299,7 @@ fun PortForwardCard(
             dismissButton = {
                 TextButton(onClick = { showDeleteDialog = false }) {
                     Text(
-                        "取消",
+                        Loc.s(R.string.s0276),
                         color = MiTheme.TextTertiary
                     )
                 }
@@ -323,7 +324,7 @@ fun AddPortForwardDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                "添加端口转发",
+                Loc.s(R.string.s0412),
                 fontWeight = FontWeight.Bold
             )
         },
@@ -410,7 +411,7 @@ fun AddPortForwardDialog(
                 }
             ) {
                 Text(
-                    "添加",
+                    Loc.s(R.string.s0328),
                     color = MiColors.Primary,
                     fontWeight = FontWeight.Medium
                 )
@@ -419,7 +420,7 @@ fun AddPortForwardDialog(
         dismissButton = {
             TextButton(onClick = onDismiss) {
                 Text(
-                    "取消",
+                    Loc.s(R.string.s0276),
                     color = MiTheme.TextTertiary
                 )
             }
@@ -444,7 +445,7 @@ fun EditPortForwardDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                "编辑端口转发",
+                Loc.s(R.string.s0413),
                 fontWeight = FontWeight.Bold
             )
         },
@@ -539,7 +540,7 @@ fun EditPortForwardDialog(
                 }
             ) {
                 Text(
-                    "保存",
+                    Loc.s(R.string.s0414),
                     color = MiColors.Primary,
                     fontWeight = FontWeight.Medium
                 )
@@ -548,7 +549,7 @@ fun EditPortForwardDialog(
         dismissButton = {
             TextButton(onClick = onDismiss) {
                 Text(
-                    "取消",
+                    Loc.s(R.string.s0276),
                     color = MiTheme.TextTertiary
                 )
             }

@@ -14,6 +14,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 data class StorageUiState(
     val isLoading: Boolean = false,
@@ -213,7 +215,7 @@ class StorageViewModel(application: Application) : BaseViewModel(application) {
                     status
                 )
             } catch (e: Exception) {
-                handleLoadError(e.message ?: "加载存储信息失败")
+                handleLoadError(e.message ?: Loc.s(R.string.s0740))
             }
         }
     }

@@ -2,6 +2,8 @@ package com.luanmuc.openwrtmanager.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 路由器实体
@@ -17,7 +19,7 @@ data class RouterEntity(
     val password: String,
     val protocol: String = "http",
     val port: Int = 80,
-    val group: String = "默认分组",
+    val group: String = Loc.s(R.string.s0002),
     val isActive: Boolean = false,
     val lastConnected: Long = 0,
     val createdAt: Long = System.currentTimeMillis(),

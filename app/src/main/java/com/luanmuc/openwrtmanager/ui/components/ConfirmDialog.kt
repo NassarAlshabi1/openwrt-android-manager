@@ -28,6 +28,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 确认对话框组件
@@ -38,8 +40,8 @@ fun ConfirmDialog(
     show: Boolean,
     title: String,
     message: String,
-    confirmText: String = "确认",
-    cancelText: String = "取消",
+    confirmText: String = Loc.s(R.string.s0300),
+    cancelText: String = Loc.s(R.string.s0276),
     icon: ImageVector? = null,
     isDangerous: Boolean = false,
     onConfirm: () -> Unit,
@@ -112,10 +114,10 @@ fun DeleteConfirmDialog(
 ) {
     ConfirmDialog(
         show = show,
-        title = "确认删除",
-        message = "确定要删除「$itemName」吗？此操作不可撤销。",
-        confirmText = "删除",
-        cancelText = "取消",
+        title = Loc.s(R.string.s0301),
+        message = Loc.s(R.string.s0302, itemName),
+        confirmText = Loc.s(R.string.s0303),
+        cancelText = Loc.s(R.string.s0276),
         isDangerous = true,
         onConfirm = onConfirm,
         onDismiss = onDismiss
@@ -128,8 +130,8 @@ fun DeleteConfirmDialog(
 @Composable
 fun ResetConfirmDialog(
     show: Boolean,
-    title: String = "确认重置",
-    message: String = "确定要重置吗？所有自定义设置将丢失。",
+    title: String = Loc.s(R.string.s0304),
+    message: String = Loc.s(R.string.s0305),
     onConfirm: () -> Unit,
     onDismiss: () -> Unit
 ) {
@@ -137,8 +139,8 @@ fun ResetConfirmDialog(
         show = show,
         title = title,
         message = message,
-        confirmText = "重置",
-        cancelText = "取消",
+        confirmText = Loc.s(R.string.s0306),
+        cancelText = Loc.s(R.string.s0276),
         isDangerous = true,
         onConfirm = onConfirm,
         onDismiss = onDismiss
@@ -156,10 +158,10 @@ fun ExitConfirmDialog(
 ) {
     ConfirmDialog(
         show = show,
-        title = "确认退出",
-        message = "确定要退出应用吗？",
-        confirmText = "退出",
-        cancelText = "取消",
+        title = Loc.s(R.string.s0307),
+        message = Loc.s(R.string.s0308),
+        confirmText = Loc.s(R.string.s0309),
+        cancelText = Loc.s(R.string.s0276),
         onConfirm = onConfirm,
         onDismiss = onDismiss
     )
@@ -173,7 +175,7 @@ fun InfoDialog(
     show: Boolean,
     title: String,
     message: String,
-    confirmText: String = "知道了",
+    confirmText: String = Loc.s(R.string.s0310),
     icon: ImageVector? = null,
     onDismiss: () -> Unit
 ) {
@@ -225,7 +227,7 @@ fun InfoDialog(
 @Composable
 fun SuccessDialog(
     show: Boolean,
-    title: String = "操作成功",
+    title: String = Loc.s(R.string.s0260),
     message: String = "",
     onDismiss: () -> Unit
 ) {
@@ -244,7 +246,7 @@ fun SuccessDialog(
 @Composable
 fun ErrorDialog(
     show: Boolean,
-    title: String = "操作失败",
+    title: String = Loc.s(R.string.s0311),
     message: String = "",
     onDismiss: () -> Unit
 ) {
@@ -267,8 +269,8 @@ fun InputDialog(
     value: String,
     onValueChange: (String) -> Unit,
     placeholder: String = "",
-    confirmText: String = "确认",
-    cancelText: String = "取消",
+    confirmText: String = Loc.s(R.string.s0300),
+    cancelText: String = Loc.s(R.string.s0276),
     onConfirm: () -> Unit,
     onDismiss: () -> Unit
 ) {

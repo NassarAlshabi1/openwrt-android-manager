@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.luanmuc.openwrtmanager.data.model.PluginInstallStatus
 import com.luanmuc.openwrtmanager.util.DebugMode
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 插件依赖提示卡片
@@ -53,7 +55,7 @@ fun PluginDependencyCard(
                 Spacer(modifier = Modifier.width(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "需要安装插件：${status.dependency.featureName}",
+                        text = Loc.s(R.string.s0317, status.dependency.featureName),
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Medium,
                         color = Color(0xFF5D4037)
@@ -86,7 +88,7 @@ fun PluginDependencyCard(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = status.installMessage.ifEmpty { "正在安装..." },
+                        text = status.installMessage.ifEmpty { Loc.s(R.string.s0318) },
                         fontSize = 12.sp,
                         color = Color(0xFF8D6E63)
                     )
@@ -111,7 +113,7 @@ fun PluginDependencyCard(
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("一键安装")
+                        Text(Loc.s(R.string.s0319))
                     }
                 }
             }
@@ -161,18 +163,18 @@ fun PluginDependencyScreen(
                 Spacer(modifier = Modifier.width(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "插件依赖检测",
+                        text = Loc.s(R.string.s0320),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium
                     )
                     Text(
-                        text = "已安装 ${pluginStatuses.count { it.isInstalled }}/${pluginStatuses.size} 个插件",
+                        text = Loc.s(R.string.s0321, pluginStatuses.count { it.isInstalled }, pluginStatuses.size),
                         fontSize = 12.sp,
                         color = Color(0xFF757575)
                     )
                 }
                 IconButton(onClick = onRefresh) {
-                    Icon(Icons.Default.Refresh, contentDescription = "刷新")
+                    Icon(Icons.Default.Refresh, contentDescription = Loc.s(R.string.s0322))
                 }
             }
         }
@@ -218,7 +220,7 @@ fun PluginDependencyScreen(
                         }
                         if (status.isInstalled) {
                             Text(
-                                text = "已安装",
+                                text = Loc.s(R.string.s0323),
                                 fontSize = 12.sp,
                                 color = Color(0xFF4CAF50),
                                 fontWeight = FontWeight.Medium
@@ -236,7 +238,7 @@ fun PluginDependencyScreen(
                                     }
                                 }
                             ) {
-                                Text("安装")
+                                Text(Loc.s(R.string.s0324))
                             }
                         }
                     }

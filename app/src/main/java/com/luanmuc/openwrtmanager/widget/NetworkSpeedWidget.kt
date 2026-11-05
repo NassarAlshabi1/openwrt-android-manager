@@ -7,6 +7,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import com.luanmuc.openwrtmanager.MainActivity
 import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 网速桌面小部件
@@ -41,7 +42,7 @@ class NetworkSpeedWidget : AppWidgetProvider() {
             
             views.setTextViewText(R.id.widget_download_speed, "--")
             views.setTextViewText(R.id.widget_upload_speed, "--")
-            views.setTextViewText(R.id.widget_router_name, "点击打开APP")
+            views.setTextViewText(R.id.widget_router_name, Loc.s(R.string.s0953))
             
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }

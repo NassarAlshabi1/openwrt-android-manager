@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.json.JSONArray
 import org.json.JSONObject
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 首页仪表板配置
@@ -270,17 +272,30 @@ data class DashboardCard(
 /**
  * 卡片类型
  */
-enum class CardType(val displayName: String) {
-    ROUTER_STATUS("路由器状态"),
-    NETWORK_SPEED("实时网速"),
-    QUICK_ACTIONS("常用功能"),
-    SYSTEM_STATUS("系统状态"),
-    ONLINE_DEVICES("在线设备"),
-    WIFI_STATUS("WiFi状态"),
-    PLUGINS("插件管理"),
-    FIREWALL("防火墙"),
-    DDNS("DDNS"),
-    PORT_STATUS("网口状态")
+enum class CardType {
+    ROUTER_STATUS,
+    NETWORK_SPEED,
+    QUICK_ACTIONS,
+    SYSTEM_STATUS,
+    ONLINE_DEVICES,
+    WIFI_STATUS,
+    PLUGINS,
+    FIREWALL,
+    DDNS,
+    PORT_STATUS;
+    val displayName: String
+        get() = when (this) {
+            ROUTER_STATUS -> Loc.s(R.string.enum_004)
+            NETWORK_SPEED -> Loc.s(R.string.enum_005)
+            QUICK_ACTIONS -> Loc.s(R.string.enum_006)
+            SYSTEM_STATUS -> Loc.s(R.string.enum_007)
+            ONLINE_DEVICES -> Loc.s(R.string.enum_008)
+            WIFI_STATUS -> Loc.s(R.string.enum_009)
+            PLUGINS -> Loc.s(R.string.enum_010)
+            FIREWALL -> Loc.s(R.string.enum_011)
+            DDNS -> "DDNS"
+            PORT_STATUS -> Loc.s(R.string.enum_012)
+        }
 }
 
 /**
@@ -295,9 +310,16 @@ enum class CardSize {
 /**
  * 预设布局
  */
-enum class PresetLayout(val displayName: String) {
-    DEFAULT("默认布局"),
-    COMPACT("紧凑布局"),
-    DETAILED("详细布局"),
-    MINIMAL("极简布局")
+enum class PresetLayout {
+    DEFAULT,
+    COMPACT,
+    DETAILED,
+    MINIMAL;
+    val displayName: String
+        get() = when (this) {
+            DEFAULT -> Loc.s(R.string.enum_013)
+            COMPACT -> Loc.s(R.string.enum_014)
+            DETAILED -> Loc.s(R.string.enum_015)
+            MINIMAL -> Loc.s(R.string.enum_016)
+        }
 }

@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * WiFi增强ViewModel
@@ -89,9 +91,9 @@ class WifiEnhancedViewModel(application: Application) : BaseViewModel(applicatio
                 }
                 wifiConfigRepository.saveWifiSchedules(schedules)
                 _wifiSchedules.value = schedules
-                _operationResult.value = if (enabled) "定时已开启" else "定时已关闭"
+                _operationResult.value = if (enabled) Loc.s(R.string.s0816) else Loc.s(R.string.s0817)
             } catch (e: Exception) {
-                _operationResult.value = "操作失败: ${e.message}"
+                _operationResult.value = Loc.s(R.string.s0347, e.message)
             }
         }
     }
@@ -111,10 +113,10 @@ class WifiEnhancedViewModel(application: Application) : BaseViewModel(applicatio
                 if (success) {
                     val config = wifiConfigRepository.getGuestNetworkConfig()
                     _guestConfig.value = config
-                    _operationResult.value = if (enabled) "访客网络已开启" else "访客网络已关闭"
+                    _operationResult.value = if (enabled) Loc.s(R.string.s0818) else Loc.s(R.string.s0819)
                 }
             } catch (e: Exception) {
-                _operationResult.value = "操作失败: ${e.message}"
+                _operationResult.value = Loc.s(R.string.s0347, e.message)
             }
         }
     }
@@ -128,9 +130,9 @@ class WifiEnhancedViewModel(application: Application) : BaseViewModel(applicatio
             try {
                 val channels = wifiConfigRepository.scanWifiChannels(_selectedBand.value)
                 _channelInfo.value = channels
-                _operationResult.value = "扫描完成，发现 ${channels.size} 个信道"
+                _operationResult.value = Loc.s(R.string.s0820, channels.size)
             } catch (e: Exception) {
-                _operationResult.value = "扫描失败: ${e.message}"
+                _operationResult.value = Loc.s(R.string.s0821, e.message)
             } finally {
                 _isScanningChannels.value = false
             }
@@ -153,10 +155,10 @@ class WifiEnhancedViewModel(application: Application) : BaseViewModel(applicatio
                 val success = wifiConfigRepository.setTxPower("wlan0", power)
                 if (success) {
                     _txPower.value = power
-                    _operationResult.value = "发射功率已设置为 ${power}dBm"
+                    _operationResult.value = Loc.s(R.string.s0822, power)
                 }
             } catch (e: Exception) {
-                _operationResult.value = "设置失败: ${e.message}"
+                _operationResult.value = Loc.s(R.string.s0823, e.message)
             }
         }
     }

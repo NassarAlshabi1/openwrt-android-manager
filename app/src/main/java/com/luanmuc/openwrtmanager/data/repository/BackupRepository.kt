@@ -11,6 +11,8 @@ import org.json.JSONObject
 import java.io.File
 import java.util.UUID
 import kotlinx.coroutines.delay
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 配置备份Repository
@@ -116,14 +118,14 @@ class BackupRepository private constructor(private val context: Context) {
         if (DebugMode.isDebugMode) {
             // 模拟恢复过程
             val steps = listOf(
-                "验证备份文件",
-                "上传配置文件",
-                "恢复系统配置",
-                "恢复网络配置",
-                "恢复防火墙配置",
-                "恢复WiFi配置",
-                "应用配置",
-                "重启服务"
+                Loc.s(R.string.s0016),
+                Loc.s(R.string.s0017),
+                Loc.s(R.string.s0018),
+                Loc.s(R.string.s0019),
+                Loc.s(R.string.s0020),
+                Loc.s(R.string.s0021),
+                Loc.s(R.string.s0022),
+                Loc.s(R.string.s0023)
             )
             
             for (i in steps.indices) {
@@ -133,7 +135,7 @@ class BackupRepository private constructor(private val context: Context) {
             return RestoreProgress(
                 currentStep = steps.size,
                 totalSteps = steps.size,
-                currentStepName = "完成",
+                currentStepName = Loc.s(R.string.s0024),
                 percentage = 100,
                 isCompleted = true,
                 error = null
@@ -144,10 +146,10 @@ class BackupRepository private constructor(private val context: Context) {
         return RestoreProgress(
             currentStep = 1,
             totalSteps = 3,
-            currentStepName = "准备恢复",
+            currentStepName = Loc.s(R.string.s0025),
             percentage = 33,
             isCompleted = false,
-            error = "请通过路由器Web界面恢复备份"
+            error = Loc.s(R.string.s0026)
         )
     }
     
@@ -226,8 +228,8 @@ class BackupRepository private constructor(private val context: Context) {
         return listOf(
             BackupRecord(
                 id = "backup_001",
-                name = "初始配置备份",
-                description = "路由器初始配置，刚安装完系统时的备份",
+                name = Loc.s(R.string.s0027),
+                description = Loc.s(R.string.s0028),
                 createdAt = now - 30 * 24 * 60 * 60 * 1000,
                 size = 512 * 1024,
                 routerName = "OpenWrt-Router",
@@ -238,8 +240,8 @@ class BackupRepository private constructor(private val context: Context) {
             ),
             BackupRecord(
                 id = "backup_002",
-                name = "配置优化后备份",
-                description = "优化网络配置、添加端口转发后的备份",
+                name = Loc.s(R.string.s0029),
+                description = Loc.s(R.string.s0030),
                 createdAt = now - 15 * 24 * 60 * 60 * 1000,
                 size = 640 * 1024,
                 routerName = "OpenWrt-Router",
@@ -250,8 +252,8 @@ class BackupRepository private constructor(private val context: Context) {
             ),
             BackupRecord(
                 id = "backup_003",
-                name = "添加DDNS后备份",
-                description = "配置DDNS和防火墙规则后的备份",
+                name = Loc.s(R.string.s0031),
+                description = Loc.s(R.string.s0032),
                 createdAt = now - 7 * 24 * 60 * 60 * 1000,
                 size = 680 * 1024,
                 routerName = "OpenWrt-Router",
@@ -262,8 +264,8 @@ class BackupRepository private constructor(private val context: Context) {
             ),
             BackupRecord(
                 id = "backup_004",
-                name = "WiFi优化备份",
-                description = "优化WiFi信道和功率后的备份",
+                name = Loc.s(R.string.s0033),
+                description = Loc.s(R.string.s0034),
                 createdAt = now - 3 * 24 * 60 * 60 * 1000,
                 size = 580 * 1024,
                 routerName = "OpenWrt-Router",
@@ -274,8 +276,8 @@ class BackupRepository private constructor(private val context: Context) {
             ),
             BackupRecord(
                 id = "backup_005",
-                name = "最新配置备份",
-                description = "最新的完整配置备份",
+                name = Loc.s(R.string.s0035),
+                description = Loc.s(R.string.s0036),
                 createdAt = now - 1 * 24 * 60 * 60 * 1000,
                 size = 720 * 1024,
                 routerName = "OpenWrt-Router",

@@ -51,6 +51,8 @@ import com.luanmuc.openwrtmanager.ui.components.MiSwitch
 import com.luanmuc.openwrtmanager.ui.components.MiTextField
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.ui.components.OfflineBanner
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 网络设置页面 - 小米路由器风格
@@ -63,17 +65,17 @@ fun NetworkScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var selectedTab by remember { mutableIntStateOf(0) }
-    val tabs = listOf("LAN 设置", "WAN 设置", "DHCP 管理")
+    val tabs = listOf(Loc.s(R.string.s0525), Loc.s(R.string.s0526), Loc.s(R.string.s0527))
     
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "网络设置",
+                title = Loc.s(R.string.s0512),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -82,7 +84,7 @@ fun NetworkScreen(
                     IconButton(onClick = { viewModel.loadNetworkConfig() }) {
                         Icon(
                             Icons.Default.Refresh,
-                            contentDescription = "刷新",
+                            contentDescription = Loc.s(R.string.s0322),
                             tint = MiTheme.TextSecondary
                         )
                     }
@@ -154,7 +156,7 @@ fun NetworkScreen(
                     
                     // 保存按钮
                     MiPrimaryButton(
-                        text = "保存配置",
+                        text = Loc.s(R.string.s0528),
                         onClick = {
                             when (selectedTab) {
                                 0 -> if (DebounceUtils.canClick()) viewModel.saveLanConfig()
@@ -245,7 +247,7 @@ fun LanSettings(viewModel: NetworkViewModel) {
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "LAN 口设置",
+                    text = Loc.s(R.string.s0529),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MiTheme.TextPrimary
@@ -255,14 +257,14 @@ fun LanSettings(viewModel: NetworkViewModel) {
             MiTextField(
                 value = uiState.lanIp,
                 onValueChange = { viewModel.updateLanIp(it) },
-                label = "IP 地址",
+                label = Loc.s(R.string.s0530),
                 placeholder = "192.168.1.1"
             )
             
             MiTextField(
                 value = uiState.lanNetmask,
                 onValueChange = { viewModel.updateLanNetmask(it) },
-                label = "子网掩码",
+                label = Loc.s(R.string.s0531),
                 placeholder = "255.255.255.0"
             )
         }
@@ -297,7 +299,7 @@ fun WanSettings(viewModel: NetworkViewModel) {
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "WAN 口设置",
+                    text = Loc.s(R.string.s0532),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MiTheme.TextPrimary
@@ -306,7 +308,7 @@ fun WanSettings(viewModel: NetworkViewModel) {
             
             // 协议选择
             Text(
-                text = "连接协议",
+                text = Loc.s(R.string.s0533),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = MiTheme.TextSecondary
@@ -315,7 +317,7 @@ fun WanSettings(viewModel: NetworkViewModel) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                listOf("dhcp" to "DHCP", "static" to "静态IP", "pppoe" to "PPPoE").forEach { (proto, label) ->
+                listOf("dhcp" to "DHCP", "static" to Loc.s(R.string.s0534), "pppoe" to "PPPoE").forEach { (proto, label) ->
                     FilterChip(
                         selected = uiState.wanProto == proto,
                         onClick = { viewModel.updateWanProto(proto) },
@@ -343,25 +345,25 @@ fun WanSettings(viewModel: NetworkViewModel) {
                 MiTextField(
                     value = uiState.wanIp,
                     onValueChange = { viewModel.updateWanIp(it) },
-                    label = "IP 地址",
+                    label = Loc.s(R.string.s0530),
                     placeholder = "192.168.1.100"
                 )
                 MiTextField(
                     value = uiState.wanNetmask,
                     onValueChange = { viewModel.updateWanNetmask(it) },
-                    label = "子网掩码",
+                    label = Loc.s(R.string.s0531),
                     placeholder = "255.255.255.0"
                 )
                 MiTextField(
                     value = uiState.wanGateway,
                     onValueChange = { viewModel.updateWanGateway(it) },
-                    label = "网关",
+                    label = Loc.s(R.string.s0535),
                     placeholder = "192.168.1.1"
                 )
                 MiTextField(
                     value = uiState.wanDns,
                     onValueChange = { viewModel.updateWanDns(it) },
-                    label = "DNS 服务器",
+                    label = Loc.s(R.string.s0536),
                     placeholder = "8.8.8.8"
                 )
             }
@@ -370,14 +372,14 @@ fun WanSettings(viewModel: NetworkViewModel) {
                 MiTextField(
                     value = uiState.wanUsername,
                     onValueChange = { viewModel.updateWanUsername(it) },
-                    label = "宽带账号",
-                    placeholder = "请输入宽带账号"
+                    label = Loc.s(R.string.s0537),
+                    placeholder = Loc.s(R.string.s0538)
                 )
                 MiTextField(
                     value = uiState.wanPassword,
                     onValueChange = { viewModel.updateWanPassword(it) },
-                    label = "宽带密码",
-                    placeholder = "请输入宽带密码"
+                    label = Loc.s(R.string.s0539),
+                    placeholder = Loc.s(R.string.s0540)
                 )
             }
         }
@@ -416,13 +418,13 @@ fun DhcpSettings(viewModel: NetworkViewModel) {
                 Spacer(modifier = Modifier.width(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "DHCP 服务器",
+                        text = Loc.s(R.string.s0541),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MiTheme.TextPrimary
                     )
                     Text(
-                        text = "自动分配IP地址",
+                        text = Loc.s(R.string.s0542),
                         fontSize = 12.sp,
                         color = MiTheme.TextTertiary
                     )
@@ -437,19 +439,19 @@ fun DhcpSettings(viewModel: NetworkViewModel) {
                 MiTextField(
                     value = uiState.lanDhcpStart,
                     onValueChange = { viewModel.updateLanDhcpStart(it) },
-                    label = "起始地址",
+                    label = Loc.s(R.string.s0543),
                     placeholder = "100"
                 )
                 MiTextField(
                     value = uiState.lanDhcpLimit,
                     onValueChange = { viewModel.updateLanDhcpLimit(it) },
-                    label = "地址数量",
+                    label = Loc.s(R.string.s0544),
                     placeholder = "150"
                 )
                 MiTextField(
                     value = uiState.lanDhcpLease,
                     onValueChange = { viewModel.updateLanDhcpLease(it) },
-                    label = "租期(分钟)",
+                    label = Loc.s(R.string.s0545),
                     placeholder = "12h"
                 )
             }

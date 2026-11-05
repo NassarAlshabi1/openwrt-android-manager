@@ -3,6 +3,8 @@ package com.luanmuc.openwrtmanager.data.repository
 import android.content.Context
 import android.content.SharedPreferences
 import com.luanmuc.openwrtmanager.ui.theme.ThemeMode
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 设置仓库 - 管理所有APP设置
@@ -209,50 +211,84 @@ class SettingsRepository private constructor() {
 /**
  * 语言枚举
  */
-enum class Language(val displayName: String) {
-    SYSTEM("跟随系统"),
-    SIMPLIFIED_CHINESE("简体中文"),
-    TRADITIONAL_CHINESE("繁体中文"),
-    ENGLISH("English")
+enum class Language {
+    SYSTEM,
+    ENGLISH,
+    ARABIC;
+    val displayName: String
+        get() = when (this) {
+            SYSTEM -> Loc.s(R.string.lang_system)
+            ENGLISH -> Loc.s(R.string.lang_english)
+            ARABIC -> Loc.s(R.string.lang_arabic)
+        }
 }
 
 /**
  * 流量单位枚举
  */
-enum class TrafficUnit(val displayName: String) {
-    AUTO("自动"),
-    KB("KB"),
-    MB("MB"),
-    GB("GB")
+enum class TrafficUnit {
+    AUTO,
+    KB,
+    MB,
+    GB;
+    val displayName: String
+        get() = when (this) {
+            AUTO -> Loc.s(R.string.enum_086)
+            KB -> "KB"
+            MB -> "MB"
+            GB -> "GB"
+        }
 }
 
 /**
  * 刷新间隔选项
  */
-enum class RefreshInterval(val seconds: Int, val displayName: String) {
-    SECONDS_5(5, "5秒"),
-    SECONDS_10(10, "10秒"),
-    SECONDS_30(30, "30秒"),
-    MINUTES_1(60, "1分钟"),
-    MINUTES_5(300, "5分钟")
+enum class RefreshInterval(val seconds: Int) {
+    SECONDS_5(5),
+    SECONDS_10(10),
+    SECONDS_30(30),
+    MINUTES_1(60),
+    MINUTES_5(300);
+    val displayName: String
+        get() = when (this) {
+            SECONDS_5 -> Loc.s(R.string.enum_087)
+            SECONDS_10 -> Loc.s(R.string.enum_088)
+            SECONDS_30 -> Loc.s(R.string.enum_089)
+            MINUTES_1 -> Loc.s(R.string.enum_090)
+            MINUTES_5 -> Loc.s(R.string.enum_091)
+        }
 }
 
 /**
  * 连接超时选项
  */
-enum class ConnectionTimeout(val seconds: Int, val displayName: String) {
-    SECONDS_5(5, "5秒"),
-    SECONDS_10(10, "10秒"),
-    SECONDS_30(30, "30秒"),
-    MINUTES_1(60, "1分钟")
+enum class ConnectionTimeout(val seconds: Int) {
+    SECONDS_5(5),
+    SECONDS_10(10),
+    SECONDS_30(30),
+    MINUTES_1(60);
+    val displayName: String
+        get() = when (this) {
+            SECONDS_5 -> Loc.s(R.string.enum_087)
+            SECONDS_10 -> Loc.s(R.string.enum_088)
+            SECONDS_30 -> Loc.s(R.string.enum_089)
+            MINUTES_1 -> Loc.s(R.string.enum_090)
+        }
 }
 
 /**
  * 重试次数选项
  */
-enum class RetryCount(val count: Int, val displayName: String) {
-    COUNT_1(1, "1次"),
-    COUNT_2(2, "2次"),
-    COUNT_3(3, "3次"),
-    COUNT_5(5, "5次")
+enum class RetryCount(val count: Int) {
+    COUNT_1(1),
+    COUNT_2(2),
+    COUNT_3(3),
+    COUNT_5(5);
+    val displayName: String
+        get() = when (this) {
+            COUNT_1 -> Loc.s(R.string.enum_092)
+            COUNT_2 -> Loc.s(R.string.enum_093)
+            COUNT_3 -> Loc.s(R.string.enum_094)
+            COUNT_5 -> Loc.s(R.string.enum_095)
+        }
 }

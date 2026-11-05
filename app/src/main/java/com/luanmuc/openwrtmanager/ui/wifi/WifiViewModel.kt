@@ -15,6 +15,8 @@ import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
 import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * WiFi设置 ViewModel
@@ -269,7 +271,7 @@ class WifiViewModel(application: Application) : BaseViewModel(application) {
                     )
                 }
             } catch (e: Exception) {
-                handleLoadError(e.message ?: "加载失败")
+                handleLoadError(e.message ?: Loc.s(R.string.s0329))
             }
         }
     }
@@ -319,7 +321,7 @@ class WifiViewModel(application: Application) : BaseViewModel(application) {
                     DebugMode.simulateDelay(1000)
                     _uiState.value = _uiState.value.copy(
                         isSaving = false,
-                        success = "WiFi配置保存成功"
+                        success = Loc.s(R.string.s0807)
                     )
                     return@launch
                 }
@@ -383,12 +385,12 @@ class WifiViewModel(application: Application) : BaseViewModel(application) {
 
                 _uiState.value = _uiState.value.copy(
                     isSaving = false,
-                    success = "WiFi配置保存成功"
+                    success = Loc.s(R.string.s0807)
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isSaving = false,
-                    error = e.message ?: "保存失败"
+                    error = e.message ?: Loc.s(R.string.s0547)
                 )
             }
         }

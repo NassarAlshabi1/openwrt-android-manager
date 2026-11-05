@@ -10,6 +10,8 @@ import com.luanmuc.openwrtmanager.data.model.SpeedLimitConfig
 import com.luanmuc.openwrtmanager.util.DebugMode
 import org.json.JSONArray
 import org.json.JSONObject
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 设备管理Repository
@@ -30,7 +32,7 @@ class DeviceManagerRepository private constructor(private val context: Context) 
             DeviceNote(
                 mac = obj.optString("mac", mac),
                 noteName = obj.optString("noteName", ""),
-                group = obj.optString("group", "默认分组"),
+                group = obj.optString("group", Loc.s(R.string.s0002)),
                 tags = obj.optJSONArray("tags")?.let { arr ->
                     List(arr.length()) { i -> arr.getString(i) }
                 } ?: emptyList(),
@@ -87,10 +89,10 @@ class DeviceManagerRepository private constructor(private val context: Context) 
      */
     private fun getDefaultGroups(): List<DeviceGroup> {
         return listOf(
-            DeviceGroup(id = "default", name = "默认分组", deviceCount = 0, color = "#1677FF"),
-            DeviceGroup(id = "family", name = "家人设备", deviceCount = 0, color = "#00B578"),
-            DeviceGroup(id = "work", name = "工作设备", deviceCount = 0, color = "#FF7D00"),
-            DeviceGroup(id = "guest", name = "访客设备", deviceCount = 0, color = "#86909C")
+            DeviceGroup(id = "default", name = Loc.s(R.string.s0002), deviceCount = 0, color = "#1677FF"),
+            DeviceGroup(id = "family", name = Loc.s(R.string.s0037), deviceCount = 0, color = "#00B578"),
+            DeviceGroup(id = "work", name = Loc.s(R.string.s0038), deviceCount = 0, color = "#FF7D00"),
+            DeviceGroup(id = "guest", name = Loc.s(R.string.s0039), deviceCount = 0, color = "#86909C")
         )
     }
     

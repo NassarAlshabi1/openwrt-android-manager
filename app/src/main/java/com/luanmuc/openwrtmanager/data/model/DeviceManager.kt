@@ -1,12 +1,15 @@
 package com.luanmuc.openwrtmanager.data.model
 
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
+
 /**
  * 设备备注信息
  */
 data class DeviceNote(
     val mac: String = "",
     val noteName: String = "",
-    val group: String = "默认分组",
+    val group: String = Loc.s(R.string.s0002),
     val tags: List<String> = emptyList(),
     val isBlocked: Boolean = false,
     val speedLimit: Int = 0,  // 0表示不限速，单位KB/s
@@ -38,13 +41,22 @@ data class DeviceHistory(
 /**
  * 设备事件类型
  */
-enum class DeviceEventType(val displayName: String) {
-    ONLINE("上线"),
-    OFFLINE("下线"),
-    BLOCKED("拉黑"),
-    UNBLOCKED("解除拉黑"),
-    SPEED_LIMITED("限速"),
-    SPEED_UNLIMITED("取消限速")
+enum class DeviceEventType {
+    ONLINE,
+    OFFLINE,
+    BLOCKED,
+    UNBLOCKED,
+    SPEED_LIMITED,
+    SPEED_UNLIMITED;
+    val displayName: String
+        get() = when (this) {
+            ONLINE -> Loc.s(R.string.enum_060)
+            OFFLINE -> Loc.s(R.string.enum_061)
+            BLOCKED -> Loc.s(R.string.enum_062)
+            UNBLOCKED -> Loc.s(R.string.enum_063)
+            SPEED_LIMITED -> Loc.s(R.string.enum_064)
+            SPEED_UNLIMITED -> Loc.s(R.string.enum_065)
+        }
 }
 
 /**

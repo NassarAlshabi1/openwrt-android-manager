@@ -54,6 +54,8 @@ import com.luanmuc.openwrtmanager.ui.components.MiLoadingState
 import com.luanmuc.openwrtmanager.ui.components.MiTag
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.ui.components.OfflineBanner
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 在线设备页面 - 小米路由器风格
@@ -70,12 +72,12 @@ fun OnlineDevicesScreen(
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "在线设备",
+                title = Loc.s(R.string.s0076),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             Icons.Default.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -84,14 +86,14 @@ fun OnlineDevicesScreen(
                     IconButton(onClick = { showSortMenu = !showSortMenu }) {
                         Icon(
                             Icons.Default.Sort,
-                            contentDescription = "排序",
+                            contentDescription = Loc.s(R.string.s0357),
                             tint = MiTheme.TextSecondary
                         )
                     }
                     IconButton(onClick = { viewModel.loadDevices() }) {
                         Icon(
                             Icons.Default.Refresh,
-                            contentDescription = "刷新",
+                            contentDescription = Loc.s(R.string.s0322),
                             tint = MiTheme.TextSecondary
                         )
                     }
@@ -117,7 +119,7 @@ fun OnlineDevicesScreen(
                 ) {
                     Column {
                         Text(
-                            "排序方式",
+                            Loc.s(R.string.s0358),
                             modifier = Modifier.padding(16.dp),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.SemiBold,
@@ -126,10 +128,10 @@ fun OnlineDevicesScreen(
                         OnlineDevicesViewModel.SortBy.values().forEach { sortBy ->
                             MiListItem(
                                 title = when (sortBy) {
-                                    OnlineDevicesViewModel.SortBy.IP -> "按IP地址"
-                                    OnlineDevicesViewModel.SortBy.NAME -> "按名称"
-                                    OnlineDevicesViewModel.SortBy.CONNECTED_TIME -> "按连接时间"
-                                    OnlineDevicesViewModel.SortBy.TRAFFIC -> "按流量"
+                                    OnlineDevicesViewModel.SortBy.IP -> Loc.s(R.string.s0359)
+                                    OnlineDevicesViewModel.SortBy.NAME -> Loc.s(R.string.s0360)
+                                    OnlineDevicesViewModel.SortBy.CONNECTED_TIME -> Loc.s(R.string.s0361)
+                                    OnlineDevicesViewModel.SortBy.TRAFFIC -> Loc.s(R.string.s0362)
                                 },
                                 onClick = {
                                     viewModel.setSortBy(sortBy)
@@ -164,17 +166,17 @@ fun OnlineDevicesScreen(
                     horizontalArrangement = Arrangement.SpaceAround
                 ) {
                     StatItem(
-                        title = "在线设备",
+                        title = Loc.s(R.string.s0076),
                         value = "${uiState.devices.size}",
                         color = MiColors.Primary
                     )
                     StatItem(
-                        title = "有线连接",
+                        title = Loc.s(R.string.s0363),
                         value = "${uiState.devices.count { !it.interfaceName.contains("wlan", ignoreCase = true) }}",
                         color = MiColors.Success
                     )
                     StatItem(
-                        title = "无线连接",
+                        title = Loc.s(R.string.s0364),
                         value = "${uiState.devices.count { it.interfaceName.contains("wlan", ignoreCase = true) }}",
                         color = MiColors.Warning
                     )
@@ -185,7 +187,7 @@ fun OnlineDevicesScreen(
                 MiLoadingState()
             } else if (uiState.error != null && uiState.devices.isEmpty()) {
                 MiErrorState(
-                    message = uiState.error ?: "加载失败",
+                    message = uiState.error ?: Loc.s(R.string.s0329),
                     onRetry = { viewModel.loadDevices() }
                 )
             } else if (uiState.devices.isEmpty()) {
@@ -198,7 +200,7 @@ fun OnlineDevicesScreen(
                             modifier = Modifier.size(40.dp)
                         )
                     },
-                    text = "暂无在线设备"
+                    text = Loc.s(R.string.s0365)
                 )
             } else {
                 LazyColumn(
@@ -278,7 +280,7 @@ fun DeviceCard(device: DeviceInfo) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     val isWifi = device.interfaceName.contains("wlan", ignoreCase = true)
                     MiTag(
-                        text = if (isWifi) "WiFi" else "有线",
+                        text = if (isWifi) "WiFi" else Loc.s(R.string.s0366),
                         backgroundColor = if (isWifi) MiColors.Warning.copy(alpha = 0.1f) else MiColors.Primary.copy(alpha = 0.1f),
                         textColor = if (isWifi) MiColors.Warning else MiColors.Primary
                     )
@@ -294,7 +296,7 @@ fun DeviceCard(device: DeviceInfo) {
                     Spacer(modifier = Modifier.height(6.dp))
                     val totalBytes = device.rxBytes + device.txBytes
                     Text(
-                        text = "总流量: ${formatTraffic(totalBytes)}",
+                        text = Loc.s(R.string.s0367, formatTraffic(totalBytes)),
                         fontSize = 11.sp,
                         color = MiTheme.TextTertiary
                     )

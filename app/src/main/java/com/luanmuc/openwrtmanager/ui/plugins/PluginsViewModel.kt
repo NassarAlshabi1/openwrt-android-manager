@@ -17,6 +17,8 @@ import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
 import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 插件页 ViewModel
@@ -31,22 +33,39 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
     val uiState: StateFlow<PluginsUiState> = _uiState.asStateFlow()
 
     // 插件分类
-    enum class PluginCategory(val displayName: String, val filter: String) {
-        ALL("全部", ""),
-        SYSTEM("系统", "system"),
-        NETWORK("网络", "network"),
-        SERVICE("服务", "service"),
-        UTILITIES("工具", "utilities"),
-        MULTIMEDIA("多媒体", "multimedia"),
-        ADMINISTRATION("管理", "admin"),
-        OTHER("其他", "other")
+    enum class PluginCategory(val filter: String) {
+        ALL(""),
+        SYSTEM("system"),
+        NETWORK("network"),
+        SERVICE("service"),
+        UTILITIES("utilities"),
+        MULTIMEDIA("multimedia"),
+        ADMINISTRATION("admin"),
+        OTHER("other");
+        val displayName: String
+            get() = when (this) {
+                ALL -> Loc.s(R.string.enum_020)
+                SYSTEM -> Loc.s(R.string.enum_021)
+                NETWORK -> Loc.s(R.string.enum_022)
+                SERVICE -> Loc.s(R.string.enum_023)
+                UTILITIES -> Loc.s(R.string.enum_024)
+                MULTIMEDIA -> Loc.s(R.string.enum_025)
+                ADMINISTRATION -> Loc.s(R.string.enum_026)
+                OTHER -> Loc.s(R.string.enum_027)
+            }
     }
     
     // 排序方式
-    enum class SortType(val displayName: String) {
-        NAME("按名称"),
-        SIZE("按大小"),
-        INSTALLED("按安装状态")
+    enum class SortType {
+        NAME,
+        SIZE,
+        INSTALLED;
+        val displayName: String
+            get() = when (this) {
+                NAME -> Loc.s(R.string.enum_028)
+                SIZE -> Loc.s(R.string.enum_029)
+                INSTALLED -> Loc.s(R.string.enum_030)
+            }
     }
     
     data class PluginsUiState(
@@ -228,7 +247,7 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
                     )
                 }
             } catch (e: Exception) {
-                handleLoadError(e.message ?: "加载失败")
+                handleLoadError(e.message ?: Loc.s(R.string.s0329))
             }
         }
     }
@@ -283,7 +302,7 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
                     if (!isValid) {
                         _uiState.value = _uiState.value.copy(
                             actionLoading = null,
-                            architectureWarning = "插件 ${pkg.name} 的架构与当前设备不匹配，安装可能失败。\n当前架构：${_uiState.value.systemInfo.architecture}\n插件架构：${pkg.architecture}"
+                            architectureWarning = Loc.s(R.string.s0609, pkg.name, _uiState.value.systemInfo.architecture, pkg.architecture)
                         )
                         return@launch
                     }
@@ -324,7 +343,7 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
                 }
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    error = e.message ?: "安装失败"
+                    error = e.message ?: Loc.s(R.string.s0579)
                 )
             } finally {
                 _uiState.value = _uiState.value.copy(actionLoading = null)
@@ -371,7 +390,7 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
                 }
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    error = e.message ?: "卸载失败"
+                    error = e.message ?: Loc.s(R.string.s0582)
                 )
             } finally {
                 _uiState.value = _uiState.value.copy(actionLoading = null)
@@ -516,7 +535,7 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isUpdatingRepo = false,
-                    error = e.message ?: "更新失败"
+                    error = e.message ?: Loc.s(R.string.s0259)
                 )
             }
         }
@@ -659,57 +678,57 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
         return listOf(
             RecommendedPlugin(
                 name = "luci-app-ddns",
-                displayName = "动态DNS",
-                description = "动态域名解析服务，支持多种DDNS服务商",
+                displayName = Loc.s(R.string.s0177),
+                description = Loc.s(R.string.s0610),
                 category = "network",
                 icon = "🌐"
             ),
             RecommendedPlugin(
                 name = "luci-app-samba4",
-                displayName = "网络共享",
-                description = "Samba4文件共享服务，局域网文件传输",
+                displayName = Loc.s(R.string.s0611),
+                description = Loc.s(R.string.s0612),
                 category = "network",
                 icon = "📁"
             ),
             RecommendedPlugin(
                 name = "luci-app-transmission",
-                displayName = "BT下载",
-                description = "Transmission BT下载客户端",
+                displayName = Loc.s(R.string.s0613),
+                description = Loc.s(R.string.s0614),
                 category = "network",
                 icon = "⬇️"
             ),
             RecommendedPlugin(
                 name = "luci-app-adblock",
-                displayName = "广告过滤",
-                description = "DNS级别的广告过滤，支持多种规则源",
+                displayName = Loc.s(R.string.s0157),
+                description = Loc.s(R.string.s0615),
                 category = "network",
                 icon = "🚫"
             ),
             RecommendedPlugin(
                 name = "luci-app-wireguard",
                 displayName = "WireGuard",
-                description = "现代VPN协议，高速安全",
+                description = Loc.s(R.string.s0616),
                 category = "network",
                 icon = "🔒"
             ),
             RecommendedPlugin(
                 name = "luci-app-upnp",
                 displayName = "UPnP",
-                description = "通用即插即用，自动端口映射",
+                description = Loc.s(R.string.s0173),
                 category = "network",
                 icon = "🔌"
             ),
             RecommendedPlugin(
                 name = "luci-app-wol",
-                displayName = "网络唤醒",
-                description = "通过网络唤醒局域网内的设备",
+                displayName = Loc.s(R.string.s0175),
+                description = Loc.s(R.string.s0176),
                 category = "network",
                 icon = "⏰"
             ),
             RecommendedPlugin(
                 name = "luci-app-statistics",
-                displayName = "流量统计",
-                description = "详细的网络流量统计和图表",
+                displayName = Loc.s(R.string.s0179),
+                description = Loc.s(R.string.s0617),
                 category = "admin",
                 icon = "📊"
             )
@@ -764,7 +783,7 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
                 _uiState.value = _uiState.value.copy(
                     isUploadingIpk = false,
                     uploadProgress = 0,
-                    error = e.message ?: "安装失败"
+                    error = e.message ?: Loc.s(R.string.s0579)
                 )
             }
         }

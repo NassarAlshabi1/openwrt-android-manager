@@ -53,6 +53,8 @@ import com.luanmuc.openwrtmanager.ui.components.MiSwitch
 import com.luanmuc.openwrtmanager.ui.components.MiTextField
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.ui.components.OfflineBanner
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * WiFi设置页面 - 小米路由器风格
@@ -66,20 +68,20 @@ fun WifiScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var selectedTab by remember { mutableIntStateOf(0) }
     val tabs = if (uiState.has5g) {
-        listOf("2.4G", "5G", "访客网络")
+        listOf("2.4G", "5G", Loc.s(R.string.s0464))
     } else {
-        listOf("2.4G", "访客网络")
+        listOf("2.4G", Loc.s(R.string.s0464))
     }
     
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "WiFi 设置",
+                title = Loc.s(R.string.s0799),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -88,7 +90,7 @@ fun WifiScreen(
                     IconButton(onClick = { viewModel.loadWifiConfig() }) {
                         Icon(
                             Icons.Default.Refresh,
-                            contentDescription = "刷新",
+                            contentDescription = Loc.s(R.string.s0322),
                             tint = MiTheme.TextSecondary
                         )
                     }
@@ -168,7 +170,7 @@ fun WifiScreen(
                             isSaving = uiState.isSaving
                         )
                         else -> WifiSettingsCard(
-                            title = "访客网络",
+                            title = Loc.s(R.string.s0464),
                             gradient = MiColors.GradientGreen,
                             config = uiState.guestWifi,
                             onConfigChange = { viewModel.updateGuestWifi(it) },
@@ -257,7 +259,7 @@ fun WifiSettingsCard(
                         color = MiTheme.TextPrimary
                     )
                     Text(
-                        text = if (config.enabled) "已开启" else "已关闭",
+                        text = if (config.enabled) Loc.s(R.string.s0463) else Loc.s(R.string.s0465),
                         fontSize = 12.sp,
                         color = if (config.enabled) MiColors.Success else MiTheme.TextTertiary
                     )
@@ -272,15 +274,15 @@ fun WifiSettingsCard(
                 MiTextField(
                     value = config.ssid,
                     onValueChange = { onConfigChange(config.copy(ssid = it)) },
-                    label = "WiFi 名称 (SSID)",
-                    placeholder = "请输入WiFi名称"
+                    label = Loc.s(R.string.s0800),
+                    placeholder = Loc.s(R.string.s0801)
                 )
                 
                 MiTextField(
                     value = config.password,
                     onValueChange = { onConfigChange(config.copy(password = it)) },
-                    label = "WiFi 密码",
-                    placeholder = "请输入WiFi密码"
+                    label = Loc.s(R.string.s0802),
+                    placeholder = Loc.s(R.string.s0803)
                 )
                 
                 Row(
@@ -290,14 +292,14 @@ fun WifiSettingsCard(
                     MiTextField(
                         value = config.channel,
                         onValueChange = { onConfigChange(config.copy(channel = it)) },
-                        label = "信道",
+                        label = Loc.s(R.string.s0804),
                         placeholder = "auto",
                         modifier = Modifier.weight(1f)
                     )
                     MiTextField(
                         value = config.txpower,
                         onValueChange = { onConfigChange(config.copy(txpower = it)) },
-                        label = "功率(dBm)",
+                        label = Loc.s(R.string.s0805),
                         placeholder = "20",
                         modifier = Modifier.weight(1f)
                     )
@@ -306,7 +308,7 @@ fun WifiSettingsCard(
                 Spacer(modifier = Modifier.height(4.dp))
                 
                 MiPrimaryButton(
-                    text = "保存设置",
+                    text = Loc.s(R.string.s0806),
                     onClick = onSave,
                     enabled = !isSaving,
                     leadingIcon = {

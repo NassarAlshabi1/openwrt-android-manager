@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 桌面小部件配置页面
@@ -50,7 +51,7 @@ fun WidgetConfigScreen(
                 title = { Text(stringResource(R.string.setting_widget)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                        Icon(Icons.Default.ArrowBack, contentDescription = Loc.s(R.string.s0244))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -70,13 +71,13 @@ fun WidgetConfigScreen(
             // 小部件列表
             item {
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
-                SectionTitle(title = "小部件", icon = Icons.Default.Widgets)
+                SectionTitle(title = Loc.s(R.string.s0776), icon = Icons.Default.Widgets)
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 
                 // 路由器状态小部件
                 WidgetSwitchItem(
-                    title = "路由器状态",
-                    description = "显示路由器名称、在线状态、设备数",
+                    title = Loc.s(R.string.s0131),
+                    description = Loc.s(R.string.s0777),
                     icon = Icons.Default.Devices,
                     checked = routerStatusWidgetEnabled,
                     onCheckedChange = { viewModel.setRouterStatusWidgetEnabled(it) }
@@ -86,8 +87,8 @@ fun WidgetConfigScreen(
                 
                 // 网速小部件
                 WidgetSwitchItem(
-                    title = "网速监控",
-                    description = "显示实时下载和上传速度",
+                    title = Loc.s(R.string.s0778),
+                    description = Loc.s(R.string.s0779),
                     icon = Icons.Default.NetworkCheck,
                     checked = networkSpeedWidgetEnabled,
                     onCheckedChange = { viewModel.setNetworkSpeedWidgetEnabled(it) }
@@ -98,7 +99,7 @@ fun WidgetConfigScreen(
             
             // 更新设置
             item {
-                SectionTitle(title = "更新设置", icon = Icons.Default.Widgets)
+                SectionTitle(title = Loc.s(R.string.s0780), icon = Icons.Default.Widgets)
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 
                 Card(
@@ -114,14 +115,14 @@ fun WidgetConfigScreen(
                             .padding(MiDimens.cardPadding)
                     ) {
                         Text(
-                            text = "更新间隔",
+                            text = Loc.s(R.string.s0781),
                             color = MiTheme.TextPrimary,
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.Medium
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "设置小部件数据的自动更新频率",
+                            text = Loc.s(R.string.s0782),
                             color = MiTheme.TextSecondary,
                             style = MaterialTheme.typography.bodySmall
                         )
@@ -156,7 +157,7 @@ fun WidgetConfigScreen(
             
             // 显示内容设置
             item {
-                SectionTitle(title = "显示内容", icon = Icons.Default.Widgets)
+                SectionTitle(title = Loc.s(R.string.s0783), icon = Icons.Default.Widgets)
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 
                 Card(
@@ -172,7 +173,7 @@ fun WidgetConfigScreen(
                             .padding(MiDimens.cardPadding)
                     ) {
                         SwitchSettingItem(
-                            title = "显示路由器名称",
+                            title = Loc.s(R.string.s0784),
                             checked = showRouterName,
                             onCheckedChange = { viewModel.setShowRouterName(it) }
                         )
@@ -182,7 +183,7 @@ fun WidgetConfigScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         
                         SwitchSettingItem(
-                            title = "显示在线状态",
+                            title = Loc.s(R.string.s0785),
                             checked = showOnlineStatus,
                             onCheckedChange = { viewModel.setShowOnlineStatus(it) }
                         )
@@ -192,7 +193,7 @@ fun WidgetConfigScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         
                         SwitchSettingItem(
-                            title = "显示设备数量",
+                            title = Loc.s(R.string.s0786),
                             checked = showDeviceCount,
                             onCheckedChange = { viewModel.setShowDeviceCount(it) }
                         )
@@ -202,7 +203,7 @@ fun WidgetConfigScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         
                         SwitchSettingItem(
-                            title = "显示网速",
+                            title = Loc.s(R.string.s0787),
                             checked = showSpeed,
                             onCheckedChange = { viewModel.setShowSpeed(it) }
                         )
@@ -214,7 +215,7 @@ fun WidgetConfigScreen(
             
             // 外观设置
             item {
-                SectionTitle(title = "外观设置", icon = Icons.Default.Widgets)
+                SectionTitle(title = Loc.s(R.string.s0788), icon = Icons.Default.Widgets)
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 
                 Card(
@@ -230,7 +231,7 @@ fun WidgetConfigScreen(
                             .padding(MiDimens.cardPadding)
                     ) {
                         Text(
-                            text = "主题模式",
+                            text = Loc.s(R.string.s0789),
                             color = MiTheme.TextPrimary,
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.Medium
@@ -262,7 +263,7 @@ fun WidgetConfigScreen(
                         Spacer(modifier = Modifier.height(20.dp))
                         
                         Text(
-                            text = "透明度",
+                            text = Loc.s(R.string.s0790),
                             color = MiTheme.TextPrimary,
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.Medium
@@ -293,7 +294,7 @@ fun WidgetConfigScreen(
             
             // 使用说明
             item {
-                SectionTitle(title = "使用说明", icon = Icons.Default.Widgets)
+                SectionTitle(title = Loc.s(R.string.s0791), icon = Icons.Default.Widgets)
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 
                 Card(
@@ -309,7 +310,7 @@ fun WidgetConfigScreen(
                             .padding(MiDimens.cardPadding)
                     ) {
                         Text(
-                            text = "如何添加小部件",
+                            text = Loc.s(R.string.s0792),
                             color = MiTheme.TextPrimary,
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.Medium
@@ -317,7 +318,7 @@ fun WidgetConfigScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         
                         Text(
-                            text = "1. 长按桌面空白处\n2. 选择\"添加小部件\"\n3. 找到\"OpenWrt管家\"\n4. 选择要添加的小部件\n5. 拖动到桌面位置",
+                            text = Loc.s(R.string.s0793),
                             color = MiTheme.TextSecondary,
                             style = MaterialTheme.typography.bodyMedium,
                             lineHeight = 24.sp
@@ -326,7 +327,7 @@ fun WidgetConfigScreen(
                         Spacer(modifier = Modifier.height(16.dp))
                         
                         Text(
-                            text = "注意事项",
+                            text = Loc.s(R.string.s0794),
                             color = MiTheme.TextPrimary,
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.Medium
@@ -334,7 +335,7 @@ fun WidgetConfigScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         
                         Text(
-                            text = "• 小部件需要APP在后台运行才能更新数据\n• 更新间隔越短，耗电量越大\n• 建议设置为30分钟或60分钟更新一次",
+                            text = Loc.s(R.string.s0795),
                             color = MiTheme.TextSecondary,
                             style = MaterialTheme.typography.bodyMedium,
                             lineHeight = 24.sp

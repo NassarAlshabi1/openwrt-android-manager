@@ -15,6 +15,8 @@ import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
 import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 在线设备 ViewModel
@@ -192,7 +194,7 @@ class OnlineDevicesViewModel(application: Application) : BaseViewModel(applicati
                     )
                 }
             } catch (e: Exception) {
-                handleLoadError(e.message ?: "加载失败")
+                handleLoadError(e.message ?: Loc.s(R.string.s0329))
             }
         }
     }

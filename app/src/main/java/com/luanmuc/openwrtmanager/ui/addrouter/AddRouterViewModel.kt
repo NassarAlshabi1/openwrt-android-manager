@@ -15,6 +15,8 @@ import com.luanmuc.openwrtmanager.data.repository.LuciException
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 添加路由器 ViewModel
@@ -76,11 +78,11 @@ class AddRouterViewModel(application: Application) : BaseViewModel(application) 
         val state = _uiState.value
 
         if (state.address.isBlank()) {
-            _uiState.value = state.copy(error = "请输入路由器地址")
+            _uiState.value = state.copy(error = Loc.s(R.string.s0255))
             return
         }
         if (state.username.isBlank()) {
-            _uiState.value = state.copy(error = "请输入用户名")
+            _uiState.value = state.copy(error = Loc.s(R.string.s0256))
             return
         }
 
@@ -138,7 +140,7 @@ class AddRouterViewModel(application: Application) : BaseViewModel(application) 
                         isConnecting = false,
                         isPreloading = true,
                         preloadProgress = 0f,
-                        preloadCurrentItem = "准备中..."
+                        preloadCurrentItem = Loc.s(R.string.s0257)
                     )
 
                     // 在后台进行预加载
@@ -184,7 +186,7 @@ class AddRouterViewModel(application: Application) : BaseViewModel(application) 
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isConnecting = false,
-                    error = e.message ?: "连接失败，请检查地址和凭据",
+                    error = e.message ?: Loc.s(R.string.s0258),
                     errorType = ErrorType.UNKNOWN
                 )
             }
@@ -242,11 +244,11 @@ class AddRouterViewModel(application: Application) : BaseViewModel(application) 
         val routerId = state.editingRouterId ?: return
 
         if (state.address.isBlank()) {
-            _uiState.value = state.copy(error = "请输入路由器地址")
+            _uiState.value = state.copy(error = Loc.s(R.string.s0255))
             return
         }
         if (state.username.isBlank()) {
-            _uiState.value = state.copy(error = "请输入用户名")
+            _uiState.value = state.copy(error = Loc.s(R.string.s0256))
             return
         }
 
@@ -296,7 +298,7 @@ class AddRouterViewModel(application: Application) : BaseViewModel(application) 
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isConnecting = false,
-                    error = e.message ?: "更新失败",
+                    error = e.message ?: Loc.s(R.string.s0259),
                     errorType = ErrorType.UNKNOWN
                 )
             }

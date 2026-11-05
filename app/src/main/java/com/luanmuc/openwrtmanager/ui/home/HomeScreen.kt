@@ -77,6 +77,7 @@ import com.luanmuc.openwrtmanager.ui.components.MiLoadingState
 import com.luanmuc.openwrtmanager.ui.components.MiPrimaryButton
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.ui.components.OfflineBanner
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 首页 - 小米路由器风格
@@ -109,14 +110,14 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "OpenWrt 管家",
+                title = Loc.s(R.string.s0490),
                 navigationIcon = {
                     if (uiState.hasRouter) {
                         IconButton(onClick = { showDeviceDialog = true }) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Icon(
                                     imageVector = Icons.Default.Router,
-                                    contentDescription = "设备",
+                                    contentDescription = Loc.s(R.string.s0491),
                                     tint = MiColors.Primary
                                 )
                                 Icon(
@@ -132,7 +133,7 @@ fun HomeScreen(
                     IconButton(onClick = { viewModel.refresh() }) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
-                            contentDescription = "刷新"
+                            contentDescription = Loc.s(R.string.s0322)
                         )
                     }
                 }
@@ -193,7 +194,7 @@ fun DeviceSelectorDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = "路由器",
+                text = Loc.s(R.string.s0492),
                 fontWeight = FontWeight.Bold
             )
         },
@@ -265,7 +266,7 @@ fun DeviceSelectorDialog(
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(
-                        text = "在线设备",
+                        text = Loc.s(R.string.s0076),
                         fontSize = 15.sp,
                         color = MiTheme.TextPrimary,
                         modifier = Modifier.weight(1f)
@@ -294,7 +295,7 @@ fun DeviceSelectorDialog(
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(
-                        text = "添加路由器",
+                        text = Loc.s(R.string.s0493),
                         fontSize = 15.sp,
                         color = MiTheme.TextPrimary,
                         modifier = Modifier.weight(1f)
@@ -347,20 +348,20 @@ fun EmptyRouterView(
         }
         Spacer(modifier = Modifier.height(28.dp))
         Text(
-            text = "还没有添加路由器",
+            text = Loc.s(R.string.s0494),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = MiTheme.TextPrimary
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
-            text = "添加你的 OpenWrt 路由器，开始智能管理",
+            text = Loc.s(R.string.s0495),
             fontSize = 14.sp,
             color = MiTheme.TextTertiary
         )
         Spacer(modifier = Modifier.height(32.dp))
         MiPrimaryButton(
-            text = "添加路由器",
+            text = Loc.s(R.string.s0493),
             onClick = onAddRouter
         )
     }
@@ -425,7 +426,7 @@ fun HomeContent(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "编辑首页",
+                        text = Loc.s(R.string.s0496),
                         fontSize = 12.sp,
                         color = MiTheme.TextSecondary
                     )
@@ -588,13 +589,13 @@ fun DemoModeBanner() {
         Spacer(modifier = Modifier.width(12.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = "演示模式",
+                text = Loc.s(R.string.s0497),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = MiColors.Warning
             )
             Text(
-                text = "当前为演示数据，非真实路由器信息",
+                text = Loc.s(R.string.s0498),
                 fontSize = 12.sp,
                 color = MiTheme.TextSecondary
             )
@@ -660,7 +661,7 @@ fun RouterStatusCard(
                 Spacer(modifier = Modifier.width(14.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = uiState.activeRouter?.name ?: "OpenWrt 路由器",
+                        text = uiState.activeRouter?.name ?: Loc.s(R.string.s0242),
                         fontSize = 17.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = Color.White
@@ -678,7 +679,7 @@ fun RouterStatusCard(
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
-                            text = if (isOnline) "在线" else "离线",
+                            text = if (isOnline) Loc.s(R.string.s0499) else Loc.s(R.string.s0500),
                             fontSize = 13.sp,
                             color = Color.White.copy(alpha = 0.85f)
                         )
@@ -702,15 +703,15 @@ fun RouterStatusCard(
             ) {
                 StatusItem(
                     icon = Icons.Default.Devices,
-                    label = "在线设备",
+                    label = Loc.s(R.string.s0076),
                     value = "${status?.onlineDevices ?: 0}",
-                    unit = "台",
+                    unit = Loc.s(R.string.s0501),
                     onClick = onViewDevices
                 )
                 StatusItem(
                     icon = Icons.Default.Wifi,
                     label = "WiFi",
-                    value = if (isOnline) "正常" else "关闭",
+                    value = if (isOnline) Loc.s(R.string.s0502) else Loc.s(R.string.s0277),
                     unit = "",
                     onClick = onViewWifi
                 )
@@ -837,14 +838,14 @@ fun NetworkSpeedCard(
                 }
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "网络状态",
+                    text = Loc.s(R.string.s0132),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MiTheme.TextPrimary
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
-                    text = if (status?.wanConnected == true) "已连接" else "未连接",
+                    text = if (status?.wanConnected == true) Loc.s(R.string.s0469) else Loc.s(R.string.s0470),
                     fontSize = 13.sp,
                     color = if (status?.wanConnected == true) MiColors.Success else MiColors.Error,
                     fontWeight = FontWeight.Medium
@@ -869,7 +870,7 @@ fun NetworkSpeedCard(
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = "下载速度",
+                            text = Loc.s(R.string.s0503),
                             fontSize = 12.sp,
                             color = MiTheme.TextSecondary
                         )
@@ -911,7 +912,7 @@ fun NetworkSpeedCard(
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = "上传速度",
+                            text = Loc.s(R.string.s0504),
                             fontSize = 12.sp,
                             color = MiTheme.TextSecondary
                         )
@@ -942,8 +943,8 @@ fun NetworkSpeedCard(
                 DualLineChart(
                     data1 = uiState.trafficHistory.map { it.rx / 1024f / 1024f },
                     data2 = uiState.trafficHistory.map { it.tx / 1024f / 1024f },
-                    label1 = "下载",
-                    label2 = "上传",
+                    label1 = Loc.s(R.string.s0505),
+                    label2 = Loc.s(R.string.s0506),
                     unit = "MB",
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -958,7 +959,7 @@ fun NetworkSpeedCard(
                 // 总下载
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "总下载",
+                        text = Loc.s(R.string.s0507),
                         fontSize = 11.sp,
                         color = MiTheme.TextTertiary
                     )
@@ -974,7 +975,7 @@ fun NetworkSpeedCard(
                 // 总上传
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "总上传",
+                        text = Loc.s(R.string.s0508),
                         fontSize = 11.sp,
                         color = MiTheme.TextTertiary
                     )
@@ -1037,7 +1038,7 @@ fun QuickFunctionsGrid(
                 .padding(16.dp)
         ) {
             Text(
-                text = "常用功能",
+                text = Loc.s(R.string.s0509),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = MiTheme.TextPrimary
@@ -1051,25 +1052,25 @@ fun QuickFunctionsGrid(
             ) {
                 QuickFunctionItem(
                     icon = Icons.Default.Devices,
-                    label = "设备管理",
+                    label = Loc.s(R.string.s0510),
                     gradient = MiColors.GradientBlue,
                     onClick = onNavigateToDevices
                 )
                 QuickFunctionItem(
                     icon = Icons.Default.Wifi,
-                    label = "WiFi设置",
+                    label = Loc.s(R.string.s0511),
                     gradient = MiColors.GradientGreen,
                     onClick = onNavigateToWifi
                 )
                 QuickFunctionItem(
                     icon = Icons.Default.Extension,
-                    label = "插件管理",
+                    label = Loc.s(R.string.s0471),
                     gradient = MiColors.GradientOrange,
                     onClick = onNavigateToPlugins
                 )
                 QuickFunctionItem(
                     icon = Icons.Default.Settings,
-                    label = "网络设置",
+                    label = Loc.s(R.string.s0512),
                     gradient = MiColors.GradientPurple,
                     onClick = onNavigateToNetwork
                 )
@@ -1154,7 +1155,7 @@ fun SystemStatusCard(
                 }
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "系统状态",
+                    text = Loc.s(R.string.s0040),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MiTheme.TextPrimary
@@ -1169,7 +1170,7 @@ fun SystemStatusCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "CPU使用率",
+                    text = Loc.s(R.string.s0513),
                     fontSize = 14.sp,
                     color = MiTheme.TextSecondary
                 )
@@ -1199,7 +1200,7 @@ fun SystemStatusCard(
 
             // 内存使用
             StatusProgressItem(
-                label = "内存使用",
+                label = Loc.s(R.string.s0514),
                 progress = if (status?.memoryTotal ?: 0 > 0) {
                     (status?.memoryUsed ?: 0).toFloat() / (status?.memoryTotal ?: 1).toFloat()
                 } else 0f,
@@ -1212,7 +1213,7 @@ fun SystemStatusCard(
             
             // 存储使用
             StatusProgressItem(
-                label = "存储使用",
+                label = Loc.s(R.string.s0515),
                 progress = if (status?.storageTotal ?: 0 > 0) {
                     (status?.storageUsed ?: 0).toFloat() / (status?.storageTotal ?: 1).toFloat()
                 } else 0f,
@@ -1229,7 +1230,7 @@ fun SystemStatusCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "运行时间",
+                    text = Loc.s(R.string.s0516),
                     fontSize = 14.sp,
                     color = MiTheme.TextSecondary
                 )
@@ -1300,7 +1301,7 @@ fun MoreFunctionsSection(
                     .padding(horizontal = 16.dp, vertical = 14.dp)
             ) {
                 Text(
-                    text = "更多功能",
+                    text = Loc.s(R.string.s0517),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MiTheme.TextPrimary
@@ -1310,8 +1311,8 @@ fun MoreFunctionsSection(
             MiDivider()
             
             MiListItem(
-                title = "系统管理",
-                subtitle = "系统信息、日志、进程",
+                title = Loc.s(R.string.s0518),
+                subtitle = Loc.s(R.string.s0519),
                 icon = {
                     Icon(
                         imageVector = Icons.Default.Security,
@@ -1326,8 +1327,8 @@ fun MoreFunctionsSection(
             MiDivider(indent = 60.dp)
             
             MiListItem(
-                title = "高级功能",
-                subtitle = "防火墙、DDNS、更多",
+                title = Loc.s(R.string.s0261),
+                subtitle = Loc.s(R.string.s0520),
                 icon = {
                     Icon(
                         imageVector = Icons.Default.Settings,
@@ -1366,9 +1367,9 @@ private fun formatUptime(seconds: Long): String {
     val hours = (seconds % 86400) / 3600
     val minutes = (seconds % 3600) / 60
     return when {
-        days > 0 -> "${days}天${hours}小时"
-        hours > 0 -> "${hours}小时${minutes}分钟"
-        else -> "${minutes}分钟"
+        days > 0 -> Loc.s(R.string.s0521, days, hours)
+        hours > 0 -> Loc.s(R.string.s0522, hours, minutes)
+        else -> Loc.s(R.string.s0523, minutes)
     }
 }
 

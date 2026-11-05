@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.luanmuc.openwrtmanager.ui.components.MiColors
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 编辑模式工具栏
@@ -50,7 +52,7 @@ fun EditModeToolbar(
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "编辑模式",
+                text = Loc.s(R.string.s0475),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = MiColors.Primary
@@ -60,14 +62,14 @@ fun EditModeToolbar(
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             TextButton(onClick = onPreset) {
                 Text(
-                    text = "预设布局",
+                    text = Loc.s(R.string.s0476),
                     fontSize = 13.sp,
                     color = MiColors.Primary
                 )
             }
             TextButton(onClick = onReset) {
                 Text(
-                    text = "重置",
+                    text = Loc.s(R.string.s0306),
                     fontSize = 13.sp,
                     color = MiColors.TextSecondary
                 )
@@ -80,7 +82,7 @@ fun EditModeToolbar(
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 6.dp)
             ) {
                 Text(
-                    text = "完成",
+                    text = Loc.s(R.string.s0024),
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Medium
                 )
@@ -139,7 +141,7 @@ fun DashboardCardWrapper(
             ) {
                 Icon(
                     imageVector = Icons.Default.Close,
-                    contentDescription = "移除卡片",
+                    contentDescription = Loc.s(R.string.s0477),
                     tint = Color.White,
                     modifier = Modifier.size(16.dp)
                 )
@@ -157,7 +159,7 @@ fun DashboardCardWrapper(
             ) {
                 Icon(
                     imageVector = Icons.Default.DragHandle,
-                    contentDescription = "拖拽排序/调整大小",
+                    contentDescription = Loc.s(R.string.s0478),
                     tint = if (isDragging) Color.White else MiColors.TextSecondary,
                     modifier = Modifier.size(16.dp)
                 )
@@ -177,7 +179,7 @@ fun DashboardCardWrapper(
                 ) {
                     Icon(
                         imageVector = Icons.Default.KeyboardArrowUp,
-                        contentDescription = "上移",
+                        contentDescription = Loc.s(R.string.s0479),
                         tint = MiColors.TextSecondary,
                         modifier = Modifier.size(16.dp)
                     )
@@ -193,7 +195,7 @@ fun DashboardCardWrapper(
                 ) {
                     Icon(
                         imageVector = Icons.Default.KeyboardArrowDown,
-                        contentDescription = "下移",
+                        contentDescription = Loc.s(R.string.s0480),
                         tint = MiColors.TextSecondary,
                         modifier = Modifier.size(16.dp)
                     )
@@ -207,21 +209,21 @@ fun DashboardCardWrapper(
                     onDismissRequest = { showSizeMenu = false }
                 ) {
                     DropdownMenuItem(
-                        text = { Text("小卡片") },
+                        text = { Text(Loc.s(R.string.s0481)) },
                         onClick = {
                             onSizeChange(CardSize.SMALL)
                             showSizeMenu = false
                         }
                     )
                     DropdownMenuItem(
-                        text = { Text("中等卡片") },
+                        text = { Text(Loc.s(R.string.s0482)) },
                         onClick = {
                             onSizeChange(CardSize.MEDIUM)
                             showSizeMenu = false
                         }
                     )
                     DropdownMenuItem(
-                        text = { Text("大卡片") },
+                        text = { Text(Loc.s(R.string.s0483)) },
                         onClick = {
                             onSizeChange(CardSize.LARGE)
                             showSizeMenu = false
@@ -259,7 +261,7 @@ fun AddCardButton(
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "添加卡片",
+                text = Loc.s(R.string.s0484),
                 fontSize = 14.sp
             )
         }
@@ -299,7 +301,7 @@ fun AddCardButton(
                             Spacer(modifier = Modifier.weight(1f))
                             Icon(
                                 imageVector = Icons.Default.Add,
-                                contentDescription = "添加",
+                                contentDescription = Loc.s(R.string.s0328),
                                 tint = MiColors.Primary,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -349,7 +351,7 @@ fun PresetLayoutDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = "选择预设布局",
+                text = Loc.s(R.string.s0485),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -399,7 +401,7 @@ fun PresetLayoutDialog(
         },
         confirmButton = {
             TextButton(onClick = onDismiss) {
-                Text("取消")
+                Text(Loc.s(R.string.s0276))
             }
         },
         modifier = modifier
@@ -411,9 +413,9 @@ fun PresetLayoutDialog(
  */
 fun getLayoutDescription(layout: PresetLayout): String {
     return when (layout) {
-        PresetLayout.DEFAULT -> "6个卡片，平衡布局"
-        PresetLayout.COMPACT -> "5个卡片，紧凑布局"
-        PresetLayout.DETAILED -> "9个卡片，详细布局"
-        PresetLayout.MINIMAL -> "3个卡片，极简布局"
+        PresetLayout.DEFAULT -> Loc.s(R.string.s0486)
+        PresetLayout.COMPACT -> Loc.s(R.string.s0487)
+        PresetLayout.DETAILED -> Loc.s(R.string.s0488)
+        PresetLayout.MINIMAL -> Loc.s(R.string.s0489)
     }
 }

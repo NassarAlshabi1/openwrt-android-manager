@@ -7,6 +7,8 @@ import com.luanmuc.openwrtmanager.data.model.PluginDetail
 import com.luanmuc.openwrtmanager.data.model.PluginReview
 import com.luanmuc.openwrtmanager.util.DebugMode
 import kotlinx.coroutines.delay
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 插件市场Repository
@@ -106,10 +108,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
         return listOf(
             HotPlugin(
                 name = "luci-app-aria2",
-                displayName = "Aria2下载管理器",
-                description = "强大的多线程下载工具，支持HTTP/BT/磁力链接",
+                displayName = Loc.s(R.string.s0148),
+                description = Loc.s(R.string.s0149),
                 icon = "⬇️",
-                category = "下载工具",
+                category = Loc.s(R.string.s0150),
                 downloadCount = 15000,
                 rating = 4.8f,
                 isNew = false,
@@ -117,10 +119,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-transmission",
-                displayName = "Transmission BT客户端",
-                description = "轻量级BT下载客户端，Web界面管理",
+                displayName = Loc.s(R.string.s0151),
+                description = Loc.s(R.string.s0152),
                 icon = "🌊",
-                category = "下载工具",
+                category = Loc.s(R.string.s0150),
                 downloadCount = 12000,
                 rating = 4.6f,
                 isNew = false,
@@ -128,10 +130,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-samba4",
-                displayName = "Samba4网络共享",
-                description = "文件共享服务，支持Windows/Mac/Linux",
+                displayName = Loc.s(R.string.s0153),
+                description = Loc.s(R.string.s0154),
                 icon = "📁",
-                category = "文件共享",
+                category = Loc.s(R.string.s0155),
                 downloadCount = 10000,
                 rating = 4.5f,
                 isNew = false,
@@ -140,7 +142,7 @@ class PluginMarketRepository private constructor(private val context: Context) {
             HotPlugin(
                 name = "luci-app-wireguard",
                 displayName = "WireGuard VPN",
-                description = "现代、快速、安全的VPN协议",
+                description = Loc.s(R.string.s0156),
                 icon = "🔒",
                 category = "VPN",
                 downloadCount = 9000,
@@ -150,10 +152,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-adblock",
-                displayName = "广告过滤",
-                description = "网络级广告过滤，保护隐私",
+                displayName = Loc.s(R.string.s0157),
+                description = Loc.s(R.string.s0158),
                 icon = "🚫",
-                category = "网络安全",
+                category = Loc.s(R.string.s0159),
                 downloadCount = 8500,
                 rating = 4.4f,
                 isNew = false,
@@ -170,7 +172,7 @@ class PluginMarketRepository private constructor(private val context: Context) {
             HotPlugin(
                 name = "luci-app-openvpn",
                 displayName = "OpenVPN",
-                description = "经典的开源VPN解决方案",
+                description = Loc.s(R.string.s0160),
                 icon = "🔐",
                 category = "VPN",
                 downloadCount = 7500,
@@ -180,10 +182,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-minidlna",
-                displayName = "MiniDLNA媒体服务器",
-                description = "DLNA媒体服务器，投屏到电视",
+                displayName = Loc.s(R.string.s0161),
+                description = Loc.s(R.string.s0162),
                 icon = "🎬",
-                category = "多媒体",
+                category = Loc.s(R.string.s0163),
                 downloadCount = 7000,
                 rating = 4.2f,
                 isNew = false,
@@ -191,10 +193,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-sqm",
-                displayName = "SQM智能队列管理",
-                description = "智能QoS，优化网络延迟",
+                displayName = Loc.s(R.string.s0164),
+                description = Loc.s(R.string.s0165),
                 icon = "⚡",
-                category = "网络优化",
+                category = Loc.s(R.string.s0166),
                 downloadCount = 6500,
                 rating = 4.7f,
                 isNew = false,
@@ -202,10 +204,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-ttyd",
-                displayName = "Web终端",
-                description = "在浏览器中使用命令行终端",
+                displayName = Loc.s(R.string.s0167),
+                description = Loc.s(R.string.s0168),
                 icon = "💻",
-                category = "工具",
+                category = Loc.s(R.string.s0169),
                 downloadCount = 6000,
                 rating = 4.5f,
                 isNew = true,
@@ -213,10 +215,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-nlbwmon",
-                displayName = "网络带宽监控",
-                description = "按设备统计流量使用情况",
+                displayName = Loc.s(R.string.s0170),
+                description = Loc.s(R.string.s0171),
                 icon = "📊",
-                category = "监控",
+                category = Loc.s(R.string.s0172),
                 downloadCount = 5500,
                 rating = 4.4f,
                 isNew = false,
@@ -225,9 +227,9 @@ class PluginMarketRepository private constructor(private val context: Context) {
             HotPlugin(
                 name = "luci-app-upnp",
                 displayName = "UPnP",
-                description = "通用即插即用，自动端口映射",
+                description = Loc.s(R.string.s0173),
                 icon = "🔌",
-                category = "网络",
+                category = Loc.s(R.string.s0174),
                 downloadCount = 5000,
                 rating = 4.1f,
                 isNew = false,
@@ -235,10 +237,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-wol",
-                displayName = "网络唤醒",
-                description = "通过网络唤醒局域网内的设备",
+                displayName = Loc.s(R.string.s0175),
+                description = Loc.s(R.string.s0176),
                 icon = "🌙",
-                category = "工具",
+                category = Loc.s(R.string.s0169),
                 downloadCount = 4500,
                 rating = 4.3f,
                 isNew = false,
@@ -246,10 +248,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-ddns",
-                displayName = "动态DNS",
-                description = "动态域名解析服务",
+                displayName = Loc.s(R.string.s0177),
+                description = Loc.s(R.string.s0178),
                 icon = "🌐",
-                category = "网络",
+                category = Loc.s(R.string.s0174),
                 downloadCount = 8000,
                 rating = 4.2f,
                 isNew = false,
@@ -257,10 +259,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-statistics",
-                displayName = "流量统计",
-                description = "详细的网络流量统计图表",
+                displayName = Loc.s(R.string.s0179),
+                description = Loc.s(R.string.s0180),
                 icon = "📈",
-                category = "监控",
+                category = Loc.s(R.string.s0172),
                 downloadCount = 4000,
                 rating = 4.3f,
                 isNew = false,
@@ -268,10 +270,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-frps",
-                displayName = "Frp服务端",
-                description = "内网穿透服务端",
+                displayName = Loc.s(R.string.s0181),
+                description = Loc.s(R.string.s0182),
                 icon = "🚀",
-                category = "网络",
+                category = Loc.s(R.string.s0174),
                 downloadCount = 3500,
                 rating = 4.6f,
                 isNew = true,
@@ -279,10 +281,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-frpc",
-                displayName = "Frp客户端",
-                description = "内网穿透客户端",
+                displayName = Loc.s(R.string.s0183),
+                description = Loc.s(R.string.s0184),
                 icon = "🛸",
-                category = "网络",
+                category = Loc.s(R.string.s0174),
                 downloadCount = 3000,
                 rating = 4.5f,
                 isNew = false,
@@ -291,7 +293,7 @@ class PluginMarketRepository private constructor(private val context: Context) {
             HotPlugin(
                 name = "luci-app-zerotier",
                 displayName = "ZeroTier",
-                description = "全球虚拟局域网",
+                description = Loc.s(R.string.s0185),
                 icon = "🌍",
                 category = "VPN",
                 downloadCount = 2500,
@@ -301,10 +303,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-vsftpd",
-                displayName = "FTP服务器",
-                description = "轻量级FTP服务器",
+                displayName = Loc.s(R.string.s0186),
+                description = Loc.s(R.string.s0187),
                 icon = "📤",
-                category = "文件共享",
+                category = Loc.s(R.string.s0155),
                 downloadCount = 2000,
                 rating = 4.0f,
                 isNew = false,
@@ -312,10 +314,10 @@ class PluginMarketRepository private constructor(private val context: Context) {
             ),
             HotPlugin(
                 name = "luci-app-udpxy",
-                displayName = "UDPXY组播转单播",
-                description = "IPTV组播转单播，方便多设备观看",
+                displayName = Loc.s(R.string.s0188),
+                description = Loc.s(R.string.s0189),
                 icon = "📺",
-                category = "多媒体",
+                category = Loc.s(R.string.s0163),
                 downloadCount = 1500,
                 rating = 4.1f,
                 isNew = false,
@@ -331,72 +333,72 @@ class PluginMarketRepository private constructor(private val context: Context) {
         return listOf(
             PluginCategory(
                 id = "download",
-                name = "下载工具",
+                name = Loc.s(R.string.s0150),
                 icon = "⬇️",
-                description = "BT下载、HTTP下载等",
+                description = Loc.s(R.string.s0190),
                 pluginCount = 5
             ),
             PluginCategory(
                 id = "vpn",
-                name = "VPN代理",
+                name = Loc.s(R.string.s0191),
                 icon = "🔒",
-                description = "各种VPN和代理工具",
+                description = Loc.s(R.string.s0192),
                 pluginCount = 8
             ),
             PluginCategory(
                 id = "fileshare",
-                name = "文件共享",
+                name = Loc.s(R.string.s0155),
                 icon = "📁",
-                description = "Samba、FTP、NFS等",
+                description = Loc.s(R.string.s0193),
                 pluginCount = 4
             ),
             PluginCategory(
                 id = "media",
-                name = "多媒体",
+                name = Loc.s(R.string.s0163),
                 icon = "🎬",
-                description = "媒体服务器、DLNA等",
+                description = Loc.s(R.string.s0194),
                 pluginCount = 5
             ),
             PluginCategory(
                 id = "network",
-                name = "网络工具",
+                name = Loc.s(R.string.s0195),
                 icon = "🌐",
-                description = "DDNS、内网穿透等",
+                description = Loc.s(R.string.s0196),
                 pluginCount = 10
             ),
             PluginCategory(
                 id = "security",
-                name = "网络安全",
+                name = Loc.s(R.string.s0159),
                 icon = "🛡️",
-                description = "广告过滤、防火墙等",
+                description = Loc.s(R.string.s0197),
                 pluginCount = 6
             ),
             PluginCategory(
                 id = "monitor",
-                name = "监控统计",
+                name = Loc.s(R.string.s0198),
                 icon = "📊",
-                description = "流量监控、系统监控等",
+                description = Loc.s(R.string.s0199),
                 pluginCount = 7
             ),
             PluginCategory(
                 id = "optimize",
-                name = "网络优化",
+                name = Loc.s(R.string.s0166),
                 icon = "⚡",
-                description = "QoS、SQM等",
+                description = Loc.s(R.string.s0200),
                 pluginCount = 3
             ),
             PluginCategory(
                 id = "tools",
-                name = "实用工具",
+                name = Loc.s(R.string.s0201),
                 icon = "🔧",
-                description = "终端、唤醒等工具",
+                description = Loc.s(R.string.s0202),
                 pluginCount = 8
             ),
             PluginCategory(
                 id = "system",
-                name = "系统工具",
+                name = Loc.s(R.string.s0203),
                 icon = "⚙️",
-                description = "系统管理相关工具",
+                description = Loc.s(R.string.s0204),
                 pluginCount = 6
             )
         )
@@ -408,8 +410,8 @@ class PluginMarketRepository private constructor(private val context: Context) {
     private fun getFakePluginDetail(packageName: String): PluginDetail {
         return PluginDetail(
             name = packageName,
-            displayName = "插件名称",
-            description = "插件简短描述",
+            displayName = Loc.s(R.string.s0205),
+            description = Loc.s(R.string.s0206),
             longDescription = """
                 这是一个功能强大的OpenWrt插件，可以帮助你更好地管理路由器。
                 
@@ -430,14 +432,14 @@ class PluginMarketRepository private constructor(private val context: Context) {
                 • 如有问题请查看官方文档
             """.trimIndent(),
             icon = "📦",
-            category = "工具",
+            category = Loc.s(R.string.s0169),
             version = "1.0.0",
             size = 1024 * 1024,
-            author = "OpenWrt社区",
+            author = Loc.s(R.string.s0207),
             homepage = "https://openwrt.org",
             license = "GPL-2.0",
             screenshots = listOf(),
-            tags = listOf("工具", "实用", "推荐"),
+            tags = listOf(Loc.s(R.string.s0169), Loc.s(R.string.s0208), Loc.s(R.string.s0209)),
             dependencies = listOf("libc", "libuci"),
             downloadCount = 10000,
             rating = 4.5f,
@@ -456,41 +458,41 @@ class PluginMarketRepository private constructor(private val context: Context) {
         return listOf(
             PluginReview(
                 id = "1",
-                userName = "用户A",
+                userName = Loc.s(R.string.s0210),
                 rating = 5f,
-                comment = "非常好用的插件，功能很强大！",
+                comment = Loc.s(R.string.s0211),
                 date = System.currentTimeMillis() - 1 * 24 * 60 * 60 * 1000,
                 helpfulCount = 15
             ),
             PluginReview(
                 id = "2",
-                userName = "用户B",
+                userName = Loc.s(R.string.s0212),
                 rating = 4f,
-                comment = "整体不错，就是配置稍微复杂了一点。",
+                comment = Loc.s(R.string.s0213),
                 date = System.currentTimeMillis() - 3 * 24 * 60 * 60 * 1000,
                 helpfulCount = 8
             ),
             PluginReview(
                 id = "3",
-                userName = "用户C",
+                userName = Loc.s(R.string.s0214),
                 rating = 5f,
-                comment = "一直在用，很稳定，推荐！",
+                comment = Loc.s(R.string.s0215),
                 date = System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000,
                 helpfulCount = 12
             ),
             PluginReview(
                 id = "4",
-                userName = "用户D",
+                userName = Loc.s(R.string.s0216),
                 rating = 3f,
-                comment = "功能还行，但是希望能增加更多选项。",
+                comment = Loc.s(R.string.s0217),
                 date = System.currentTimeMillis() - 14 * 24 * 60 * 60 * 1000,
                 helpfulCount = 3
             ),
             PluginReview(
                 id = "5",
-                userName = "用户E",
+                userName = Loc.s(R.string.s0218),
                 rating = 5f,
-                comment = "完美，正是我需要的！",
+                comment = Loc.s(R.string.s0219),
                 date = System.currentTimeMillis() - 30 * 24 * 60 * 60 * 1000,
                 helpfulCount = 20
             )

@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 格式化工具类
@@ -60,9 +62,9 @@ object FormatUtils {
         val minutes = TimeUnit.SECONDS.toMinutes(seconds) % 60
         
         return when {
-            days > 0 -> "${days}天${hours}小时${minutes}分钟"
-            hours > 0 -> "${hours}小时${minutes}分钟"
-            else -> "${minutes}分钟"
+            days > 0 -> Loc.s(R.string.s0847, days, hours, minutes)
+            hours > 0 -> Loc.s(R.string.s0522, hours, minutes)
+            else -> Loc.s(R.string.s0523, minutes)
         }
     }
     
@@ -135,10 +137,10 @@ object FormatUtils {
         val days = hours / 24
         
         return when {
-            seconds < 60 -> "刚刚"
-            minutes < 60 -> "${minutes}分钟前"
-            hours < 24 -> "${hours}小时前"
-            days < 7 -> "${days}天前"
+            seconds < 60 -> Loc.s(R.string.s0841)
+            minutes < 60 -> Loc.s(R.string.s0842, minutes)
+            hours < 24 -> Loc.s(R.string.s0843, hours)
+            days < 7 -> Loc.s(R.string.s0844, days)
             else -> formatDate(timestamp)
         }
     }

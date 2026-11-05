@@ -31,6 +31,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.luanmuc.openwrtmanager.data.model.BackupType
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 配置备份恢复页面
@@ -62,7 +63,7 @@ fun BackupScreen(
                 title = { Text(stringResource(R.string.backup_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                        Icon(Icons.Default.ArrowBack, contentDescription = Loc.s(R.string.s0244))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -76,14 +77,14 @@ fun BackupScreen(
             FloatingActionButton(
                 onClick = { 
                     viewModel.createBackup(
-                        name = "手动备份",
-                        description = "手动创建的备份",
+                        name = Loc.s(R.string.s0280),
+                        description = Loc.s(R.string.s0281),
                         backupType = BackupType.FULL
                     )
                 },
                 containerColor = MiTheme.Primary
             ) {
-                Icon(Icons.Default.Backup, contentDescription = "创建备份")
+                Icon(Icons.Default.Backup, contentDescription = Loc.s(R.string.s0282))
             }
         }
     ) { paddingValues ->
@@ -119,7 +120,7 @@ fun BackupScreen(
             // 备份列表标题
             item {
                 SectionTitle(
-                    title = "备份列表",
+                    title = Loc.s(R.string.s0283),
                     icon = Icons.Default.Backup
                 )
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
@@ -145,7 +146,7 @@ fun BackupScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "暂无备份记录",
+                            text = Loc.s(R.string.s0284),
                             color = MiTheme.TextTertiary,
                             style = MaterialTheme.typography.bodyMedium
                         )
@@ -206,7 +207,7 @@ private fun BackupStatsCard(
                 } else {
                     Icon(
                         Icons.Default.Backup,
-                        contentDescription = "备份",
+                        contentDescription = Loc.s(R.string.s0285),
                         tint = MiTheme.Primary,
                         modifier = Modifier.size(24.dp)
                     )
@@ -218,14 +219,14 @@ private fun BackupStatsCard(
             // 统计信息
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "$count 个备份",
+                    text = Loc.s(R.string.s0286, count),
                     color = MiTheme.TextPrimary,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Medium
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = if (isCreating) "正在创建备份..." else "点击右下角按钮创建新备份",
+                    text = if (isCreating) Loc.s(R.string.s0287) else Loc.s(R.string.s0288),
                     color = MiTheme.TextSecondary,
                     style = MaterialTheme.typography.bodySmall
                 )
@@ -259,13 +260,13 @@ private fun RestoreProgressCard(
             ) {
                 Icon(
                     Icons.Default.Restore,
-                    contentDescription = "恢复",
+                    contentDescription = Loc.s(R.string.s0289),
                     tint = MiTheme.Primary,
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
-                    text = "正在恢复配置...",
+                    text = Loc.s(R.string.s0290),
                     color = MiTheme.TextPrimary,
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.Medium
@@ -413,7 +414,7 @@ private fun BackupItemCard(
             
             // 详细信息
             Text(
-                text = "创建时间: ${viewModel.formatTime(backup.createdAt)}",
+                text = Loc.s(R.string.s0291, viewModel.formatTime(backup.createdAt)),
                 color = MiTheme.TextTertiary,
                 style = MaterialTheme.typography.bodySmall
             )

@@ -7,6 +7,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import com.luanmuc.openwrtmanager.MainActivity
 import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 路由器状态桌面小部件
@@ -39,8 +40,8 @@ class RouterStatusWidget : AppWidgetProvider() {
             )
             views.setOnClickPendingIntent(R.id.widget_container, pendingIntent)
             
-            views.setTextViewText(R.id.widget_router_name, "OpenWrt管家")
-            views.setTextViewText(R.id.widget_status, "点击打开")
+            views.setTextViewText(R.id.widget_router_name, Loc.s(R.string.s0954))
+            views.setTextViewText(R.id.widget_status, Loc.s(R.string.s0955))
             views.setTextViewText(R.id.widget_info, "")
             
             appWidgetManager.updateAppWidget(appWidgetId, views)

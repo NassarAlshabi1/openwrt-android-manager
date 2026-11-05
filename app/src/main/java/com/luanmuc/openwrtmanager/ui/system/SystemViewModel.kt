@@ -19,6 +19,8 @@ import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 系统管理 ViewModel
@@ -282,7 +284,7 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
                     )
                 }
             } catch (e: Exception) {
-                handleLogsLoadError(e.message ?: "加载失败")
+                handleLogsLoadError(e.message ?: Loc.s(R.string.s0329))
             }
         }
     }
@@ -369,7 +371,7 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
                     )
                 }
             } catch (e: Exception) {
-                handleProcessesLoadError(e.message ?: "加载失败")
+                handleProcessesLoadError(e.message ?: Loc.s(R.string.s0329))
             }
         }
     }
@@ -428,7 +430,7 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
                 loadProcesses()
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    error = e.message ?: "操作失败"
+                    error = e.message ?: Loc.s(R.string.s0311)
                 )
             }
         }
@@ -505,7 +507,7 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isLoadingSystemInfo = false,
-                    error = e.message ?: "加载系统信息失败"
+                    error = e.message ?: Loc.s(R.string.s0762)
                 )
             }
         }
@@ -525,12 +527,12 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
                 }
                 _uiState.value = _uiState.value.copy(
                     isSwitchingRepo = false,
-                    error = if (!success) "切换软件源失败" else null
+                    error = if (!success) Loc.s(R.string.s0763) else null
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isSwitchingRepo = false,
-                    error = e.message ?: "切换软件源失败"
+                    error = e.message ?: Loc.s(R.string.s0763)
                 )
             }
         }
@@ -549,12 +551,12 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
                 }
                 _uiState.value = _uiState.value.copy(
                     isSwitchingRepo = false,
-                    error = if (!success) "配置软件源失败" else null
+                    error = if (!success) Loc.s(R.string.s0764) else null
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isSwitchingRepo = false,
-                    error = e.message ?: "配置软件源失败"
+                    error = e.message ?: Loc.s(R.string.s0764)
                 )
             }
         }

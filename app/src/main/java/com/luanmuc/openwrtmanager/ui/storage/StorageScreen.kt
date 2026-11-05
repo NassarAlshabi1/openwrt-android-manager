@@ -46,6 +46,8 @@ import com.luanmuc.openwrtmanager.ui.components.MiTheme
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.ui.components.OfflineBanner
 import com.luanmuc.openwrtmanager.ui.components.MiColors
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 @Composable
 fun StorageScreen(
@@ -66,12 +68,12 @@ fun StorageScreen(
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "存储状态",
+                title = Loc.s(R.string.s0267),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -80,7 +82,7 @@ fun StorageScreen(
                     IconButton(onClick = { viewModel.loadStorageInfo() }) {
                         Icon(
                             Icons.Filled.Refresh,
-                            contentDescription = "刷新",
+                            contentDescription = Loc.s(R.string.s0322),
                             tint = MiTheme.TextSecondary
                         )
                     }
@@ -97,7 +99,7 @@ fun StorageScreen(
             OfflineBanner(isOffline = !viewModel.isNetworkAvailable)
 
             if (uiState.isLoading && uiState.storageTotal == 0L) {
-                MiLoadingState(text = "正在加载存储信息...")
+                MiLoadingState(text = Loc.s(R.string.s0725))
             } else if (uiState.error != null && uiState.storageTotal == 0L) {
                 MiEmptyState(
                     icon = {
@@ -108,7 +110,7 @@ fun StorageScreen(
                             modifier = Modifier.size(40.dp)
                         )
                     },
-                    text = uiState.error ?: "加载失败"
+                    text = uiState.error ?: Loc.s(R.string.s0329)
                 )
             } else {
                 LazyColumn(
@@ -132,7 +134,7 @@ fun StorageScreen(
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = "Flash 存储",
+                                        text = Loc.s(R.string.s0726),
                                         fontSize = 16.sp,
                                         fontWeight = FontWeight.SemiBold,
                                         color = MiTheme.TextPrimary
@@ -165,15 +167,15 @@ fun StorageScreen(
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
                                     StorageStatItem(
-                                        label = "总量",
+                                        label = Loc.s(R.string.s0727),
                                         value = formatBytes(uiState.storageTotal)
                                     )
                                     StorageStatItem(
-                                        label = "已用",
+                                        label = Loc.s(R.string.s0728),
                                         value = formatBytes(uiState.storageUsed)
                                     )
                                     StorageStatItem(
-                                        label = "可用",
+                                        label = Loc.s(R.string.s0585),
                                         value = formatBytes(uiState.storageFree)
                                     )
                                 }
@@ -197,7 +199,7 @@ fun StorageScreen(
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = "内存",
+                                        text = Loc.s(R.string.s0729),
                                         fontSize = 16.sp,
                                         fontWeight = FontWeight.SemiBold,
                                         color = MiTheme.TextPrimary
@@ -226,15 +228,15 @@ fun StorageScreen(
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
                                     StorageStatItem(
-                                        label = "总量",
+                                        label = Loc.s(R.string.s0727),
                                         value = formatBytes(uiState.memoryTotal)
                                     )
                                     StorageStatItem(
-                                        label = "已用",
+                                        label = Loc.s(R.string.s0728),
                                         value = formatBytes(uiState.memoryUsed)
                                     )
                                     StorageStatItem(
-                                        label = "可用",
+                                        label = Loc.s(R.string.s0585),
                                         value = formatBytes(uiState.memoryFree)
                                     )
                                 }
@@ -244,12 +246,12 @@ fun StorageScreen(
                                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                                 ) {
                                     Text(
-                                        text = "缓存: ${formatBytes(uiState.memoryCached)}",
+                                        text = Loc.s(R.string.s0730, formatBytes(uiState.memoryCached)),
                                         fontSize = 12.sp,
                                         color = MiTheme.TextTertiary
                                     )
                                     Text(
-                                        text = "缓冲: ${formatBytes(uiState.memoryBuffered)}",
+                                        text = Loc.s(R.string.s0731, formatBytes(uiState.memoryBuffered)),
                                         fontSize = 12.sp,
                                         color = MiTheme.TextTertiary
                                     )
@@ -263,20 +265,20 @@ fun StorageScreen(
                         MiCard {
                             Column(modifier = Modifier.padding(16.dp)) {
                                 Text(
-                                    text = "系统状态",
+                                    text = Loc.s(R.string.s0040),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MiTheme.TextPrimary
                                 )
                                 Spacer(modifier = Modifier.height(12.dp))
-                                InfoItem(label = "运行时间", value = formatUptime(uiState.uptime))
-                                InfoItem(label = "CPU使用率", value = "${uiState.cpuUsage.toInt()}%")
+                                InfoItem(label = Loc.s(R.string.s0516), value = formatUptime(uiState.uptime))
+                                InfoItem(label = Loc.s(R.string.s0513), value = "${uiState.cpuUsage.toInt()}%")
                                 InfoItem(
-                                    label = "负载均衡",
+                                    label = Loc.s(R.string.s0732),
                                     value = "${uiState.loadAverage.getOrElse(0) { 0f }} / ${uiState.loadAverage.getOrElse(1) { 0f }} / ${uiState.loadAverage.getOrElse(2) { 0f }}"
                                 )
                                 if (uiState.temperature != null) {
-                                    InfoItem(label = "温度", value = "${uiState.temperature}°C")
+                                    InfoItem(label = Loc.s(R.string.s0733), value = "${uiState.temperature}°C")
                                 }
                             }
                         }
@@ -286,7 +288,7 @@ fun StorageScreen(
                     if (uiState.mountPoints.isNotEmpty()) {
                         item {
                             Text(
-                                text = "挂载点",
+                                text = Loc.s(R.string.s0734),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MiTheme.TextSecondary,
@@ -331,17 +333,17 @@ fun StorageScreen(
                                         horizontalArrangement = Arrangement.SpaceBetween
                                     ) {
                                         Text(
-                                            text = "总量: ${formatBytes(mount.total)}",
+                                            text = Loc.s(R.string.s0735, formatBytes(mount.total)),
                                             fontSize = 12.sp,
                                             color = MiTheme.TextTertiary
                                         )
                                         Text(
-                                            text = "已用: ${formatBytes(mount.used)}",
+                                            text = Loc.s(R.string.s0736, formatBytes(mount.used)),
                                             fontSize = 12.sp,
                                             color = MiTheme.TextTertiary
                                         )
                                         Text(
-                                            text = "可用: ${formatBytes(mount.free)}",
+                                            text = Loc.s(R.string.s0737, formatBytes(mount.free)),
                                             fontSize = 12.sp,
                                             color = MiTheme.TextTertiary
                                         )
@@ -441,9 +443,9 @@ private fun formatUptime(seconds: Long): String {
     val hours = (seconds % 86400) / 3600
     val minutes = (seconds % 3600) / 60
     return when {
-        days > 0 -> "${days}天${hours}小时${minutes}分"
-        hours > 0 -> "${hours}小时${minutes}分"
-        else -> "${minutes}分钟"
+        days > 0 -> Loc.s(R.string.s0738, days, hours, minutes)
+        hours > 0 -> Loc.s(R.string.s0739, hours, minutes)
+        else -> Loc.s(R.string.s0523, minutes)
     }
 }
 

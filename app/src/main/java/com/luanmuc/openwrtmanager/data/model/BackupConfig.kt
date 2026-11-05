@@ -1,5 +1,8 @@
 package com.luanmuc.openwrtmanager.data.model
 
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
+
 /**
  * 备份记录
  */
@@ -19,13 +22,22 @@ data class BackupRecord(
 /**
  * 备份类型
  */
-enum class BackupType(val displayName: String) {
-    FULL("完整备份"),
-    SYSTEM("系统配置"),
-    NETWORK("网络配置"),
-    FIREWALL("防火墙配置"),
-    WIFI("WiFi配置"),
-    CUSTOM("自定义备份")
+enum class BackupType {
+    FULL,
+    SYSTEM,
+    NETWORK,
+    FIREWALL,
+    WIFI,
+    CUSTOM;
+    val displayName: String
+        get() = when (this) {
+            FULL -> Loc.s(R.string.enum_066)
+            SYSTEM -> Loc.s(R.string.enum_067)
+            NETWORK -> Loc.s(R.string.enum_068)
+            FIREWALL -> Loc.s(R.string.enum_069)
+            WIFI -> Loc.s(R.string.enum_070)
+            CUSTOM -> Loc.s(R.string.enum_071)
+        }
 }
 
 /**

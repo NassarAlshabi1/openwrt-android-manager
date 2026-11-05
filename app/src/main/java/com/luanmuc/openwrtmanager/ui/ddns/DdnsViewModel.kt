@@ -17,6 +17,8 @@ import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
 import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * DDNS ViewModel
@@ -80,13 +82,13 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
      */
     fun installPlugin(onDone: (Boolean) -> Unit = {}) {
         if (DebugMode.isDebugMode) {
-            _uiState.value = _uiState.value.copy(isInstallingPlugin = true, installProgress = 50, installMessage = "正在安装...")
+            _uiState.value = _uiState.value.copy(isInstallingPlugin = true, installProgress = 50, installMessage = Loc.s(R.string.s0318))
             viewModelScope.launch {
                 kotlinx.coroutines.delay(1500)
                 _uiState.value = _uiState.value.copy(
                     isInstallingPlugin = false,
                     installProgress = 100,
-                    installMessage = "安装成功",
+                    installMessage = Loc.s(R.string.s0145),
                     pluginStatus = PluginInstallStatus(
                         dependency = PluginDependencies.DDNS,
                         isInstalled = true
@@ -107,14 +109,14 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
                     val status = luci.checkPluginDependency(PluginDependencies.DDNS)
                     _uiState.value = _uiState.value.copy(
                         pluginStatus = status,
-                        success = "DDNS插件安装成功"
+                        success = Loc.s(R.string.s0336)
                     )
                 } else {
-                    _uiState.value = _uiState.value.copy(error = "插件安装失败：${_uiState.value.installMessage}")
+                    _uiState.value = _uiState.value.copy(error = Loc.s(R.string.s0337, _uiState.value.installMessage))
                 }
                 onDone(success)
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(error = "安装异常：${e.message}")
+                _uiState.value = _uiState.value.copy(error = Loc.s(R.string.s0147, e.message))
                 onDone(false)
             } finally {
                 _uiState.value = _uiState.value.copy(isInstallingPlugin = false)
@@ -137,7 +139,7 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
                     DebugMode.simulateDelay(500)
                     val configs = _uiState.value.ddnsConfigs.toMutableList()
                     configs.add(config.copy(name = "ddns_${System.currentTimeMillis()}"))
-                    _uiState.value = _uiState.value.copy(ddnsConfigs = configs, isLoading = false, success = "添加成功")
+                    _uiState.value = _uiState.value.copy(ddnsConfigs = configs, isLoading = false, success = Loc.s(R.string.s0338))
                     return@launch
                 }
                 val activeRouter = getActiveRouter() ?: return@launch
@@ -148,12 +150,12 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
                 val success = luciRepository.addDdnsConfig(config)
                 if (success) {
                     loadDdnsConfig()
-                    _uiState.value = _uiState.value.copy(success = "添加成功")
+                    _uiState.value = _uiState.value.copy(success = Loc.s(R.string.s0338))
                 } else {
-                    _uiState.value = _uiState.value.copy(error = "添加失败")
+                    _uiState.value = _uiState.value.copy(error = Loc.s(R.string.s0339))
                 }
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(error = e.message ?: "添加失败")
+                _uiState.value = _uiState.value.copy(error = e.message ?: Loc.s(R.string.s0339))
             }
         }
     }
@@ -168,7 +170,7 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
                 if (DebugMode.isDebugMode) {
                     DebugMode.simulateDelay(500)
                     val configs = _uiState.value.ddnsConfigs.filter { it.name != sectionName }
-                    _uiState.value = _uiState.value.copy(ddnsConfigs = configs, isLoading = false, success = "删除成功")
+                    _uiState.value = _uiState.value.copy(ddnsConfigs = configs, isLoading = false, success = Loc.s(R.string.s0297))
                     return@launch
                 }
                 val activeRouter = getActiveRouter() ?: return@launch
@@ -179,12 +181,12 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
                 val success = luciRepository.deleteDdnsConfig(sectionName)
                 if (success) {
                     loadDdnsConfig()
-                    _uiState.value = _uiState.value.copy(success = "删除成功")
+                    _uiState.value = _uiState.value.copy(success = Loc.s(R.string.s0297))
                 } else {
-                    _uiState.value = _uiState.value.copy(error = "删除失败")
+                    _uiState.value = _uiState.value.copy(error = Loc.s(R.string.s0298))
                 }
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(error = e.message ?: "删除失败")
+                _uiState.value = _uiState.value.copy(error = e.message ?: Loc.s(R.string.s0298))
             }
         }
     }
@@ -201,7 +203,7 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
                     val configs = _uiState.value.ddnsConfigs.map {
                         if (it.name == sectionName) config.copy(name = sectionName) else it
                     }
-                    _uiState.value = _uiState.value.copy(ddnsConfigs = configs, isLoading = false, success = "更新成功")
+                    _uiState.value = _uiState.value.copy(ddnsConfigs = configs, isLoading = false, success = Loc.s(R.string.s0340))
                     return@launch
                 }
                 val activeRouter = getActiveRouter() ?: return@launch
@@ -212,12 +214,12 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
                 val success = luciRepository.updateDdnsConfig(sectionName, config)
                 if (success) {
                     loadDdnsConfig()
-                    _uiState.value = _uiState.value.copy(success = "更新成功")
+                    _uiState.value = _uiState.value.copy(success = Loc.s(R.string.s0340))
                 } else {
-                    _uiState.value = _uiState.value.copy(error = "更新失败")
+                    _uiState.value = _uiState.value.copy(error = Loc.s(R.string.s0259))
                 }
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(error = e.message ?: "更新失败")
+                _uiState.value = _uiState.value.copy(error = e.message ?: Loc.s(R.string.s0259))
             }
         }
     }
@@ -336,7 +338,7 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
                     )
                 }
             } catch (e: Exception) {
-                handleLoadError(e.message ?: "加载失败")
+                handleLoadError(e.message ?: Loc.s(R.string.s0329))
             }
         }
     }

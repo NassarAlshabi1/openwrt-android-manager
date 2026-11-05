@@ -21,6 +21,8 @@ import com.luanmuc.openwrtmanager.data.model.RouterStatus
 import com.luanmuc.openwrtmanager.ui.components.MiColors
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 在线设备卡片
@@ -71,12 +73,12 @@ fun OnlineDevicesCard(
                     Spacer(modifier = Modifier.width(12.dp))
                     Column {
                         Text(
-                            text = "在线设备",
+                            text = Loc.s(R.string.s0076),
                             fontSize = 14.sp,
                             color = MiTheme.TextSecondary
                         )
                         Text(
-                            text = "${uiState.onlineDevices.size} 台设备",
+                            text = Loc.s(R.string.s0460, uiState.onlineDevices.size),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             color = MiTheme.TextPrimary
@@ -126,7 +128,7 @@ fun OnlineDevicesCard(
             if (uiState.onlineDevices.size > 3) {
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "还有 ${uiState.onlineDevices.size - 3} 台设备...",
+                    text = Loc.s(R.string.s0461, uiState.onlineDevices.size - 3),
                     fontSize = 12.sp,
                     color = MiTheme.TextTertiary
                 )
@@ -184,7 +186,7 @@ fun WifiStatusCard(
                     Spacer(modifier = Modifier.width(12.dp))
                     Column {
                         Text(
-                            text = "WiFi 状态",
+                            text = Loc.s(R.string.s0462),
                             fontSize = 14.sp,
                             color = MiTheme.TextSecondary
                         )
@@ -218,7 +220,7 @@ fun WifiStatusCard(
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "已开启",
+                        text = Loc.s(R.string.s0463),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Medium,
                         color = MiColors.Success
@@ -232,7 +234,7 @@ fun WifiStatusCard(
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "已开启",
+                        text = Loc.s(R.string.s0463),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Medium,
                         color = MiColors.Success
@@ -240,13 +242,13 @@ fun WifiStatusCard(
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "访客网络",
+                        text = Loc.s(R.string.s0464),
                         fontSize = 12.sp,
                         color = MiTheme.TextSecondary
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "已关闭",
+                        text = Loc.s(R.string.s0465),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Medium,
                         color = MiTheme.TextTertiary
@@ -306,12 +308,12 @@ fun PortStatusCard(
                     Spacer(modifier = Modifier.width(12.dp))
                     Column {
                         Text(
-                            text = "网口状态",
+                            text = Loc.s(R.string.s0466),
                             fontSize = 14.sp,
                             color = MiTheme.TextSecondary
                         )
                         Text(
-                            text = "${ports.count { it.isConnected }}/${ports.size} 个已连接",
+                            text = Loc.s(R.string.s0467, ports.count { it.isConnected }, ports.size),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             color = MiTheme.TextPrimary
@@ -338,7 +340,7 @@ fun PortStatusCard(
                 }
                 if (ports.size > 4) {
                     Text(
-                        text = "还有 ${ports.size - 4} 个网口...",
+                        text = Loc.s(R.string.s0468, ports.size - 4),
                         fontSize = 12.sp,
                         color = MiTheme.TextTertiary,
                         modifier = Modifier.padding(start = 4.dp)
@@ -385,9 +387,9 @@ private fun PortItem(
         // 连接状态/速率
         Text(
             text = if (port.isConnected) {
-                if (port.speed > 0) "${port.speed}M" else "已连接"
+                if (port.speed > 0) "${port.speed}M" else Loc.s(R.string.s0469)
             } else {
-                "未连接"
+                Loc.s(R.string.s0470)
             },
             fontSize = 13.sp,
             color = if (port.isConnected) MiColors.Success else MiTheme.TextTertiary,
@@ -465,12 +467,12 @@ fun PluginsCard(
                     Spacer(modifier = Modifier.width(12.dp))
                     Column {
                         Text(
-                            text = "插件管理",
+                            text = Loc.s(R.string.s0471),
                             fontSize = 14.sp,
                             color = MiTheme.TextSecondary
                         )
                         Text(
-                            text = "已安装 8 个",
+                            text = Loc.s(R.string.s0472),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             color = MiTheme.TextPrimary
@@ -536,12 +538,12 @@ fun FirewallCard(
                     Spacer(modifier = Modifier.width(12.dp))
                     Column {
                         Text(
-                            text = "防火墙",
+                            text = Loc.s(R.string.s0409),
                             fontSize = 14.sp,
                             color = MiTheme.TextSecondary
                         )
                         Text(
-                            text = "3 条端口转发",
+                            text = Loc.s(R.string.s0473),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             color = MiTheme.TextPrimary
@@ -612,7 +614,7 @@ fun DdnsCard(
                             color = MiTheme.TextSecondary
                         )
                         Text(
-                            text = "2 个配置",
+                            text = Loc.s(R.string.s0474),
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             color = MiTheme.TextPrimary

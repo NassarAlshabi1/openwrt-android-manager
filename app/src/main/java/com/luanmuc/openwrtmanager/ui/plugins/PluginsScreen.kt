@@ -83,6 +83,7 @@ import com.luanmuc.openwrtmanager.ui.components.MiTextField
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.ui.components.OfflineBanner
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 插件页 - 小米路由器风格
@@ -104,7 +105,7 @@ fun PluginsScreen(
         }
     }
     var selectedTab by remember { mutableIntStateOf(0) }
-    val tabs = listOf("已安装", "可用", "全部")
+    val tabs = listOf(Loc.s(R.string.s0323), Loc.s(R.string.s0585), Loc.s(R.string.s0404))
     var showSortMenu by remember { mutableStateOf(false) }
     var showMoreMenu by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState()
@@ -135,21 +136,21 @@ fun PluginsScreen(
                     IconButton(onClick = { viewModel.updateRepo() }) {
                         Icon(
                             Icons.Default.Refresh,
-                            contentDescription = "更新软件源",
+                            contentDescription = Loc.s(R.string.s0586),
                             tint = if (uiState.isUpdatingRepo) MiTheme.Primary else MiTheme.TextSecondary
                         )
                     }
                     IconButton(onClick = { showSortMenu = !showSortMenu }) {
                         Icon(
                             Icons.Default.Sort,
-                            contentDescription = "排序",
+                            contentDescription = Loc.s(R.string.s0357),
                             tint = MiTheme.TextSecondary
                         )
                     }
                     IconButton(onClick = { viewModel.loadPackages() }) {
                         Icon(
                             Icons.Default.Refresh,
-                            contentDescription = "刷新",
+                            contentDescription = Loc.s(R.string.s0322),
                             tint = MiTheme.TextSecondary
                         )
                     }
@@ -158,7 +159,7 @@ fun PluginsScreen(
                         IconButton(onClick = { showMoreMenu = true }) {
                             Icon(
                                 Icons.Default.MoreVert,
-                                contentDescription = "更多",
+                                contentDescription = Loc.s(R.string.s0587),
                                 tint = MiTheme.TextSecondary
                             )
                         }
@@ -170,7 +171,7 @@ fun PluginsScreen(
                             DropdownMenuItem(
                                 text = {
                                     Text(
-                                        if (uiState.systemInfo.packageManager == com.luanmuc.openwrtmanager.data.model.PackageManagerType.APK) "安装本地APK" else "安装本地IPK",
+                                        if (uiState.systemInfo.packageManager == com.luanmuc.openwrtmanager.data.model.PackageManagerType.APK) Loc.s(R.string.s0588) else Loc.s(R.string.s0589),
                                         color = MiTheme.TextPrimary,
                                         fontSize = 14.sp
                                     )
@@ -191,7 +192,7 @@ fun PluginsScreen(
                             DropdownMenuItem(
                                 text = {
                                     Text(
-                                        "更新全部",
+                                        Loc.s(R.string.s0590),
                                         color = MiTheme.TextPrimary,
                                         fontSize = 14.sp
                                     )
@@ -233,7 +234,7 @@ fun PluginsScreen(
                     MiTextField(
                         value = uiState.searchQuery,
                         onValueChange = { viewModel.setSearchQuery(it) },
-                        placeholder = "搜索插件...",
+                        placeholder = Loc.s(R.string.s0591),
                         leadingIcon = {
                             Icon(
                                 Icons.Default.Search,
@@ -265,7 +266,7 @@ fun PluginsScreen(
                             .padding(horizontal = 16.dp)
                     )
                     Text(
-                        text = "正在更新软件源...",
+                        text = Loc.s(R.string.s0141),
                         fontSize = 12.sp,
                         color = MiTheme.TextSecondary,
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
@@ -333,7 +334,7 @@ fun PluginsScreen(
                     ) {
                         Column {
                             Text(
-                                "排序方式",
+                                Loc.s(R.string.s0358),
                                 modifier = Modifier.padding(16.dp),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.SemiBold,
@@ -379,7 +380,7 @@ fun PluginsScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            "加载中...",
+                            Loc.s(R.string.s0312),
                             color = MiTheme.TextTertiary,
                             fontSize = 14.sp
                         )
@@ -405,9 +406,9 @@ fun PluginsScreen(
                                 )
                             },
                             text = when (selectedTab) {
-                                0 -> "暂无已安装插件"
-                                1 -> "暂无可用插件"
-                                else -> "暂无插件"
+                                0 -> Loc.s(R.string.s0592)
+                                1 -> Loc.s(R.string.s0593)
+                                else -> Loc.s(R.string.s0594)
                             }
                         )
                     }
@@ -552,7 +553,7 @@ fun PluginCard(
                     if (plugin.category.isNotEmpty()) {
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = "分类: ${plugin.category}",
+                            text = Loc.s(R.string.s0595, plugin.category),
                             fontSize = 11.sp,
                             color = MiTheme.TextTertiary
                         )
@@ -566,7 +567,7 @@ fun PluginCard(
                     )
                 } else if (isInstalled) {
                     MiButton(
-                        text = "卸载",
+                        text = Loc.s(R.string.s0596),
                         onClick = onRemove,
                         type = MiButtonType.Secondary,
                         modifier = Modifier.width(70.dp),
@@ -574,7 +575,7 @@ fun PluginCard(
                     )
                 } else {
                     MiButton(
-                        text = "安装",
+                        text = Loc.s(R.string.s0324),
                         onClick = onInstall,
                         type = MiButtonType.Primary,
                         modifier = Modifier.width(70.dp),
@@ -592,7 +593,7 @@ fun PluginCard(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "安装中... $installProgress%",
+                    text = Loc.s(R.string.s0597, installProgress),
                     fontSize = 11.sp,
                     color = MiTheme.TextTertiary
                 )
@@ -602,7 +603,7 @@ fun PluginCard(
             if (plugin.size > 0 && !isLoading) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "大小: ${formatSize(plugin.size)}",
+                    text = Loc.s(R.string.s0598, formatSize(plugin.size)),
                     fontSize = 11.sp,
                     color = MiTheme.TextTertiary
                 )
@@ -667,10 +668,10 @@ fun PluginDetailSheet(
         // 基本信息
         MiCard {
             Column {
-                DetailItem("版本", if (plugin.version.isNotEmpty()) plugin.version else "未知")
-                DetailItem("大小", if (plugin.size > 0) formatSize(plugin.size) else "未知")
-                DetailItem("分类", if (plugin.category.isNotEmpty()) plugin.category else "其他")
-                DetailItem("状态", if (isInstalled) "已安装" else "未安装")
+                DetailItem(Loc.s(R.string.s0574), if (plugin.version.isNotEmpty()) plugin.version else Loc.s(R.string.s0050))
+                DetailItem(Loc.s(R.string.s0575), if (plugin.size > 0) formatSize(plugin.size) else Loc.s(R.string.s0050))
+                DetailItem(Loc.s(R.string.s0599), if (plugin.category.isNotEmpty()) plugin.category else Loc.s(R.string.s0600))
+                DetailItem(Loc.s(R.string.s0601), if (isInstalled) Loc.s(R.string.s0323) else Loc.s(R.string.s0602))
             }
         }
 
@@ -679,7 +680,7 @@ fun PluginDetailSheet(
         // 插件描述
         if (plugin.description.isNotEmpty()) {
             Text(
-                text = "插件介绍",
+                text = Loc.s(R.string.s0570),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = MiTheme.TextPrimary
@@ -700,7 +701,7 @@ fun PluginDetailSheet(
         // 依赖信息
         if (plugin.depends.isNotEmpty()) {
             Text(
-                text = "依赖包",
+                text = Loc.s(R.string.s0603),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = MiTheme.TextPrimary
@@ -735,7 +736,7 @@ fun PluginDetailSheet(
             }
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                text = "处理中...",
+                text = Loc.s(R.string.s0604),
                 modifier = Modifier.fillMaxWidth(),
                 fontSize = 14.sp,
                 color = MiTheme.TextTertiary,
@@ -747,13 +748,13 @@ fun PluginDetailSheet(
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 MiButton(
-                    text = "打开插件",
+                    text = Loc.s(R.string.s0605),
                     onClick = onOpen,
                     type = MiButtonType.Primary,
                     modifier = Modifier.weight(1f)
                 )
                 MiButton(
-                    text = "卸载",
+                    text = Loc.s(R.string.s0596),
                     onClick = onRemove,
                     type = MiButtonType.Secondary,
                     modifier = Modifier.weight(1f)
@@ -761,7 +762,7 @@ fun PluginDetailSheet(
             }
         } else {
             MiButton(
-                text = "安装插件",
+                text = Loc.s(R.string.s0606),
                 onClick = onInstall,
                 type = MiButtonType.Primary,
                 modifier = Modifier.fillMaxWidth()
@@ -861,7 +862,7 @@ private fun RecommendedPluginsSection(
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         Text(
-            text = "🔥 推荐插件",
+            text = Loc.s(R.string.s0607),
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
             color = MiTheme.TextPrimary,
@@ -907,13 +908,13 @@ private fun RecommendedPluginsSection(
                         )
                         if (isInstalled) {
                             MiTag(
-                                text = "已安装",
+                                text = Loc.s(R.string.s0323),
                                 backgroundColor = MiTheme.Success.copy(alpha = 0.1f),
                                 textColor = MiTheme.Success
                             )
                         } else {
                             MiButton(
-                                text = "安装",
+                                text = Loc.s(R.string.s0324),
                                 type = MiButtonType.Primary,
                                 modifier = Modifier.fillMaxWidth(),
                                 onClick = { onInstallClick(plugin.name) }
@@ -959,7 +960,7 @@ private fun QuickActionsSection(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "软件源管理",
+                    text = Loc.s(R.string.s0608),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     color = MiTheme.TextPrimary
@@ -985,7 +986,7 @@ private fun QuickActionsSection(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "更新全部",
+                    text = Loc.s(R.string.s0590),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
                     color = MiTheme.TextPrimary

@@ -26,6 +26,8 @@ import com.luanmuc.openwrtmanager.ui.components.MiColors
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.util.DebounceUtils
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 远程管理配置页面
@@ -58,12 +60,12 @@ fun RemoteManageScreen(
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "远程管理",
+                title = Loc.s(R.string.s0631),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -72,7 +74,7 @@ fun RemoteManageScreen(
                     IconButton(onClick = { showHelpDialog = true }) {
                         Icon(
                             imageVector = Icons.Filled.HelpOutline,
-                            contentDescription = "帮助",
+                            contentDescription = Loc.s(R.string.s0680),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -98,8 +100,8 @@ fun RemoteManageScreen(
 
             // 远程管理开关
             RemoteSettingCard(
-                title = "启用远程管理",
-                description = "开启后可在外网通过域名访问路由器",
+                title = Loc.s(R.string.s0681),
+                description = Loc.s(R.string.s0682),
                 icon = Icons.Filled.Wifi,
                 gradient = MiColors.GradientBlue
             ) {
@@ -130,8 +132,8 @@ fun RemoteManageScreen(
 
                 // 自动切换开关
                 RemoteSettingCard(
-                    title = "自动切换远程模式",
-                    description = "检测到不在局域网时自动使用远程地址",
+                    title = Loc.s(R.string.s0683),
+                    description = Loc.s(R.string.s0684),
                     icon = Icons.Filled.SwapHoriz,
                     gradient = MiColors.GradientGreen
                 ) {
@@ -152,7 +154,7 @@ fun RemoteManageScreen(
                     onClick = {
                         if (DebounceUtils.canClick()) {
                             onTestConnection()
-                            Toast.makeText(context, "正在测试远程连接...", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, Loc.s(R.string.s0685), Toast.LENGTH_SHORT).show()
                         }
                     },
                     modifier = Modifier
@@ -170,21 +172,21 @@ fun RemoteManageScreen(
                         modifier = Modifier.size(20.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("测试远程连接", fontSize = 16.sp)
+                    Text(Loc.s(R.string.s0686), fontSize = 16.sp)
                 }
             }
 
             Spacer(modifier = Modifier.height(20.dp))
 
             // 方案说明
-            SectionTitle(title = "技术方案")
+            SectionTitle(title = Loc.s(R.string.s0687))
 
             Spacer(modifier = Modifier.height(8.dp))
 
             // DDNS方案卡片
             SolutionCard(
-                title = "方案一：DDNS + 端口映射",
-                description = "适合有公网IP的用户，配置简单",
+                title = Loc.s(R.string.s0688),
+                description = Loc.s(R.string.s0689),
                 icon = Icons.Filled.Dns,
                 gradient = MiColors.GradientBlue,
                 isRecommended = true
@@ -194,8 +196,8 @@ fun RemoteManageScreen(
 
             // 内网穿透方案卡片
             SolutionCard(
-                title = "方案二：内网穿透",
-                description = "适合无公网IP，需要frp/ngrok服务器",
+                title = Loc.s(R.string.s0690),
+                description = Loc.s(R.string.s0691),
                 icon = Icons.Filled.VpnLock,
                 gradient = MiColors.GradientPurple,
                 isRecommended = false
@@ -205,8 +207,8 @@ fun RemoteManageScreen(
 
             // VPN方案卡片
             SolutionCard(
-                title = "方案三：VPN接入",
-                description = "最安全，需要配置WireGuard/OpenVPN",
+                title = Loc.s(R.string.s0692),
+                description = Loc.s(R.string.s0693),
                 icon = Icons.Filled.Security,
                 gradient = MiColors.GradientGreen,
                 isRecommended = false
@@ -215,32 +217,32 @@ fun RemoteManageScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             // 路由器配置指引
-            SectionTitle(title = "路由器配置指引")
+            SectionTitle(title = Loc.s(R.string.s0694))
 
             Spacer(modifier = Modifier.height(8.dp))
 
             GuideStepCard(
                 step = 1,
-                title = "配置DDNS",
-                description = "在路由器服务中配置DDNS客户端（如花生壳、阿里云DDNS）"
+                title = Loc.s(R.string.s0695),
+                description = Loc.s(R.string.s0696)
             )
 
             GuideStepCard(
                 step = 2,
-                title = "开放端口",
-                description = "在防火墙中开放LuCI的HTTPS端口（默认443）到公网"
+                title = Loc.s(R.string.s0697),
+                description = Loc.s(R.string.s0698)
             )
 
             GuideStepCard(
                 step = 3,
-                title = "启用HTTPS",
-                description = "建议启用HTTPS并配置SSL证书，确保传输安全"
+                title = Loc.s(R.string.s0699),
+                description = Loc.s(R.string.s0700)
             )
 
             GuideStepCard(
                 step = 4,
-                title = "配置APP",
-                description = "在上方填写DDNS域名和端口，测试连接成功后保存"
+                title = Loc.s(R.string.s0701),
+                description = Loc.s(R.string.s0702)
             )
         }
     }
@@ -249,7 +251,7 @@ fun RemoteManageScreen(
     if (showProtocolDialog) {
         AlertDialog(
             onDismissRequest = { showProtocolDialog = false },
-            title = { Text("选择协议") },
+            title = { Text(Loc.s(R.string.s0703)) },
             text = {
                 Column {
                     listOf("https", "http").forEach { protocol ->
@@ -278,7 +280,7 @@ fun RemoteManageScreen(
             },
             confirmButton = {
                 TextButton(onClick = { showProtocolDialog = false }) {
-                    Text("取消")
+                    Text(Loc.s(R.string.s0276))
                 }
             },
             containerColor = MiTheme.CardBackground,
@@ -291,21 +293,21 @@ fun RemoteManageScreen(
     if (showHelpDialog) {
         AlertDialog(
             onDismissRequest = { showHelpDialog = false },
-            title = { Text("远程管理说明") },
+            title = { Text(Loc.s(R.string.s0704)) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text("远程管理允许您在外网通过互联网管理路由器。")
-                    Text("推荐使用DDNS + 端口映射方案：")
-                    Text("1. 确保路由器有公网IP")
-                    Text("2. 配置DDNS动态域名解析")
-                    Text("3. 在防火墙开放LuCI端口")
-                    Text("4. 建议使用HTTPS确保安全")
-                    Text("注意：开放端口到公网有安全风险，请使用强密码并定期更新。")
+                    Text(Loc.s(R.string.s0705))
+                    Text(Loc.s(R.string.s0706))
+                    Text(Loc.s(R.string.s0707))
+                    Text(Loc.s(R.string.s0708))
+                    Text(Loc.s(R.string.s0709))
+                    Text(Loc.s(R.string.s0710))
+                    Text(Loc.s(R.string.s0711))
                 }
             },
             confirmButton = {
                 TextButton(onClick = { showHelpDialog = false }) {
-                    Text("我知道了")
+                    Text(Loc.s(R.string.s0712))
                 }
             },
             containerColor = MiTheme.CardBackground,
@@ -356,13 +358,13 @@ private fun RemoteStatusCard(
                 Spacer(modifier = Modifier.width(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = if (isRemoteMode) "当前：远程模式" else "当前：本地模式",
+                        text = if (isRemoteMode) Loc.s(R.string.s0713) else Loc.s(R.string.s0714),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium,
                         color = MiTheme.TextPrimary
                     )
                     Text(
-                        text = if (isRemoteMode) "通过互联网连接路由器" else "通过局域网连接路由器",
+                        text = if (isRemoteMode) Loc.s(R.string.s0715) else Loc.s(R.string.s0716),
                         fontSize = 13.sp,
                         color = MiTheme.TextSecondary
                     )
@@ -379,7 +381,7 @@ private fun RemoteStatusCard(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "强制使用远程模式",
+                        text = Loc.s(R.string.s0717),
                         fontSize = 14.sp,
                         color = MiTheme.TextSecondary
                     )
@@ -470,7 +472,7 @@ private fun RemoteConfigCard(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text(
-                text = "远程访问配置",
+                text = Loc.s(R.string.s0718),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Medium,
                 color = MiTheme.TextPrimary
@@ -482,7 +484,7 @@ private fun RemoteConfigCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "协议",
+                    text = Loc.s(R.string.s0719),
                     fontSize = 14.sp,
                     color = MiTheme.TextSecondary,
                     modifier = Modifier.width(60.dp)
@@ -519,7 +521,7 @@ private fun RemoteConfigCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "域名/IP",
+                    text = Loc.s(R.string.s0720),
                     fontSize = 14.sp,
                     color = MiTheme.TextSecondary,
                     modifier = Modifier.width(60.dp)
@@ -544,7 +546,7 @@ private fun RemoteConfigCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "端口",
+                    text = Loc.s(R.string.s0721),
                     fontSize = 14.sp,
                     color = MiTheme.TextSecondary,
                     modifier = Modifier.width(60.dp)
@@ -654,7 +656,7 @@ private fun SolutionCard(
                             color = MiTheme.Success.copy(alpha = 0.15f)
                         ) {
                             Text(
-                                text = "推荐",
+                                text = Loc.s(R.string.s0209),
                                 fontSize = 10.sp,
                                 color = MiTheme.Success,
                                 modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)

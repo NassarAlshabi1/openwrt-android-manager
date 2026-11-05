@@ -10,6 +10,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.luanmuc.openwrtmanager.MainActivity
 import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 通知管理器
@@ -54,37 +55,37 @@ object AppNotificationManager {
             // 路由器状态渠道
             val statusChannel = NotificationChannel(
                 CHANNEL_ROUTER_STATUS,
-                "路由器状态",
+                Loc.s(R.string.s0131),
                 AndroidNotificationManager.IMPORTANCE_DEFAULT
             ).apply {
-                description = "路由器在线/离线状态通知"
+                description = Loc.s(R.string.s0552)
             }
             
             // 固件更新渠道
             val firmwareChannel = NotificationChannel(
                 CHANNEL_FIRMWARE,
-                "固件更新",
+                Loc.s(R.string.s0553),
                 AndroidNotificationManager.IMPORTANCE_HIGH
             ).apply {
-                description = "新固件版本发布通知"
+                description = Loc.s(R.string.s0554)
             }
             
             // 网络告警渠道
             val networkChannel = NotificationChannel(
                 CHANNEL_NETWORK,
-                "网络告警",
+                Loc.s(R.string.s0555),
                 AndroidNotificationManager.IMPORTANCE_HIGH
             ).apply {
-                description = "网络异常、断网等告警通知"
+                description = Loc.s(R.string.s0556)
             }
             
             // 设备事件渠道
             val deviceChannel = NotificationChannel(
                 CHANNEL_DEVICE,
-                "设备事件",
+                Loc.s(R.string.s0557),
                 AndroidNotificationManager.IMPORTANCE_LOW
             ).apply {
-                description = "新设备上线、设备上下线通知"
+                description = Loc.s(R.string.s0558)
             }
             
             nm.createNotificationChannels(listOf(
@@ -109,8 +110,8 @@ object AppNotificationManager {
         
         val notification = NotificationCompat.Builder(ctx, CHANNEL_ROUTER_STATUS)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("路由器已离线")
-            .setContentText("$routerName 已断开连接")
+            .setContentTitle(Loc.s(R.string.s0933))
+            .setContentText(Loc.s(R.string.s0934, routerName))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
@@ -139,8 +140,8 @@ object AppNotificationManager {
         
         val notification = NotificationCompat.Builder(ctx, CHANNEL_ROUTER_STATUS)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("路由器已恢复在线")
-            .setContentText("$routerName 已重新连接")
+            .setContentTitle(Loc.s(R.string.s0935))
+            .setContentText(Loc.s(R.string.s0936, routerName))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
@@ -170,10 +171,10 @@ object AppNotificationManager {
         
         val notification = NotificationCompat.Builder(ctx, CHANNEL_FIRMWARE)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("新固件可用")
-            .setContentText("版本 $version ($size)")
+            .setContentTitle(Loc.s(R.string.s0937))
+            .setContentText(Loc.s(R.string.s0938, version, size))
             .setStyle(NotificationCompat.BigTextStyle()
-                .bigText("发现新固件版本 $version，大小 $size。点击查看更新详情。"))
+                .bigText(Loc.s(R.string.s0939, version, size)))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
@@ -203,8 +204,8 @@ object AppNotificationManager {
         
         val notification = NotificationCompat.Builder(ctx, CHANNEL_DEVICE)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("新设备上线")
-            .setContentText("$deviceName ($deviceIp) 已连接")
+            .setContentTitle(Loc.s(R.string.s0564))
+            .setContentText(Loc.s(R.string.s0940, deviceName, deviceIp))
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
@@ -234,7 +235,7 @@ object AppNotificationManager {
         
         val notification = NotificationCompat.Builder(ctx, CHANNEL_NETWORK)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("网络异常")
+            .setContentTitle(Loc.s(R.string.s0941))
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)

@@ -1,5 +1,6 @@
 package com.luanmuc.openwrtmanager
 import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 import android.os.Bundle
 import com.luanmuc.openwrtmanager.ui.theme.ThemeManager
@@ -104,6 +105,13 @@ val bottomNavItems = listOf(
 )
 
 class MainActivity : ComponentActivity() {
+
+    override fun attachBaseContext(newBase: android.content.Context) {
+        // 应用用户选择的语言（英语/阿拉伯语，含RTL）
+        Loc.init(newBase)
+        super.attachBaseContext(Loc.wrap(newBase))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -345,7 +353,7 @@ fun MainScreen() {
             }
             composable(Screen.WebViewPlugin.route + "?url={url}&title={title}") { backStackEntry ->
                 val url = backStackEntry.arguments?.getString("url") ?: ""
-                val title = backStackEntry.arguments?.getString("title") ?: "插件"
+                val title = backStackEntry.arguments?.getString("title") ?: Loc.s(R.string.s0001)
                 WebViewPluginScreen(
                     url = url,
                     title = title,

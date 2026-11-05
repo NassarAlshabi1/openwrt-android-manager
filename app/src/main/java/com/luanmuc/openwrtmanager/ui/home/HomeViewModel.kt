@@ -17,6 +17,8 @@ import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
 import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 首页 ViewModel
@@ -458,9 +460,9 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                     error = null
                 )
             } catch (e: LuciException) {
-                handleLoadError(router, e.message ?: "连接失败")
+                handleLoadError(router, e.message ?: Loc.s(R.string.s0524))
             } catch (e: Exception) {
-                handleLoadError(router, e.message ?: "连接失败")
+                handleLoadError(router, e.message ?: Loc.s(R.string.s0524))
             }
         }
     }
@@ -567,9 +569,9 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
         val hours = (seconds % 86400) / 3600
         val minutes = (seconds % 3600) / 60
         return when {
-            days > 0 -> "${days}天${hours}小时"
-            hours > 0 -> "${hours}小时${minutes}分钟"
-            else -> "${minutes}分钟"
+            days > 0 -> Loc.s(R.string.s0521, days, hours)
+            hours > 0 -> Loc.s(R.string.s0522, hours, minutes)
+            else -> Loc.s(R.string.s0523, minutes)
         }
     }
 

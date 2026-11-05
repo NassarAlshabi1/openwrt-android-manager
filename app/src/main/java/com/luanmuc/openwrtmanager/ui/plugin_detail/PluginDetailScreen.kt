@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 插件详情页面
@@ -51,10 +52,10 @@ fun PluginDetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(pluginDetail?.displayName ?: "插件详情") },
+                title = { Text(pluginDetail?.displayName ?: Loc.s(R.string.s0569)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                        Icon(Icons.Default.ArrowBack, contentDescription = Loc.s(R.string.s0244))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -149,7 +150,7 @@ fun PluginDetailScreen(
                 
                 // 插件描述
                 item {
-                    SectionTitle(title = "插件介绍", icon = Icons.Default.Extension)
+                    SectionTitle(title = Loc.s(R.string.s0570), icon = Icons.Default.Extension)
                     Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                     PluginDescriptionCard(plugin = plugin)
                     Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
@@ -157,7 +158,7 @@ fun PluginDetailScreen(
                 
                 // 用户评价
                 item {
-                    SectionTitle(title = "用户评价", icon = Icons.Default.Star)
+                    SectionTitle(title = Loc.s(R.string.s0571), icon = Icons.Default.Star)
                     Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 }
                 
@@ -170,7 +171,7 @@ fun PluginDetailScreen(
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                text = "暂无评价",
+                                text = Loc.s(R.string.s0572),
                                 color = MiTheme.TextTertiary,
                                 style = MaterialTheme.typography.bodyMedium
                             )
@@ -291,7 +292,7 @@ private fun PluginHeaderCard(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "${plugin.downloadCount} 次下载",
+                        text = Loc.s(R.string.s0573, plugin.downloadCount),
                         color = MiTheme.TextTertiary,
                         style = MaterialTheme.typography.bodySmall
                     )
@@ -321,15 +322,15 @@ private fun PluginInfoCard(
                 .fillMaxWidth()
                 .padding(MiDimens.cardPadding)
         ) {
-            InfoRow(label = "版本", value = plugin.version)
+            InfoRow(label = Loc.s(R.string.s0574), value = plugin.version)
             Spacer(modifier = Modifier.height(12.dp))
-            InfoRow(label = "大小", value = viewModel.formatFileSize(plugin.size))
+            InfoRow(label = Loc.s(R.string.s0575), value = viewModel.formatFileSize(plugin.size))
             Spacer(modifier = Modifier.height(12.dp))
-            InfoRow(label = "作者", value = plugin.author)
+            InfoRow(label = Loc.s(R.string.s0576), value = plugin.author)
             Spacer(modifier = Modifier.height(12.dp))
-            InfoRow(label = "更新时间", value = viewModel.formatTime(plugin.lastUpdated))
+            InfoRow(label = Loc.s(R.string.s0577), value = viewModel.formatTime(plugin.lastUpdated))
             Spacer(modifier = Modifier.height(12.dp))
-            InfoRow(label = "许可证", value = plugin.license)
+            InfoRow(label = Loc.s(R.string.s0578), value = plugin.license)
         }
     }
 }

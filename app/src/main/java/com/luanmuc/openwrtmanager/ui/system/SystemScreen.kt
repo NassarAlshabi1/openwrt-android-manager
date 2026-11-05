@@ -77,6 +77,7 @@ import com.luanmuc.openwrtmanager.ui.components.MiLinearProgress
 import com.luanmuc.openwrtmanager.ui.components.MiLoadingState
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.ui.components.OfflineBanner
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 系统管理页面 - 小米路由器风格
@@ -89,17 +90,17 @@ fun SystemScreen(
     viewModel: SystemViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val tabs = listOf("系统信息", "系统日志", "进程管理")
+    val tabs = listOf(Loc.s(R.string.s0130), Loc.s(R.string.s0011), Loc.s(R.string.s0269))
     
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "系统管理",
+                title = Loc.s(R.string.s0518),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -116,7 +117,7 @@ fun SystemScreen(
                     ) {
                         Icon(
                             Icons.Filled.Refresh,
-                            contentDescription = "刷新",
+                            contentDescription = Loc.s(R.string.s0322),
                             tint = MiTheme.TextSecondary
                         )
                     }
@@ -260,7 +261,7 @@ private fun SystemInfoContent(
     onNavigateToFirmware: () -> Unit
 ) {
     if (isLoading) {
-        MiLoadingState(text = "正在加载系统信息...")
+        MiLoadingState(text = Loc.s(R.string.s0741))
     } else {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -272,20 +273,27 @@ private fun SystemInfoContent(
                 MiCard {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
-                            text = "基本信息",
+                            text = Loc.s(R.string.s0742),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MiTheme.TextPrimary
                         )
                         Spacer(modifier = Modifier.height(12.dp))
                         
-                        InfoItem(label = "设备型号", value = systemInfo.model)
-                        InfoItem(label = "主机名称", value = systemInfo.hostname)
-                        InfoItem(label = "固件版本", value = systemInfo.firmwareVersion)
-                        InfoItem(label = "发行版", value = systemInfo.distribution)
-                        InfoItem(label = "内核版本", value = systemInfo.kernelVersion)
-                        InfoItem(label = "架构", value = systemInfo.architecture)
-                        InfoItem(label = "目标平台", value = systemInfo.target.ifEmpty { "未知" })
+                        InfoItem(label = Loc.s(R.string.s0423), value = systemInfo.model)
+                        InfoItem(label = Loc.s(R.string.s0743), value = systemInfo.hostname)
+                        InfoItem(label = Loc.s(R.string.s0073), value = systemInfo.firmwareVersion)
+                        InfoItem(
+                            label = Loc.s(R.string.version_support_status),
+                            value = if (systemInfo.firmwareVersion.isEmpty()) Loc.s(R.string.s0050)
+                                else if (com.luanmuc.openwrtmanager.util.OpenWrtVersions.isSupported(systemInfo.firmwareVersion))
+                                    Loc.s(R.string.version_supported_range, com.luanmuc.openwrtmanager.util.OpenWrtVersions.supportedRangeDescription())
+                                else Loc.s(R.string.version_unsupported_range, com.luanmuc.openwrtmanager.util.OpenWrtVersions.supportedRangeDescription())
+                        )
+                        InfoItem(label = Loc.s(R.string.s0744), value = systemInfo.distribution)
+                        InfoItem(label = Loc.s(R.string.s0745), value = systemInfo.kernelVersion)
+                        InfoItem(label = Loc.s(R.string.s0424), value = systemInfo.architecture)
+                        InfoItem(label = Loc.s(R.string.s0746), value = systemInfo.target.ifEmpty { Loc.s(R.string.s0050) })
                     }
                 }
             }
@@ -300,7 +308,7 @@ private fun SystemInfoContent(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "包管理器",
+                                text = Loc.s(R.string.s0747),
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MiTheme.TextPrimary
@@ -313,10 +321,10 @@ private fun SystemInfoContent(
                         }
                         Spacer(modifier = Modifier.height(12.dp))
                         
-                        InfoItem(label = "包管理器类型", value = systemInfo.packageManager.displayName)
-                        InfoItem(label = "软件源数量", value = "$reposCount 个")
-                        InfoItem(label = "已安装插件", value = "$installedPackagesCount 个")
-                        InfoItem(label = "可用插件", value = "$availablePackagesCount 个")
+                        InfoItem(label = Loc.s(R.string.s0748), value = systemInfo.packageManager.displayName)
+                        InfoItem(label = Loc.s(R.string.s0749), value = Loc.s(R.string.s0750, reposCount))
+                        InfoItem(label = Loc.s(R.string.s0134), value = Loc.s(R.string.s0750, installedPackagesCount))
+                        InfoItem(label = Loc.s(R.string.s0135), value = Loc.s(R.string.s0750, availablePackagesCount))
                     }
                 }
             }
@@ -326,14 +334,14 @@ private fun SystemInfoContent(
                 MiCard {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
-                            text = "软件源切换",
+                            text = Loc.s(R.string.s0751),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MiTheme.TextPrimary
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "一键切换到不同的软件源镜像",
+                            text = Loc.s(R.string.s0752),
                             fontSize = 13.sp,
                             color = MiTheme.TextSecondary
                         )
@@ -341,7 +349,7 @@ private fun SystemInfoContent(
                         
                         // 自动配置按钮
                         MiButton(
-                            text = "自动配置官方源",
+                            text = Loc.s(R.string.s0753),
                             onClick = onAutoConfigure,
                             modifier = Modifier.fillMaxWidth(),
                             enabled = !isSwitchingRepo
@@ -377,7 +385,7 @@ private fun SystemInfoContent(
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
-                                text = "架构验证已启用",
+                                text = Loc.s(R.string.s0754),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = MiTheme.TextPrimary
@@ -385,7 +393,7 @@ private fun SystemInfoContent(
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "安装插件前会自动验证架构是否匹配，防止下载错误架构的插件包。",
+                            text = Loc.s(R.string.s0755),
                             fontSize = 13.sp,
                             color = MiTheme.TextSecondary,
                             lineHeight = 18.sp
@@ -410,14 +418,14 @@ private fun SystemInfoContent(
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
-                                    text = "固件升级",
+                                    text = Loc.s(R.string.s0420),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Medium,
                                     color = MiTheme.TextPrimary
                                 )
                                 Spacer(modifier = Modifier.height(4.dp))
                                 Text(
-                                    text = "检测并升级路由器固件",
+                                    text = Loc.s(R.string.s0756),
                                     fontSize = 13.sp,
                                     color = MiTheme.TextSecondary
                                 )
@@ -430,7 +438,7 @@ private fun SystemInfoContent(
                         }
                         Spacer(modifier = Modifier.height(12.dp))
                         MiButton(
-                            text = "进入固件升级",
+                            text = Loc.s(R.string.s0757),
                             onClick = onNavigateToFirmware,
                             modifier = Modifier.fillMaxWidth(),
                             type = MiButtonType.Secondary
@@ -559,7 +567,7 @@ fun ProcessesContent(
                     modifier = Modifier.size(40.dp)
                 )
             },
-            text = "暂无进程信息"
+            text = Loc.s(R.string.s0758)
         )
     } else {
         LazyColumn(
@@ -587,7 +595,7 @@ fun ProcessesContent(
             },
             title = {
                 Text(
-                    "结束进程",
+                    Loc.s(R.string.s0759),
                     fontWeight = FontWeight.Bold
                 )
             },
@@ -602,7 +610,7 @@ fun ProcessesContent(
                     }
                 ) {
                     Text(
-                        "结束",
+                        Loc.s(R.string.s0760),
                         color = MiColors.Error,
                         fontWeight = FontWeight.Medium
                     )
@@ -611,7 +619,7 @@ fun ProcessesContent(
             dismissButton = {
                 TextButton(onClick = { showKillDialog = null }) {
                     Text(
-                        "取消",
+                        Loc.s(R.string.s0276),
                         color = MiTheme.TextTertiary
                     )
                 }
@@ -658,7 +666,7 @@ fun ProcessCard(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "PID: ${process.pid} | 用户: ${process.user}",
+                    text = Loc.s(R.string.s0761, process.pid, process.user),
                     fontSize = 12.sp,
                     color = MiTheme.TextTertiary
                 )
@@ -697,7 +705,7 @@ fun ProcessCard(
             }
             Spacer(modifier = Modifier.width(12.dp))
             MiButton(
-                text = "结束",
+                text = Loc.s(R.string.s0760),
                 onClick = onKill,
                 type = MiButtonType.Secondary,
                 modifier = Modifier.width(60.dp),
@@ -795,7 +803,7 @@ fun SystemStatusOverview(
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
-                            text = "内存",
+                            text = Loc.s(R.string.s0729),
                             fontSize = 13.sp,
                             color = MiTheme.TextSecondary
                         )

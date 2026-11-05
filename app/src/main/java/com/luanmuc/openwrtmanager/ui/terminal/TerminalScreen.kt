@@ -31,6 +31,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 终端页面
@@ -59,18 +60,18 @@ fun TerminalScreen(
                 title = { Text(stringResource(R.string.terminal_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                        Icon(Icons.Default.ArrowBack, contentDescription = Loc.s(R.string.s0244))
                     }
                 },
                 actions = {
                     IconButton(onClick = { viewModel.clearTerminal() }) {
-                        Icon(Icons.Default.Clear, contentDescription = "清空")
+                        Icon(Icons.Default.Clear, contentDescription = Loc.s(R.string.s0560))
                     }
                     IconButton(onClick = { viewModel.toggleQuickCommands() }) {
-                        Icon(Icons.Default.Terminal, contentDescription = "快捷命令")
+                        Icon(Icons.Default.Terminal, contentDescription = Loc.s(R.string.s0765))
                     }
                     IconButton(onClick = { viewModel.toggleSettings() }) {
-                        Icon(Icons.Default.Settings, contentDescription = "设置")
+                        Icon(Icons.Default.Settings, contentDescription = Loc.s(R.string.s0766))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -237,13 +238,13 @@ private fun QuickCommandsPanel(
             ) {
                 Icon(
                     Icons.Default.Terminal,
-                    contentDescription = "快捷命令",
+                    contentDescription = Loc.s(R.string.s0765),
                     tint = MiTheme.Primary,
                     modifier = Modifier.size(20.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "快捷命令",
+                    text = Loc.s(R.string.s0765),
                     color = MiTheme.TextPrimary,
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.Medium
@@ -317,13 +318,13 @@ private fun SettingsPanel(
             ) {
                 Icon(
                     Icons.Default.Settings,
-                    contentDescription = "终端设置",
+                    contentDescription = Loc.s(R.string.s0767),
                     tint = MiTheme.Primary,
                     modifier = Modifier.size(20.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "终端设置",
+                    text = Loc.s(R.string.s0767),
                     color = MiTheme.TextPrimary,
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.Medium
@@ -342,7 +343,7 @@ private fun SettingsPanel(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "字体大小",
+                    text = Loc.s(R.string.s0768),
                     color = MiTheme.TextSecondary,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.weight(1f)
@@ -376,7 +377,7 @@ private fun SettingsPanel(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "终端主题",
+                    text = Loc.s(R.string.s0769),
                     color = MiTheme.TextSecondary,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.weight(1f)

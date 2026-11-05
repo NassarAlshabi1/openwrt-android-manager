@@ -61,6 +61,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import android.widget.Toast
 import com.luanmuc.openwrtmanager.util.DebugMode
+import com.luanmuc.openwrtmanager.util.Loc
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -153,7 +154,7 @@ fun ProfileScreen(
             Spacer(modifier = Modifier.height(20.dp))
             
             // 功能工具
-            SectionTitle(title = "功能工具")
+            SectionTitle(title = Loc.s(R.string.s0624))
             ToolsGrid(
                 onNavigateToSystem = onNavigateToSystem,
                 onNavigateToNetwork = onNavigateToNetwork,
@@ -234,19 +235,19 @@ fun ToolsGrid(
             ) {
                 ToolItem(
                     icon = Icons.Default.BugReport,
-                    title = "系统管理",
+                    title = Loc.s(R.string.s0518),
                     gradient = MiColors.GradientBlue,
                     onClick = onNavigateToSystem
                 )
                 ToolItem(
                     icon = Icons.Default.SignalCellularAlt,
-                    title = "网络设置",
+                    title = Loc.s(R.string.s0512),
                     gradient = MiColors.GradientGreen,
                     onClick = onNavigateToNetwork
                 )
                 ToolItem(
                     icon = Icons.Default.Wifi,
-                    title = "WiFi设置",
+                    title = Loc.s(R.string.s0511),
                     gradient = MiColors.GradientOrange,
                     onClick = onNavigateToWifi
                 )
@@ -257,7 +258,7 @@ fun ToolsGrid(
             ) {
                 ToolItem(
                     icon = Icons.Default.Security,
-                    title = "防火墙",
+                    title = Loc.s(R.string.s0409),
                     gradient = MiColors.GradientRed,
                     onClick = onNavigateToFirewall
                 )
@@ -269,7 +270,7 @@ fun ToolsGrid(
                 )
                 ToolItem(
                     icon = Icons.Default.Memory,
-                    title = "高级功能",
+                    title = Loc.s(R.string.s0261),
                     gradient = MiColors.GradientPurple,
                     onClick = onNavigateToAdvanced
                 )
@@ -283,19 +284,19 @@ fun ToolsGrid(
             ) {
                 ToolItem(
                     icon = Icons.Default.BugReport,
-                    title = "智能诊断",
+                    title = Loc.s(R.string.s0368),
                     gradient = MiColors.GradientBlue,
                     onClick = onNavigateToDiagnosticEnhanced
                 )
                 ToolItem(
                     icon = Icons.Default.Speed,
-                    title = "流量统计",
+                    title = Loc.s(R.string.s0179),
                     gradient = MiColors.GradientGreen,
                     onClick = onNavigateToTraffic
                 )
                 ToolItem(
                     icon = Icons.Default.Devices,
-                    title = "设备管理",
+                    title = Loc.s(R.string.s0510),
                     gradient = MiColors.GradientOrange,
                     onClick = onNavigateToDeviceManager
                 )
@@ -309,19 +310,19 @@ fun ToolsGrid(
             ) {
                 ToolItem(
                     icon = Icons.Default.Settings,
-                    title = "备份恢复",
+                    title = Loc.s(R.string.s0625),
                     gradient = MiColors.GradientCyan,
                     onClick = onNavigateToBackup
                 )
                 ToolItem(
                     icon = Icons.Default.Wifi,
-                    title = "WiFi增强",
+                    title = Loc.s(R.string.s0626),
                     gradient = MiColors.GradientGreen,
                     onClick = onNavigateToWifiEnhanced
                 )
                 ToolItem(
                     icon = Icons.Default.Code,
-                    title = "终端",
+                    title = Loc.s(R.string.s0627),
                     gradient = MiColors.GradientPurple,
                     onClick = onNavigateToTerminal
                 )
@@ -335,19 +336,19 @@ fun ToolsGrid(
             ) {
                 ToolItem(
                     icon = Icons.Default.Notifications,
-                    title = "通知设置",
+                    title = Loc.s(R.string.s0628),
                     gradient = MiColors.GradientOrange,
                     onClick = onNavigateToNotification
                 )
                 ToolItem(
                     icon = Icons.Default.Apps,
-                    title = "桌面小部件",
+                    title = Loc.s(R.string.s0629),
                     gradient = MiColors.GradientBlue,
                     onClick = onNavigateToWidgetConfig
                 )
                 ToolItem(
                     icon = Icons.Default.Extension,
-                    title = "插件市场",
+                    title = Loc.s(R.string.s0630),
                     gradient = MiColors.GradientRed,
                     onClick = onNavigateToPlugins
                 )
@@ -361,13 +362,13 @@ fun ToolsGrid(
             ) {
                 ToolItem(
                     icon = Icons.Default.Wifi,
-                    title = "远程管理",
+                    title = Loc.s(R.string.s0631),
                     gradient = MiColors.GradientBlue,
                     onClick = onNavigateToRemoteManage
                 )
                 ToolItem(
                     icon = Icons.Default.Extension,
-                    title = "插件检测",
+                    title = Loc.s(R.string.s0632),
                     gradient = MiColors.GradientGreen,
                     onClick = onNavigateToPluginDependency
                 )
@@ -439,14 +440,14 @@ fun UserInfoCard() {
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "OpenWrt 用户",
+                    text = Loc.s(R.string.s0633),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = MiTheme.TextPrimary
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "管理你的 OpenWrt 设备",
+                    text = Loc.s(R.string.s0634),
                     fontSize = 13.sp,
                     color = MiTheme.TextTertiary
                 )
@@ -475,7 +476,7 @@ fun SettingsList() {
     var showRetryCountDialog by remember { mutableStateOf(false) }
     var showTrafficUnitDialog by remember { mutableStateOf(false) }
     var showClearCacheDialog by remember { mutableStateOf(false) }
-    var cacheSize by remember { mutableStateOf("计算中...") }
+    var cacheSize by remember { mutableStateOf(Loc.s(R.string.s0635)) }
     
     // 监听设置变化（简化版，实际应该用Flow）
     var themeMode by remember { mutableStateOf(settings.themeMode) }
@@ -503,7 +504,7 @@ fun SettingsList() {
     Column {
         // 通用设置
         Text(
-            text = "通用",
+            text = Loc.s(R.string.s0636),
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
             color = MiTheme.TextSecondary,
@@ -518,7 +519,7 @@ fun SettingsList() {
             Column {
                 // 主题设置
                 MiListItem(
-                    title = "主题设置",
+                    title = Loc.s(R.string.s0637),
                     subtitle = themeMode.displayName,
                     icon = {
                         Icon(
@@ -534,7 +535,7 @@ fun SettingsList() {
                 
                 // 语言设置
                 MiListItem(
-                    title = "语言设置",
+                    title = Loc.s(R.string.s0638),
                     subtitle = language.displayName,
                     icon = {
                         Icon(
@@ -550,7 +551,7 @@ fun SettingsList() {
                 
                 // 清除缓存
                 MiListItem(
-                    title = "清除缓存",
+                    title = Loc.s(R.string.s0639),
                     subtitle = cacheSize,
                     icon = {
                         Icon(
@@ -567,7 +568,7 @@ fun SettingsList() {
         
         // 刷新设置
         Text(
-            text = "刷新",
+            text = Loc.s(R.string.s0322),
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
             color = MiTheme.TextSecondary,
@@ -582,8 +583,8 @@ fun SettingsList() {
             Column {
                 // 自动刷新开关
                 MiListItem(
-                    title = "自动刷新",
-                    subtitle = if (autoRefreshEnabled) "已开启" else "已关闭",
+                    title = Loc.s(R.string.s0640),
+                    subtitle = if (autoRefreshEnabled) Loc.s(R.string.s0463) else Loc.s(R.string.s0465),
                     icon = {
                         Icon(
                             imageVector = Icons.Default.Refresh,
@@ -598,7 +599,7 @@ fun SettingsList() {
                             onCheckedChange = { 
                                 autoRefreshEnabled = it
                                 settings.autoRefreshEnabled = it
-                                Toast.makeText(context, if (it) "自动刷新已开启" else "自动刷新已关闭", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, if (it) Loc.s(R.string.s0641) else Loc.s(R.string.s0642), Toast.LENGTH_SHORT).show()
                             }
                         )
                     },
@@ -611,8 +612,8 @@ fun SettingsList() {
                 
                 // 刷新间隔
                 MiListItem(
-                    title = "刷新间隔",
-                    subtitle = "${refreshInterval}秒",
+                    title = Loc.s(R.string.s0643),
+                    subtitle = Loc.s(R.string.s0644, refreshInterval),
                     icon = {
                         Icon(
                             imageVector = Icons.Default.Schedule,
@@ -628,7 +629,7 @@ fun SettingsList() {
         
         // 连接设置
         Text(
-            text = "连接",
+            text = Loc.s(R.string.s0645),
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
             color = MiTheme.TextSecondary,
@@ -643,8 +644,8 @@ fun SettingsList() {
             Column {
                 // 连接超时
                 MiListItem(
-                    title = "连接超时",
-                    subtitle = "${connectionTimeout}秒",
+                    title = Loc.s(R.string.s0646),
+                    subtitle = Loc.s(R.string.s0644, connectionTimeout),
                     icon = {
                         Icon(
                             imageVector = Icons.Default.Timer,
@@ -659,8 +660,8 @@ fun SettingsList() {
                 
                 // 重试次数
                 MiListItem(
-                    title = "重试次数",
-                    subtitle = "${retryCount}次",
+                    title = Loc.s(R.string.s0647),
+                    subtitle = Loc.s(R.string.s0648, retryCount),
                     icon = {
                         Icon(
                             imageVector = Icons.Default.Replay,
@@ -675,8 +676,8 @@ fun SettingsList() {
                 
                 // HTTPS自动检测
                 MiListItem(
-                    title = "HTTPS自动检测",
-                    subtitle = if (httpsAutoDetect) "已开启" else "已关闭",
+                    title = Loc.s(R.string.s0649),
+                    subtitle = if (httpsAutoDetect) Loc.s(R.string.s0463) else Loc.s(R.string.s0465),
                     icon = {
                         Icon(
                             imageVector = Icons.Default.Security,
@@ -691,7 +692,7 @@ fun SettingsList() {
                             onCheckedChange = { 
                                 httpsAutoDetect = it
                                 settings.httpsAutoDetect = it
-                                Toast.makeText(context, if (it) "HTTPS自动检测已开启" else "HTTPS自动检测已关闭", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, if (it) Loc.s(R.string.s0650) else Loc.s(R.string.s0651), Toast.LENGTH_SHORT).show()
                             }
                         )
                     },
@@ -705,7 +706,7 @@ fun SettingsList() {
         
         // 通知设置
         Text(
-            text = "通知",
+            text = Loc.s(R.string.s0652),
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
             color = MiTheme.TextSecondary,
@@ -720,8 +721,8 @@ fun SettingsList() {
             Column {
                 // 推送通知
                 MiListItem(
-                    title = "推送通知",
-                    subtitle = if (pushNotificationEnabled) "已开启" else "已关闭",
+                    title = Loc.s(R.string.s0653),
+                    subtitle = if (pushNotificationEnabled) Loc.s(R.string.s0463) else Loc.s(R.string.s0465),
                     icon = {
                         Icon(
                             imageVector = Icons.Default.Notifications,
@@ -736,7 +737,7 @@ fun SettingsList() {
                             onCheckedChange = { 
                                 pushNotificationEnabled = it
                                 settings.pushNotificationEnabled = it
-                                Toast.makeText(context, if (it) "推送通知已开启" else "推送通知已关闭", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, if (it) Loc.s(R.string.s0654) else Loc.s(R.string.s0655), Toast.LENGTH_SHORT).show()
                             }
                         )
                     },
@@ -749,8 +750,8 @@ fun SettingsList() {
                 
                 // 离线提醒
                 MiListItem(
-                    title = "离线提醒",
-                    subtitle = if (offlineAlertEnabled) "已开启" else "已关闭",
+                    title = Loc.s(R.string.s0656),
+                    subtitle = if (offlineAlertEnabled) Loc.s(R.string.s0463) else Loc.s(R.string.s0465),
                     icon = {
                         Icon(
                             imageVector = Icons.Default.Warning,
@@ -765,7 +766,7 @@ fun SettingsList() {
                             onCheckedChange = { 
                                 offlineAlertEnabled = it
                                 settings.offlineAlertEnabled = it
-                                Toast.makeText(context, if (it) "离线提醒已开启" else "离线提醒已关闭", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, if (it) Loc.s(R.string.s0657) else Loc.s(R.string.s0658), Toast.LENGTH_SHORT).show()
                             }
                         )
                     },
@@ -779,7 +780,7 @@ fun SettingsList() {
         
         // 其他设置
         Text(
-            text = "其他",
+            text = Loc.s(R.string.s0600),
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
             color = MiTheme.TextSecondary,
@@ -794,7 +795,7 @@ fun SettingsList() {
             Column {
                 // 流量单位
                 MiListItem(
-                    title = "流量单位",
+                    title = Loc.s(R.string.s0659),
                     subtitle = trafficUnit.displayName,
                     icon = {
                         Icon(
@@ -810,8 +811,8 @@ fun SettingsList() {
                 
                 // 状态栏显示
                 MiListItem(
-                    title = "状态栏显示",
-                    subtitle = if (statusBarEnabled) "已开启" else "已关闭",
+                    title = Loc.s(R.string.s0660),
+                    subtitle = if (statusBarEnabled) Loc.s(R.string.s0463) else Loc.s(R.string.s0465),
                     icon = {
                         Icon(
                             imageVector = Icons.Default.Info,
@@ -826,7 +827,7 @@ fun SettingsList() {
                             onCheckedChange = { 
                                 statusBarEnabled = it
                                 settings.statusBarEnabled = it
-                                Toast.makeText(context, if (it) "状态栏显示已开启" else "状态栏显示已关闭", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, if (it) Loc.s(R.string.s0661) else Loc.s(R.string.s0662), Toast.LENGTH_SHORT).show()
                             }
                         )
                     },
@@ -859,7 +860,7 @@ fun SettingsList() {
                                     settings.themeMode = mode
                                     ThemeManager.getInstance(context).setThemeMode(mode)
                                     showThemeDialog = false
-                                    Toast.makeText(context, "主题已切换为${mode.displayName}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, Loc.s(R.string.s0663, mode.displayName), Toast.LENGTH_SHORT).show()
                                 },
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -902,7 +903,9 @@ fun SettingsList() {
                                     language = lang
                                     settings.language = lang
                                     showLanguageDialog = false
-                                    Toast.makeText(context, "语言已切换为${lang.displayName}", Toast.LENGTH_SHORT).show()
+                                    Loc.refresh()
+                                    Toast.makeText(context, Loc.s(R.string.s0664, lang.displayName), Toast.LENGTH_SHORT).show()
+                                    (context as? android.app.Activity)?.recreate()
                                 },
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -912,6 +915,8 @@ fun SettingsList() {
                                     language = lang
                                     settings.language = lang
                                     showLanguageDialog = false
+                                    Loc.refresh()
+                                    (context as? android.app.Activity)?.recreate()
                                 }
                             )
                             Spacer(modifier = Modifier.width(8.dp))
@@ -944,7 +949,7 @@ fun SettingsList() {
                                     refreshInterval = interval.seconds
                                     settings.refreshInterval = interval.seconds
                                     showRefreshIntervalDialog = false
-                                    Toast.makeText(context, "刷新间隔已设置为${interval.displayName}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, Loc.s(R.string.s0665, interval.displayName), Toast.LENGTH_SHORT).show()
                                 },
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -986,7 +991,7 @@ fun SettingsList() {
                                     connectionTimeout = timeout.seconds
                                     settings.connectionTimeout = timeout.seconds
                                     showConnectionTimeoutDialog = false
-                                    Toast.makeText(context, "连接超时已设置为${timeout.displayName}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, Loc.s(R.string.s0666, timeout.displayName), Toast.LENGTH_SHORT).show()
                                 },
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -1028,7 +1033,7 @@ fun SettingsList() {
                                     retryCount = count.count
                                     settings.retryCount = count.count
                                     showRetryCountDialog = false
-                                    Toast.makeText(context, "重试次数已设置为${count.displayName}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, Loc.s(R.string.s0667, count.displayName), Toast.LENGTH_SHORT).show()
                                 },
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -1070,7 +1075,7 @@ fun SettingsList() {
                                     trafficUnit = unit
                                     settings.trafficUnit = unit
                                     showTrafficUnitDialog = false
-                                    Toast.makeText(context, "流量单位已设置为${unit.displayName}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, Loc.s(R.string.s0668, unit.displayName), Toast.LENGTH_SHORT).show()
                                 },
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -1111,11 +1116,11 @@ fun SettingsList() {
                                 CacheRepository.getInstance(context).clearAllCache()
                                 withContext(Dispatchers.Main) {
                                     cacheSize = "0 B"
-                                    Toast.makeText(context, "缓存已清除", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, Loc.s(R.string.s0669), Toast.LENGTH_SHORT).show()
                                 }
                             } catch (e: Exception) {
                                 withContext(Dispatchers.Main) {
-                                    Toast.makeText(context, "清除失败：${e.message}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, Loc.s(R.string.s0670, e.message), Toast.LENGTH_SHORT).show()
                                 }
                             }
                         }
@@ -1168,14 +1173,14 @@ fun AboutCard(
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                text = "OpenWrt 管家",
+                text = Loc.s(R.string.s0490),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = MiTheme.TextPrimary
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "版本 2.3.0-dev",
+                text = Loc.s(R.string.s0671),
                 fontSize = 13.sp,
                 color = MiTheme.TextTertiary,
                 modifier = Modifier.clickable {
@@ -1187,7 +1192,7 @@ fun AboutCard(
                         onDebugModeToggled(enabled)
                         Toast.makeText(
                             context,
-                            if (enabled) "演示模式已开启" else "演示模式已关闭",
+                            if (enabled) Loc.s(R.string.s0672) else Loc.s(R.string.s0673),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -1225,7 +1230,7 @@ fun ThemeSelectionDialog(
             onDismissRequest = onDismiss,
             title = {
                 Text(
-                    text = "主题设置",
+                    text = Loc.s(R.string.s0637),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
@@ -1233,8 +1238,8 @@ fun ThemeSelectionDialog(
             text = {
                 Column {
                     ThemeOptionItem(
-                        title = "浅色模式",
-                        description = "始终使用浅色主题",
+                        title = Loc.s(R.string.s0674),
+                        description = Loc.s(R.string.s0675),
                         isSelected = currentMode == ThemeMode.LIGHT,
                         onClick = {
                             onModeSelected(ThemeMode.LIGHT)
@@ -1242,8 +1247,8 @@ fun ThemeSelectionDialog(
                         }
                     )
                     ThemeOptionItem(
-                        title = "深色模式",
-                        description = "始终使用深色主题",
+                        title = Loc.s(R.string.s0676),
+                        description = Loc.s(R.string.s0677),
                         isSelected = currentMode == ThemeMode.DARK,
                         onClick = {
                             onModeSelected(ThemeMode.DARK)
@@ -1251,8 +1256,8 @@ fun ThemeSelectionDialog(
                         }
                     )
                     ThemeOptionItem(
-                        title = "跟随系统",
-                        description = "跟随系统主题自动切换",
+                        title = Loc.s(R.string.s0678),
+                        description = Loc.s(R.string.s0679),
                         isSelected = currentMode == ThemeMode.SYSTEM,
                         onClick = {
                             onModeSelected(ThemeMode.SYSTEM)

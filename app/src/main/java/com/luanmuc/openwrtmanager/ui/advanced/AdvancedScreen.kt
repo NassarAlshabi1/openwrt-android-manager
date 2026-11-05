@@ -62,6 +62,7 @@ import com.luanmuc.openwrtmanager.ui.components.MiFeatureIcon
 import com.luanmuc.openwrtmanager.ui.components.MiListItem
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
 import com.luanmuc.openwrtmanager.ui.components.OfflineBanner
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 高级功能页面 - 小米路由器风格
@@ -92,7 +93,7 @@ fun AdvancedScreen(
     // 成功提示
     LaunchedEffect(uiState.actionSuccess) {
         if (uiState.actionSuccess) {
-            android.widget.Toast.makeText(context, "操作成功", android.widget.Toast.LENGTH_SHORT).show()
+            android.widget.Toast.makeText(context, Loc.s(R.string.s0260), android.widget.Toast.LENGTH_SHORT).show()
             viewModel.clearSuccess()
         }
     }
@@ -100,12 +101,12 @@ fun AdvancedScreen(
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = "高级功能",
+                title = Loc.s(R.string.s0261),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -127,7 +128,7 @@ fun AdvancedScreen(
             Spacer(modifier = Modifier.height(8.dp))
             
             // 系统操作
-            SectionTitle(title = "系统操作")
+            SectionTitle(title = Loc.s(R.string.s0262))
             MiCard(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -135,8 +136,8 @@ fun AdvancedScreen(
             ) {
                 Column {
                     MiListItem(
-                        title = "重启路由器",
-                        subtitle = "重新启动设备",
+                        title = Loc.s(R.string.s0233),
+                        subtitle = Loc.s(R.string.s0263),
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Refresh,
@@ -149,8 +150,8 @@ fun AdvancedScreen(
                     )
                     MiDivider(indent = 60.dp)
                     MiListItem(
-                        title = "关闭路由器",
-                        subtitle = "关闭设备电源",
+                        title = Loc.s(R.string.s0264),
+                        subtitle = Loc.s(R.string.s0265),
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.PowerSettingsNew,
@@ -167,7 +168,7 @@ fun AdvancedScreen(
             Spacer(modifier = Modifier.height(20.dp))
             
             // 系统信息
-            SectionTitle(title = "系统信息")
+            SectionTitle(title = Loc.s(R.string.s0130))
             MiCard(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -175,8 +176,8 @@ fun AdvancedScreen(
             ) {
                 Column {
                     MiListItem(
-                        title = "系统信息",
-                        subtitle = "固件版本、内核版本",
+                        title = Loc.s(R.string.s0130),
+                        subtitle = Loc.s(R.string.s0266),
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Settings,
@@ -189,8 +190,8 @@ fun AdvancedScreen(
                     )
                     MiDivider(indent = 60.dp)
                     MiListItem(
-                        title = "存储状态",
-                        subtitle = "磁盘使用情况",
+                        title = Loc.s(R.string.s0267),
+                        subtitle = Loc.s(R.string.s0268),
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Storage,
@@ -203,8 +204,8 @@ fun AdvancedScreen(
                     )
                     MiDivider(indent = 60.dp)
                     MiListItem(
-                        title = "进程管理",
-                        subtitle = "查看运行中的进程",
+                        title = Loc.s(R.string.s0269),
+                        subtitle = Loc.s(R.string.s0270),
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Memory,
@@ -214,7 +215,7 @@ fun AdvancedScreen(
                             )
                         },
                         onClick = {
-                            onOpenWebView("/cgi-bin/luci/admin/status/processes", "进程管理")
+                            onOpenWebView("/cgi-bin/luci/admin/status/processes", Loc.s(R.string.s0269))
                         }
                     )
                 }
@@ -223,7 +224,7 @@ fun AdvancedScreen(
             Spacer(modifier = Modifier.height(20.dp))
             
             // 诊断工具
-            SectionTitle(title = "诊断工具")
+            SectionTitle(title = Loc.s(R.string.s0271))
             MiCard(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -231,7 +232,7 @@ fun AdvancedScreen(
             ) {
                 Column {
                     MiListItem(
-                        title = "网络诊断",
+                        title = Loc.s(R.string.s0272),
                         subtitle = "Ping、Traceroute",
                         icon = {
                             Icon(
@@ -245,8 +246,8 @@ fun AdvancedScreen(
                     )
                     MiDivider(indent = 60.dp)
                     MiListItem(
-                        title = "终端命令",
-                        subtitle = "在浏览器中使用命令行（需安装ttyd插件）",
+                        title = Loc.s(R.string.s0273),
+                        subtitle = Loc.s(R.string.s0274),
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Code,
@@ -256,7 +257,7 @@ fun AdvancedScreen(
                             )
                         },
                         onClick = {
-                            onOpenWebView("/cgi-bin/luci/admin/services/ttyd", "终端命令")
+                            onOpenWebView("/cgi-bin/luci/admin/services/ttyd", Loc.s(R.string.s0273))
                         }
                     )
                 }
@@ -277,7 +278,7 @@ fun AdvancedScreen(
             },
             title = {
                 Text(
-                    "重启路由器",
+                    Loc.s(R.string.s0233),
                     fontWeight = FontWeight.Bold
                 )
             },
@@ -294,7 +295,7 @@ fun AdvancedScreen(
                     }
                 ) {
                     Text(
-                        "重启",
+                        Loc.s(R.string.s0275),
                         color = MiColors.Primary,
                         fontWeight = FontWeight.Medium
                     )
@@ -303,7 +304,7 @@ fun AdvancedScreen(
             dismissButton = {
                 TextButton(onClick = { showRebootDialog = false }) {
                     Text(
-                        "取消",
+                        Loc.s(R.string.s0276),
                         color = MiTheme.TextTertiary
                     )
                 }
@@ -325,7 +326,7 @@ fun AdvancedScreen(
             },
             title = {
                 Text(
-                    "关闭路由器",
+                    Loc.s(R.string.s0264),
                     fontWeight = FontWeight.Bold
                 )
             },
@@ -342,7 +343,7 @@ fun AdvancedScreen(
                     }
                 ) {
                     Text(
-                        "关闭",
+                        Loc.s(R.string.s0277),
                         color = MiColors.Error,
                         fontWeight = FontWeight.Medium
                     )
@@ -351,7 +352,7 @@ fun AdvancedScreen(
             dismissButton = {
                 TextButton(onClick = { showShutdownDialog = false }) {
                     Text(
-                        "取消",
+                        Loc.s(R.string.s0276),
                         color = MiTheme.TextTertiary
                     )
                 }

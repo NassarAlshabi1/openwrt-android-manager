@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 桌面小部件配置ViewModel
@@ -50,9 +52,9 @@ class WidgetConfigViewModel(application: Application) : BaseViewModel(applicatio
     
     // 可用的主题选项
     val themeOptions = listOf(
-        "auto" to "跟随系统",
-        "light" to "浅色",
-        "dark" to "深色"
+        "auto" to Loc.s(R.string.s0678),
+        "light" to Loc.s(R.string.s0796),
+        "dark" to Loc.s(R.string.s0797)
     )
     
     init {
@@ -192,9 +194,9 @@ class WidgetConfigViewModel(application: Application) : BaseViewModel(applicatio
      */
     fun formatUpdateInterval(minutes: Int): String {
         return when {
-            minutes < 60 -> "${minutes}分钟"
-            minutes % 60 == 0 -> "${minutes / 60}小时"
-            else -> "${minutes / 60}小时${minutes % 60}分钟"
+            minutes < 60 -> Loc.s(R.string.s0523, minutes)
+            minutes % 60 == 0 -> Loc.s(R.string.s0798, minutes / 60)
+            else -> Loc.s(R.string.s0522, minutes / 60, minutes % 60)
         }
     }
 

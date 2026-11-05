@@ -5,6 +5,8 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 日期时间工具类
@@ -74,19 +76,19 @@ object DateTimeUtils {
         val diff = now - timestamp
         
         return when {
-            diff < 0 -> "未来"
-            diff < TimeUnit.MINUTES.toMillis(1) -> "刚刚"
+            diff < 0 -> Loc.s(R.string.s0840)
+            diff < TimeUnit.MINUTES.toMillis(1) -> Loc.s(R.string.s0841)
             diff < TimeUnit.HOURS.toMillis(1) -> {
                 val minutes = TimeUnit.MILLISECONDS.toMinutes(diff)
-                "${minutes}分钟前"
+                Loc.s(R.string.s0842, minutes)
             }
             diff < TimeUnit.DAYS.toMillis(1) -> {
                 val hours = TimeUnit.MILLISECONDS.toHours(diff)
-                "${hours}小时前"
+                Loc.s(R.string.s0843, hours)
             }
             diff < TimeUnit.DAYS.toMillis(7) -> {
                 val days = TimeUnit.MILLISECONDS.toDays(diff)
-                "${days}天前"
+                Loc.s(R.string.s0844, days)
             }
             else -> formatTimestamp(timestamp, FORMAT_YYYY_MM_DD)
         }
@@ -100,18 +102,18 @@ object DateTimeUtils {
         val diff = now - timestamp
         
         return when {
-            diff < 0 -> "未来"
-            diff < TimeUnit.MINUTES.toMillis(1) -> "刚刚"
+            diff < 0 -> Loc.s(R.string.s0840)
+            diff < TimeUnit.MINUTES.toMillis(1) -> Loc.s(R.string.s0841)
             diff < TimeUnit.HOURS.toMillis(1) -> {
                 val minutes = TimeUnit.MILLISECONDS.toMinutes(diff)
-                "${minutes}分钟前"
+                Loc.s(R.string.s0842, minutes)
             }
             diff < TimeUnit.DAYS.toMillis(1) -> {
                 val hours = TimeUnit.MILLISECONDS.toHours(diff)
-                "${hours}小时前"
+                Loc.s(R.string.s0843, hours)
             }
-            isToday(timestamp) -> "今天"
-            isYesterday(timestamp) -> "昨天"
+            isToday(timestamp) -> Loc.s(R.string.s0845)
+            isYesterday(timestamp) -> Loc.s(R.string.s0846)
             isThisYear(timestamp) -> formatTimestamp(timestamp, FORMAT_MM_DD)
             else -> formatTimestamp(timestamp, FORMAT_YYYY_MM_DD)
         }
@@ -127,10 +129,10 @@ object DateTimeUtils {
         val days = TimeUnit.HOURS.toDays(hours)
         
         return when {
-            days > 0 -> "${days}天${hours % 24}小时${minutes % 60}分钟"
-            hours > 0 -> "${hours}小时${minutes % 60}分钟${seconds % 60}秒"
-            minutes > 0 -> "${minutes}分钟${seconds % 60}秒"
-            else -> "${seconds}秒"
+            days > 0 -> Loc.s(R.string.s0847, days, hours % 24, minutes % 60)
+            hours > 0 -> Loc.s(R.string.s0848, hours, minutes % 60, seconds % 60)
+            minutes > 0 -> Loc.s(R.string.s0849, minutes, seconds % 60)
+            else -> Loc.s(R.string.s0644, seconds)
         }
     }
     
@@ -144,10 +146,10 @@ object DateTimeUtils {
         val days = TimeUnit.HOURS.toDays(hours)
         
         return when {
-            days > 0 -> "${days}天${hours % 24}小时"
-            hours > 0 -> "${hours}小时${minutes % 60}分"
-            minutes > 0 -> "${minutes}分${seconds % 60}秒"
-            else -> "${seconds}秒"
+            days > 0 -> Loc.s(R.string.s0521, days, hours % 24)
+            hours > 0 -> Loc.s(R.string.s0739, hours, minutes % 60)
+            minutes > 0 -> Loc.s(R.string.s0850, minutes, seconds % 60)
+            else -> Loc.s(R.string.s0644, seconds)
         }
     }
     
@@ -161,7 +163,7 @@ object DateTimeUtils {
         val seconds = uptimeSeconds % 60
         
         return when {
-            days > 0 -> String.format("%d天 %02d:%02d:%02d", days, hours, minutes, seconds)
+            days > 0 -> String.format(Loc.s(R.string.s0851), days, hours, minutes, seconds)
             else -> String.format("%02d:%02d:%02d", hours, minutes, seconds)
         }
     }
@@ -223,14 +225,14 @@ object DateTimeUtils {
         val cal = Calendar.getInstance()
         cal.timeInMillis = timestamp
         return when (cal.get(Calendar.DAY_OF_WEEK)) {
-            Calendar.SUNDAY -> "星期日"
-            Calendar.MONDAY -> "星期一"
-            Calendar.TUESDAY -> "星期二"
-            Calendar.WEDNESDAY -> "星期三"
-            Calendar.THURSDAY -> "星期四"
-            Calendar.FRIDAY -> "星期五"
-            Calendar.SATURDAY -> "星期六"
-            else -> "未知"
+            Calendar.SUNDAY -> Loc.s(R.string.s0852)
+            Calendar.MONDAY -> Loc.s(R.string.s0853)
+            Calendar.TUESDAY -> Loc.s(R.string.s0854)
+            Calendar.WEDNESDAY -> Loc.s(R.string.s0855)
+            Calendar.THURSDAY -> Loc.s(R.string.s0856)
+            Calendar.FRIDAY -> Loc.s(R.string.s0857)
+            Calendar.SATURDAY -> Loc.s(R.string.s0858)
+            else -> Loc.s(R.string.s0050)
         }
     }
     
@@ -241,14 +243,14 @@ object DateTimeUtils {
         val cal = Calendar.getInstance()
         cal.timeInMillis = timestamp
         return when (cal.get(Calendar.DAY_OF_WEEK)) {
-            Calendar.SUNDAY -> "周日"
-            Calendar.MONDAY -> "周一"
-            Calendar.TUESDAY -> "周二"
-            Calendar.WEDNESDAY -> "周三"
-            Calendar.THURSDAY -> "周四"
-            Calendar.FRIDAY -> "周五"
-            Calendar.SATURDAY -> "周六"
-            else -> "未知"
+            Calendar.SUNDAY -> Loc.s(R.string.s0859)
+            Calendar.MONDAY -> Loc.s(R.string.s0860)
+            Calendar.TUESDAY -> Loc.s(R.string.s0861)
+            Calendar.WEDNESDAY -> Loc.s(R.string.s0862)
+            Calendar.THURSDAY -> Loc.s(R.string.s0863)
+            Calendar.FRIDAY -> Loc.s(R.string.s0864)
+            Calendar.SATURDAY -> Loc.s(R.string.s0865)
+            else -> Loc.s(R.string.s0050)
         }
     }
     
@@ -399,11 +401,11 @@ object DateTimeUtils {
         val hour = cal.get(Calendar.HOUR_OF_DAY)
         
         return when (hour) {
-            in 5..11 -> "上午"
-            in 12..13 -> "中午"
-            in 14..17 -> "下午"
-            in 18..22 -> "晚上"
-            else -> "凌晨"
+            in 5..11 -> Loc.s(R.string.s0866)
+            in 12..13 -> Loc.s(R.string.s0867)
+            in 14..17 -> Loc.s(R.string.s0868)
+            in 18..22 -> Loc.s(R.string.s0869)
+            else -> Loc.s(R.string.s0870)
         }
     }
 }

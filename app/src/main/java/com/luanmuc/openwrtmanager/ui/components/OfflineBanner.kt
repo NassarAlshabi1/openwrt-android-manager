@@ -21,6 +21,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 离线提示条
@@ -54,7 +56,7 @@ fun OfflineBanner(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "网络已断开，正在尝试重连...",
+                    text = Loc.s(R.string.s0316),
                     color = Color.White,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium

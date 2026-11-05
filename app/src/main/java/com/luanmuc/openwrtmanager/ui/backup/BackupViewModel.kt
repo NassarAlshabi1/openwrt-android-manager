@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 配置备份恢复ViewModel
@@ -77,10 +79,10 @@ class BackupViewModel(application: Application) : BaseViewModel(application) {
             _isCreating.value = true
             try {
                 val record = backupRepository.createBackup(name, description, backupType)
-                _operationResult.value = "备份创建成功"
+                _operationResult.value = Loc.s(R.string.s0292)
                 loadBackupList()
             } catch (e: Exception) {
-                _operationResult.value = "创建失败: ${e.message}"
+                _operationResult.value = Loc.s(R.string.s0293, e.message)
             } finally {
                 _isCreating.value = false
             }
@@ -96,9 +98,9 @@ class BackupViewModel(application: Application) : BaseViewModel(application) {
                 // 模拟分步恢复
                 val progress = backupRepository.restoreBackup(backupId)
                 _restoreProgress.value = progress
-                _operationResult.value = if (progress.isCompleted) "恢复成功" else "恢复失败"
+                _operationResult.value = if (progress.isCompleted) Loc.s(R.string.s0294) else Loc.s(R.string.s0295)
             } catch (e: Exception) {
-                _operationResult.value = "恢复失败: ${e.message}"
+                _operationResult.value = Loc.s(R.string.s0296, e.message)
             }
         }
     }
@@ -110,10 +112,10 @@ class BackupViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             try {
                 val success = backupRepository.deleteBackup(backupId)
-                _operationResult.value = if (success) "删除成功" else "删除失败"
+                _operationResult.value = if (success) Loc.s(R.string.s0297) else Loc.s(R.string.s0298)
                 loadBackupList()
             } catch (e: Exception) {
-                _operationResult.value = "删除失败: ${e.message}"
+                _operationResult.value = Loc.s(R.string.s0299, e.message)
             }
         }
     }

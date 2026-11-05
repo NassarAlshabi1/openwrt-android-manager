@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="在线"
+        android:text="@string/home_status_online"
         android:textColor="#00B578"
         android:textSize="12sp"/>
 
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="12台设备"
+        android:text="@string/widget_devices_placeholder"
         android:textColor="#FFFFFF"
         android:textSize="10sp"
         android:maxLines="1"

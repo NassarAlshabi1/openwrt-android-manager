@@ -29,6 +29,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.luanmuc.openwrtmanager.data.model.DeviceEventType
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 设备管理增强页面
@@ -59,7 +60,7 @@ fun DeviceManagerScreen(
                 title = { Text(stringResource(R.string.device_manager_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                        Icon(Icons.Default.ArrowBack, contentDescription = Loc.s(R.string.s0244))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -81,7 +82,7 @@ fun DeviceManagerScreen(
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 
                 SectionTitle(
-                    title = "设备分组",
+                    title = Loc.s(R.string.s0341),
                     icon = Icons.Default.Group
                 )
                 
@@ -111,7 +112,7 @@ fun DeviceManagerScreen(
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 
                 SectionTitle(
-                    title = "上下线历史",
+                    title = Loc.s(R.string.s0342),
                     icon = Icons.Default.History
                 )
                 
@@ -138,7 +139,7 @@ fun DeviceManagerScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "暂无历史记录",
+                            text = Loc.s(R.string.s0343),
                             color = MiTheme.TextTertiary,
                             style = MaterialTheme.typography.bodyMedium
                         )
@@ -236,7 +237,7 @@ private fun DeviceGroupItem(
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = "${group.deviceCount} 个设备",
+                    text = Loc.s(R.string.s0344, group.deviceCount),
                     color = MiTheme.TextTertiary,
                     style = MaterialTheme.typography.bodySmall
                 )

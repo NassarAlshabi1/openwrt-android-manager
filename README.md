@@ -408,3 +408,23 @@ MIT License
 ---
 
 **注意**：本项目仍处于开发阶段，部分功能可能不完善。
+
+---
+
+## 🌍 Localization / التعريب (v2.4.0)
+
+The app UI has been fully localized into **English (default)** and **Arabic (RTL)** — Chinese resources were removed.
+
+- **Language switcher**: Profile → Settings → Language (Follow system / English / العربية), applied instantly.
+- **RTL**: full right-to-left layout support when Arabic is selected.
+- **~1,160 strings** translated across all screens, dialogs, widgets, notifications and enums.
+- See [`tools/i18n/README.md`](tools/i18n/README.md) for the localization architecture and the key→translation mapping.
+
+## 🧩 OpenWrt version support (v2.4.0)
+
+Added an official firmware support matrix for **OpenWrt 23.05.0 – 23.05.6** (the short notation `23.5.0 – 23.5.6` is accepted and normalized automatically, e.g. `23.5.3` → `23.05.3`, and build suffixes like `r23497-6637af95aa` are stripped).
+
+- Support status badge in **System → firmware info** and on the **Firmware upgrade** screen.
+- **Smart diagnostics** now checks the connected router's firmware version against the supported range.
+- **Software repository auto-configuration** normalizes the firmware version before building feed URLs.
+- Unit tests cover the version matrix (`app/src/test/.../OpenWrtVersionsTest.kt`, `VersionUtilsTest.kt`).

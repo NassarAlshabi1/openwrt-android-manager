@@ -55,6 +55,7 @@ import com.luanmuc.openwrtmanager.ui.components.MiFeatureIcon
 import com.luanmuc.openwrtmanager.ui.components.MiPrimaryButton
 import com.luanmuc.openwrtmanager.ui.components.MiTag
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 设备页 - 小米路由器风格
@@ -102,7 +103,7 @@ fun DevicesScreen(
             ) {
                 item {
                     Text(
-                        text = "我的路由器",
+                        text = Loc.s(R.string.s0350),
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Medium,
                         color = MiTheme.TextSecondary,
@@ -188,14 +189,14 @@ fun EmptyDevicesView(
         }
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = "暂无设备",
+            text = Loc.s(R.string.s0351),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = MiTheme.TextPrimary
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "添加你的 OpenWrt 路由器设备",
+            text = Loc.s(R.string.s0352),
             fontSize = 14.sp,
             color = MiTheme.TextTertiary
         )
@@ -207,14 +208,14 @@ fun EmptyDevicesView(
         Spacer(modifier = Modifier.height(16.dp))
         TextButton(onClick = onDemoMode) {
             Text(
-                text = "🎮 体验演示模式（无需路由器）",
+                text = Loc.s(R.string.s0353),
                 fontSize = 14.sp,
                 color = MiTheme.Primary
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "内置模拟数据，可体验所有功能",
+            text = Loc.s(R.string.s0354),
             fontSize = 12.sp,
             color = MiTheme.TextTertiary
         )
@@ -256,7 +257,7 @@ fun RouterItem(
             Spacer(modifier = Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = router.name.ifEmpty { "OpenWrt路由器" },
+                    text = router.name.ifEmpty { Loc.s(R.string.s0355) },
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = MiTheme.TextPrimary
@@ -270,7 +271,7 @@ fun RouterItem(
             }
             if (isActive) {
                 MiTag(
-                    text = "当前",
+                    text = Loc.s(R.string.s0356),
                     backgroundColor = MiColors.Primary,
                     textColor = Color.White
                 )
@@ -279,7 +280,7 @@ fun RouterItem(
             IconButton(onClick = onEdit) {
                 Icon(
                     Icons.Default.Edit,
-                    contentDescription = "编辑",
+                    contentDescription = Loc.s(R.string.s0335),
                     tint = MiTheme.TextSecondary,
                     modifier = Modifier.size(20.dp)
                 )
@@ -287,7 +288,7 @@ fun RouterItem(
             IconButton(onClick = onDelete) {
                 Icon(
                     Icons.Default.Delete,
-                    contentDescription = "删除",
+                    contentDescription = Loc.s(R.string.s0303),
                     tint = MiColors.Error,
                     modifier = Modifier.size(20.dp)
                 )

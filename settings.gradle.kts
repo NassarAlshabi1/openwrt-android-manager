@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "OpenWrt管家"
+rootProject.name = "OpenWrtManager"
 include(":app")

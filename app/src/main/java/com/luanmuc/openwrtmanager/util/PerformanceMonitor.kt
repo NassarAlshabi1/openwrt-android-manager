@@ -3,6 +3,8 @@ import com.luanmuc.openwrtmanager.util.LogUtils
 
 import android.os.SystemClock
 import java.util.concurrent.ConcurrentHashMap
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 性能监控工具类
@@ -190,21 +192,21 @@ object PerformanceMonitor {
      */
     fun getReportString(): String {
         if (stats.isEmpty()) {
-            return "暂无性能数据"
+            return Loc.s(R.string.s0942)
         }
         
         val sb = StringBuilder()
-        sb.append("=== 性能监控报告 ===\n\n")
+        sb.append(Loc.s(R.string.s0943))
         
         val sortedStats = stats.values.sortedByDescending { it.totalTime }
         
         for (stat in sortedStats) {
             sb.append("${stat.name}:\n")
-            sb.append("  调用次数: ${stat.count}\n")
-            sb.append("  总耗时: ${stat.totalTime}ms\n")
-            sb.append("  平均耗时: ${stat.avgTime}ms\n")
-            sb.append("  最小耗时: ${stat.minTime}ms\n")
-            sb.append("  最大耗时: ${stat.maxTime}ms\n\n")
+            sb.append(Loc.s(R.string.s0944, stat.count))
+            sb.append(Loc.s(R.string.s0945, stat.totalTime))
+            sb.append(Loc.s(R.string.s0946, stat.avgTime))
+            sb.append(Loc.s(R.string.s0947, stat.minTime))
+            sb.append(Loc.s(R.string.s0948, stat.maxTime))
         }
         
         sb.append("===================")

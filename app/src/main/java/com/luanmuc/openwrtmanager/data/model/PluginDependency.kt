@@ -1,5 +1,8 @@
 package com.luanmuc.openwrtmanager.data.model
 
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
+
 /**
  * 插件依赖信息
  */
@@ -43,49 +46,49 @@ data class PluginInstallStatus(
 object PluginDependencies {
     // DDNS功能
     val DDNS = PluginDependency(
-        featureName = "DDNS动态域名",
+        featureName = Loc.s(R.string.s0003),
         packageName = "ddns-scripts",
-        description = "DDNS动态域名更新服务，用于将动态IP映射到固定域名",
+        description = Loc.s(R.string.s0004),
         category = DependencyCategory.NETWORK
     )
 
     // 设备限速功能
     val TRAFFIC_CONTROL = PluginDependency(
-        featureName = "设备限速",
+        featureName = Loc.s(R.string.s0005),
         packageName = "ip-tiny",
-        description = "流量控制工具(tc命令)，用于限制设备上下行速度",
+        description = Loc.s(R.string.s0006),
         category = DependencyCategory.NETWORK
     )
 
     // 挂载点管理
     val BLOCK_MOUNT = PluginDependency(
-        featureName = "挂载点管理",
+        featureName = Loc.s(R.string.s0007),
         packageName = "block-mount",
-        description = "块设备挂载管理工具，用于管理USB存储等挂载点",
+        description = Loc.s(R.string.s0008),
         category = DependencyCategory.STORAGE
     )
 
     // WiFi信息
     val IWINFO = PluginDependency(
-        featureName = "WiFi信息",
+        featureName = Loc.s(R.string.s0009),
         packageName = "rpcd-mod-iwinfo",
-        description = "WiFi信息查询模块，用于获取无线设备状态和连接信息",
+        description = Loc.s(R.string.s0010),
         category = DependencyCategory.WIFI
     )
 
     // 系统日志
     val LOGD = PluginDependency(
-        featureName = "系统日志",
+        featureName = Loc.s(R.string.s0011),
         packageName = "logd",
-        description = "系统日志服务，用于记录和查看系统运行日志",
+        description = Loc.s(R.string.s0012),
         category = DependencyCategory.SYSTEM
     )
 
     // 诊断工具-traceroute
     val TRACEROUTE = PluginDependency(
-        featureName = "路由追踪",
+        featureName = Loc.s(R.string.s0013),
         packageName = "traceroute",
-        description = "路由追踪工具，用于诊断网络路径和延迟",
+        description = Loc.s(R.string.s0014),
         isRequired = false,
         category = DependencyCategory.DIAGNOSTIC
     )

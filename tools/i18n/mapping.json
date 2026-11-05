@@ -1,0 +1,5817 @@
+{
+ "s0001": {
+  "zh": "插件",
+  "en": "Plugins",
+  "ar": "الإضافات"
+ },
+ "s0002": {
+  "zh": "默认分组",
+  "en": "Default group",
+  "ar": "المجموعة الافتراضية"
+ },
+ "s0003": {
+  "zh": "DDNS动态域名",
+  "en": "DDNS dynamic domain",
+  "ar": "النطاق الديناميكي DDNS"
+ },
+ "s0004": {
+  "zh": "DDNS动态域名更新服务，用于将动态IP映射到固定域名",
+  "en": "DDNS dynamic domain update service that maps a dynamic IP to a fixed domain",
+  "ar": "خدمة تحديث النطاقات الديناميكية DDNS لربط IP الديناميكي باسم نطاق ثابت"
+ },
+ "s0005": {
+  "zh": "设备限速",
+  "en": "Device speed limits",
+  "ar": "تحديد سرعة الأجهزة"
+ },
+ "s0006": {
+  "zh": "流量控制工具(tc命令)，用于限制设备上下行速度",
+  "en": "Traffic control tool (tc command) for limiting device upload and download speeds",
+  "ar": "أداة التحكم في حركة البيانات (أمر tc) لتحديد سرعات الرفع والتنزيل للأجهزة"
+ },
+ "s0007": {
+  "zh": "挂载点管理",
+  "en": "Mount point management",
+  "ar": "إدارة نقاط التحميل"
+ },
+ "s0008": {
+  "zh": "块设备挂载管理工具，用于管理USB存储等挂载点",
+  "en": "Block device mount management tool for mounts like USB storage",
+  "ar": "أداة إدارة تحميل أجهزة التخزين لإدارة نقاط التحميل مثل وحدات تخزين USB"
+ },
+ "s0009": {
+  "zh": "WiFi信息",
+  "en": "WiFi info",
+  "ar": "معلومات WiFi"
+ },
+ "s0010": {
+  "zh": "WiFi信息查询模块，用于获取无线设备状态和连接信息",
+  "en": "WiFi info module for viewing wireless status and connection details",
+  "ar": "وحدة الاستعلام عن معلومات WiFi لعرض حالة الأجهزة اللاسلكية وتفاصيل الاتصال"
+ },
+ "s0011": {
+  "zh": "系统日志",
+  "en": "System log",
+  "ar": "سجل النظام"
+ },
+ "s0012": {
+  "zh": "系统日志服务，用于记录和查看系统运行日志",
+  "en": "System log service for recording and viewing system logs",
+  "ar": "خدمة سجل النظام لتسجيل سجلات تشغيل النظام وعرضها"
+ },
+ "s0013": {
+  "zh": "路由追踪",
+  "en": "Traceroute",
+  "ar": "تتبع المسار"
+ },
+ "s0014": {
+  "zh": "路由追踪工具，用于诊断网络路径和延迟",
+  "en": "Traceroute tool for diagnosing network paths and latency",
+  "ar": "أداة تتبع المسار لتشخيص مسارات الشبكة وزمن الاستجابة"
+ },
+ "s0015": {
+  "zh": "常用",
+  "en": "Popular",
+  "ar": "الأكثر استخداما"
+ },
+ "s0016": {
+  "zh": "验证备份文件",
+  "en": "Verify backup file",
+  "ar": "التحقق من ملف النسخة الاحتياطية"
+ },
+ "s0017": {
+  "zh": "上传配置文件",
+  "en": "Upload config file",
+  "ar": "رفع ملف الإعدادات"
+ },
+ "s0018": {
+  "zh": "恢复系统配置",
+  "en": "Restore system settings",
+  "ar": "استعادة إعدادات النظام"
+ },
+ "s0019": {
+  "zh": "恢复网络配置",
+  "en": "Restore network settings",
+  "ar": "استعادة إعدادات الشبكة"
+ },
+ "s0020": {
+  "zh": "恢复防火墙配置",
+  "en": "Restore firewall settings",
+  "ar": "استعادة إعدادات الجدار الناري"
+ },
+ "s0021": {
+  "zh": "恢复WiFi配置",
+  "en": "Restore WiFi settings",
+  "ar": "استعادة إعدادات WiFi"
+ },
+ "s0022": {
+  "zh": "应用配置",
+  "en": "Apply settings",
+  "ar": "تطبيق الإعدادات"
+ },
+ "s0023": {
+  "zh": "重启服务",
+  "en": "Restart services",
+  "ar": "إعادة تشغيل الخدمات"
+ },
+ "s0024": {
+  "zh": "完成",
+  "en": "Done",
+  "ar": "تم"
+ },
+ "s0025": {
+  "zh": "准备恢复",
+  "en": "Prepare to restore",
+  "ar": "التحضير للاستعادة"
+ },
+ "s0026": {
+  "zh": "请通过路由器Web界面恢复备份",
+  "en": "Please restore the backup via the router's web interface",
+  "ar": "يرجى استعادة النسخة الاحتياطية عبر واجهة الويب الخاصة بالراوتر"
+ },
+ "s0027": {
+  "zh": "初始配置备份",
+  "en": "Initial config backup",
+  "ar": "نسخة احتياطية للإعدادات الأولية"
+ },
+ "s0028": {
+  "zh": "路由器初始配置，刚安装完系统时的备份",
+  "en": "Backup of the router's initial config, taken right after system installation",
+  "ar": "نسخة احتياطية للإعدادات الأولية للراوتر مباشرة بعد تثبيت النظام"
+ },
+ "s0029": {
+  "zh": "配置优化后备份",
+  "en": "Post-optimization backup",
+  "ar": "نسخة احتياطية بعد تحسين الإعدادات"
+ },
+ "s0030": {
+  "zh": "优化网络配置、添加端口转发后的备份",
+  "en": "Backup taken after optimizing network settings and adding port forwarding",
+  "ar": "نسخة احتياطية بعد تحسين إعدادات الشبكة وإضافة إعادة توجيه المنافذ"
+ },
+ "s0031": {
+  "zh": "添加DDNS后备份",
+  "en": "Backup after adding DDNS",
+  "ar": "نسخة احتياطية بعد إضافة DDNS"
+ },
+ "s0032": {
+  "zh": "配置DDNS和防火墙规则后的备份",
+  "en": "Backup taken after configuring DDNS and firewall rules",
+  "ar": "نسخة احتياطية بعد إعداد DDNS وقواعد الجدار الناري"
+ },
+ "s0033": {
+  "zh": "WiFi优化备份",
+  "en": "WiFi optimization backup",
+  "ar": "نسخة احتياطية بعد تحسين WiFi"
+ },
+ "s0034": {
+  "zh": "优化WiFi信道和功率后的备份",
+  "en": "Backup taken after optimizing the WiFi channel and power",
+  "ar": "نسخة احتياطية بعد تحسين قناة WiFi وقوة الإرسال"
+ },
+ "s0035": {
+  "zh": "最新配置备份",
+  "en": "Latest config backup",
+  "ar": "أحدث نسخة احتياطية للإعدادات"
+ },
+ "s0036": {
+  "zh": "最新的完整配置备份",
+  "en": "Latest complete config backup",
+  "ar": "أحدث نسخة احتياطية كاملة للإعدادات"
+ },
+ "s0037": {
+  "zh": "家人设备",
+  "en": "Family devices",
+  "ar": "أجهزة العائلة"
+ },
+ "s0038": {
+  "zh": "工作设备",
+  "en": "Work devices",
+  "ar": "أجهزة العمل"
+ },
+ "s0039": {
+  "zh": "访客设备",
+  "en": "Guest devices",
+  "ar": "أجهزة الضيوف"
+ },
+ "s0040": {
+  "zh": "系统状态",
+  "en": "System status",
+  "ar": "حالة النظام"
+ },
+ "s0041": {
+  "zh": "系统运行正常",
+  "en": "System running normally",
+  "ar": "النظام يعمل بشكل طبيعي"
+ },
+ "s0042": {
+  "zh": "运行时间: %1$s天",
+  "en": "Uptime: %1$s days",
+  "ar": "مدة التشغيل: %1$s يوم"
+ },
+ "s0043": {
+  "zh": "网络连接",
+  "en": "Network connection",
+  "ar": "اتصال الشبكة"
+ },
+ "s0044": {
+  "zh": "WAN连接正常",
+  "en": "WAN connection normal",
+  "ar": "اتصال WAN طبيعي"
+ },
+ "s0045": {
+  "zh": "WAN未连接",
+  "en": "WAN not connected",
+  "ar": "WAN غير متصل"
+ },
+ "s0046": {
+  "zh": "无IP",
+  "en": "No IP",
+  "ar": "لا يوجد IP"
+ },
+ "s0047": {
+  "zh": "存储空间",
+  "en": "Storage",
+  "ar": "مساحة التخزين"
+ },
+ "s0048": {
+  "zh": "存储空间正常",
+  "en": "Storage normal",
+  "ar": "حالة التخزين طبيعية"
+ },
+ "s0049": {
+  "zh": "无法获取存储信息",
+  "en": "Couldn't get storage info",
+  "ar": "تعذر الحصول على معلومات التخزين"
+ },
+ "s0050": {
+  "zh": "未知",
+  "en": "Unknown",
+  "ar": "غير معروف"
+ },
+ "s0051": {
+  "zh": "系统运行时间",
+  "en": "System uptime",
+  "ar": "مدة تشغيل النظام"
+ },
+ "s0052": {
+  "zh": "系统运行稳定",
+  "en": "System running stable",
+  "ar": "النظام يعمل بشكل مستقر"
+ },
+ "s0053": {
+  "zh": "已运行 3天12小时45分",
+  "en": "Running for 3 days 12 hours 45 minutes",
+  "ar": "يعمل منذ 3 أيام و12 ساعة و45 دقيقة"
+ },
+ "s0054": {
+  "zh": "系统负载",
+  "en": "System load",
+  "ar": "حمل النظام"
+ },
+ "s0055": {
+  "zh": "CPU负载正常",
+  "en": "CPU load normal",
+  "ar": "حمل CPU طبيعي"
+ },
+ "s0056": {
+  "zh": "1分钟负载: 0.23, 5分钟: 0.18, 15分钟: 0.15",
+  "en": "1-min load: 0.23, 5-min: 0.18, 15-min: 0.15",
+  "ar": "حمل 1 دقيقة: 0.23، 5 دقائق: 0.18، 15 دقيقة: 0.15"
+ },
+ "s0057": {
+  "zh": "内存使用率",
+  "en": "Memory usage",
+  "ar": "استخدام الذاكرة"
+ },
+ "s0058": {
+  "zh": "内存使用率偏高",
+  "en": "Memory usage is high",
+  "ar": "استخدام الذاكرة مرتفع"
+ },
+ "s0059": {
+  "zh": "已使用 187MB / 512MB (36.5%)",
+  "en": "Used 187MB / 512MB (36.5%)",
+  "ar": "المستخدم 187MB / 512MB (36.5%)"
+ },
+ "s0060": {
+  "zh": "存储空间充足",
+  "en": "Storage space sufficient",
+  "ar": "مساحة التخزين كافية"
+ },
+ "s0061": {
+  "zh": "已使用 45MB / 128MB (35.2%)",
+  "en": "Used 45MB / 128MB (35.2%)",
+  "ar": "المستخدم 45MB / 128MB (35.2%)"
+ },
+ "s0062": {
+  "zh": "WAN连接",
+  "en": "WAN connection",
+  "ar": "اتصال WAN"
+ },
+ "s0063": {
+  "zh": "IP: 192.168.1.100, 已连接 2天8小时",
+  "en": "IP: 192.168.1.100, connected for 2 days 8 hours",
+  "ar": "IP: 192.168.1.100، متصل منذ يومين و8 ساعات"
+ },
+ "s0064": {
+  "zh": "DNS解析",
+  "en": "DNS resolution",
+  "ar": "تحليل DNS"
+ },
+ "s0065": {
+  "zh": "DNS解析正常",
+  "en": "DNS resolution normal",
+  "ar": "تحليل DNS طبيعي"
+ },
+ "s0066": {
+  "zh": "主DNS: 114.114.114.114, 备用: 8.8.8.8",
+  "en": "Primary DNS: 114.114.114.114, secondary: 8.8.8.8",
+  "ar": "DNS الأساسي: 114.114.114.114، الاحتياطي: 8.8.8.8"
+ },
+ "s0067": {
+  "zh": "WiFi信号",
+  "en": "WiFi signal",
+  "ar": "إشارة WiFi"
+ },
+ "s0068": {
+  "zh": "部分区域信号较弱",
+  "en": "Weak signal in some areas",
+  "ar": "الإشارة ضعيفة في بعض المناطق"
+ },
+ "s0069": {
+  "zh": "建议调整路由器位置或添加中继",
+  "en": "Try moving the router or adding a repeater",
+  "ar": "ينصح بتغيير موقع الراوتر أو إضافة مكرر إشارة"
+ },
+ "s0070": {
+  "zh": "防火墙状态",
+  "en": "Firewall status",
+  "ar": "حالة الجدار الناري"
+ },
+ "s0071": {
+  "zh": "防火墙已启用",
+  "en": "Firewall enabled",
+  "ar": "الجدار الناري مفعل"
+ },
+ "s0072": {
+  "zh": "默认规则已配置，3条端口转发规则",
+  "en": "Default rules configured, 3 port forwarding rules",
+  "ar": "تم إعداد القواعد الافتراضية، و3 قواعد لإعادة توجيه المنافذ"
+ },
+ "s0073": {
+  "zh": "固件版本",
+  "en": "Firmware version",
+  "ar": "إصدار البرنامج الثابت"
+ },
+ "s0074": {
+  "zh": "有新版本可用",
+  "en": "New version available",
+  "ar": "يتوفر إصدار جديد"
+ },
+ "s0075": {
+  "zh": "当前: 23.05.0, 最新: 23.05.2",
+  "en": "Current: 23.05.0, latest: 23.05.2",
+  "ar": "الحالي: 23.05.0، الأحدث: 23.05.2"
+ },
+ "s0076": {
+  "zh": "在线设备",
+  "en": "Online devices",
+  "ar": "الأجهزة المتصلة"
+ },
+ "s0077": {
+  "zh": "12台设备在线",
+  "en": "12 devices online",
+  "ar": "12 جهاز متصل"
+ },
+ "s0078": {
+  "zh": "有线: 3台, 无线: 9台",
+  "en": "Wired: 3, wireless: 9",
+  "ar": "سلكي: 3، لاسلكي: 9"
+ },
+ "s0079": {
+  "zh": "升级到最新固件",
+  "en": "Upgrade to the latest firmware",
+  "ar": "الترقية إلى أحدث برنامج ثابت"
+ },
+ "s0080": {
+  "zh": "发现新固件版本 23.05.2，建议升级以获得最新功能和安全修复。",
+  "en": "New firmware version 23.05.2 found. Upgrade to get the latest features and security fixes.",
+  "ar": "تم العثور على إصدار جديد من البرنامج الثابت 23.05.2، ينصح بالترقية للحصول على أحدث الميزات وإصلاحات الأمان."
+ },
+ "s0081": {
+  "zh": "备份当前配置",
+  "en": "Back up current settings",
+  "ar": "إنشاء نسخة احتياطية للإعدادات الحالية"
+ },
+ "s0082": {
+  "zh": "下载最新固件",
+  "en": "Download the latest firmware",
+  "ar": "تنزيل أحدث برنامج ثابت"
+ },
+ "s0083": {
+  "zh": "进入固件升级页面",
+  "en": "Open the firmware upgrade page",
+  "ar": "الانتقال إلى صفحة ترقية البرنامج الثابت"
+ },
+ "s0084": {
+  "zh": "上传固件并刷写",
+  "en": "Upload and flash the firmware",
+  "ar": "رفع البرنامج الثابت وتفليشه"
+ },
+ "s0085": {
+  "zh": "优化内存使用",
+  "en": "Optimize memory usage",
+  "ar": "تحسين استخدام الذاكرة"
+ },
+ "s0086": {
+  "zh": "当前内存使用率偏高，建议关闭不必要的服务或插件。",
+  "en": "Memory usage is currently high. Consider turning off unneeded services or plugins.",
+  "ar": "استخدام الذاكرة الحالي مرتفع، ينصح بإيقاف الخدمات أو الإضافات غير الضرورية."
+ },
+ "s0087": {
+  "zh": "检查已安装插件",
+  "en": "Check installed plugins",
+  "ar": "فحص الإضافات المثبتة"
+ },
+ "s0088": {
+  "zh": "禁用不常用的服务",
+  "en": "Disable rarely used services",
+  "ar": "تعطيل الخدمات قليلة الاستخدام"
+ },
+ "s0089": {
+  "zh": "清理系统缓存",
+  "en": "Clear the system cache",
+  "ar": "تنظيف التخزين المؤقت للنظام"
+ },
+ "s0090": {
+  "zh": "优化WiFi信号覆盖",
+  "en": "Improve WiFi signal coverage",
+  "ar": "تحسين تغطية إشارة WiFi"
+ },
+ "s0091": {
+  "zh": "部分区域WiFi信号较弱，建议调整路由器位置。",
+  "en": "WiFi signal is weak in some areas. Try moving the router.",
+  "ar": "إشارة WiFi ضعيفة في بعض المناطق، ينصح بتغيير موقع الراوتر."
+ },
+ "s0092": {
+  "zh": "将路由器放置在开阔位置",
+  "en": "Place the router in an open spot",
+  "ar": "ضع الراوتر في مكان مفتوح"
+ },
+ "s0093": {
+  "zh": "避免放在角落或柜子里",
+  "en": "Avoid corners or cabinets",
+  "ar": "تجنب وضعه في الزوايا أو داخل الخزائن"
+ },
+ "s0094": {
+  "zh": "调整天线方向",
+  "en": "Adjust the antenna direction",
+  "ar": "اضبط اتجاه الهوائي"
+ },
+ "s0095": {
+  "zh": "考虑添加WiFi中继器",
+  "en": "Consider adding a WiFi repeater",
+  "ar": "فكر في إضافة مكرر WiFi"
+ },
+ "s0096": {
+  "zh": "定期更换管理密码",
+  "en": "Change the admin password regularly",
+  "ar": "تبديل كلمة مرور الإدارة بانتظام"
+ },
+ "s0097": {
+  "zh": "为了安全，建议定期更换路由器管理密码。",
+  "en": "For security, change the router admin password regularly.",
+  "ar": "للحفاظ على الأمان، ينصح بتغيير كلمة مرور إدارة الراوتر بانتظام."
+ },
+ "s0098": {
+  "zh": "进入系统管理页面",
+  "en": "Open the system administration page",
+  "ar": "الانتقال إلى صفحة إدارة النظام"
+ },
+ "s0099": {
+  "zh": "修改管理密码",
+  "en": "Change the admin password",
+  "ar": "تغيير كلمة مرور الإدارة"
+ },
+ "s0100": {
+  "zh": "保存并重新登录",
+  "en": "Save and log in again",
+  "ar": "الحفظ وإعادة تسجيل الدخول"
+ },
+ "s0101": {
+  "zh": "Session续期失败，请重新登录",
+  "en": "Session renewal failed, please log in again",
+  "ar": "فشل تجديد الجلسة، يرجى تسجيل الدخول مرة أخرى"
+ },
+ "s0102": {
+  "zh": "续期失败",
+  "en": "Renewal failed",
+  "ar": "فشل التجديد"
+ },
+ "s0103": {
+  "zh": "无效的响应格式",
+  "en": "Invalid response format",
+  "ar": "تنسيق استجابة غير صالح"
+ },
+ "s0104": {
+  "zh": "用户名或密码错误",
+  "en": "Incorrect username or password",
+  "ar": "اسم المستخدم أو كلمة المرور غير صحيحة"
+ },
+ "s0105": {
+  "zh": "认证失败 (错误码: %1$s)",
+  "en": "Authentication failed (error code: %1$s)",
+  "ar": "فشلت المصادقة (رمز الخطأ: %1$s)"
+ },
+ "s0106": {
+  "zh": "未获取到会话令牌",
+  "en": "No session token received",
+  "ar": "لم يتم استلام رمز الجلسة"
+ },
+ "s0107": {
+  "zh": "调用失败 (错误码: %1$s)",
+  "en": "Request failed (error code: %1$s)",
+  "ar": "فشل الاستدعاء (رمز الخطأ: %1$s)"
+ },
+ "s0108": {
+  "zh": "无法连接到路由器，请检查地址是否正确",
+  "en": "Couldn't connect to the router. Please check the address",
+  "ar": "تعذر الاتصال بالراوتر، يرجى التحقق من صحة العنوان"
+ },
+ "s0109": {
+  "zh": "连接被拒绝，请检查路由器是否在线",
+  "en": "Connection refused. Please check that the router is online",
+  "ar": "تم رفض الاتصال، يرجى التحقق من أن الراوتر متصل"
+ },
+ "s0110": {
+  "zh": "连接超时，请检查网络和路由器状态",
+  "en": "Connection timed out. Please check the network and router status",
+  "ar": "انتهت مهلة الاتصال، يرجى التحقق من الشبكة وحالة الراوتر"
+ },
+ "s0111": {
+  "zh": "API接口不存在 (404)，请确认路由器已安装LuCI",
+  "en": "API endpoint not found (404). Please make sure LuCI is installed on the router",
+  "ar": "واجهة API غير موجودة (404)، يرجى التأكد من تثبيت LuCI على الراوتر"
+ },
+ "s0112": {
+  "zh": "访问被拒绝 (403)",
+  "en": "Access denied (403)",
+  "ar": "تم رفض الوصول (403)"
+ },
+ "s0113": {
+  "zh": "认证失败 (401)",
+  "en": "Authentication failed (401)",
+  "ar": "فشلت المصادقة (401)"
+ },
+ "s0114": {
+  "zh": "HTTP错误: %1$s",
+  "en": "HTTP error: %1$s",
+  "ar": "خطأ HTTP: %1$s"
+ },
+ "s0115": {
+  "zh": "未知错误",
+  "en": "Unknown error",
+  "ar": "خطأ غير معروف"
+ },
+ "s0116": {
+  "zh": "官方源",
+  "en": "Official repo",
+  "ar": "المستودع الرسمي"
+ },
+ "s0117": {
+  "zh": "OpenWrt官方软件源",
+  "en": "Official OpenWrt software repository",
+  "ar": "مستودع برامج OpenWrt الرسمي"
+ },
+ "s0118": {
+  "zh": "清华源",
+  "en": "Tsinghua mirror",
+  "ar": "مستودع Tsinghua"
+ },
+ "s0119": {
+  "zh": "清华大学TUNA镜像源，国内访问速度快",
+  "en": "Tsinghua University TUNA mirror, fast in mainland China",
+  "ar": "مستودع TUNA من جامعة Tsinghua، سرعة وصول عالية داخل الصين"
+ },
+ "s0120": {
+  "zh": "中科大源",
+  "en": "USTC mirror",
+  "ar": "مستودع USTC"
+ },
+ "s0121": {
+  "zh": "中国科学技术大学镜像源，同步及时",
+  "en": "University of Science and Technology of China mirror, kept up to date",
+  "ar": "مستودع جامعة العلوم والتكنولوجيا الصينية، مزامنة سريعة"
+ },
+ "s0122": {
+  "zh": "阿里云源",
+  "en": "Aliyun mirror",
+  "ar": "مستودع Aliyun"
+ },
+ "s0123": {
+  "zh": "阿里云镜像源，全国节点覆盖",
+  "en": "Aliyun mirror with nationwide node coverage",
+  "ar": "مستودع Aliyun مع عقد تغطي مختلف المناطق"
+ },
+ "s0124": {
+  "zh": "kenzok8插件源",
+  "en": "kenzok8 plugin repo",
+  "ar": "مستودع إضافات kenzok8"
+ },
+ "s0125": {
+  "zh": "第三方插件源，包含大量常用插件",
+  "en": "Third-party plugin repo with many popular plugins",
+  "ar": "مستودع إضافات من طرف ثالث يحتوي على الكثير من الإضافات الشائعة"
+ },
+ "s0126": {
+  "zh": "lienol插件源",
+  "en": "lienol plugin repo",
+  "ar": "مستودع إضافات lienol"
+ },
+ "s0127": {
+  "zh": "lienol维护的第三方插件源",
+  "en": "Third-party plugin repo maintained by lienol",
+  "ar": "مستودع إضافات من طرف ثالث يشرف عليه lienol"
+ },
+ "s0128": {
+  "zh": "ImmortalWrt源",
+  "en": "ImmortalWrt repo",
+  "ar": "مستودع ImmortalWrt"
+ },
+ "s0129": {
+  "zh": "ImmortalWrt项目软件源",
+  "en": "ImmortalWrt project software repository",
+  "ar": "مستودع برامج مشروع ImmortalWrt"
+ },
+ "s0130": {
+  "zh": "系统信息",
+  "en": "System info",
+  "ar": "معلومات النظام"
+ },
+ "s0131": {
+  "zh": "路由器状态",
+  "en": "Router status",
+  "ar": "حالة الراوتر"
+ },
+ "s0132": {
+  "zh": "网络状态",
+  "en": "Network status",
+  "ar": "حالة الشبكة"
+ },
+ "s0133": {
+  "zh": "网络接口",
+  "en": "Network interfaces",
+  "ar": "واجهات الشبكة"
+ },
+ "s0134": {
+  "zh": "已安装插件",
+  "en": "Installed plugins",
+  "ar": "الإضافات المثبتة"
+ },
+ "s0135": {
+  "zh": "可用插件",
+  "en": "Available plugins",
+  "ar": "الإضافات المتاحة"
+ },
+ "s0136": {
+  "zh": "WiFi设备",
+  "en": "WiFi devices",
+  "ar": "أجهزة WiFi"
+ },
+ "s0137": {
+  "zh": "端口转发",
+  "en": "Port forwarding",
+  "ar": "إعادة توجيه المنافذ"
+ },
+ "s0138": {
+  "zh": "DDNS配置",
+  "en": "DDNS settings",
+  "ar": "إعدادات DDNS"
+ },
+ "s0139": {
+  "zh": "软件源列表",
+  "en": "Software repositories",
+  "ar": "قائمة مستودعات البرامج"
+ },
+ "s0140": {
+  "zh": "进程列表",
+  "en": "Processes",
+  "ar": "قائمة العمليات"
+ },
+ "s0141": {
+  "zh": "正在更新软件源...",
+  "en": "Updating repositories...",
+  "ar": "جاري تحديث مستودعات البرامج..."
+ },
+ "s0142": {
+  "zh": "软件源更新失败",
+  "en": "Repository update failed",
+  "ar": "فشل تحديث مستودعات البرامج"
+ },
+ "s0143": {
+  "zh": "正在安装 %1$s ...",
+  "en": "Installing %1$s ...",
+  "ar": "جاري تثبيت %1$s ..."
+ },
+ "s0144": {
+  "zh": "安装失败：无输出",
+  "en": "Installation failed: no output",
+  "ar": "فشل التثبيت: لا يوجد مخرجات"
+ },
+ "s0145": {
+  "zh": "安装成功",
+  "en": "Installed successfully",
+  "ar": "تم التثبيت بنجاح"
+ },
+ "s0146": {
+  "zh": "安装失败：%1$s",
+  "en": "Installation failed: %1$s",
+  "ar": "فشل التثبيت: %1$s"
+ },
+ "s0147": {
+  "zh": "安装异常：%1$s",
+  "en": "Installation error: %1$s",
+  "ar": "خطأ في التثبيت: %1$s"
+ },
+ "s0148": {
+  "zh": "Aria2下载管理器",
+  "en": "Aria2 download manager",
+  "ar": "مدير التنزيلات Aria2"
+ },
+ "s0149": {
+  "zh": "强大的多线程下载工具，支持HTTP/BT/磁力链接",
+  "en": "Powerful multi-threaded download tool with support for HTTP/BT/magnet links",
+  "ar": "أداة تنزيل قوية متعددة الخيوط، تدعم HTTP/BT والروابط المغناطيسية"
+ },
+ "s0150": {
+  "zh": "下载工具",
+  "en": "Download tools",
+  "ar": "أدوات التنزيل"
+ },
+ "s0151": {
+  "zh": "Transmission BT客户端",
+  "en": "Transmission BT client",
+  "ar": "عميل Transmission BT"
+ },
+ "s0152": {
+  "zh": "轻量级BT下载客户端，Web界面管理",
+  "en": "Lightweight BT download client with a web UI",
+  "ar": "عميل تنزيل BT خفيف مع واجهة ويب للإدارة"
+ },
+ "s0153": {
+  "zh": "Samba4网络共享",
+  "en": "Samba4 network sharing",
+  "ar": "مشاركة الشبكة عبر Samba4"
+ },
+ "s0154": {
+  "zh": "文件共享服务，支持Windows/Mac/Linux",
+  "en": "File sharing service with support for Windows/Mac/Linux",
+  "ar": "خدمة مشاركة الملفات، تدعم Windows/Mac/Linux"
+ },
+ "s0155": {
+  "zh": "文件共享",
+  "en": "File sharing",
+  "ar": "مشاركة الملفات"
+ },
+ "s0156": {
+  "zh": "现代、快速、安全的VPN协议",
+  "en": "Modern, fast, and secure VPN protocol",
+  "ar": "بروتوكول VPN حديث وسريع وآمن"
+ },
+ "s0157": {
+  "zh": "广告过滤",
+  "en": "Ad blocking",
+  "ar": "حجب الإعلانات"
+ },
+ "s0158": {
+  "zh": "网络级广告过滤，保护隐私",
+  "en": "Network-level ad blocking that protects your privacy",
+  "ar": "حجب إعلانات على مستوى الشبكة يحمي خصوصيتك"
+ },
+ "s0159": {
+  "zh": "网络安全",
+  "en": "Network security",
+  "ar": "أمن الشبكة"
+ },
+ "s0160": {
+  "zh": "经典的开源VPN解决方案",
+  "en": "Classic open-source VPN solution",
+  "ar": "حل VPN كلاسيكي مفتوح المصدر"
+ },
+ "s0161": {
+  "zh": "MiniDLNA媒体服务器",
+  "en": "MiniDLNA media server",
+  "ar": "خادم الوسائط MiniDLNA"
+ },
+ "s0162": {
+  "zh": "DLNA媒体服务器，投屏到电视",
+  "en": "DLNA media server that casts to your TV",
+  "ar": "خادم وسائط DLNA لبث المحتوى إلى التلفاز"
+ },
+ "s0163": {
+  "zh": "多媒体",
+  "en": "Multimedia",
+  "ar": "الوسائط المتعددة"
+ },
+ "s0164": {
+  "zh": "SQM智能队列管理",
+  "en": "SQM smart queue management",
+  "ar": "إدارة قوائم الانتظار الذكية SQM"
+ },
+ "s0165": {
+  "zh": "智能QoS，优化网络延迟",
+  "en": "Smart QoS that reduces network latency",
+  "ar": "QoS ذكي لتحسين زمن استجابة الشبكة"
+ },
+ "s0166": {
+  "zh": "网络优化",
+  "en": "Network optimization",
+  "ar": "تحسين الشبكة"
+ },
+ "s0167": {
+  "zh": "Web终端",
+  "en": "Web terminal",
+  "ar": "طرفية الويب"
+ },
+ "s0168": {
+  "zh": "在浏览器中使用命令行终端",
+  "en": "Use a command-line terminal in your browser",
+  "ar": "استخدم طرفية سطر الأوامر في المتصفح"
+ },
+ "s0169": {
+  "zh": "工具",
+  "en": "Tools",
+  "ar": "أدوات"
+ },
+ "s0170": {
+  "zh": "网络带宽监控",
+  "en": "Network bandwidth monitoring",
+  "ar": "مراقبة النطاق الترددي للشبكة"
+ },
+ "s0171": {
+  "zh": "按设备统计流量使用情况",
+  "en": "Per-device traffic usage statistics",
+  "ar": "إحصائيات استخدام حركة البيانات لكل جهاز"
+ },
+ "s0172": {
+  "zh": "监控",
+  "en": "Monitoring",
+  "ar": "مراقبة"
+ },
+ "s0173": {
+  "zh": "通用即插即用，自动端口映射",
+  "en": "Universal Plug and Play with automatic port mapping",
+  "ar": "التوصيل والتشغيل الشامل مع تعيين المنافذ تلقائيا"
+ },
+ "s0174": {
+  "zh": "网络",
+  "en": "Network",
+  "ar": "الشبكة"
+ },
+ "s0175": {
+  "zh": "网络唤醒",
+  "en": "Wake on LAN",
+  "ar": "الإيقاظ عبر الشبكة"
+ },
+ "s0176": {
+  "zh": "通过网络唤醒局域网内的设备",
+  "en": "Wake up devices on your local network",
+  "ar": "إيقاظ الأجهزة الموجودة على الشبكة المحلية"
+ },
+ "s0177": {
+  "zh": "动态DNS",
+  "en": "Dynamic DNS",
+  "ar": "DNS ديناميكي"
+ },
+ "s0178": {
+  "zh": "动态域名解析服务",
+  "en": "Dynamic DNS resolution service",
+  "ar": "خدمة تحليل أسماء النطاقات الديناميكية"
+ },
+ "s0179": {
+  "zh": "流量统计",
+  "en": "Traffic statistics",
+  "ar": "إحصائيات حركة البيانات"
+ },
+ "s0180": {
+  "zh": "详细的网络流量统计图表",
+  "en": "Detailed network traffic charts",
+  "ar": "مخططات مفصلة لحركة بيانات الشبكة"
+ },
+ "s0181": {
+  "zh": "Frp服务端",
+  "en": "Frp server",
+  "ar": "خادم Frp"
+ },
+ "s0182": {
+  "zh": "内网穿透服务端",
+  "en": "NAT traversal server",
+  "ar": "خادم نفق الشبكة الداخلية"
+ },
+ "s0183": {
+  "zh": "Frp客户端",
+  "en": "Frp client",
+  "ar": "عميل Frp"
+ },
+ "s0184": {
+  "zh": "内网穿透客户端",
+  "en": "NAT traversal client",
+  "ar": "عميل نفق الشبكة الداخلية"
+ },
+ "s0185": {
+  "zh": "全球虚拟局域网",
+  "en": "Global virtual LAN",
+  "ar": "شبكة محلية افتراضية عالمية"
+ },
+ "s0186": {
+  "zh": "FTP服务器",
+  "en": "FTP server",
+  "ar": "خادم FTP"
+ },
+ "s0187": {
+  "zh": "轻量级FTP服务器",
+  "en": "Lightweight FTP server",
+  "ar": "خادم FTP خفيف"
+ },
+ "s0188": {
+  "zh": "UDPXY组播转单播",
+  "en": "UDPXY multicast to unicast",
+  "ar": "UDPXY لتحويل البث المتعدد إلى أحادي"
+ },
+ "s0189": {
+  "zh": "IPTV组播转单播，方便多设备观看",
+  "en": "IPTV multicast to unicast for easy viewing on multiple devices",
+  "ar": "تحويل بث IPTV المتعدد إلى أحادي لسهولة المشاهدة على عدة أجهزة"
+ },
+ "s0190": {
+  "zh": "BT下载、HTTP下载等",
+  "en": "BT downloads, HTTP downloads, and more",
+  "ar": "تنزيلات BT وHTTP والمزيد"
+ },
+ "s0191": {
+  "zh": "VPN代理",
+  "en": "VPN proxy",
+  "ar": "وكيل VPN"
+ },
+ "s0192": {
+  "zh": "各种VPN和代理工具",
+  "en": "Various VPN and proxy tools",
+  "ar": "أدوات VPN وبروكسي متنوعة"
+ },
+ "s0193": {
+  "zh": "Samba、FTP、NFS等",
+  "en": "Samba, FTP, NFS, and more",
+  "ar": "Samba وFTP وNFS وغيرها"
+ },
+ "s0194": {
+  "zh": "媒体服务器、DLNA等",
+  "en": "Media servers, DLNA, and more",
+  "ar": "خوادم الوسائط وDLNA وغيرها"
+ },
+ "s0195": {
+  "zh": "网络工具",
+  "en": "Network tools",
+  "ar": "أدوات الشبكة"
+ },
+ "s0196": {
+  "zh": "DDNS、内网穿透等",
+  "en": "DDNS, NAT traversal, and more",
+  "ar": "DDNS والوصول إلى الشبكة الداخلية وغيرها"
+ },
+ "s0197": {
+  "zh": "广告过滤、防火墙等",
+  "en": "Ad blocking, firewall, and more",
+  "ar": "حجب الإعلانات والجدار الناري وغيرها"
+ },
+ "s0198": {
+  "zh": "监控统计",
+  "en": "Monitoring & statistics",
+  "ar": "المراقبة والإحصائيات"
+ },
+ "s0199": {
+  "zh": "流量监控、系统监控等",
+  "en": "Traffic monitoring, system monitoring, and more",
+  "ar": "مراقبة حركة البيانات ومراقبة النظام وغيرها"
+ },
+ "s0200": {
+  "zh": "QoS、SQM等",
+  "en": "QoS, SQM, and more",
+  "ar": "QoS وSQM وغيرها"
+ },
+ "s0201": {
+  "zh": "实用工具",
+  "en": "Utilities",
+  "ar": "أدوات مساعدة"
+ },
+ "s0202": {
+  "zh": "终端、唤醒等工具",
+  "en": "Terminal, wake-on-LAN, and more",
+  "ar": "الطرفية والإيقاظ عبر الشبكة وغيرها"
+ },
+ "s0203": {
+  "zh": "系统工具",
+  "en": "System tools",
+  "ar": "أدوات النظام"
+ },
+ "s0204": {
+  "zh": "系统管理相关工具",
+  "en": "System administration tools",
+  "ar": "أدوات إدارة النظام"
+ },
+ "s0205": {
+  "zh": "插件名称",
+  "en": "Plugin name",
+  "ar": "اسم الإضافة"
+ },
+ "s0206": {
+  "zh": "插件简短描述",
+  "en": "Short plugin description",
+  "ar": "وصف مختصر للإضافة"
+ },
+ "s0207": {
+  "zh": "OpenWrt社区",
+  "en": "OpenWrt community",
+  "ar": "مجتمع OpenWrt"
+ },
+ "s0208": {
+  "zh": "实用",
+  "en": "Useful",
+  "ar": "مفيد"
+ },
+ "s0209": {
+  "zh": "推荐",
+  "en": "Recommended",
+  "ar": "موصى به"
+ },
+ "s0210": {
+  "zh": "用户A",
+  "en": "User A",
+  "ar": "المستخدم A"
+ },
+ "s0211": {
+  "zh": "非常好用的插件，功能很强大！",
+  "en": "Great plugin, really powerful features!",
+  "ar": "إضافة رائعة وسهلة الاستخدام وميزاتها قوية!"
+ },
+ "s0212": {
+  "zh": "用户B",
+  "en": "User B",
+  "ar": "المستخدم B"
+ },
+ "s0213": {
+  "zh": "整体不错，就是配置稍微复杂了一点。",
+  "en": "Pretty good overall, though setup is a bit complicated.",
+  "ar": "جيدة بشكل عام، لكن الإعداد معقد بعض الشيء."
+ },
+ "s0214": {
+  "zh": "用户C",
+  "en": "User C",
+  "ar": "المستخدم C"
+ },
+ "s0215": {
+  "zh": "一直在用，很稳定，推荐！",
+  "en": "Have been using it for a while, very stable. Recommended!",
+  "ar": "أستخدمها منذ مدة وهي ثابتة جدا. أنصح بها!"
+ },
+ "s0216": {
+  "zh": "用户D",
+  "en": "User D",
+  "ar": "المستخدم D"
+ },
+ "s0217": {
+  "zh": "功能还行，但是希望能增加更多选项。",
+  "en": "Features are decent, but I'd like more options.",
+  "ar": "الميزات مقبولة، لكن أتمنى إضافة خيارات أكثر."
+ },
+ "s0218": {
+  "zh": "用户E",
+  "en": "User E",
+  "ar": "المستخدم E"
+ },
+ "s0219": {
+  "zh": "完美，正是我需要的！",
+  "en": "Perfect, exactly what I needed!",
+  "ar": "مثالية، وهي بالضبط ما كنت أحتاجه!"
+ },
+ "s0220": {
+  "zh": "查看系统信息",
+  "en": "View system info",
+  "ar": "عرض معلومات النظام"
+ },
+ "s0221": {
+  "zh": "显示系统内核信息",
+  "en": "Show system kernel info",
+  "ar": "عرض معلومات نواة النظام"
+ },
+ "s0222": {
+  "zh": "系统",
+  "en": "System",
+  "ar": "النظام"
+ },
+ "s0223": {
+  "zh": "查看内存使用",
+  "en": "View memory usage",
+  "ar": "عرض استخدام الذاكرة"
+ },
+ "s0224": {
+  "zh": "显示内存使用情况",
+  "en": "Show memory usage",
+  "ar": "عرض حالة استخدام الذاكرة"
+ },
+ "s0225": {
+  "zh": "查看磁盘空间",
+  "en": "View disk space",
+  "ar": "عرض مساحة القرص"
+ },
+ "s0226": {
+  "zh": "显示磁盘使用情况",
+  "en": "Show disk usage",
+  "ar": "عرض حالة استخدام القرص"
+ },
+ "s0227": {
+  "zh": "查看网络连接",
+  "en": "View network connections",
+  "ar": "عرض اتصالات الشبكة"
+ },
+ "s0228": {
+  "zh": "显示监听端口",
+  "en": "Show listening ports",
+  "ar": "عرض منافذ الاستماع"
+ },
+ "s0229": {
+  "zh": "查看路由表",
+  "en": "View routing table",
+  "ar": "عرض جدول التوجيه"
+ },
+ "s0230": {
+  "zh": "显示路由表",
+  "en": "Show routing table",
+  "ar": "عرض جدول التوجيه"
+ },
+ "s0231": {
+  "zh": "查看进程",
+  "en": "View processes",
+  "ar": "عرض العمليات"
+ },
+ "s0232": {
+  "zh": "显示所有进程",
+  "en": "Show all processes",
+  "ar": "عرض جميع العمليات"
+ },
+ "s0233": {
+  "zh": "重启路由器",
+  "en": "Reboot router",
+  "ar": "إعادة تشغيل الراوتر"
+ },
+ "s0234": {
+  "zh": "查看CPU信息",
+  "en": "View CPU info",
+  "ar": "عرض معلومات CPU"
+ },
+ "s0235": {
+  "zh": "显示CPU信息",
+  "en": "Show CPU info",
+  "ar": "عرض معلومات CPU"
+ },
+ "s0236": {
+  "zh": "命令执行失败",
+  "en": "Command failed",
+  "ar": "فشل تنفيذ الأمر"
+ },
+ "s0237": {
+  "zh": "错误: %1$s",
+  "en": "Error: %1$s",
+  "ar": "خطأ: %1$s"
+ },
+ "s0238": {
+  "zh": "命令执行完成\n%1$s",
+  "en": "Command completed\n%1$s",
+  "ar": "اكتمل تنفيذ الأمر\n%1$s"
+ },
+ "s0239": {
+  "zh": "夜间模式",
+  "en": "Night mode",
+  "ar": "الوضع الليلي"
+ },
+ "s0240": {
+  "zh": "路由器监控中",
+  "en": "Monitoring router",
+  "ar": "جاري مراقبة الراوتر"
+ },
+ "s0241": {
+  "zh": "正在监控路由器在线状态",
+  "en": "Monitoring router online status",
+  "ar": "جاري مراقبة حالة اتصال الراوتر"
+ },
+ "s0242": {
+  "zh": "OpenWrt 路由器",
+  "en": "OpenWrt router",
+  "ar": "راوتر OpenWrt"
+ },
+ "s0243": {
+  "zh": "编辑路由器",
+  "en": "Edit router",
+  "ar": "تعديل الراوتر"
+ },
+ "s0244": {
+  "zh": "返回",
+  "en": "Back",
+  "ar": "رجوع"
+ },
+ "s0245": {
+  "zh": "连接你的 OpenWrt 路由器",
+  "en": "Connect to your OpenWrt router",
+  "ar": "اتصل براوتر OpenWrt الخاص بك"
+ },
+ "s0246": {
+  "zh": "通过 LuCI API 安全连接",
+  "en": "Secure connection via LuCI API",
+  "ar": "اتصال آمن عبر LuCI API"
+ },
+ "s0247": {
+  "zh": "可选，留空将自动获取",
+  "en": "Optional, leave blank to fetch automatically",
+  "ar": "اختياري، اتركه فارغا ليتم الحصول عليه تلقائيا"
+ },
+ "s0248": {
+  "zh": "可选，无密码路由器可留空",
+  "en": "Optional, leave blank if the router has no password",
+  "ar": "اختياري، يمكن تركه فارغا للراوترات بدون كلمة مرور"
+ },
+ "s0249": {
+  "zh": "隐藏密码",
+  "en": "Hide password",
+  "ar": "إخفاء كلمة المرور"
+ },
+ "s0250": {
+  "zh": "显示密码",
+  "en": "Show password",
+  "ar": "إظهار كلمة المرور"
+ },
+ "s0251": {
+  "zh": "正在同步数据...",
+  "en": "Syncing data...",
+  "ar": "جاري مزامنة البيانات..."
+ },
+ "s0252": {
+  "zh": "%1$s/%2$s 项",
+  "en": "%1$s/%2$s items",
+  "ar": "%1$s/%2$s عنصر"
+ },
+ "s0253": {
+  "zh": "安全连接",
+  "en": "Secure connection",
+  "ar": "اتصال آمن"
+ },
+ "s0254": {
+  "zh": "密码加密存储，仅用于本地认证",
+  "en": "Password is stored encrypted and used only for local authentication",
+  "ar": "يتم تخزين كلمة المرور مشفرة وتستخدم للمصادقة المحلية فقط"
+ },
+ "s0255": {
+  "zh": "请输入路由器地址",
+  "en": "Enter router address",
+  "ar": "أدخل عنوان الراوتر"
+ },
+ "s0256": {
+  "zh": "请输入用户名",
+  "en": "Enter username",
+  "ar": "أدخل اسم المستخدم"
+ },
+ "s0257": {
+  "zh": "准备中...",
+  "en": "Preparing...",
+  "ar": "جاري التحضير..."
+ },
+ "s0258": {
+  "zh": "连接失败，请检查地址和凭据",
+  "en": "Connection failed. Check the address and credentials",
+  "ar": "فشل الاتصال، تحقق من العنوان وبيانات الدخول"
+ },
+ "s0259": {
+  "zh": "更新失败",
+  "en": "Update failed",
+  "ar": "فشل التحديث"
+ },
+ "s0260": {
+  "zh": "操作成功",
+  "en": "Operation successful",
+  "ar": "تمت العملية بنجاح"
+ },
+ "s0261": {
+  "zh": "高级功能",
+  "en": "Advanced features",
+  "ar": "ميزات متقدمة"
+ },
+ "s0262": {
+  "zh": "系统操作",
+  "en": "System operations",
+  "ar": "عمليات النظام"
+ },
+ "s0263": {
+  "zh": "重新启动设备",
+  "en": "Restart device",
+  "ar": "إعادة تشغيل الجهاز"
+ },
+ "s0264": {
+  "zh": "关闭路由器",
+  "en": "Shut down router",
+  "ar": "إيقاف تشغيل الراوتر"
+ },
+ "s0265": {
+  "zh": "关闭设备电源",
+  "en": "Power off device",
+  "ar": "إيقاف تشغيل الجهاز"
+ },
+ "s0266": {
+  "zh": "固件版本、内核版本",
+  "en": "Firmware version, kernel version",
+  "ar": "إصدار البرنامج الثابت وإصدار النواة"
+ },
+ "s0267": {
+  "zh": "存储状态",
+  "en": "Storage status",
+  "ar": "حالة التخزين"
+ },
+ "s0268": {
+  "zh": "磁盘使用情况",
+  "en": "Disk usage",
+  "ar": "استخدام القرص"
+ },
+ "s0269": {
+  "zh": "进程管理",
+  "en": "Process management",
+  "ar": "إدارة العمليات"
+ },
+ "s0270": {
+  "zh": "查看运行中的进程",
+  "en": "View running processes",
+  "ar": "عرض العمليات الجارية"
+ },
+ "s0271": {
+  "zh": "诊断工具",
+  "en": "Diagnostics tools",
+  "ar": "أدوات التشخيص"
+ },
+ "s0272": {
+  "zh": "网络诊断",
+  "en": "Network diagnostics",
+  "ar": "تشخيص الشبكة"
+ },
+ "s0273": {
+  "zh": "终端命令",
+  "en": "Terminal commands",
+  "ar": "أوامر الطرفية"
+ },
+ "s0274": {
+  "zh": "在浏览器中使用命令行（需安装ttyd插件）",
+  "en": "Use the command line in your browser (ttyd plugin required)",
+  "ar": "استخدم سطر الأوامر في المتصفح (يتطلب إضافة ttyd)"
+ },
+ "s0275": {
+  "zh": "重启",
+  "en": "Reboot",
+  "ar": "إعادة تشغيل"
+ },
+ "s0276": {
+  "zh": "取消",
+  "en": "Cancel",
+  "ar": "إلغاء"
+ },
+ "s0277": {
+  "zh": "关闭",
+  "en": "Shut down",
+  "ar": "إيقاف التشغيل"
+ },
+ "s0278": {
+  "zh": "重启失败",
+  "en": "Reboot failed",
+  "ar": "فشلت إعادة التشغيل"
+ },
+ "s0279": {
+  "zh": "关机失败",
+  "en": "Shutdown failed",
+  "ar": "فشل إيقاف التشغيل"
+ },
+ "s0280": {
+  "zh": "手动备份",
+  "en": "Manual backup",
+  "ar": "نسخة احتياطية يدوية"
+ },
+ "s0281": {
+  "zh": "手动创建的备份",
+  "en": "Manually created backup",
+  "ar": "نسخة احتياطية تم إنشاؤها يدويا"
+ },
+ "s0282": {
+  "zh": "创建备份",
+  "en": "Create backup",
+  "ar": "إنشاء نسخة احتياطية"
+ },
+ "s0283": {
+  "zh": "备份列表",
+  "en": "Backup list",
+  "ar": "قائمة النسخ الاحتياطية"
+ },
+ "s0284": {
+  "zh": "暂无备份记录",
+  "en": "No backups yet",
+  "ar": "لا توجد نسخ احتياطية بعد"
+ },
+ "s0285": {
+  "zh": "备份",
+  "en": "Backup",
+  "ar": "نسخة احتياطية"
+ },
+ "s0286": {
+  "zh": "%1$s 个备份",
+  "en": "%1$s backups",
+  "ar": "%1$s نسخة احتياطية"
+ },
+ "s0287": {
+  "zh": "正在创建备份...",
+  "en": "Creating backup...",
+  "ar": "جاري إنشاء نسخة احتياطية..."
+ },
+ "s0288": {
+  "zh": "点击右下角按钮创建新备份",
+  "en": "Tap the button at the bottom right to create a new backup",
+  "ar": "اضغط الزر في أسفل اليمين لإنشاء نسخة احتياطية جديدة"
+ },
+ "s0289": {
+  "zh": "恢复",
+  "en": "Restore",
+  "ar": "استعادة"
+ },
+ "s0290": {
+  "zh": "正在恢复配置...",
+  "en": "Restoring configuration...",
+  "ar": "جاري استعادة الإعدادات..."
+ },
+ "s0291": {
+  "zh": "创建时间: %1$s",
+  "en": "Created: %1$s",
+  "ar": "تاريخ الإنشاء: %1$s"
+ },
+ "s0292": {
+  "zh": "备份创建成功",
+  "en": "Backup created",
+  "ar": "تم إنشاء النسخة الاحتياطية بنجاح"
+ },
+ "s0293": {
+  "zh": "创建失败: %1$s",
+  "en": "Creation failed: %1$s",
+  "ar": "فشل الإنشاء: %1$s"
+ },
+ "s0294": {
+  "zh": "恢复成功",
+  "en": "Restore successful",
+  "ar": "تمت الاستعادة بنجاح"
+ },
+ "s0295": {
+  "zh": "恢复失败",
+  "en": "Restore failed",
+  "ar": "فشلت الاستعادة"
+ },
+ "s0296": {
+  "zh": "恢复失败: %1$s",
+  "en": "Restore failed: %1$s",
+  "ar": "فشلت الاستعادة: %1$s"
+ },
+ "s0297": {
+  "zh": "删除成功",
+  "en": "Deleted successfully",
+  "ar": "تم الحذف بنجاح"
+ },
+ "s0298": {
+  "zh": "删除失败",
+  "en": "Delete failed",
+  "ar": "فشل الحذف"
+ },
+ "s0299": {
+  "zh": "删除失败: %1$s",
+  "en": "Delete failed: %1$s",
+  "ar": "فشل الحذف: %1$s"
+ },
+ "s0300": {
+  "zh": "确认",
+  "en": "Confirm",
+  "ar": "تأكيد"
+ },
+ "s0301": {
+  "zh": "确认删除",
+  "en": "Confirm deletion",
+  "ar": "تأكيد الحذف"
+ },
+ "s0302": {
+  "zh": "确定要删除「%1$s」吗？此操作不可撤销。",
+  "en": "Are you sure you want to delete \"%1$s\"? This action cannot be undone.",
+  "ar": "هل تريد حذف «%1$s»؟ لا يمكن التراجع عن هذا الإجراء."
+ },
+ "s0303": {
+  "zh": "删除",
+  "en": "Delete",
+  "ar": "حذف"
+ },
+ "s0304": {
+  "zh": "确认重置",
+  "en": "Confirm reset",
+  "ar": "تأكيد إعادة الضبط"
+ },
+ "s0305": {
+  "zh": "确定要重置吗？所有自定义设置将丢失。",
+  "en": "Are you sure you want to reset? All custom settings will be lost.",
+  "ar": "هل تريد إعادة الضبط؟ سيتم فقدان جميع الإعدادات المخصصة."
+ },
+ "s0306": {
+  "zh": "重置",
+  "en": "Reset",
+  "ar": "إعادة ضبط"
+ },
+ "s0307": {
+  "zh": "确认退出",
+  "en": "Confirm exit",
+  "ar": "تأكيد الخروج"
+ },
+ "s0308": {
+  "zh": "确定要退出应用吗？",
+  "en": "Are you sure you want to exit the app?",
+  "ar": "هل تريد الخروج من التطبيق؟"
+ },
+ "s0309": {
+  "zh": "退出",
+  "en": "Exit",
+  "ar": "خروج"
+ },
+ "s0310": {
+  "zh": "知道了",
+  "en": "Got it",
+  "ar": "فهمت"
+ },
+ "s0311": {
+  "zh": "操作失败",
+  "en": "Operation failed",
+  "ar": "فشلت العملية"
+ },
+ "s0312": {
+  "zh": "加载中...",
+  "en": "Loading...",
+  "ar": "جاري التحميل..."
+ },
+ "s0313": {
+  "zh": "重试",
+  "en": "Retry",
+  "ar": "إعادة المحاولة"
+ },
+ "s0314": {
+  "zh": "网络连接已断开",
+  "en": "Network connection lost",
+  "ar": "انقطع اتصال الشبكة"
+ },
+ "s0315": {
+  "zh": "请检查网络连接后重试",
+  "en": "Check your network connection and try again",
+  "ar": "تحقق من اتصال الشبكة ثم أعد المحاولة"
+ },
+ "s0316": {
+  "zh": "网络已断开，正在尝试重连...",
+  "en": "Network disconnected, trying to reconnect...",
+  "ar": "انقطعت الشبكة، جاري محاولة إعادة الاتصال..."
+ },
+ "s0317": {
+  "zh": "需要安装插件：%1$s",
+  "en": "Plugin installation required: %1$s",
+  "ar": "يلزم تثبيت الإضافة: %1$s"
+ },
+ "s0318": {
+  "zh": "正在安装...",
+  "en": "Installing...",
+  "ar": "جاري التثبيت..."
+ },
+ "s0319": {
+  "zh": "一键安装",
+  "en": "One-click install",
+  "ar": "تثبيت بنقرة واحدة"
+ },
+ "s0320": {
+  "zh": "插件依赖检测",
+  "en": "Plugin dependency check",
+  "ar": "فحص تبعيات الإضافات"
+ },
+ "s0321": {
+  "zh": "已安装 %1$s/%2$s 个插件",
+  "en": "%1$s/%2$s plugins installed",
+  "ar": "تم تثبيت %1$s/%2$s من الإضافات"
+ },
+ "s0322": {
+  "zh": "刷新",
+  "en": "Refresh",
+  "ar": "تحديث"
+ },
+ "s0323": {
+  "zh": "已安装",
+  "en": "Installed",
+  "ar": "مثبت"
+ },
+ "s0324": {
+  "zh": "安装",
+  "en": "Install",
+  "ar": "تثبيت"
+ },
+ "s0325": {
+  "zh": "搜索...",
+  "en": "Search...",
+  "ar": "بحث..."
+ },
+ "s0326": {
+  "zh": "找到 %1$s 个「%2$s」相关结果",
+  "en": "Found %1$s results for \"%2$s\"",
+  "ar": "تم العثور على %1$s نتائج ذات صلة بـ «%2$s»"
+ },
+ "s0327": {
+  "zh": "共 %1$s 项",
+  "en": "Total: %1$s items",
+  "ar": "الإجمالي: %1$s عنصر"
+ },
+ "s0328": {
+  "zh": "添加",
+  "en": "Add",
+  "ar": "إضافة"
+ },
+ "s0329": {
+  "zh": "加载失败",
+  "en": "Failed to load",
+  "ar": "فشل التحميل"
+ },
+ "s0330": {
+  "zh": "暂无DDNS配置",
+  "en": "No DDNS configurations",
+  "ar": "لا توجد إعدادات DDNS"
+ },
+ "s0331": {
+  "zh": "添加DDNS",
+  "en": "Add DDNS",
+  "ar": "إضافة DDNS"
+ },
+ "s0332": {
+  "zh": "编辑DDNS",
+  "en": "Edit DDNS",
+  "ar": "تعديل DDNS"
+ },
+ "s0333": {
+  "zh": "已启用",
+  "en": "Enabled",
+  "ar": "مفعل"
+ },
+ "s0334": {
+  "zh": "已禁用",
+  "en": "Disabled",
+  "ar": "معطل"
+ },
+ "s0335": {
+  "zh": "编辑",
+  "en": "Edit",
+  "ar": "تعديل"
+ },
+ "s0336": {
+  "zh": "DDNS插件安装成功",
+  "en": "DDNS plugin installed",
+  "ar": "تم تثبيت إضافة DDNS بنجاح"
+ },
+ "s0337": {
+  "zh": "插件安装失败：%1$s",
+  "en": "Plugin installation failed: %1$s",
+  "ar": "فشل تثبيت الإضافة: %1$s"
+ },
+ "s0338": {
+  "zh": "添加成功",
+  "en": "Added successfully",
+  "ar": "تمت الإضافة بنجاح"
+ },
+ "s0339": {
+  "zh": "添加失败",
+  "en": "Add failed",
+  "ar": "فشلت الإضافة"
+ },
+ "s0340": {
+  "zh": "更新成功",
+  "en": "Update successful",
+  "ar": "تم التحديث بنجاح"
+ },
+ "s0341": {
+  "zh": "设备分组",
+  "en": "Device groups",
+  "ar": "مجموعات الأجهزة"
+ },
+ "s0342": {
+  "zh": "上下线历史",
+  "en": "Online/offline history",
+  "ar": "سجل الاتصال والانقطاع"
+ },
+ "s0343": {
+  "zh": "暂无历史记录",
+  "en": "No history yet",
+  "ar": "لا يوجد سجل بعد"
+ },
+ "s0344": {
+  "zh": "%1$s 个设备",
+  "en": "%1$s devices",
+  "ar": "%1$s جهاز"
+ },
+ "s0345": {
+  "zh": "设备已拉黑",
+  "en": "Device blocked",
+  "ar": "تم حظر الجهاز"
+ },
+ "s0346": {
+  "zh": "拉黑失败",
+  "en": "Block failed",
+  "ar": "فشل الحظر"
+ },
+ "s0347": {
+  "zh": "操作失败: %1$s",
+  "en": "Operation failed: %1$s",
+  "ar": "فشلت العملية: %1$s"
+ },
+ "s0348": {
+  "zh": "已解除拉黑",
+  "en": "Device unblocked",
+  "ar": "تم إلغاء حظر الجهاز"
+ },
+ "s0349": {
+  "zh": "解除失败",
+  "en": "Unblock failed",
+  "ar": "فشل إلغاء الحظر"
+ },
+ "s0350": {
+  "zh": "我的路由器",
+  "en": "My routers",
+  "ar": "راوتراتي"
+ },
+ "s0351": {
+  "zh": "暂无设备",
+  "en": "No devices yet",
+  "ar": "لا توجد أجهزة بعد"
+ },
+ "s0352": {
+  "zh": "添加你的 OpenWrt 路由器设备",
+  "en": "Add your OpenWrt router",
+  "ar": "أضف راوتر OpenWrt الخاص بك"
+ },
+ "s0353": {
+  "zh": "🎮 体验演示模式（无需路由器）",
+  "en": "🎮 Try demo mode (no router needed)",
+  "ar": "🎮 تجربة الوضع التجريبي (بدون راوتر)"
+ },
+ "s0354": {
+  "zh": "内置模拟数据，可体验所有功能",
+  "en": "Built-in sample data lets you try all features",
+  "ar": "بيانات محاكاة مدمجة لتجربة جميع الميزات"
+ },
+ "s0355": {
+  "zh": "OpenWrt路由器",
+  "en": "OpenWrt router",
+  "ar": "راوتر OpenWrt"
+ },
+ "s0356": {
+  "zh": "当前",
+  "en": "Current",
+  "ar": "الحالي"
+ },
+ "s0357": {
+  "zh": "排序",
+  "en": "Sort",
+  "ar": "فرز"
+ },
+ "s0358": {
+  "zh": "排序方式",
+  "en": "Sort by",
+  "ar": "الفرز حسب"
+ },
+ "s0359": {
+  "zh": "按IP地址",
+  "en": "By IP address",
+  "ar": "حسب عنوان IP"
+ },
+ "s0360": {
+  "zh": "按名称",
+  "en": "By name",
+  "ar": "حسب الاسم"
+ },
+ "s0361": {
+  "zh": "按连接时间",
+  "en": "By connection time",
+  "ar": "حسب وقت الاتصال"
+ },
+ "s0362": {
+  "zh": "按流量",
+  "en": "By traffic",
+  "ar": "حسب حركة البيانات"
+ },
+ "s0363": {
+  "zh": "有线连接",
+  "en": "Wired connection",
+  "ar": "اتصال سلكي"
+ },
+ "s0364": {
+  "zh": "无线连接",
+  "en": "Wireless connection",
+  "ar": "اتصال لاسلكي"
+ },
+ "s0365": {
+  "zh": "暂无在线设备",
+  "en": "No devices online",
+  "ar": "لا توجد أجهزة متصلة"
+ },
+ "s0366": {
+  "zh": "有线",
+  "en": "Wired",
+  "ar": "سلكي"
+ },
+ "s0367": {
+  "zh": "总流量: %1$s",
+  "en": "Total traffic: %1$s",
+  "ar": "إجمالي حركة البيانات: %1$s"
+ },
+ "s0368": {
+  "zh": "智能诊断",
+  "en": "Smart diagnostics",
+  "ar": "التشخيص الذكي"
+ },
+ "s0369": {
+  "zh": "正在诊断...",
+  "en": "Diagnosing...",
+  "ar": "جاري التشخيص..."
+ },
+ "s0370": {
+  "zh": "系统健康",
+  "en": "System health",
+  "ar": "سلامة النظام"
+ },
+ "s0371": {
+  "zh": "发现问题",
+  "en": "Issues found",
+  "ar": "تم العثور على مشكلات"
+ },
+ "s0372": {
+  "zh": "共检测 %1$s 项",
+  "en": "%1$s items checked",
+  "ar": "تم فحص %1$s عنصر"
+ },
+ "s0373": {
+  "zh": "一键智能诊断",
+  "en": "One-click smart diagnostics",
+  "ar": "تشخيص ذكي بنقرة واحدة"
+ },
+ "s0374": {
+  "zh": "全面检测系统状态，快速发现并解决问题",
+  "en": "Run a full system check to quickly find and fix issues",
+  "ar": "فحص شامل لحالة النظام للعثور على المشكلات وحلها بسرعة"
+ },
+ "s0375": {
+  "zh": "重新诊断",
+  "en": "Run diagnostics again",
+  "ar": "إعادة التشخيص"
+ },
+ "s0376": {
+  "zh": "开始诊断",
+  "en": "Start diagnostics",
+  "ar": "بدء التشخيص"
+ },
+ "s0377": {
+  "zh": "检测详情",
+  "en": "Check details",
+  "ar": "تفاصيل الفحص"
+ },
+ "s0378": {
+  "zh": "优化建议",
+  "en": "Optimization tips",
+  "ar": "نصائح التحسين"
+ },
+ "s0379": {
+  "zh": "正在初始化...",
+  "en": "Initializing...",
+  "ar": "جاري التهيئة..."
+ },
+ "s0380": {
+  "zh": "正在检查CPU使用率...",
+  "en": "Checking CPU usage...",
+  "ar": "جاري فحص استخدام CPU..."
+ },
+ "s0381": {
+  "zh": "正在检查内存使用率...",
+  "en": "Checking memory usage...",
+  "ar": "جاري فحص استخدام الذاكرة..."
+ },
+ "s0382": {
+  "zh": "正在检查存储空间...",
+  "en": "Checking storage space...",
+  "ar": "جاري فحص مساحة التخزين..."
+ },
+ "s0383": {
+  "zh": "正在检查WAN连接...",
+  "en": "Checking WAN connection...",
+  "ar": "جاري التحقق من اتصال WAN..."
+ },
+ "s0384": {
+  "zh": "正在检查运行时间...",
+  "en": "Checking uptime...",
+  "ar": "جاري التحقق من مدة التشغيل..."
+ },
+ "s0385": {
+  "zh": "CPU使用率偏高",
+  "en": "High CPU usage",
+  "ar": "ارتفاع استخدام CPU"
+ },
+ "s0386": {
+  "zh": "建议关闭不必要的进程或服务",
+  "en": "Consider closing unnecessary processes or services",
+  "ar": "ينصح بإيقاف العمليات أو الخدمات غير الضرورية"
+ },
+ "s0387": {
+  "zh": "内存使用率正常",
+  "en": "Memory usage is normal",
+  "ar": "استخدام الذاكرة طبيعي"
+ },
+ "s0388": {
+  "zh": "内存使用状况良好",
+  "en": "Memory usage is healthy",
+  "ar": "حالة استخدام الذاكرة جيدة"
+ },
+ "s0389": {
+  "zh": "存储空间使用率较高",
+  "en": "High storage usage",
+  "ar": "ارتفاع استخدام مساحة التخزين"
+ },
+ "s0390": {
+  "zh": "建议清理不必要的日志和缓存文件",
+  "en": "Consider cleaning up unnecessary logs and cache files",
+  "ar": "ينصح بتنظيف السجلات وملفات التخزين المؤقت غير الضرورية"
+ },
+ "s0391": {
+  "zh": "设备运行稳定",
+  "en": "Device is running stably",
+  "ar": "الجهاز يعمل بشكل مستقر"
+ },
+ "s0392": {
+  "zh": "设备已稳定运行较长时间",
+  "en": "Device has been running stably for a long time",
+  "ar": "الجهاز يعمل بشكل مستقر منذ فترة طويلة"
+ },
+ "s0393": {
+  "zh": "系统整体运行良好",
+  "en": "System is running well overall",
+  "ar": "أداء النظام جيد بشكل عام"
+ },
+ "s0394": {
+  "zh": "建议定期清理日志文件",
+  "en": "Consider cleaning up log files regularly",
+  "ar": "ينصح بتنظيف ملفات السجلات بانتظام"
+ },
+ "s0395": {
+  "zh": "关注CPU使用率变化",
+  "en": "Watch for CPU usage changes",
+  "ar": "راقب تغيرات استخدام CPU"
+ },
+ "s0396": {
+  "zh": "正在获取系统信息...",
+  "en": "Getting system info...",
+  "ar": "جاري الحصول على معلومات النظام..."
+ },
+ "s0397": {
+  "zh": "正在运行诊断...",
+  "en": "Running diagnostics...",
+  "ar": "جاري تشغيل التشخيص..."
+ },
+ "s0398": {
+  "zh": "诊断失败",
+  "en": "Diagnostics failed",
+  "ar": "فشل التشخيص"
+ },
+ "s0399": {
+  "zh": "暂无优化建议",
+  "en": "No optimization suggestions yet",
+  "ar": "لا توجد اقتراحات للتحسين بعد"
+ },
+ "s0400": {
+  "zh": "分",
+  "en": "pts",
+  "ar": "نقطة"
+ },
+ "s0401": {
+  "zh": "正在检测中...",
+  "en": "Checking...",
+  "ar": "جاري الفحص..."
+ },
+ "s0402": {
+  "zh": "检测中...",
+  "en": "Testing...",
+  "ar": "جاري الاختبار..."
+ },
+ "s0403": {
+  "zh": "开始全面体检",
+  "en": "Start full checkup",
+  "ar": "بدء الفحص الشامل"
+ },
+ "s0404": {
+  "zh": "全部",
+  "en": "All",
+  "ar": "الكل"
+ },
+ "s0405": {
+  "zh": "优先级: %1$s",
+  "en": "Priority: %1$s",
+  "ar": "الأولوية: %1$s"
+ },
+ "s0406": {
+  "zh": "修复成功",
+  "en": "Fixed successfully",
+  "ar": "تم الإصلاح بنجاح"
+ },
+ "s0407": {
+  "zh": "修复失败",
+  "en": "Fix failed",
+  "ar": "فشل الإصلاح"
+ },
+ "s0408": {
+  "zh": "修复失败: %1$s",
+  "en": "Fix failed: %1$s",
+  "ar": "فشل الإصلاح: %1$s"
+ },
+ "s0409": {
+  "zh": "防火墙",
+  "en": "Firewall",
+  "ar": "الجدار الناري"
+ },
+ "s0410": {
+  "zh": "暂无端口转发规则",
+  "en": "No port forwarding rules yet",
+  "ar": "لا توجد قواعد لإعادة توجيه المنافذ بعد"
+ },
+ "s0411": {
+  "zh": "删除规则",
+  "en": "Delete rule",
+  "ar": "حذف القاعدة"
+ },
+ "s0412": {
+  "zh": "添加端口转发",
+  "en": "Add port forwarding",
+  "ar": "إضافة إعادة توجيه منفذ"
+ },
+ "s0413": {
+  "zh": "编辑端口转发",
+  "en": "Edit port forwarding",
+  "ar": "تعديل إعادة توجيه المنفذ"
+ },
+ "s0414": {
+  "zh": "保存",
+  "en": "Save",
+  "ar": "حفظ"
+ },
+ "s0415": {
+  "zh": "规则删除成功",
+  "en": "Rule deleted successfully",
+  "ar": "تم حذف القاعدة بنجاح"
+ },
+ "s0416": {
+  "zh": "规则添加成功",
+  "en": "Rule added successfully",
+  "ar": "تمت إضافة القاعدة بنجاح"
+ },
+ "s0417": {
+  "zh": "未找到活动路由器",
+  "en": "No active router found",
+  "ar": "لم يتم العثور على راوتر نشط"
+ },
+ "s0418": {
+  "zh": "规则更新成功",
+  "en": "Rule updated successfully",
+  "ar": "تم تحديث القاعدة بنجاح"
+ },
+ "s0419": {
+  "zh": "已选择: %1$s",
+  "en": "Selected: %1$s",
+  "ar": "المحدد: %1$s"
+ },
+ "s0420": {
+  "zh": "固件升级",
+  "en": "Firmware upgrade",
+  "ar": "ترقية البرنامج الثابت"
+ },
+ "s0421": {
+  "zh": "检测更新",
+  "en": "Check for updates",
+  "ar": "التحقق من التحديثات"
+ },
+ "s0422": {
+  "zh": "当前固件",
+  "en": "Current firmware",
+  "ar": "البرنامج الثابت الحالي"
+ },
+ "s0423": {
+  "zh": "设备型号",
+  "en": "Device model",
+  "ar": "طراز الجهاز"
+ },
+ "s0424": {
+  "zh": "架构",
+  "en": "Architecture",
+  "ar": "المعمارية"
+ },
+ "s0425": {
+  "zh": "发现新版本",
+  "en": "New version found",
+  "ar": "تم العثور على إصدار جديد"
+ },
+ "s0426": {
+  "zh": "版本号",
+  "en": "Version",
+  "ar": "الإصدار"
+ },
+ "s0427": {
+  "zh": "发布时间",
+  "en": "Release date",
+  "ar": "تاريخ الإصدار"
+ },
+ "s0428": {
+  "zh": "文件大小",
+  "en": "File size",
+  "ar": "حجم الملف"
+ },
+ "s0429": {
+  "zh": "更新日志",
+  "en": "Changelog",
+  "ar": "سجل التغييرات"
+ },
+ "s0430": {
+  "zh": "下载并升级",
+  "en": "Download and upgrade",
+  "ar": "تنزيل وترقية"
+ },
+ "s0431": {
+  "zh": "正在检测新版本...",
+  "en": "Checking for new version...",
+  "ar": "جاري التحقق من وجود إصدار جديد..."
+ },
+ "s0432": {
+  "zh": "当前已是最新版本",
+  "en": "Already on the latest version",
+  "ar": "الإصدار الحالي هو الأحدث"
+ },
+ "s0433": {
+  "zh": "点击下方按钮重新检测",
+  "en": "Tap the button below to check again",
+  "ar": "انقر الزر أدناه لإعادة الفحص"
+ },
+ "s0434": {
+  "zh": "正在校验固件...",
+  "en": "Verifying firmware...",
+  "ar": "جاري التحقق من البرنامج الثابت..."
+ },
+ "s0435": {
+  "zh": "正在下载固件",
+  "en": "Downloading firmware",
+  "ar": "جاري تنزيل البرنامج الثابت"
+ },
+ "s0436": {
+  "zh": "校验中",
+  "en": "Verifying",
+  "ar": "جاري التحقق"
+ },
+ "s0437": {
+  "zh": "正在刷写固件...",
+  "en": "Flashing firmware...",
+  "ar": "جاري تثبيت البرنامج الثابت..."
+ },
+ "s0438": {
+  "zh": "正在重启路由器...",
+  "en": "Rebooting router...",
+  "ar": "جاري إعادة تشغيل الراوتر..."
+ },
+ "s0439": {
+  "zh": "升级成功！",
+  "en": "Upgrade successful!",
+  "ar": "تمت الترقية بنجاح!"
+ },
+ "s0440": {
+  "zh": "请稍候，路由器正在重启...",
+  "en": "Please wait, the router is rebooting...",
+  "ar": "يرجى الانتظار، جاري إعادة تشغيل الراوتر..."
+ },
+ "s0441": {
+  "zh": "固件升级成功！路由器已重启完成。",
+  "en": "Firmware upgrade successful! The router has finished rebooting.",
+  "ar": "تمت ترقية البرنامج الثابت بنجاح! اكتملت إعادة تشغيل الراوتر."
+ },
+ "s0442": {
+  "zh": "升级选项",
+  "en": "Upgrade options",
+  "ar": "خيارات الترقية"
+ },
+ "s0443": {
+  "zh": "保留配置",
+  "en": "Keep configuration",
+  "ar": "الاحتفاظ بالإعدادات"
+ },
+ "s0444": {
+  "zh": "升级后保留当前路由器配置",
+  "en": "Keep the current router configuration after upgrading",
+  "ar": "الاحتفاظ بإعدادات الراوتر الحالية بعد الترقية"
+ },
+ "s0445": {
+  "zh": "本地固件升级",
+  "en": "Local firmware upgrade",
+  "ar": "ترقية البرنامج الثابت من ملف محلي"
+ },
+ "s0446": {
+  "zh": "选择本地固件文件进行升级",
+  "en": "Select a local firmware file to upgrade",
+  "ar": "اختر ملف برنامج ثابت محلي للترقية"
+ },
+ "s0447": {
+  "zh": "选择固件文件",
+  "en": "Select firmware file",
+  "ar": "اختيار ملف البرنامج الثابت"
+ },
+ "s0448": {
+  "zh": "升级设置",
+  "en": "Upgrade settings",
+  "ar": "إعدادات الترقية"
+ },
+ "s0449": {
+  "zh": "固件仓库",
+  "en": "Firmware repository",
+  "ar": "مستودع البرنامج الثابت"
+ },
+ "s0450": {
+  "zh": "未配置",
+  "en": "Not configured",
+  "ar": "غير مهيأ"
+ },
+ "s0451": {
+  "zh": "加载固件信息失败",
+  "en": "Failed to load firmware info",
+  "ar": "فشل تحميل معلومات البرنامج الثابت"
+ },
+ "s0452": {
+  "zh": "检测新版本失败",
+  "en": "Failed to check for new version",
+  "ar": "فشل التحقق من وجود إصدار جديد"
+ },
+ "s0453": {
+  "zh": "下载固件失败",
+  "en": "Failed to download firmware",
+  "ar": "فشل تنزيل البرنامج الثابت"
+ },
+ "s0454": {
+  "zh": "刷写固件失败",
+  "en": "Failed to flash firmware",
+  "ar": "فشل تثبيت البرنامج الثابت"
+ },
+ "s0455": {
+  "zh": "请选择固件文件（.bin/.img/.trx）",
+  "en": "Select a firmware file (.bin/.img/.trx)",
+  "ar": "يرجى اختيار ملف البرنامج الثابت (.bin/.img/.trx)"
+ },
+ "s0456": {
+  "zh": "固件文件已就绪，请确认后刷写",
+  "en": "Firmware file is ready, confirm to flash",
+  "ar": "ملف البرنامج الثابت جاهز، يرجى التأكيد لبدء التثبيت"
+ },
+ "s0457": {
+  "zh": "固件文件过小（小于1MB），可能不是有效固件",
+  "en": "Firmware file is too small (under 1MB), it may not be valid firmware",
+  "ar": "ملف البرنامج الثابت صغير جدا (أقل من 1MB)، وقد لا يكون برنامجا ثابتا صالحا"
+ },
+ "s0458": {
+  "zh": "固件文件已就绪（%1$sMB），请确认后刷写",
+  "en": "Firmware file is ready (%1$sMB), confirm to flash",
+  "ar": "ملف البرنامج الثابت جاهز (%1$sMB)، يرجى التأكيد لبدء التثبيت"
+ },
+ "s0459": {
+  "zh": "文件处理失败",
+  "en": "Failed to process file",
+  "ar": "فشل معالجة الملف"
+ },
+ "s0460": {
+  "zh": "%1$s 台设备",
+  "en": "%1$s devices",
+  "ar": "%1$s أجهزة"
+ },
+ "s0461": {
+  "zh": "还有 %1$s 台设备...",
+  "en": "%1$s more devices...",
+  "ar": "هناك %1$s أجهزة أخرى..."
+ },
+ "s0462": {
+  "zh": "WiFi 状态",
+  "en": "WiFi status",
+  "ar": "حالة WiFi"
+ },
+ "s0463": {
+  "zh": "已开启",
+  "en": "On",
+  "ar": "مفعل"
+ },
+ "s0464": {
+  "zh": "访客网络",
+  "en": "Guest network",
+  "ar": "شبكة الضيوف"
+ },
+ "s0465": {
+  "zh": "已关闭",
+  "en": "Off",
+  "ar": "معطل"
+ },
+ "s0466": {
+  "zh": "网口状态",
+  "en": "Port status",
+  "ar": "حالة المنافذ"
+ },
+ "s0467": {
+  "zh": "%1$s/%2$s 个已连接",
+  "en": "%1$s/%2$s connected",
+  "ar": "%1$s/%2$s متصلة"
+ },
+ "s0468": {
+  "zh": "还有 %1$s 个网口...",
+  "en": "%1$s more ports...",
+  "ar": "هناك %1$s منافذ أخرى..."
+ },
+ "s0469": {
+  "zh": "已连接",
+  "en": "Connected",
+  "ar": "متصل"
+ },
+ "s0470": {
+  "zh": "未连接",
+  "en": "Not connected",
+  "ar": "غير متصل"
+ },
+ "s0471": {
+  "zh": "插件管理",
+  "en": "Plugin management",
+  "ar": "إدارة الإضافات"
+ },
+ "s0472": {
+  "zh": "已安装 8 个",
+  "en": "8 installed",
+  "ar": "8 مثبتة"
+ },
+ "s0473": {
+  "zh": "3 条端口转发",
+  "en": "3 port forwarding rules",
+  "ar": "3 قواعد لإعادة توجيه المنافذ"
+ },
+ "s0474": {
+  "zh": "2 个配置",
+  "en": "2 configurations",
+  "ar": "2 إعدادات"
+ },
+ "s0475": {
+  "zh": "编辑模式",
+  "en": "Edit mode",
+  "ar": "وضع التعديل"
+ },
+ "s0476": {
+  "zh": "预设布局",
+  "en": "Preset layouts",
+  "ar": "التخطيطات الجاهزة"
+ },
+ "s0477": {
+  "zh": "移除卡片",
+  "en": "Remove card",
+  "ar": "إزالة البطاقة"
+ },
+ "s0478": {
+  "zh": "拖拽排序/调整大小",
+  "en": "Drag to reorder/resize",
+  "ar": "اسحب لإعادة الترتيب/تغيير الحجم"
+ },
+ "s0479": {
+  "zh": "上移",
+  "en": "Move up",
+  "ar": "نقل لأعلى"
+ },
+ "s0480": {
+  "zh": "下移",
+  "en": "Move down",
+  "ar": "نقل لأسفل"
+ },
+ "s0481": {
+  "zh": "小卡片",
+  "en": "Small card",
+  "ar": "بطاقة صغيرة"
+ },
+ "s0482": {
+  "zh": "中等卡片",
+  "en": "Medium card",
+  "ar": "بطاقة متوسطة"
+ },
+ "s0483": {
+  "zh": "大卡片",
+  "en": "Large card",
+  "ar": "بطاقة كبيرة"
+ },
+ "s0484": {
+  "zh": "添加卡片",
+  "en": "Add card",
+  "ar": "إضافة بطاقة"
+ },
+ "s0485": {
+  "zh": "选择预设布局",
+  "en": "Select preset layout",
+  "ar": "اختيار تخطيط جاهز"
+ },
+ "s0486": {
+  "zh": "6个卡片，平衡布局",
+  "en": "6 cards, balanced layout",
+  "ar": "6 بطاقات، تخطيط متوازن"
+ },
+ "s0487": {
+  "zh": "5个卡片，紧凑布局",
+  "en": "5 cards, compact layout",
+  "ar": "5 بطاقات، تخطيط مضغوط"
+ },
+ "s0488": {
+  "zh": "9个卡片，详细布局",
+  "en": "9 cards, detailed layout",
+  "ar": "9 بطاقات، تخطيط مفصل"
+ },
+ "s0489": {
+  "zh": "3个卡片，极简布局",
+  "en": "3 cards, minimal layout",
+  "ar": "3 بطاقات، تخطيط مبسط"
+ },
+ "s0490": {
+  "zh": "OpenWrt 管家",
+  "en": "OpenWrt Manager",
+  "ar": "مدير OpenWrt"
+ },
+ "s0491": {
+  "zh": "设备",
+  "en": "Devices",
+  "ar": "الأجهزة"
+ },
+ "s0492": {
+  "zh": "路由器",
+  "en": "Router",
+  "ar": "الراوتر"
+ },
+ "s0493": {
+  "zh": "添加路由器",
+  "en": "Add router",
+  "ar": "إضافة راوتر"
+ },
+ "s0494": {
+  "zh": "还没有添加路由器",
+  "en": "No routers added yet",
+  "ar": "لم تتم إضافة أي راوتر بعد"
+ },
+ "s0495": {
+  "zh": "添加你的 OpenWrt 路由器，开始智能管理",
+  "en": "Add your OpenWrt router to start smart management",
+  "ar": "أضف راوتر OpenWrt الخاص بك لبدء الإدارة الذكية"
+ },
+ "s0496": {
+  "zh": "编辑首页",
+  "en": "Edit home screen",
+  "ar": "تعديل الرئيسية"
+ },
+ "s0497": {
+  "zh": "演示模式",
+  "en": "Demo mode",
+  "ar": "الوضع التجريبي"
+ },
+ "s0498": {
+  "zh": "当前为演示数据，非真实路由器信息",
+  "en": "Showing demo data, not real router info",
+  "ar": "البيانات المعروضة تجريبية وليست معلومات راوتر حقيقية"
+ },
+ "s0499": {
+  "zh": "在线",
+  "en": "Online",
+  "ar": "متصل"
+ },
+ "s0500": {
+  "zh": "离线",
+  "en": "Offline",
+  "ar": "غير متصل"
+ },
+ "s0501": {
+  "zh": "台",
+  "en": "devices",
+  "ar": "أجهزة"
+ },
+ "s0502": {
+  "zh": "正常",
+  "en": "Normal",
+  "ar": "طبيعي"
+ },
+ "s0503": {
+  "zh": "下载速度",
+  "en": "Download speed",
+  "ar": "سرعة التنزيل"
+ },
+ "s0504": {
+  "zh": "上传速度",
+  "en": "Upload speed",
+  "ar": "سرعة الرفع"
+ },
+ "s0505": {
+  "zh": "下载",
+  "en": "Download",
+  "ar": "تنزيل"
+ },
+ "s0506": {
+  "zh": "上传",
+  "en": "Upload",
+  "ar": "رفع"
+ },
+ "s0507": {
+  "zh": "总下载",
+  "en": "Total download",
+  "ar": "إجمالي التنزيل"
+ },
+ "s0508": {
+  "zh": "总上传",
+  "en": "Total upload",
+  "ar": "إجمالي الرفع"
+ },
+ "s0509": {
+  "zh": "常用功能",
+  "en": "Frequently used",
+  "ar": "الوظائف الشائعة"
+ },
+ "s0510": {
+  "zh": "设备管理",
+  "en": "Device management",
+  "ar": "إدارة الأجهزة"
+ },
+ "s0511": {
+  "zh": "WiFi设置",
+  "en": "WiFi settings",
+  "ar": "إعدادات WiFi"
+ },
+ "s0512": {
+  "zh": "网络设置",
+  "en": "Network settings",
+  "ar": "إعدادات الشبكة"
+ },
+ "s0513": {
+  "zh": "CPU使用率",
+  "en": "CPU usage",
+  "ar": "استخدام CPU"
+ },
+ "s0514": {
+  "zh": "内存使用",
+  "en": "Memory usage",
+  "ar": "استخدام الذاكرة"
+ },
+ "s0515": {
+  "zh": "存储使用",
+  "en": "Storage usage",
+  "ar": "استخدام التخزين"
+ },
+ "s0516": {
+  "zh": "运行时间",
+  "en": "Uptime",
+  "ar": "مدة التشغيل"
+ },
+ "s0517": {
+  "zh": "更多功能",
+  "en": "More features",
+  "ar": "المزيد من الوظائف"
+ },
+ "s0518": {
+  "zh": "系统管理",
+  "en": "System management",
+  "ar": "إدارة النظام"
+ },
+ "s0519": {
+  "zh": "系统信息、日志、进程",
+  "en": "System info, logs, processes",
+  "ar": "معلومات النظام والسجلات والعمليات"
+ },
+ "s0520": {
+  "zh": "防火墙、DDNS、更多",
+  "en": "Firewall, DDNS, more",
+  "ar": "الجدار الناري وDDNS والمزيد"
+ },
+ "s0521": {
+  "zh": "%1$s天%2$s小时",
+  "en": "%1$sd %2$sh",
+  "ar": "%1$s يوم و%2$s ساعة"
+ },
+ "s0522": {
+  "zh": "%1$s小时%2$s分钟",
+  "en": "%1$sh %2$sm",
+  "ar": "%1$s ساعة و%2$s دقيقة"
+ },
+ "s0523": {
+  "zh": "%1$s分钟",
+  "en": "%1$sm",
+  "ar": "%1$s دقيقة"
+ },
+ "s0524": {
+  "zh": "连接失败",
+  "en": "Connection failed",
+  "ar": "فشل الاتصال"
+ },
+ "s0525": {
+  "zh": "LAN 设置",
+  "en": "LAN settings",
+  "ar": "إعدادات LAN"
+ },
+ "s0526": {
+  "zh": "WAN 设置",
+  "en": "WAN settings",
+  "ar": "إعدادات WAN"
+ },
+ "s0527": {
+  "zh": "DHCP 管理",
+  "en": "DHCP management",
+  "ar": "إدارة DHCP"
+ },
+ "s0528": {
+  "zh": "保存配置",
+  "en": "Save configuration",
+  "ar": "حفظ الإعدادات"
+ },
+ "s0529": {
+  "zh": "LAN 口设置",
+  "en": "LAN port settings",
+  "ar": "إعدادات منفذ LAN"
+ },
+ "s0530": {
+  "zh": "IP 地址",
+  "en": "IP address",
+  "ar": "عنوان IP"
+ },
+ "s0531": {
+  "zh": "子网掩码",
+  "en": "Subnet mask",
+  "ar": "قناع الشبكة الفرعية"
+ },
+ "s0532": {
+  "zh": "WAN 口设置",
+  "en": "WAN port settings",
+  "ar": "إعدادات منفذ WAN"
+ },
+ "s0533": {
+  "zh": "连接协议",
+  "en": "Connection protocol",
+  "ar": "بروتوكول الاتصال"
+ },
+ "s0534": {
+  "zh": "静态IP",
+  "en": "Static IP",
+  "ar": "IP ثابت"
+ },
+ "s0535": {
+  "zh": "网关",
+  "en": "Gateway",
+  "ar": "البوابة"
+ },
+ "s0536": {
+  "zh": "DNS 服务器",
+  "en": "DNS server",
+  "ar": "خادم DNS"
+ },
+ "s0537": {
+  "zh": "宽带账号",
+  "en": "Broadband username",
+  "ar": "اسم مستخدم البرودبند"
+ },
+ "s0538": {
+  "zh": "请输入宽带账号",
+  "en": "Enter broadband username",
+  "ar": "أدخل اسم مستخدم البرودبند"
+ },
+ "s0539": {
+  "zh": "宽带密码",
+  "en": "Broadband password",
+  "ar": "كلمة مرور البرودبند"
+ },
+ "s0540": {
+  "zh": "请输入宽带密码",
+  "en": "Enter broadband password",
+  "ar": "أدخل كلمة مرور البرودبند"
+ },
+ "s0541": {
+  "zh": "DHCP 服务器",
+  "en": "DHCP server",
+  "ar": "خادم DHCP"
+ },
+ "s0542": {
+  "zh": "自动分配IP地址",
+  "en": "Automatically assign IP addresses",
+  "ar": "تعيين عناوين IP تلقائيا"
+ },
+ "s0543": {
+  "zh": "起始地址",
+  "en": "Start address",
+  "ar": "عنوان البداية"
+ },
+ "s0544": {
+  "zh": "地址数量",
+  "en": "Number of addresses",
+  "ar": "عدد العناوين"
+ },
+ "s0545": {
+  "zh": "租期(分钟)",
+  "en": "Lease time (minutes)",
+  "ar": "مدة الإيجار (بالدقائق)"
+ },
+ "s0546": {
+  "zh": "LAN配置保存成功",
+  "en": "LAN settings saved",
+  "ar": "تم حفظ إعدادات LAN بنجاح"
+ },
+ "s0547": {
+  "zh": "保存失败",
+  "en": "Save failed",
+  "ar": "فشل الحفظ"
+ },
+ "s0548": {
+  "zh": "WAN配置保存成功",
+  "en": "WAN settings saved",
+  "ar": "تم حفظ إعدادات WAN بنجاح"
+ },
+ "s0549": {
+  "zh": "通知总开关",
+  "en": "Master notification switch",
+  "ar": "المفتاح الرئيسي للإشعارات"
+ },
+ "s0550": {
+  "zh": "开启后接收所有通知",
+  "en": "Receive all notifications when on",
+  "ar": "استقبال جميع الإشعارات عند التشغيل"
+ },
+ "s0551": {
+  "zh": "通知渠道",
+  "en": "Notification channels",
+  "ar": "قنوات الإشعارات"
+ },
+ "s0552": {
+  "zh": "路由器在线/离线状态通知",
+  "en": "Router online/offline notifications",
+  "ar": "إشعارات حالة الراوتر (متصل/غير متصل)"
+ },
+ "s0553": {
+  "zh": "固件更新",
+  "en": "Firmware updates",
+  "ar": "تحديثات البرنامج الثابت"
+ },
+ "s0554": {
+  "zh": "新固件版本发布通知",
+  "en": "New firmware release notifications",
+  "ar": "إشعارات توفر إصدارات جديدة من البرنامج الثابت"
+ },
+ "s0555": {
+  "zh": "网络告警",
+  "en": "Network alerts",
+  "ar": "تنبيهات الشبكة"
+ },
+ "s0556": {
+  "zh": "网络异常、断网等告警通知",
+  "en": "Alerts for network issues, outages, and more",
+  "ar": "إشعارات تنبيه لأخطاء الشبكة وانقطاعها وغيرها"
+ },
+ "s0557": {
+  "zh": "设备事件",
+  "en": "Device events",
+  "ar": "أحداث الأجهزة"
+ },
+ "s0558": {
+  "zh": "新设备上线、设备上下线通知",
+  "en": "Notifications when devices connect or disconnect",
+  "ar": "إشعارات عند اتصال الأجهزة أو انقطاع اتصالها"
+ },
+ "s0559": {
+  "zh": "通知历史",
+  "en": "Notification history",
+  "ar": "سجل الإشعارات"
+ },
+ "s0560": {
+  "zh": "清空",
+  "en": "Clear all",
+  "ar": "مسح الكل"
+ },
+ "s0561": {
+  "zh": "暂无通知记录",
+  "en": "No notifications yet",
+  "ar": "لا توجد إشعارات بعد"
+ },
+ "s0562": {
+  "zh": "路由器已在线",
+  "en": "Router is online",
+  "ar": "الراوتر متصل"
+ },
+ "s0563": {
+  "zh": "OpenWrt 路由器已恢复连接",
+  "en": "OpenWrt router connection restored",
+  "ar": "تمت استعادة اتصال راوتر OpenWrt"
+ },
+ "s0564": {
+  "zh": "新设备上线",
+  "en": "New device connected",
+  "ar": "اتصال جهاز جديد"
+ },
+ "s0565": {
+  "zh": "iPhone-15-Pro 已连接到网络",
+  "en": "iPhone-15-Pro connected to the network",
+  "ar": "iPhone-15-Pro متصل بالشبكة"
+ },
+ "s0566": {
+  "zh": "固件更新可用",
+  "en": "Firmware update available",
+  "ar": "يتوفر تحديث للبرنامج الثابت"
+ },
+ "s0567": {
+  "zh": "发现新版本 23.05.2，建议升级",
+  "en": "New version 23.05.2 found, upgrade recommended",
+  "ar": "تم العثور على الإصدار 23.05.2، ينصح بالترقية"
+ },
+ "s0568": {
+  "zh": "检测失败",
+  "en": "Check failed",
+  "ar": "فشل الفحص"
+ },
+ "s0569": {
+  "zh": "插件详情",
+  "en": "Plugin details",
+  "ar": "تفاصيل الإضافة"
+ },
+ "s0570": {
+  "zh": "插件介绍",
+  "en": "Plugin description",
+  "ar": "وصف الإضافة"
+ },
+ "s0571": {
+  "zh": "用户评价",
+  "en": "User reviews",
+  "ar": "تقييمات المستخدمين"
+ },
+ "s0572": {
+  "zh": "暂无评价",
+  "en": "No reviews yet",
+  "ar": "لا توجد تقييمات بعد"
+ },
+ "s0573": {
+  "zh": "%1$s 次下载",
+  "en": "%1$s downloads",
+  "ar": "%1$s تنزيل"
+ },
+ "s0574": {
+  "zh": "版本",
+  "en": "Version",
+  "ar": "الإصدار"
+ },
+ "s0575": {
+  "zh": "大小",
+  "en": "Size",
+  "ar": "الحجم"
+ },
+ "s0576": {
+  "zh": "作者",
+  "en": "Author",
+  "ar": "المطور"
+ },
+ "s0577": {
+  "zh": "更新时间",
+  "en": "Last updated",
+  "ar": "آخر تحديث"
+ },
+ "s0578": {
+  "zh": "许可证",
+  "en": "License",
+  "ar": "الترخيص"
+ },
+ "s0579": {
+  "zh": "安装失败",
+  "en": "Installation failed",
+  "ar": "فشل التثبيت"
+ },
+ "s0580": {
+  "zh": "安装失败: %1$s",
+  "en": "Installation failed: %1$s",
+  "ar": "فشل التثبيت: %1$s"
+ },
+ "s0581": {
+  "zh": "卸载成功",
+  "en": "Uninstalled successfully",
+  "ar": "تم إلغاء التثبيت بنجاح"
+ },
+ "s0582": {
+  "zh": "卸载失败",
+  "en": "Uninstall failed",
+  "ar": "فشل إلغاء التثبيت"
+ },
+ "s0583": {
+  "zh": "卸载失败: %1$s",
+  "en": "Uninstall failed: %1$s",
+  "ar": "فشل إلغاء التثبيت: %1$s"
+ },
+ "s0584": {
+  "zh": "更新失败: %1$s",
+  "en": "Update failed: %1$s",
+  "ar": "فشل التحديث: %1$s"
+ },
+ "s0585": {
+  "zh": "可用",
+  "en": "Available",
+  "ar": "متاح"
+ },
+ "s0586": {
+  "zh": "更新软件源",
+  "en": "Update repositories",
+  "ar": "تحديث مستودعات البرامج"
+ },
+ "s0587": {
+  "zh": "更多",
+  "en": "More",
+  "ar": "المزيد"
+ },
+ "s0588": {
+  "zh": "安装本地APK",
+  "en": "Install local APK",
+  "ar": "تثبيت APK محلي"
+ },
+ "s0589": {
+  "zh": "安装本地IPK",
+  "en": "Install local IPK",
+  "ar": "تثبيت IPK محلي"
+ },
+ "s0590": {
+  "zh": "更新全部",
+  "en": "Update all",
+  "ar": "تحديث الكل"
+ },
+ "s0591": {
+  "zh": "搜索插件...",
+  "en": "Search plugins...",
+  "ar": "البحث عن إضافات..."
+ },
+ "s0592": {
+  "zh": "暂无已安装插件",
+  "en": "No installed plugins",
+  "ar": "لا توجد إضافات مثبتة"
+ },
+ "s0593": {
+  "zh": "暂无可用插件",
+  "en": "No available plugins",
+  "ar": "لا توجد إضافات متاحة"
+ },
+ "s0594": {
+  "zh": "暂无插件",
+  "en": "No plugins",
+  "ar": "لا توجد إضافات"
+ },
+ "s0595": {
+  "zh": "分类: %1$s",
+  "en": "Category: %1$s",
+  "ar": "الفئة: %1$s"
+ },
+ "s0596": {
+  "zh": "卸载",
+  "en": "Uninstall",
+  "ar": "إلغاء التثبيت"
+ },
+ "s0597": {
+  "zh": "安装中... %1$s%",
+  "en": "Installing... %1$s%",
+  "ar": "جاري التثبيت... %1$s%"
+ },
+ "s0598": {
+  "zh": "大小: %1$s",
+  "en": "Size: %1$s",
+  "ar": "الحجم: %1$s"
+ },
+ "s0599": {
+  "zh": "分类",
+  "en": "Category",
+  "ar": "الفئة"
+ },
+ "s0600": {
+  "zh": "其他",
+  "en": "Other",
+  "ar": "أخرى"
+ },
+ "s0601": {
+  "zh": "状态",
+  "en": "Status",
+  "ar": "الحالة"
+ },
+ "s0602": {
+  "zh": "未安装",
+  "en": "Not installed",
+  "ar": "غير مثبت"
+ },
+ "s0603": {
+  "zh": "依赖包",
+  "en": "Dependencies",
+  "ar": "الحزم التابعة"
+ },
+ "s0604": {
+  "zh": "处理中...",
+  "en": "Processing...",
+  "ar": "جاري المعالجة..."
+ },
+ "s0605": {
+  "zh": "打开插件",
+  "en": "Open plugin",
+  "ar": "فتح الإضافة"
+ },
+ "s0606": {
+  "zh": "安装插件",
+  "en": "Install plugin",
+  "ar": "تثبيت الإضافة"
+ },
+ "s0607": {
+  "zh": "🔥 推荐插件",
+  "en": "🔥 Recommended plugins",
+  "ar": "🔥 إضافات موصى بها"
+ },
+ "s0608": {
+  "zh": "软件源管理",
+  "en": "Repository management",
+  "ar": "إدارة مستودعات البرامج"
+ },
+ "s0609": {
+  "zh": "插件 %1$s 的架构与当前设备不匹配，安装可能失败。\n当前架构：%2$s\n插件架构：%3$s",
+  "en": "The architecture of plugin %1$s doesn't match this device, so installation may fail.\nCurrent architecture: %2$s\nPlugin architecture: %3$s",
+  "ar": "بنية الإضافة %1$s لا تطابق هذا الجهاز، وقد يفشل التثبيت.\nالبنية الحالية: %2$s\nبنية الإضافة: %3$s"
+ },
+ "s0610": {
+  "zh": "动态域名解析服务，支持多种DDNS服务商",
+  "en": "Dynamic DNS service with support for multiple DDNS providers",
+  "ar": "خدمة DNS ديناميكية تدعم مزودي DDNS متعددين"
+ },
+ "s0611": {
+  "zh": "网络共享",
+  "en": "Network sharing",
+  "ar": "مشاركة الشبكة"
+ },
+ "s0612": {
+  "zh": "Samba4文件共享服务，局域网文件传输",
+  "en": "Samba4 file sharing service for LAN file transfers",
+  "ar": "خدمة مشاركة الملفات Samba4 لنقل الملفات عبر الشبكة المحلية"
+ },
+ "s0613": {
+  "zh": "BT下载",
+  "en": "BT download",
+  "ar": "تنزيل BT"
+ },
+ "s0614": {
+  "zh": "Transmission BT下载客户端",
+  "en": "Transmission BT download client",
+  "ar": "عميل تنزيل BT عبر Transmission"
+ },
+ "s0615": {
+  "zh": "DNS级别的广告过滤，支持多种规则源",
+  "en": "DNS-level ad blocking with multiple rule sources",
+  "ar": "حجب الإعلانات على مستوى DNS مع دعم مصادر قواعد متعددة"
+ },
+ "s0616": {
+  "zh": "现代VPN协议，高速安全",
+  "en": "Modern VPN protocol, fast and secure",
+  "ar": "بروتوكول VPN حديث وسريع وآمن"
+ },
+ "s0617": {
+  "zh": "详细的网络流量统计和图表",
+  "en": "Detailed network traffic statistics and charts",
+  "ar": "إحصائيات ورسوم بيانية مفصلة لحركة بيانات الشبكة"
+ },
+ "s0618": {
+  "zh": "暂无软件源\n点击右上角添加软件源",
+  "en": "No repositories yet\nTap the top right to add a repository",
+  "ar": "لا توجد مستودعات برامج بعد\nاضغط في الزاوية العلوية اليمنى لإضافة مستودع"
+ },
+ "s0619": {
+  "zh": "官方镜像源",
+  "en": "Official mirror",
+  "ar": "المرآة الرسمية"
+ },
+ "s0620": {
+  "zh": "第三方插件源",
+  "en": "Third-party plugin repository",
+  "ar": "مستودع إضافات خارجي"
+ },
+ "s0621": {
+  "zh": "自定义源",
+  "en": "Custom repository",
+  "ar": "مستودع مخصص"
+ },
+ "s0622": {
+  "zh": "添加软件源",
+  "en": "Add repository",
+  "ar": "إضافة مستودع برامج"
+ },
+ "s0623": {
+  "zh": "启用",
+  "en": "Enable",
+  "ar": "تفعيل"
+ },
+ "s0624": {
+  "zh": "功能工具",
+  "en": "Tools",
+  "ar": "الأدوات"
+ },
+ "s0625": {
+  "zh": "备份恢复",
+  "en": "Backup & restore",
+  "ar": "النسخ الاحتياطي والاستعادة"
+ },
+ "s0626": {
+  "zh": "WiFi增强",
+  "en": "WiFi booster",
+  "ar": "تعزيز WiFi"
+ },
+ "s0627": {
+  "zh": "终端",
+  "en": "Terminal",
+  "ar": "الطرفية"
+ },
+ "s0628": {
+  "zh": "通知设置",
+  "en": "Notification settings",
+  "ar": "إعدادات الإشعارات"
+ },
+ "s0629": {
+  "zh": "桌面小部件",
+  "en": "Home screen widget",
+  "ar": "أداة الشاشة الرئيسية"
+ },
+ "s0630": {
+  "zh": "插件市场",
+  "en": "Plugin market",
+  "ar": "سوق الإضافات"
+ },
+ "s0631": {
+  "zh": "远程管理",
+  "en": "Remote management",
+  "ar": "الإدارة عن بعد"
+ },
+ "s0632": {
+  "zh": "插件检测",
+  "en": "Plugin check",
+  "ar": "فحص الإضافات"
+ },
+ "s0633": {
+  "zh": "OpenWrt 用户",
+  "en": "OpenWrt user",
+  "ar": "مستخدم OpenWrt"
+ },
+ "s0634": {
+  "zh": "管理你的 OpenWrt 设备",
+  "en": "Manage your OpenWrt devices",
+  "ar": "أدر أجهزة OpenWrt الخاصة بك"
+ },
+ "s0635": {
+  "zh": "计算中...",
+  "en": "Calculating...",
+  "ar": "جاري الحساب..."
+ },
+ "s0636": {
+  "zh": "通用",
+  "en": "General",
+  "ar": "عام"
+ },
+ "s0637": {
+  "zh": "主题设置",
+  "en": "Theme settings",
+  "ar": "إعدادات المظهر"
+ },
+ "s0638": {
+  "zh": "语言设置",
+  "en": "Language settings",
+  "ar": "إعدادات اللغة"
+ },
+ "s0639": {
+  "zh": "清除缓存",
+  "en": "Clear cache",
+  "ar": "مسح التخزين المؤقت"
+ },
+ "s0640": {
+  "zh": "自动刷新",
+  "en": "Auto-refresh",
+  "ar": "التحديث التلقائي"
+ },
+ "s0641": {
+  "zh": "自动刷新已开启",
+  "en": "Auto-refresh enabled",
+  "ar": "تم تفعيل التحديث التلقائي"
+ },
+ "s0642": {
+  "zh": "自动刷新已关闭",
+  "en": "Auto-refresh disabled",
+  "ar": "تم تعطيل التحديث التلقائي"
+ },
+ "s0643": {
+  "zh": "刷新间隔",
+  "en": "Refresh interval",
+  "ar": "الفاصل الزمني للتحديث"
+ },
+ "s0644": {
+  "zh": "%1$s秒",
+  "en": "%1$s s",
+  "ar": "%1$s ثانية"
+ },
+ "s0645": {
+  "zh": "连接",
+  "en": "Connection",
+  "ar": "الاتصال"
+ },
+ "s0646": {
+  "zh": "连接超时",
+  "en": "Connection timeout",
+  "ar": "مهلة الاتصال"
+ },
+ "s0647": {
+  "zh": "重试次数",
+  "en": "Retry count",
+  "ar": "عدد المحاولات"
+ },
+ "s0648": {
+  "zh": "%1$s次",
+  "en": "%1$s times",
+  "ar": "%1$s مرة"
+ },
+ "s0649": {
+  "zh": "HTTPS自动检测",
+  "en": "HTTPS auto-detection",
+  "ar": "الكشف التلقائي عن HTTPS"
+ },
+ "s0650": {
+  "zh": "HTTPS自动检测已开启",
+  "en": "HTTPS auto-detection enabled",
+  "ar": "تم تفعيل الكشف التلقائي عن HTTPS"
+ },
+ "s0651": {
+  "zh": "HTTPS自动检测已关闭",
+  "en": "HTTPS auto-detection disabled",
+  "ar": "تم تعطيل الكشف التلقائي عن HTTPS"
+ },
+ "s0652": {
+  "zh": "通知",
+  "en": "Notifications",
+  "ar": "الإشعارات"
+ },
+ "s0653": {
+  "zh": "推送通知",
+  "en": "Push notifications",
+  "ar": "الإشعارات الفورية"
+ },
+ "s0654": {
+  "zh": "推送通知已开启",
+  "en": "Push notifications enabled",
+  "ar": "تم تفعيل الإشعارات الفورية"
+ },
+ "s0655": {
+  "zh": "推送通知已关闭",
+  "en": "Push notifications disabled",
+  "ar": "تم تعطيل الإشعارات الفورية"
+ },
+ "s0656": {
+  "zh": "离线提醒",
+  "en": "Offline alerts",
+  "ar": "تنبيهات انقطاع الاتصال"
+ },
+ "s0657": {
+  "zh": "离线提醒已开启",
+  "en": "Offline alerts enabled",
+  "ar": "تم تفعيل تنبيهات انقطاع الاتصال"
+ },
+ "s0658": {
+  "zh": "离线提醒已关闭",
+  "en": "Offline alerts disabled",
+  "ar": "تم تعطيل تنبيهات انقطاع الاتصال"
+ },
+ "s0659": {
+  "zh": "流量单位",
+  "en": "Traffic unit",
+  "ar": "وحدة حركة البيانات"
+ },
+ "s0660": {
+  "zh": "状态栏显示",
+  "en": "Status bar display",
+  "ar": "العرض في شريط الحالة"
+ },
+ "s0661": {
+  "zh": "状态栏显示已开启",
+  "en": "Status bar display enabled",
+  "ar": "تم تفعيل العرض في شريط الحالة"
+ },
+ "s0662": {
+  "zh": "状态栏显示已关闭",
+  "en": "Status bar display disabled",
+  "ar": "تم تعطيل العرض في شريط الحالة"
+ },
+ "s0663": {
+  "zh": "主题已切换为%1$s",
+  "en": "Theme switched to %1$s",
+  "ar": "تم تبديل المظهر إلى %1$s"
+ },
+ "s0664": {
+  "zh": "语言已切换为%1$s",
+  "en": "Language switched to %1$s",
+  "ar": "تم تبديل اللغة إلى %1$s"
+ },
+ "s0665": {
+  "zh": "刷新间隔已设置为%1$s",
+  "en": "Refresh interval set to %1$s",
+  "ar": "تم ضبط الفاصل الزمني للتحديث على %1$s"
+ },
+ "s0666": {
+  "zh": "连接超时已设置为%1$s",
+  "en": "Connection timeout set to %1$s",
+  "ar": "تم ضبط مهلة الاتصال على %1$s"
+ },
+ "s0667": {
+  "zh": "重试次数已设置为%1$s",
+  "en": "Retry count set to %1$s",
+  "ar": "تم ضبط عدد المحاولات على %1$s"
+ },
+ "s0668": {
+  "zh": "流量单位已设置为%1$s",
+  "en": "Traffic unit set to %1$s",
+  "ar": "تم ضبط وحدة حركة البيانات على %1$s"
+ },
+ "s0669": {
+  "zh": "缓存已清除",
+  "en": "Cache cleared",
+  "ar": "تم مسح التخزين المؤقت"
+ },
+ "s0670": {
+  "zh": "清除失败：%1$s",
+  "en": "Failed to clear: %1$s",
+  "ar": "فشل المسح: %1$s"
+ },
+ "s0671": {
+  "zh": "版本 2.3.0-dev",
+  "en": "Version 2.3.0-dev",
+  "ar": "الإصدار 2.3.0-dev"
+ },
+ "s0672": {
+  "zh": "演示模式已开启",
+  "en": "Demo mode enabled",
+  "ar": "تم تفعيل الوضع التجريبي"
+ },
+ "s0673": {
+  "zh": "演示模式已关闭",
+  "en": "Demo mode disabled",
+  "ar": "تم تعطيل الوضع التجريبي"
+ },
+ "s0674": {
+  "zh": "浅色模式",
+  "en": "Light mode",
+  "ar": "الوضع الفاتح"
+ },
+ "s0675": {
+  "zh": "始终使用浅色主题",
+  "en": "Always use light theme",
+  "ar": "استخدام المظهر الفاتح دائما"
+ },
+ "s0676": {
+  "zh": "深色模式",
+  "en": "Dark mode",
+  "ar": "الوضع الداكن"
+ },
+ "s0677": {
+  "zh": "始终使用深色主题",
+  "en": "Always use dark theme",
+  "ar": "استخدام المظهر الداكن دائما"
+ },
+ "s0678": {
+  "zh": "跟随系统",
+  "en": "Follow system",
+  "ar": "اتباع النظام"
+ },
+ "s0679": {
+  "zh": "跟随系统主题自动切换",
+  "en": "Switch automatically with the system theme",
+  "ar": "التبديل تلقائيا حسب مظهر النظام"
+ },
+ "s0680": {
+  "zh": "帮助",
+  "en": "Help",
+  "ar": "المساعدة"
+ },
+ "s0681": {
+  "zh": "启用远程管理",
+  "en": "Enable remote management",
+  "ar": "تفعيل الإدارة عن بعد"
+ },
+ "s0682": {
+  "zh": "开启后可在外网通过域名访问路由器",
+  "en": "When enabled, you can access the router from the internet via a domain name",
+  "ar": "عند التفعيل، يمكنك الوصول إلى الراوتر من الإنترنت عبر اسم النطاق"
+ },
+ "s0683": {
+  "zh": "自动切换远程模式",
+  "en": "Auto-switch to remote mode",
+  "ar": "التبديل التلقائي إلى الوضع البعيد"
+ },
+ "s0684": {
+  "zh": "检测到不在局域网时自动使用远程地址",
+  "en": "Automatically use the remote address when not on the LAN",
+  "ar": "استخدام العنوان البعيد تلقائيا عند عدم الاتصال بالشبكة المحلية"
+ },
+ "s0685": {
+  "zh": "正在测试远程连接...",
+  "en": "Testing remote connection...",
+  "ar": "جاري اختبار الاتصال البعيد..."
+ },
+ "s0686": {
+  "zh": "测试远程连接",
+  "en": "Test remote connection",
+  "ar": "اختبار الاتصال البعيد"
+ },
+ "s0687": {
+  "zh": "技术方案",
+  "en": "Technical options",
+  "ar": "الخيارات التقنية"
+ },
+ "s0688": {
+  "zh": "方案一：DDNS + 端口映射",
+  "en": "Option 1: DDNS + port forwarding",
+  "ar": "الخيار 1: DDNS + إعادة توجيه المنافذ"
+ },
+ "s0689": {
+  "zh": "适合有公网IP的用户，配置简单",
+  "en": "For users with a public IP; simple to set up",
+  "ar": "مناسب لمن لديهم IP عام، وسهل الإعداد"
+ },
+ "s0690": {
+  "zh": "方案二：内网穿透",
+  "en": "Option 2: NAT traversal",
+  "ar": "الخيار 2: اختراق NAT"
+ },
+ "s0691": {
+  "zh": "适合无公网IP，需要frp/ngrok服务器",
+  "en": "For users without a public IP; requires an frp/ngrok server",
+  "ar": "مناسب لمن لا يملكون IP عام، ويتطلب خادم frp/ngrok"
+ },
+ "s0692": {
+  "zh": "方案三：VPN接入",
+  "en": "Option 3: VPN access",
+  "ar": "الخيار 3: الاتصال عبر VPN"
+ },
+ "s0693": {
+  "zh": "最安全，需要配置WireGuard/OpenVPN",
+  "en": "Most secure; requires WireGuard/OpenVPN setup",
+  "ar": "الأكثر أمانا، ويتطلب إعداد WireGuard/OpenVPN"
+ },
+ "s0694": {
+  "zh": "路由器配置指引",
+  "en": "Router configuration guide",
+  "ar": "دليل إعداد الراوتر"
+ },
+ "s0695": {
+  "zh": "配置DDNS",
+  "en": "Configure DDNS",
+  "ar": "إعداد DDNS"
+ },
+ "s0696": {
+  "zh": "在路由器服务中配置DDNS客户端（如花生壳、阿里云DDNS）",
+  "en": "Configure a DDNS client in the router's services (e.g. Oray, Aliyun DDNS)",
+  "ar": "قم بإعداد عميل DDNS ضمن خدمات الراوتر (مثل Oray وAliyun DDNS)"
+ },
+ "s0697": {
+  "zh": "开放端口",
+  "en": "Open ports",
+  "ar": "فتح المنافذ"
+ },
+ "s0698": {
+  "zh": "在防火墙中开放LuCI的HTTPS端口（默认443）到公网",
+  "en": "Open the HTTPS port used by LuCI (default 443) to the internet in the firewall",
+  "ar": "فتح منفذ HTTPS الذي يستخدمه LuCI (الافتراضي 443) إلى الإنترنت في الجدار الناري"
+ },
+ "s0699": {
+  "zh": "启用HTTPS",
+  "en": "Enable HTTPS",
+  "ar": "تفعيل HTTPS"
+ },
+ "s0700": {
+  "zh": "建议启用HTTPS并配置SSL证书，确保传输安全",
+  "en": "Enabling HTTPS with an SSL certificate is recommended to secure data transfer",
+  "ar": "يوصى بتفعيل HTTPS وإعداد شهادة SSL لضمان أمان نقل البيانات"
+ },
+ "s0701": {
+  "zh": "配置APP",
+  "en": "Configure the app",
+  "ar": "إعداد التطبيق"
+ },
+ "s0702": {
+  "zh": "在上方填写DDNS域名和端口，测试连接成功后保存",
+  "en": "Enter the DDNS domain and port above, test the connection, then save",
+  "ar": "أدخل اسم نطاق DDNS والمنفذ في الأعلى، واختبر الاتصال ثم احفظ"
+ },
+ "s0703": {
+  "zh": "选择协议",
+  "en": "Select protocol",
+  "ar": "اختيار البروتوكول"
+ },
+ "s0704": {
+  "zh": "远程管理说明",
+  "en": "About remote management",
+  "ar": "حول الإدارة عن بعد"
+ },
+ "s0705": {
+  "zh": "远程管理允许您在外网通过互联网管理路由器。",
+  "en": "Remote management lets you manage your router over the internet.",
+  "ar": "تتيح لك الإدارة عن بعد التحكم في الراوتر عبر الإنترنت."
+ },
+ "s0706": {
+  "zh": "推荐使用DDNS + 端口映射方案：",
+  "en": "We recommend the DDNS + port forwarding option:",
+  "ar": "يوصى باستخدام خيار DDNS + إعادة توجيه المنافذ:"
+ },
+ "s0707": {
+  "zh": "1. 确保路由器有公网IP",
+  "en": "1. Make sure the router has a public IP",
+  "ar": "1. تأكد من أن الراوتر لديه IP عام"
+ },
+ "s0708": {
+  "zh": "2. 配置DDNS动态域名解析",
+  "en": "2. Set up DDNS",
+  "ar": "2. قم بإعداد DDNS"
+ },
+ "s0709": {
+  "zh": "3. 在防火墙开放LuCI端口",
+  "en": "3. Open the LuCI port in the firewall",
+  "ar": "3. افتح منفذ LuCI في الجدار الناري"
+ },
+ "s0710": {
+  "zh": "4. 建议使用HTTPS确保安全",
+  "en": "4. Use HTTPS for better security",
+  "ar": "4. يفضل استخدام HTTPS لضمان الأمان"
+ },
+ "s0711": {
+  "zh": "注意：开放端口到公网有安全风险，请使用强密码并定期更新。",
+  "en": "Warning: opening ports to the internet is a security risk. Use a strong password and update it regularly.",
+  "ar": "تنبيه: فتح المنافذ على الإنترنت ينطوي على مخاطر أمنية، استخدم كلمة مرور قوية وحدثها بانتظام."
+ },
+ "s0712": {
+  "zh": "我知道了",
+  "en": "Got it",
+  "ar": "فهمت"
+ },
+ "s0713": {
+  "zh": "当前：远程模式",
+  "en": "Current: Remote mode",
+  "ar": "الحالي: الوضع البعيد"
+ },
+ "s0714": {
+  "zh": "当前：本地模式",
+  "en": "Current: Local mode",
+  "ar": "الحالي: الوضع المحلي"
+ },
+ "s0715": {
+  "zh": "通过互联网连接路由器",
+  "en": "Connect to the router over the internet",
+  "ar": "الاتصال بالراوتر عبر الإنترنت"
+ },
+ "s0716": {
+  "zh": "通过局域网连接路由器",
+  "en": "Connect to the router over the LAN",
+  "ar": "الاتصال بالراوتر عبر الشبكة المحلية"
+ },
+ "s0717": {
+  "zh": "强制使用远程模式",
+  "en": "Force remote mode",
+  "ar": "فرض الوضع البعيد"
+ },
+ "s0718": {
+  "zh": "远程访问配置",
+  "en": "Remote access settings",
+  "ar": "إعدادات الوصول عن بعد"
+ },
+ "s0719": {
+  "zh": "协议",
+  "en": "Protocol",
+  "ar": "البروتوكول"
+ },
+ "s0720": {
+  "zh": "域名/IP",
+  "en": "Domain/IP",
+  "ar": "اسم النطاق/IP"
+ },
+ "s0721": {
+  "zh": "端口",
+  "en": "Port",
+  "ar": "المنفذ"
+ },
+ "s0722": {
+  "zh": "请先填写远程地址",
+  "en": "Enter the remote address first",
+  "ar": "أدخل العنوان البعيد أولا"
+ },
+ "s0723": {
+  "zh": "远程连接测试成功！",
+  "en": "Remote connection test succeeded!",
+  "ar": "نجح اختبار الاتصال البعيد!"
+ },
+ "s0724": {
+  "zh": "连接失败：%1$s",
+  "en": "Connection failed: %1$s",
+  "ar": "فشل الاتصال: %1$s"
+ },
+ "s0725": {
+  "zh": "正在加载存储信息...",
+  "en": "Loading storage info...",
+  "ar": "جاري تحميل معلومات التخزين..."
+ },
+ "s0726": {
+  "zh": "Flash 存储",
+  "en": "Flash storage",
+  "ar": "تخزين Flash"
+ },
+ "s0727": {
+  "zh": "总量",
+  "en": "Total",
+  "ar": "الإجمالي"
+ },
+ "s0728": {
+  "zh": "已用",
+  "en": "Used",
+  "ar": "المستخدم"
+ },
+ "s0729": {
+  "zh": "内存",
+  "en": "Memory",
+  "ar": "الذاكرة"
+ },
+ "s0730": {
+  "zh": "缓存: %1$s",
+  "en": "Cache: %1$s",
+  "ar": "التخزين المؤقت: %1$s"
+ },
+ "s0731": {
+  "zh": "缓冲: %1$s",
+  "en": "Buffer: %1$s",
+  "ar": "المخزن المؤقت: %1$s"
+ },
+ "s0732": {
+  "zh": "负载均衡",
+  "en": "Load average",
+  "ar": "متوسط الحمل"
+ },
+ "s0733": {
+  "zh": "温度",
+  "en": "Temperature",
+  "ar": "درجة الحرارة"
+ },
+ "s0734": {
+  "zh": "挂载点",
+  "en": "Mount point",
+  "ar": "نقطة التحميل"
+ },
+ "s0735": {
+  "zh": "总量: %1$s",
+  "en": "Total: %1$s",
+  "ar": "الإجمالي: %1$s"
+ },
+ "s0736": {
+  "zh": "已用: %1$s",
+  "en": "Used: %1$s",
+  "ar": "المستخدم: %1$s"
+ },
+ "s0737": {
+  "zh": "可用: %1$s",
+  "en": "Available: %1$s",
+  "ar": "المتاح: %1$s"
+ },
+ "s0738": {
+  "zh": "%1$s天%2$s小时%3$s分",
+  "en": "%1$s d %2$s h %3$s m",
+  "ar": "%1$s يوم %2$s ساعة %3$s دقيقة"
+ },
+ "s0739": {
+  "zh": "%1$s小时%2$s分",
+  "en": "%1$s h %2$s m",
+  "ar": "%1$s ساعة %2$s دقيقة"
+ },
+ "s0740": {
+  "zh": "加载存储信息失败",
+  "en": "Failed to load storage info",
+  "ar": "فشل تحميل معلومات التخزين"
+ },
+ "s0741": {
+  "zh": "正在加载系统信息...",
+  "en": "Loading system info...",
+  "ar": "جاري تحميل معلومات النظام..."
+ },
+ "s0742": {
+  "zh": "基本信息",
+  "en": "Basic info",
+  "ar": "المعلومات الأساسية"
+ },
+ "s0743": {
+  "zh": "主机名称",
+  "en": "Hostname",
+  "ar": "اسم المضيف"
+ },
+ "s0744": {
+  "zh": "发行版",
+  "en": "Distribution",
+  "ar": "التوزيعة"
+ },
+ "s0745": {
+  "zh": "内核版本",
+  "en": "Kernel version",
+  "ar": "إصدار النواة"
+ },
+ "s0746": {
+  "zh": "目标平台",
+  "en": "Target platform",
+  "ar": "المنصة المستهدفة"
+ },
+ "s0747": {
+  "zh": "包管理器",
+  "en": "Package manager",
+  "ar": "مدير الحزم"
+ },
+ "s0748": {
+  "zh": "包管理器类型",
+  "en": "Package manager type",
+  "ar": "نوع مدير الحزم"
+ },
+ "s0749": {
+  "zh": "软件源数量",
+  "en": "Repository count",
+  "ar": "عدد مستودعات البرامج"
+ },
+ "s0750": {
+  "zh": "%1$s 个",
+  "en": "%1$s",
+  "ar": "%1$s"
+ },
+ "s0751": {
+  "zh": "软件源切换",
+  "en": "Switch repository",
+  "ar": "تبديل مستودع البرامج"
+ },
+ "s0752": {
+  "zh": "一键切换到不同的软件源镜像",
+  "en": "One-click switch between repository mirrors",
+  "ar": "التبديل بنقرة واحدة بين مرايا مستودعات البرامج"
+ },
+ "s0753": {
+  "zh": "自动配置官方源",
+  "en": "Auto-configure the official repository",
+  "ar": "الإعداد التلقائي للمستودع الرسمي"
+ },
+ "s0754": {
+  "zh": "架构验证已启用",
+  "en": "Architecture verification enabled",
+  "ar": "تم تفعيل التحقق من البنية"
+ },
+ "s0755": {
+  "zh": "安装插件前会自动验证架构是否匹配，防止下载错误架构的插件包。",
+  "en": "Architecture compatibility is verified automatically before installing a plugin to prevent downloading incompatible packages.",
+  "ar": "يتم التحقق من تطابق البنية تلقائيا قبل تثبيت أي إضافة، لمنع تنزيل حزم غير متوافقة."
+ },
+ "s0756": {
+  "zh": "检测并升级路由器固件",
+  "en": "Detect and upgrade router firmware",
+  "ar": "الكشف عن البرنامج الثابت للراوتر وترقيته"
+ },
+ "s0757": {
+  "zh": "进入固件升级",
+  "en": "Go to firmware upgrade",
+  "ar": "الانتقال إلى ترقية البرنامج الثابت"
+ },
+ "s0758": {
+  "zh": "暂无进程信息",
+  "en": "No process info",
+  "ar": "لا توجد معلومات عن العمليات"
+ },
+ "s0759": {
+  "zh": "结束进程",
+  "en": "End process",
+  "ar": "إنهاء العملية"
+ },
+ "s0760": {
+  "zh": "结束",
+  "en": "End",
+  "ar": "إنهاء"
+ },
+ "s0761": {
+  "zh": "PID: %1$s | 用户: %2$s",
+  "en": "PID: %1$s | User: %2$s",
+  "ar": "PID: %1$s | المستخدم: %2$s"
+ },
+ "s0762": {
+  "zh": "加载系统信息失败",
+  "en": "Failed to load system info",
+  "ar": "فشل تحميل معلومات النظام"
+ },
+ "s0763": {
+  "zh": "切换软件源失败",
+  "en": "Failed to switch repository",
+  "ar": "فشل تبديل مستودع البرامج"
+ },
+ "s0764": {
+  "zh": "配置软件源失败",
+  "en": "Failed to configure repository",
+  "ar": "فشل إعداد مستودع البرامج"
+ },
+ "s0765": {
+  "zh": "快捷命令",
+  "en": "Quick commands",
+  "ar": "أوامر سريعة"
+ },
+ "s0766": {
+  "zh": "设置",
+  "en": "Settings",
+  "ar": "الإعدادات"
+ },
+ "s0767": {
+  "zh": "终端设置",
+  "en": "Terminal settings",
+  "ar": "إعدادات الطرفية"
+ },
+ "s0768": {
+  "zh": "字体大小",
+  "en": "Font size",
+  "ar": "حجم الخط"
+ },
+ "s0769": {
+  "zh": "终端主题",
+  "en": "Terminal theme",
+  "ar": "سمة الطرفية"
+ },
+ "s0770": {
+  "zh": "OpenWrt 终端\n欢迎使用 OpenWrt 管家终端\n输入 'help' 查看可用命令\n\n",
+  "en": "OpenWrt Terminal\nWelcome to the OpenWrt Manager terminal\nType 'help' to see available commands\n\n",
+  "ar": "طرفية OpenWrt\nمرحبا بك في طرفية OpenWrt Manager\nاكتب 'help' لعرض الأوامر المتاحة\n\n"
+ },
+ "s0771": {
+  "zh": "错误: %1$s\n",
+  "en": "Error: %1$s\n",
+  "ar": "خطأ: %1$s\n"
+ },
+ "s0772": {
+  "zh": "设备流量排行",
+  "en": "Device traffic ranking",
+  "ar": "ترتيب الأجهزة حسب حركة البيانات"
+ },
+ "s0773": {
+  "zh": "暂无设备流量数据",
+  "en": "No device traffic data",
+  "ar": "لا توجد بيانات حركة البيانات للأجهزة حاليا"
+ },
+ "s0774": {
+  "zh": "%1$s总流量",
+  "en": "Total traffic for %1$s",
+  "ar": "إجمالي حركة بيانات %1$s"
+ },
+ "s0775": {
+  "zh": "重新加载",
+  "en": "Reload",
+  "ar": "إعادة تحميل"
+ },
+ "s0776": {
+  "zh": "小部件",
+  "en": "Widgets",
+  "ar": "الأدوات"
+ },
+ "s0777": {
+  "zh": "显示路由器名称、在线状态、设备数",
+  "en": "Shows router name, online status, and device count",
+  "ar": "يعرض اسم الراوتر وحالة الاتصال وعدد الأجهزة"
+ },
+ "s0778": {
+  "zh": "网速监控",
+  "en": "Network speed monitor",
+  "ar": "مراقبة سرعة الشبكة"
+ },
+ "s0779": {
+  "zh": "显示实时下载和上传速度",
+  "en": "Shows real-time download and upload speeds",
+  "ar": "يعرض سرعات التنزيل والرفع في الوقت الفعلي"
+ },
+ "s0780": {
+  "zh": "更新设置",
+  "en": "Update settings",
+  "ar": "إعدادات التحديث"
+ },
+ "s0781": {
+  "zh": "更新间隔",
+  "en": "Update interval",
+  "ar": "الفاصل الزمني للتحديث"
+ },
+ "s0782": {
+  "zh": "设置小部件数据的自动更新频率",
+  "en": "Set how often widget data updates automatically",
+  "ar": "تعيين مدى تكرار التحديث التلقائي لبيانات الأداة"
+ },
+ "s0783": {
+  "zh": "显示内容",
+  "en": "Displayed content",
+  "ar": "المحتوى المعروض"
+ },
+ "s0784": {
+  "zh": "显示路由器名称",
+  "en": "Show router name",
+  "ar": "عرض اسم الراوتر"
+ },
+ "s0785": {
+  "zh": "显示在线状态",
+  "en": "Show online status",
+  "ar": "عرض حالة الاتصال"
+ },
+ "s0786": {
+  "zh": "显示设备数量",
+  "en": "Show device count",
+  "ar": "عرض عدد الأجهزة"
+ },
+ "s0787": {
+  "zh": "显示网速",
+  "en": "Show network speed",
+  "ar": "عرض سرعة الشبكة"
+ },
+ "s0788": {
+  "zh": "外观设置",
+  "en": "Appearance settings",
+  "ar": "إعدادات المظهر"
+ },
+ "s0789": {
+  "zh": "主题模式",
+  "en": "Theme mode",
+  "ar": "وضع السمة"
+ },
+ "s0790": {
+  "zh": "透明度",
+  "en": "Opacity",
+  "ar": "الشفافية"
+ },
+ "s0791": {
+  "zh": "使用说明",
+  "en": "Instructions",
+  "ar": "تعليمات الاستخدام"
+ },
+ "s0792": {
+  "zh": "如何添加小部件",
+  "en": "How to add a widget",
+  "ar": "كيفية إضافة أداة"
+ },
+ "s0793": {
+  "zh": "1. 长按桌面空白处\n2. 选择\"添加小部件\"\n3. 找到\"OpenWrt管家\"\n4. 选择要添加的小部件\n5. 拖动到桌面位置",
+  "en": "1. Long-press an empty area of the home screen\n2. Select \"Add widget\"\n3. Find \"OpenWrt Manager\"\n4. Choose the widget to add\n5. Drag it to the desired position",
+  "ar": "1. اضغط مطولا على منطقة فارغة في الشاشة الرئيسية\n2. اختر \"إضافة أداة\"\n3. ابحث عن \"OpenWrt Manager\"\n4. اختر الأداة التي تريد إضافتها\n5. اسحبها إلى الموضع المطلوب"
+ },
+ "s0794": {
+  "zh": "注意事项",
+  "en": "Notes",
+  "ar": "ملاحظات"
+ },
+ "s0795": {
+  "zh": "• 小部件需要APP在后台运行才能更新数据\n• 更新间隔越短，耗电量越大\n• 建议设置为30分钟或60分钟更新一次",
+  "en": "• Widgets need the app running in the background to update data\n• Shorter update intervals drain more battery\n• A 30 or 60 minute interval is recommended",
+  "ar": "• تحتاج الأدوات إلى تشغيل التطبيق في الخلفية لتحديث البيانات\n• كلما قصر الفاصل الزمني للتحديث زاد استهلاك البطارية\n• يوصى بتعيين التحديث كل 30 أو 60 دقيقة"
+ },
+ "s0796": {
+  "zh": "浅色",
+  "en": "Light",
+  "ar": "فاتح"
+ },
+ "s0797": {
+  "zh": "深色",
+  "en": "Dark",
+  "ar": "داكن"
+ },
+ "s0798": {
+  "zh": "%1$s小时",
+  "en": "%1$s hours",
+  "ar": "%1$s ساعة"
+ },
+ "s0799": {
+  "zh": "WiFi 设置",
+  "en": "WiFi settings",
+  "ar": "إعدادات WiFi"
+ },
+ "s0800": {
+  "zh": "WiFi 名称 (SSID)",
+  "en": "WiFi name (SSID)",
+  "ar": "اسم WiFi (SSID)"
+ },
+ "s0801": {
+  "zh": "请输入WiFi名称",
+  "en": "Enter WiFi name",
+  "ar": "أدخل اسم WiFi"
+ },
+ "s0802": {
+  "zh": "WiFi 密码",
+  "en": "WiFi password",
+  "ar": "كلمة مرور WiFi"
+ },
+ "s0803": {
+  "zh": "请输入WiFi密码",
+  "en": "Enter WiFi password",
+  "ar": "أدخل كلمة مرور WiFi"
+ },
+ "s0804": {
+  "zh": "信道",
+  "en": "Channel",
+  "ar": "القناة"
+ },
+ "s0805": {
+  "zh": "功率(dBm)",
+  "en": "Power (dBm)",
+  "ar": "القدرة (dBm)"
+ },
+ "s0806": {
+  "zh": "保存设置",
+  "en": "Save settings",
+  "ar": "حفظ الإعدادات"
+ },
+ "s0807": {
+  "zh": "WiFi配置保存成功",
+  "en": "WiFi settings saved",
+  "ar": "تم حفظ إعدادات WiFi"
+ },
+ "s0808": {
+  "zh": "WiFi定时",
+  "en": "WiFi schedule",
+  "ar": "جدولة WiFi"
+ },
+ "s0809": {
+  "zh": "信道分析",
+  "en": "Channel analysis",
+  "ar": "تحليل القنوات"
+ },
+ "s0810": {
+  "zh": "发射功率",
+  "en": "Transmit power",
+  "ar": "قدرة الإرسال"
+ },
+ "s0811": {
+  "zh": "最大客户端数",
+  "en": "Max clients",
+  "ar": "أقصى عدد للعملاء"
+ },
+ "s0812": {
+  "zh": "%1$s 台",
+  "en": "%1$s devices",
+  "ar": "%1$s جهاز"
+ },
+ "s0813": {
+  "zh": "客户端隔离",
+  "en": "Client isolation",
+  "ar": "عزل العملاء"
+ },
+ "s0814": {
+  "zh": "信道 %1$s",
+  "en": "Channel %1$s",
+  "ar": "القناة %1$s"
+ },
+ "s0815": {
+  "zh": "%1$s MHz · 利用率 %2$s%",
+  "en": "%1$s MHz · Utilization %2$s%",
+  "ar": "%1$s MHz · نسبة الاستخدام %2$s%"
+ },
+ "s0816": {
+  "zh": "定时已开启",
+  "en": "Schedule enabled",
+  "ar": "تم تمكين الجدولة"
+ },
+ "s0817": {
+  "zh": "定时已关闭",
+  "en": "Schedule disabled",
+  "ar": "تم تعطيل الجدولة"
+ },
+ "s0818": {
+  "zh": "访客网络已开启",
+  "en": "Guest network enabled",
+  "ar": "تم تمكين شبكة الزوار"
+ },
+ "s0819": {
+  "zh": "访客网络已关闭",
+  "en": "Guest network disabled",
+  "ar": "تم تعطيل شبكة الزوار"
+ },
+ "s0820": {
+  "zh": "扫描完成，发现 %1$s 个信道",
+  "en": "Scan complete, %1$s channels found",
+  "ar": "اكتمل الفحص، تم العثور على %1$s قناة"
+ },
+ "s0821": {
+  "zh": "扫描失败: %1$s",
+  "en": "Scan failed: %1$s",
+  "ar": "فشل الفحص: %1$s"
+ },
+ "s0822": {
+  "zh": "发射功率已设置为 %1$sdBm",
+  "en": "Transmit power set to %1$sdBm",
+  "ar": "تم تعيين قدرة الإرسال إلى %1$sdBm"
+ },
+ "s0823": {
+  "zh": "设置失败: %1$s",
+  "en": "Failed to set: %1$s",
+  "ar": "فشل التعيين: %1$s"
+ },
+ "s0824": {
+  "zh": "Protanomaly（红色弱）",
+  "en": "Protanomaly (red weakness)",
+  "ar": "Protanomaly (ضعف الأحمر)"
+ },
+ "s0825": {
+  "zh": "Deuteranomaly（绿色弱）",
+  "en": "Deuteranomaly (green weakness)",
+  "ar": "Deuteranomaly (ضعف الأخضر)"
+ },
+ "s0826": {
+  "zh": "Tritanomaly（蓝色弱）",
+  "en": "Tritanomaly (blue weakness)",
+  "ar": "Tritanomaly (ضعف الأزرق)"
+ },
+ "s0827": {
+  "zh": "Protanopia（红色盲）",
+  "en": "Protanopia (red blindness)",
+  "ar": "Protanopia (عمى الأحمر)"
+ },
+ "s0828": {
+  "zh": "Deuteranopia（绿色盲）",
+  "en": "Deuteranopia (green blindness)",
+  "ar": "Deuteranopia (عمى الأخضر)"
+ },
+ "s0829": {
+  "zh": "Tritanopia（蓝色盲）",
+  "en": "Tritanopia (blue blindness)",
+  "ar": "Tritanopia (عمى الأزرق)"
+ },
+ "s0830": {
+  "zh": "屏幕阅读器",
+  "en": "Screen reader",
+  "ar": "قارئ الشاشة"
+ },
+ "s0831": {
+  "zh": "高对比度文字",
+  "en": "High contrast text",
+  "ar": "نص عالي التباين"
+ },
+ "s0832": {
+  "zh": "放大手势",
+  "en": "Magnification gestures",
+  "ar": "إيماءات التكبير"
+ },
+ "s0833": {
+  "zh": "大字体(%1$sx)",
+  "en": "Large text (%1$sx)",
+  "ar": "خط كبير (%1$sx)"
+ },
+ "s0834": {
+  "zh": "动画已禁用",
+  "en": "Animations disabled",
+  "ar": "الرسوم المتحركة معطلة"
+ },
+ "s0835": {
+  "zh": "颜色校正",
+  "en": "Color correction",
+  "ar": "تصحيح الألوان"
+ },
+ "s0836": {
+  "zh": "颜色反转",
+  "en": "Color inversion",
+  "ar": "عكس الألوان"
+ },
+ "s0837": {
+  "zh": "字幕",
+  "en": "Captions",
+  "ar": "التسميات التوضيحية"
+ },
+ "s0838": {
+  "zh": "无特殊可访问性设置",
+  "en": "No special accessibility settings",
+  "ar": "لا توجد إعدادات خاصة بإمكانية الوصول"
+ },
+ "s0839": {
+  "zh": "已启用: %1$s",
+  "en": "Enabled: %1$s",
+  "ar": "تم التمكين: %1$s"
+ },
+ "s0840": {
+  "zh": "未来",
+  "en": "Future",
+  "ar": "المستقبل"
+ },
+ "s0841": {
+  "zh": "刚刚",
+  "en": "Just now",
+  "ar": "الآن"
+ },
+ "s0842": {
+  "zh": "%1$s分钟前",
+  "en": "%1$s minutes ago",
+  "ar": "قبل %1$s دقيقة"
+ },
+ "s0843": {
+  "zh": "%1$s小时前",
+  "en": "%1$s hours ago",
+  "ar": "قبل %1$s ساعة"
+ },
+ "s0844": {
+  "zh": "%1$s天前",
+  "en": "%1$s days ago",
+  "ar": "قبل %1$s يوم"
+ },
+ "s0845": {
+  "zh": "今天",
+  "en": "Today",
+  "ar": "اليوم"
+ },
+ "s0846": {
+  "zh": "昨天",
+  "en": "Yesterday",
+  "ar": "أمس"
+ },
+ "s0847": {
+  "zh": "%1$s天%2$s小时%3$s分钟",
+  "en": "%1$s d %2$s h %3$s min",
+  "ar": "%1$s يوم %2$s ساعة %3$s دقيقة"
+ },
+ "s0848": {
+  "zh": "%1$s小时%2$s分钟%3$s秒",
+  "en": "%1$s h %2$s min %3$s s",
+  "ar": "%1$s ساعة %2$s دقيقة %3$s ثانية"
+ },
+ "s0849": {
+  "zh": "%1$s分钟%2$s秒",
+  "en": "%1$s min %2$s s",
+  "ar": "%1$s دقيقة %2$s ثانية"
+ },
+ "s0850": {
+  "zh": "%1$s分%2$s秒",
+  "en": "%1$s min %2$s s",
+  "ar": "%1$s دقيقة %2$s ثانية"
+ },
+ "s0851": {
+  "zh": "%d天 %02d:%02d:%02d",
+  "en": "%dd %02d:%02d:%02d",
+  "ar": "%d يوم %02d:%02d:%02d"
+ },
+ "s0852": {
+  "zh": "星期日",
+  "en": "Sunday",
+  "ar": "الأحد"
+ },
+ "s0853": {
+  "zh": "星期一",
+  "en": "Monday",
+  "ar": "الاثنين"
+ },
+ "s0854": {
+  "zh": "星期二",
+  "en": "Tuesday",
+  "ar": "الثلاثاء"
+ },
+ "s0855": {
+  "zh": "星期三",
+  "en": "Wednesday",
+  "ar": "الأربعاء"
+ },
+ "s0856": {
+  "zh": "星期四",
+  "en": "Thursday",
+  "ar": "الخميس"
+ },
+ "s0857": {
+  "zh": "星期五",
+  "en": "Friday",
+  "ar": "الجمعة"
+ },
+ "s0858": {
+  "zh": "星期六",
+  "en": "Saturday",
+  "ar": "السبت"
+ },
+ "s0859": {
+  "zh": "周日",
+  "en": "Sun",
+  "ar": "أحد"
+ },
+ "s0860": {
+  "zh": "周一",
+  "en": "Mon",
+  "ar": "اثنين"
+ },
+ "s0861": {
+  "zh": "周二",
+  "en": "Tue",
+  "ar": "ثلاثاء"
+ },
+ "s0862": {
+  "zh": "周三",
+  "en": "Wed",
+  "ar": "أربعاء"
+ },
+ "s0863": {
+  "zh": "周四",
+  "en": "Thu",
+  "ar": "خميس"
+ },
+ "s0864": {
+  "zh": "周五",
+  "en": "Fri",
+  "ar": "جمعة"
+ },
+ "s0865": {
+  "zh": "周六",
+  "en": "Sat",
+  "ar": "سبت"
+ },
+ "s0866": {
+  "zh": "上午",
+  "en": "Morning",
+  "ar": "الصباح"
+ },
+ "s0867": {
+  "zh": "中午",
+  "en": "Noon",
+  "ar": "الظهيرة"
+ },
+ "s0868": {
+  "zh": "下午",
+  "en": "Afternoon",
+  "ar": "بعد الظهر"
+ },
+ "s0869": {
+  "zh": "晚上",
+  "en": "Evening",
+  "ar": "المساء"
+ },
+ "s0870": {
+  "zh": "凌晨",
+  "en": "Early morning",
+  "ar": "بعد منتصف الليل"
+ },
+ "s0871": {
+  "zh": "2.4G WiFi当前使用信道6，周围有多个WiFi使用相同信道，建议切换到信道1或11",
+  "en": "2.4G WiFi is currently on channel 6, and several nearby WiFi networks use the same channel. Switching to channel 1 or 11 is recommended",
+  "ar": "يستخدم WiFi بتردد 2.4G القناة 6 حاليا، وتوجد عدة شبكات WiFi مجاورة تستخدم القناة نفسها، ويوصى بالتبديل إلى القناة 1 أو 11"
+ },
+ "s0872": {
+  "zh": "切换到信道1或11",
+  "en": "Switch to channel 1 or 11",
+  "ar": "التبديل إلى القناة 1 أو 11"
+ },
+ "s0873": {
+  "zh": "检测到新版本 OpenWrt 23.05.2 可用，建议及时更新以获取安全补丁和新功能",
+  "en": "New OpenWrt version 23.05.2 detected. Update promptly to get security patches and new features",
+  "ar": "تم اكتشاف إصدار جديد من OpenWrt 23.05.2، ويوصى بالتحديث في أقرب وقت للحصول على تصحيحات الأمان والميزات الجديدة"
+ },
+ "s0874": {
+  "zh": "更新固件",
+  "en": "Update firmware",
+  "ar": "تحديث البرنامج الثابت"
+ },
+ "s0875": {
+  "zh": "CPU使用率正常，系统运行良好",
+  "en": "CPU usage is normal and the system is running well",
+  "ar": "معدل استخدام CPU طبيعي والنظام يعمل بشكل جيد"
+ },
+ "s0876": {
+  "zh": "建议切换WiFi信道以获得更好的信号",
+  "en": "Consider switching the WiFi channel for a better signal",
+  "ar": "يوصى بالتبديل إلى قناة WiFi أخرى للحصول على إشارة أفضل"
+ },
+ "s0877": {
+  "zh": "建议及时更新固件以获取最新安全补丁",
+  "en": "Update the firmware promptly to get the latest security patches",
+  "ar": "يوصى بتحديث البرنامج الثابت في أقرب وقت للحصول على أحدث تصحيحات الأمان"
+ },
+ "s0878": {
+  "zh": "演示路由器",
+  "en": "Demo router",
+  "ar": "راوتر تجريبي"
+ },
+ "s0879": {
+  "zh": "台式机",
+  "en": "Desktop",
+  "ar": "حاسوب مكتبي"
+ },
+ "s0880": {
+  "zh": "监控摄像头",
+  "en": "Surveillance camera",
+  "ar": "كاميرا مراقبة"
+ },
+ "s0881": {
+  "zh": "群晖NAS",
+  "en": "Synology NAS",
+  "ar": "Synology NAS"
+ },
+ "s0882": {
+  "zh": "LuCI 简体中文语言包 - 基础包",
+  "en": "LuCI Simplified Chinese language pack - base package",
+  "ar": "حزمة LuCI للغة الصينية المبسطة - الحزمة الأساسية"
+ },
+ "s0883": {
+  "zh": "软件包管理器 - 管理路由器上的所有软件包，支持安装、卸载、更新等操作",
+  "en": "Package manager - manage all packages on the router, with support for install, remove, and update operations",
+  "ar": "مدير الحزم - إدارة جميع الحزم على الراوتر، مع دعم عمليات التثبيت والإزالة والتحديث"
+ },
+ "s0884": {
+  "zh": "防火墙配置 - 管理端口转发、流量规则、区域设置等防火墙功能",
+  "en": "Firewall configuration - manage port forwarding, traffic rules, zones, and other firewall features",
+  "ar": "إعداد الجدار الناري - إدارة إعادة توجيه المنافذ وقواعد حركة البيانات والمناطق ووظائف الجدار الناري الأخرى"
+ },
+ "s0885": {
+  "zh": "动态DNS配置 - 支持多种DDNS服务提供商，自动更新域名解析",
+  "en": "Dynamic DNS configuration - supports multiple DDNS providers and updates domain records automatically",
+  "ar": "إعداد DNS الديناميكي - يدعم مزودي DDNS متعددين ويقوم بتحديث سجلات اسم النطاق تلقائيا"
+ },
+ "s0886": {
+  "zh": "UPnP配置 - 通用即插即用，让内网设备自动配置端口映射",
+  "en": "UPnP configuration - Universal Plug and Play, lets devices on the LAN set up port mappings automatically",
+  "ar": "إعداد UPnP - التوصيل والتشغيل العام، يتيح لأجهزة الشبكة الداخلية تهيئة إعادة توجيه المنافذ تلقائيا"
+ },
+ "s0887": {
+  "zh": "网络唤醒 - 通过网络发送魔术包唤醒局域网内的电脑",
+  "en": "Wake-on-LAN - send magic packets over the network to wake up computers on the LAN",
+  "ar": "Wake-on-LAN - إرسال الحزمة السحرية عبر الشبكة لإيقاظ أجهزة الكمبيوتر في الشبكة المحلية"
+ },
+ "s0888": {
+  "zh": "智能队列管理 - SQM QoS流量控制，优化网络延迟和带宽分配",
+  "en": "Smart Queue Management - SQM QoS traffic control that optimizes network latency and bandwidth allocation",
+  "ar": "إدارة الطوابير الذكية - التحكم في حركة البيانات عبر SQM QoS لتحسين زمن الاستجابة وتوزيع النطاق الترددي"
+ },
+ "s0889": {
+  "zh": "流量统计 - 收集并展示网络流量、CPU、内存等系统统计数据",
+  "en": "Traffic statistics - collects and displays network traffic, CPU, memory, and other system statistics",
+  "ar": "إحصائيات حركة البيانات - جمع وعرض إحصائيات حركة بيانات الشبكة وCPU والذاكرة وغيرها من بيانات النظام"
+ },
+ "s0890": {
+  "zh": "Aria2下载管理器 - 支持HTTP/FTP/BitTorrent的多线程下载工具",
+  "en": "Aria2 download manager - multi-threaded download tool supporting HTTP/FTP/BitTorrent",
+  "ar": "مدير التنزيلات Aria2 - أداة تنزيل متعددة الخيوط تدعم HTTP/FTP/BitTorrent"
+ },
+ "s0891": {
+  "zh": "Transmission BT客户端 - 轻量级BitTorrent下载客户端",
+  "en": "Transmission BT client - lightweight BitTorrent download client",
+  "ar": "عميل Transmission BT - عميل تنزيل BitTorrent خفيف"
+ },
+ "s0892": {
+  "zh": "Samba4网络共享 - 文件和打印机共享服务，兼容Windows网络邻居",
+  "en": "Samba4 network sharing - file and printer sharing service, compatible with Windows Network Neighborhood",
+  "ar": "مشاركة الشبكة عبر Samba4 - خدمة مشاركة الملفات والطابعات، متوافقة مع جيران الشبكة في Windows"
+ },
+ "s0893": {
+  "zh": "MiniDLNA媒体服务器 - DLNA/UPnP媒体服务器，让电视、手机播放路由器上的视频音乐",
+  "en": "MiniDLNA media server - DLNA/UPnP media server that lets TVs and phones play videos and music stored on the router",
+  "ar": "خادم الوسائط MiniDLNA - خادم وسائط DLNA/UPnP يتيح للتلفزيونات والهواتف تشغيل الفيديو والموسيقى المخزنة على الراوتر"
+ },
+ "s0894": {
+  "zh": "OpenVPN配置 - 开源VPN解决方案，支持服务端和客户端模式",
+  "en": "OpenVPN configuration - open-source VPN solution with server and client modes",
+  "ar": "إعداد OpenVPN - حل VPN مفتوح المصدر يدعم وضعي الخادم والعميل"
+ },
+ "s0895": {
+  "zh": "WireGuard VPN - 现代、快速、安全的VPN隧道技术",
+  "en": "WireGuard VPN - a modern, fast, and secure VPN tunnel technology",
+  "ar": "WireGuard VPN - تقنية نفق VPN حديثة وسريعة وآمنة"
+ },
+ "s0896": {
+  "zh": "多WAN负载均衡 - 多条宽带线路负载均衡和故障转移",
+  "en": "Multi-WAN load balancing - load balancing and failover across multiple broadband lines",
+  "ar": "موازنة الحمل متعددة WAN - موازنة الحمل وتجاوز الفشل عبر عدة خطوط نطاق عريض"
+ },
+ "s0897": {
+  "zh": "SNMP服务 - 简单网络管理协议，用于网络监控系统",
+  "en": "SNMP service - Simple Network Management Protocol, used in network monitoring systems",
+  "ar": "خدمة SNMP - بروتوكول إدارة الشبكة البسيط، يستخدم في أنظمة مراقبة الشبكات"
+ },
+ "s0898": {
+  "zh": "网络带宽监控 - 按设备统计带宽使用情况，支持按日/月查看",
+  "en": "Network bandwidth monitoring - tracks bandwidth usage per device, viewable by day or month",
+  "ar": "مراقبة عرض نطاق الشبكة - إحصاء استخدام عرض النطاق لكل جهاز مع إمكانية العرض حسب اليوم أو الشهر"
+ },
+ "s0899": {
+  "zh": "NTP时间同步 - 网络时间协议客户端，自动同步系统时间",
+  "en": "NTP time sync - Network Time Protocol client that syncs the system time automatically",
+  "ar": "مزامنة وقت NTP - عميل بروتوكول وقت الشبكة يزامن وقت النظام تلقائيا"
+ },
+ "s0900": {
+  "zh": "uHTTPd Web服务器 - OpenWrt内置的轻量级Web服务器配置",
+  "en": "uHTTPd web server - configuration for the lightweight web server built into OpenWrt",
+  "ar": "خادم الويب uHTTPd - إعداد خادم الويب الخفيف المدمج في OpenWrt"
+ },
+ "s0901": {
+  "zh": "访问控制列表 - 管理LuCI的用户权限和访问控制",
+  "en": "Access control lists - manage LuCI user permissions and access control",
+  "ar": "قوائم التحكم في الوصول - إدارة صلاحيات مستخدمي LuCI والتحكم في الوصول"
+ },
+ "s0902": {
+  "zh": "广告过滤 - 自动屏蔽广告域名，支持多种广告源列表",
+  "en": "Ad filtering - automatically blocks ad domains and supports multiple ad source lists",
+  "ar": "حجب الإعلانات - حظر النطاقات الإعلانية تلقائيا ودعم قوائم مصادر إعلانات متعددة"
+ },
+ "s0903": {
+  "zh": "Web终端 - 在浏览器中使用命令行终端",
+  "en": "Web terminal - use a command-line terminal in the browser",
+  "ar": "طرفية الويب - استخدام سطر الأوامر في المتصفح"
+ },
+ "s0904": {
+  "zh": "硬盘休眠 - 硬盘空闲时自动进入休眠模式，节省电量",
+  "en": "Disk hibernation - automatically puts idle disks into sleep mode to save power",
+  "ar": "سكون القرص - إدخال القرص في وضع السكون تلقائيا عند الخمول لتوفير الطاقة"
+ },
+ "s0905": {
+  "zh": "FTP服务器 - 轻量级FTP服务器，支持虚拟用户和权限控制",
+  "en": "FTP server - lightweight FTP server with virtual users and permission control",
+  "ar": "خادم FTP - خادم FTP خفيف يدعم المستخدمين الافتراضيين والتحكم في الصلاحيات"
+ },
+ "s0906": {
+  "zh": "UDPXY组播转单播 - 将IPTV组播流转换为单播，方便各种设备观看",
+  "en": "UDPXY multicast to unicast - converts IPTV multicast streams to unicast for easy viewing on any device",
+  "ar": "UDPXY تحويل البث المتعدد إلى أحادي - تحويل تدفقات IPTV المتعددة إلى أحادية لتسهيل مشاهدتها على مختلف الأجهزة"
+ },
+ "s0907": {
+  "zh": "Frp服务端 - 内网穿透服务端，让外网访问内网服务",
+  "en": "Frp server - tunnel server that makes LAN services accessible from the internet",
+  "ar": "خادم Frp - خادم نفق يتيح الوصول إلى خدمات الشبكة الداخلية من الإنترنت"
+ },
+ "s0908": {
+  "zh": "Frp客户端 - 内网穿透客户端，连接到Frp服务器实现内网穿透",
+  "en": "Frp client - connects to an Frp server to tunnel LAN services to the internet",
+  "ar": "عميل Frp - يتصل بخادم Frp لتمكين الوصول إلى الشبكة الداخلية من الخارج"
+ },
+ "s0909": {
+  "zh": "ZeroTier虚拟网络 - 全球范围的虚拟局域网，轻松组建异地虚拟内网",
+  "en": "ZeroTier virtual network - a global virtual LAN for easily building virtual networks across locations",
+  "ar": "شبكة ZeroTier الافتراضية - شبكة محلية افتراضية عالمية لإنشاء شبكة داخلية افتراضية بين مواقع مختلفة بسهولة"
+ },
+ "s0910": {
+  "zh": "• 修复了若干已知问题\n• 提升了系统稳定性\n• 更新了部分插件版本\n• 优化了网络性能",
+  "en": "• Fixed several known issues\n• Improved system stability\n• Updated some plugin versions\n• Optimized network performance",
+  "ar": "• تم إصلاح عدة مشكلات معروفة\n• تم تحسين استقرار النظام\n• تم تحديث إصدارات بعض الإضافات\n• تم تحسين أداء الشبكة"
+ },
+ "s0911": {
+  "zh": "非常弱",
+  "en": "Very weak",
+  "ar": "ضعيف جدا"
+ },
+ "s0912": {
+  "zh": "弱",
+  "en": "Weak",
+  "ar": "ضعيف"
+ },
+ "s0913": {
+  "zh": "中等",
+  "en": "Medium",
+  "ar": "متوسط"
+ },
+ "s0914": {
+  "zh": "强",
+  "en": "Strong",
+  "ar": "قوي"
+ },
+ "s0915": {
+  "zh": "无法连接到路由器",
+  "en": "Unable to connect to the router",
+  "ar": "تعذر الاتصال بالراوتر"
+ },
+ "s0916": {
+  "zh": "请检查路由器地址、用户名和密码是否正确",
+  "en": "Check that the router address, username, and password are correct",
+  "ar": "يرجى التحقق من صحة عنوان الراوتر واسم المستخدم وكلمة المرور"
+ },
+ "s0917": {
+  "zh": "CPU使用率过高: %1$s",
+  "en": "CPU usage too high: %1$s",
+  "ar": "معدل استخدام CPU مرتفع جدا: %1$s"
+ },
+ "s0918": {
+  "zh": "建议检查是否有进程占用过多CPU资源，可尝试重启路由器",
+  "en": "Check whether a process is consuming too much CPU, or try rebooting the router",
+  "ar": "يوصى بالتحقق من وجود عمليات تستهلك موارد CPU بشكل مفرط، ويمكن محاولة إعادة تشغيل الراوتر"
+ },
+ "s0919": {
+  "zh": "CPU使用率过高，可能影响网络性能",
+  "en": "CPU usage is too high and may affect network performance",
+  "ar": "معدل استخدام CPU مرتفع جدا وقد يؤثر في أداء الشبكة"
+ },
+ "s0920": {
+  "zh": "内存使用率过高: %1$s",
+  "en": "Memory usage too high: %1$s",
+  "ar": "معدل استخدام الذاكرة مرتفع جدا: %1$s"
+ },
+ "s0921": {
+  "zh": "建议关闭不必要的服务或插件，释放内存",
+  "en": "Disable unnecessary services or plugins to free up memory",
+  "ar": "يوصى بإيقاف الخدمات أو الإضافات غير الضرورية لتحرير الذاكرة"
+ },
+ "s0922": {
+  "zh": "内存使用率过高，可能导致设备运行缓慢",
+  "en": "Memory usage is too high and may slow down the device",
+  "ar": "معدل استخدام الذاكرة مرتفع جدا وقد يتسبب في بطء الجهاز"
+ },
+ "s0923": {
+  "zh": "存储空间不足: %1$s",
+  "en": "Insufficient storage: %1$s",
+  "ar": "مساحة التخزين غير كافية: %1$s"
+ },
+ "s0924": {
+  "zh": "建议清理不必要的文件和日志，释放存储空间",
+  "en": "Clean up unnecessary files and logs to free up storage space",
+  "ar": "يوصى بتنظيف الملفات والسجلات غير الضرورية لتحرير مساحة التخزين"
+ },
+ "s0925": {
+  "zh": "存储空间不足，可能影响系统正常运行",
+  "en": "Insufficient storage may affect normal system operation",
+  "ar": "مساحة التخزين غير كافية وقد تؤثر في التشغيل الطبيعي للنظام"
+ },
+ "s0926": {
+  "zh": "设备已连续运行超过30天",
+  "en": "The device has been running continuously for over 30 days",
+  "ar": "يعمل الجهاز بشكل متواصل منذ أكثر من 30 يوما"
+ },
+ "s0927": {
+  "zh": "建议定期重启路由器，以保持最佳性能",
+  "en": "Reboot the router regularly to keep it at its best",
+  "ar": "يوصى بإعادة تشغيل الراوتر بانتظام للحفاظ على الأداء الأمثل"
+ },
+ "s0928": {
+  "zh": "设备运行时间较长，建议定期重启",
+  "en": "The device has been running for a long time; periodic reboots are recommended",
+  "ar": "مدة تشغيل الجهاز طويلة، ويوصى بإعادة التشغيل بشكل دوري"
+ },
+ "s0929": {
+  "zh": "WAN口未连接",
+  "en": "WAN port not connected",
+  "ar": "منفذ WAN غير متصل"
+ },
+ "s0930": {
+  "zh": "请检查WAN口网线是否插好，以及宽带是否正常",
+  "en": "Check that the WAN cable is plugged in and your broadband service is working",
+  "ar": "يرجى التحقق من توصيل كابل منفذ WAN بشكل صحيح ومن أن خدمة النطاق العريض تعمل بشكل طبيعي"
+ },
+ "s0931": {
+  "zh": "WAN连接异常，无法访问互联网",
+  "en": "WAN connection abnormal, unable to access the internet",
+  "ar": "اتصال WAN غير طبيعي، تعذر الوصول إلى الإنترنت"
+ },
+ "s0932": {
+  "zh": "网络状态良好，一切正常",
+  "en": "Network status is good, everything is normal",
+  "ar": "حالة الشبكة جيدة وكل شيء طبيعي"
+ },
+ "s0933": {
+  "zh": "路由器已离线",
+  "en": "Router went offline",
+  "ar": "أصبح الراوتر غير متصل"
+ },
+ "s0934": {
+  "zh": "%1$s 已断开连接",
+  "en": "%1$s disconnected",
+  "ar": "انقطع اتصال %1$s"
+ },
+ "s0935": {
+  "zh": "路由器已恢复在线",
+  "en": "Router is back online",
+  "ar": "عاد الراوتر إلى الاتصال"
+ },
+ "s0936": {
+  "zh": "%1$s 已重新连接",
+  "en": "%1$s reconnected",
+  "ar": "تمت إعادة اتصال %1$s"
+ },
+ "s0937": {
+  "zh": "新固件可用",
+  "en": "New firmware available",
+  "ar": "يتوفر برنامج ثابت جديد"
+ },
+ "s0938": {
+  "zh": "版本 %1$s (%2$s)",
+  "en": "Version %1$s (%2$s)",
+  "ar": "الإصدار %1$s (%2$s)"
+ },
+ "s0939": {
+  "zh": "发现新固件版本 %1$s，大小 %2$s。点击查看更新详情。",
+  "en": "New firmware version %1$s found, size %2$s. Tap to see update details.",
+  "ar": "تم العثور على إصدار جديد من البرنامج الثابت %1$s بحجم %2$s. انقر لعرض تفاصيل التحديث."
+ },
+ "s0940": {
+  "zh": "%1$s (%2$s) 已连接",
+  "en": "%1$s (%2$s) connected",
+  "ar": "%1$s (%2$s) متصل"
+ },
+ "s0941": {
+  "zh": "网络异常",
+  "en": "Network error",
+  "ar": "خطأ في الشبكة"
+ },
+ "s0942": {
+  "zh": "暂无性能数据",
+  "en": "No performance data",
+  "ar": "لا توجد بيانات أداء حاليا"
+ },
+ "s0943": {
+  "zh": "=== 性能监控报告 ===\n\n",
+  "en": "=== Performance monitoring report ===\n\n",
+  "ar": "=== تقرير مراقبة الأداء ===\n\n"
+ },
+ "s0944": {
+  "zh": "  调用次数: %1$s\n",
+  "en": "  Calls: %1$s\n",
+  "ar": "  عدد الاستدعاءات: %1$s\n"
+ },
+ "s0945": {
+  "zh": "  总耗时: %1$sms\n",
+  "en": "  Total time: %1$sms\n",
+  "ar": "  الوقت الإجمالي: %1$sms\n"
+ },
+ "s0946": {
+  "zh": "  平均耗时: %1$sms\n",
+  "en": "  Average time: %1$sms\n",
+  "ar": "  متوسط الوقت: %1$sms\n"
+ },
+ "s0947": {
+  "zh": "  最小耗时: %1$sms\n",
+  "en": "  Min time: %1$sms\n",
+  "ar": "  أقل وقت: %1$sms\n"
+ },
+ "s0948": {
+  "zh": "  最大耗时: %1$sms\n\n",
+  "en": "  Max time: %1$sms\n\n",
+  "ar": "  أطول وقت: %1$sms\n\n"
+ },
+ "s0949": {
+  "zh": "0秒",
+  "en": "0 s",
+  "ar": "0 ثانية"
+ },
+ "s0950": {
+  "zh": "%1$s周前",
+  "en": "%1$s weeks ago",
+  "ar": "قبل %1$s أسبوع"
+ },
+ "s0951": {
+  "zh": "%1$s个月前",
+  "en": "%1$s months ago",
+  "ar": "قبل %1$s شهر"
+ },
+ "s0952": {
+  "zh": "%1$s年前",
+  "en": "%1$s years ago",
+  "ar": "قبل %1$s سنة"
+ },
+ "s0953": {
+  "zh": "点击打开APP",
+  "en": "Tap to open app",
+  "ar": "انقر لفتح التطبيق"
+ },
+ "s0954": {
+  "zh": "OpenWrt管家",
+  "en": "OpenWrt Manager",
+  "ar": "OpenWrt Manager"
+ },
+ "s0955": {
+  "zh": "点击打开",
+  "en": "Tap to open",
+  "ar": "انقر للفتح"
+ },
+ "enum_001": {
+  "zh": "浅色模式",
+  "en": "Light mode",
+  "ar": "الوضع الفاتح"
+ },
+ "enum_002": {
+  "zh": "深色模式",
+  "en": "Dark mode",
+  "ar": "الوضع الداكن"
+ },
+ "enum_003": {
+  "zh": "跟随系统",
+  "en": "Follow system",
+  "ar": "حسب النظام"
+ },
+ "enum_004": {
+  "zh": "路由器状态",
+  "en": "Router status",
+  "ar": "حالة الراوتر"
+ },
+ "enum_005": {
+  "zh": "实时网速",
+  "en": "Real-time speed",
+  "ar": "السرعة اللحظية"
+ },
+ "enum_006": {
+  "zh": "常用功能",
+  "en": "Common features",
+  "ar": "الوظائف الشائعة"
+ },
+ "enum_007": {
+  "zh": "系统状态",
+  "en": "System status",
+  "ar": "حالة النظام"
+ },
+ "enum_008": {
+  "zh": "在线设备",
+  "en": "Online devices",
+  "ar": "الأجهزة المتصلة"
+ },
+ "enum_009": {
+  "zh": "WiFi状态",
+  "en": "WiFi status",
+  "ar": "حالة WiFi"
+ },
+ "enum_010": {
+  "zh": "插件管理",
+  "en": "Plugin management",
+  "ar": "إدارة الإضافات"
+ },
+ "enum_011": {
+  "zh": "防火墙",
+  "en": "Firewall",
+  "ar": "جدار الحماية"
+ },
+ "enum_012": {
+  "zh": "网口状态",
+  "en": "Port status",
+  "ar": "حالة المنافذ"
+ },
+ "enum_013": {
+  "zh": "默认布局",
+  "en": "Default layout",
+  "ar": "التخطيط الافتراضي"
+ },
+ "enum_014": {
+  "zh": "紧凑布局",
+  "en": "Compact layout",
+  "ar": "التخطيط المضغوط"
+ },
+ "enum_015": {
+  "zh": "详细布局",
+  "en": "Detailed layout",
+  "ar": "التخطيط التفصيلي"
+ },
+ "enum_016": {
+  "zh": "极简布局",
+  "en": "Minimal layout",
+  "ar": "التخطيط البسيط"
+ },
+ "enum_017": {
+  "zh": "固件更新",
+  "en": "Firmware update",
+  "ar": "تحديث البرنامج الثابت"
+ },
+ "enum_018": {
+  "zh": "网络告警",
+  "en": "Network alerts",
+  "ar": "تنبيهات الشبكة"
+ },
+ "enum_019": {
+  "zh": "设备事件",
+  "en": "Device events",
+  "ar": "أحداث الأجهزة"
+ },
+ "enum_020": {
+  "zh": "全部",
+  "en": "All",
+  "ar": "الكل"
+ },
+ "enum_021": {
+  "zh": "系统",
+  "en": "System",
+  "ar": "النظام"
+ },
+ "enum_022": {
+  "zh": "网络",
+  "en": "Network",
+  "ar": "الشبكة"
+ },
+ "enum_023": {
+  "zh": "服务",
+  "en": "Services",
+  "ar": "الخدمات"
+ },
+ "enum_024": {
+  "zh": "工具",
+  "en": "Tools",
+  "ar": "الأدوات"
+ },
+ "enum_025": {
+  "zh": "多媒体",
+  "en": "Multimedia",
+  "ar": "الوسائط"
+ },
+ "enum_026": {
+  "zh": "管理",
+  "en": "Management",
+  "ar": "الإدارة"
+ },
+ "enum_027": {
+  "zh": "其他",
+  "en": "Others",
+  "ar": "أخرى"
+ },
+ "enum_028": {
+  "zh": "按名称",
+  "en": "By name",
+  "ar": "حسب الاسم"
+ },
+ "enum_029": {
+  "zh": "按大小",
+  "en": "By size",
+  "ar": "حسب الحجم"
+ },
+ "enum_030": {
+  "zh": "按安装状态",
+  "en": "By install status",
+  "ar": "حسب حالة التثبيت"
+ },
+ "enum_031": {
+  "zh": "良好",
+  "en": "Good",
+  "ar": "جيد"
+ },
+ "enum_032": {
+  "zh": "警告",
+  "en": "Warning",
+  "ar": "تحذير"
+ },
+ "enum_033": {
+  "zh": "异常",
+  "en": "Abnormal",
+  "ar": "غير طبيعي"
+ },
+ "enum_034": {
+  "zh": "检测中",
+  "en": "Checking",
+  "ar": "جاري الفحص"
+ },
+ "enum_035": {
+  "zh": "安全",
+  "en": "Security",
+  "ar": "الأمان"
+ },
+ "enum_036": {
+  "zh": "性能",
+  "en": "Performance",
+  "ar": "الأداء"
+ },
+ "enum_037": {
+  "zh": "存储",
+  "en": "Storage",
+  "ar": "التخزين"
+ },
+ "enum_038": {
+  "zh": "低",
+  "en": "Low",
+  "ar": "منخفض"
+ },
+ "enum_039": {
+  "zh": "中",
+  "en": "Medium",
+  "ar": "متوسط"
+ },
+ "enum_040": {
+  "zh": "高",
+  "en": "High",
+  "ar": "مرتفع"
+ },
+ "enum_041": {
+  "zh": "严重",
+  "en": "Critical",
+  "ar": "حرج"
+ },
+ "enum_042": {
+  "zh": "优秀",
+  "en": "Excellent",
+  "ar": "ممتاز"
+ },
+ "enum_043": {
+  "zh": "一般",
+  "en": "Fair",
+  "ar": "مقبول"
+ },
+ "enum_044": {
+  "zh": "较差",
+  "en": "Poor",
+  "ar": "ضعيف"
+ },
+ "enum_045": {
+  "zh": "很差",
+  "en": "Very poor",
+  "ar": "ضعيف جدا"
+ },
+ "enum_046": {
+  "zh": "今日",
+  "en": "Today",
+  "ar": "اليوم"
+ },
+ "enum_047": {
+  "zh": "本周",
+  "en": "This week",
+  "ar": "هذا الأسبوع"
+ },
+ "enum_048": {
+  "zh": "本月",
+  "en": "This month",
+  "ar": "هذا الشهر"
+ },
+ "enum_049": {
+  "zh": "本年",
+  "en": "This year",
+  "ar": "هذه السنة"
+ },
+ "enum_050": {
+  "zh": "关闭WiFi",
+  "en": "Turn off WiFi",
+  "ar": "إيقاف WiFi"
+ },
+ "enum_051": {
+  "zh": "开启WiFi",
+  "en": "Turn on WiFi",
+  "ar": "تشغيل WiFi"
+ },
+ "enum_052": {
+  "zh": "较弱",
+  "en": "Weak",
+  "ar": "ضعيف"
+ },
+ "enum_053": {
+  "zh": "深色",
+  "en": "Dark",
+  "ar": "داكن"
+ },
+ "enum_054": {
+  "zh": "浅色",
+  "en": "Light",
+  "ar": "فاتح"
+ },
+ "enum_055": {
+  "zh": "Solarized 深色",
+  "en": "Solarized dark",
+  "ar": "Solarized داكن"
+ },
+ "enum_056": {
+  "zh": "Solarized 浅色",
+  "en": "Solarized light",
+  "ar": "Solarized فاتح"
+ },
+ "enum_057": {
+  "zh": "块",
+  "en": "Block",
+  "ar": "كتلة"
+ },
+ "enum_058": {
+  "zh": "下划线",
+  "en": "Underline",
+  "ar": "شرطة سفلية"
+ },
+ "enum_059": {
+  "zh": "竖线",
+  "en": "Bar",
+  "ar": "خط عمودي"
+ },
+ "enum_060": {
+  "zh": "上线",
+  "en": "Online",
+  "ar": "متصل"
+ },
+ "enum_061": {
+  "zh": "下线",
+  "en": "Offline",
+  "ar": "غير متصل"
+ },
+ "enum_062": {
+  "zh": "拉黑",
+  "en": "Block",
+  "ar": "حظر"
+ },
+ "enum_063": {
+  "zh": "解除拉黑",
+  "en": "Unblock",
+  "ar": "إلغاء الحظر"
+ },
+ "enum_064": {
+  "zh": "限速",
+  "en": "Limit speed",
+  "ar": "تحديد السرعة"
+ },
+ "enum_065": {
+  "zh": "取消限速",
+  "en": "Remove speed limit",
+  "ar": "إلغاء تحديد السرعة"
+ },
+ "enum_066": {
+  "zh": "完整备份",
+  "en": "Full backup",
+  "ar": "نسخة احتياطية كاملة"
+ },
+ "enum_067": {
+  "zh": "系统配置",
+  "en": "System config",
+  "ar": "إعدادات النظام"
+ },
+ "enum_068": {
+  "zh": "网络配置",
+  "en": "Network config",
+  "ar": "إعدادات الشبكة"
+ },
+ "enum_069": {
+  "zh": "防火墙配置",
+  "en": "Firewall config",
+  "ar": "إعدادات جدار الحماية"
+ },
+ "enum_070": {
+  "zh": "WiFi配置",
+  "en": "WiFi config",
+  "ar": "إعدادات WiFi"
+ },
+ "enum_071": {
+  "zh": "自定义备份",
+  "en": "Custom backup",
+  "ar": "نسخة احتياطية مخصصة"
+ },
+ "enum_072": {
+  "zh": "官方镜像源",
+  "en": "Official mirror",
+  "ar": "مرآة رسمية"
+ },
+ "enum_073": {
+  "zh": "第三方插件源",
+  "en": "Third-party plugin repository",
+  "ar": "مستودع إضافات طرف ثالث"
+ },
+ "enum_074": {
+  "zh": "自定义源",
+  "en": "Custom repository",
+  "ar": "مستودع مخصص"
+ },
+ "enum_075": {
+  "zh": "未知",
+  "en": "Unknown",
+  "ar": "غير معروف"
+ },
+ "enum_076": {
+  "zh": "官方源",
+  "en": "Official repository",
+  "ar": "مستودع رسمي"
+ },
+ "enum_077": {
+  "zh": "清华源",
+  "en": "Tsinghua mirror",
+  "ar": "مرآة Tsinghua"
+ },
+ "enum_078": {
+  "zh": "中科大源",
+  "en": "USTC mirror",
+  "ar": "مرآة USTC"
+ },
+ "enum_079": {
+  "zh": "阿里云源",
+  "en": "Aliyun mirror",
+  "ar": "مرآة Aliyun"
+ },
+ "enum_080": {
+  "zh": "kenzok8源",
+  "en": "kenzok8 repository",
+  "ar": "مستودع kenzok8"
+ },
+ "enum_081": {
+  "zh": "lienol源",
+  "en": "lienol repository",
+  "ar": "مستودع lienol"
+ },
+ "enum_082": {
+  "zh": "ImmortalWrt源",
+  "en": "ImmortalWrt repository",
+  "ar": "مستودع ImmortalWrt"
+ },
+ "enum_083": {
+  "zh": "自定义",
+  "en": "Custom",
+  "ar": "مخصص"
+ },
+ "enum_084": {
+  "zh": "简体中文",
+  "en": "Simplified Chinese",
+  "ar": "الصينية المبسطة"
+ },
+ "enum_085": {
+  "zh": "繁体中文",
+  "en": "Traditional Chinese",
+  "ar": "الصينية التقليدية"
+ },
+ "enum_086": {
+  "zh": "自动",
+  "en": "Auto",
+  "ar": "تلقائي"
+ },
+ "enum_087": {
+  "zh": "5秒",
+  "en": "5s",
+  "ar": "5 ثوان"
+ },
+ "enum_088": {
+  "zh": "10秒",
+  "en": "10s",
+  "ar": "10 ثوان"
+ },
+ "enum_089": {
+  "zh": "30秒",
+  "en": "30s",
+  "ar": "30 ثانية"
+ },
+ "enum_090": {
+  "zh": "1分钟",
+  "en": "1 min",
+  "ar": "1 دقيقة"
+ },
+ "enum_091": {
+  "zh": "5分钟",
+  "en": "5 min",
+  "ar": "5 دقائق"
+ },
+ "enum_092": {
+  "zh": "1次",
+  "en": "1 time",
+  "ar": "مرة واحدة"
+ },
+ "enum_093": {
+  "zh": "2次",
+  "en": "2 times",
+  "ar": "مرتان"
+ },
+ "enum_094": {
+  "zh": "3次",
+  "en": "3 times",
+  "ar": "3 مرات"
+ },
+ "enum_095": {
+  "zh": "5次",
+  "en": "5 times",
+  "ar": "5 مرات"
+ },
+ "app_name": {
+  "zh": "OpenWrt管家",
+  "en": "OpenWrt Manager",
+  "ar": "مدير OpenWrt"
+ },
+ "nav_home": {
+  "zh": "首页",
+  "en": "Home",
+  "ar": "الرئيسية"
+ },
+ "nav_devices": {
+  "zh": "设备",
+  "en": "Devices",
+  "ar": "الأجهزة"
+ },
+ "nav_plugins": {
+  "zh": "插件",
+  "en": "Plugins",
+  "ar": "الإضافات"
+ },
+ "nav_profile": {
+  "zh": "我的",
+  "en": "Profile",
+  "ar": "حسابي"
+ },
+ "home_title": {
+  "zh": "路由器状态",
+  "en": "Router status",
+  "ar": "حالة الراوتر"
+ },
+ "home_no_router": {
+  "zh": "暂无路由器",
+  "en": "No router yet",
+  "ar": "لا يوجد راوتر بعد"
+ },
+ "home_add_router": {
+  "zh": "添加路由器",
+  "en": "Add router",
+  "ar": "إضافة راوتر"
+ },
+ "home_status_online": {
+  "zh": "在线",
+  "en": "Online",
+  "ar": "متصل"
+ },
+ "home_status_offline": {
+  "zh": "离线",
+  "en": "Offline",
+  "ar": "غير متصل"
+ },
+ "home_uptime": {
+  "zh": "运行时间",
+  "en": "Uptime",
+  "ar": "مدة التشغيل"
+ },
+ "home_load": {
+  "zh": "负载",
+  "en": "Load",
+  "ar": "الحمل"
+ },
+ "home_memory": {
+  "zh": "内存",
+  "en": "Memory",
+  "ar": "الذاكرة"
+ },
+ "home_cpu": {
+  "zh": "CPU",
+  "en": "CPU",
+  "ar": "CPU"
+ },
+ "home_quick_actions": {
+  "zh": "快捷操作",
+  "en": "Quick actions",
+  "ar": "إجراءات سريعة"
+ },
+ "home_reboot": {
+  "zh": "重启",
+  "en": "Reboot",
+  "ar": "إعادة تشغيل"
+ },
+ "home_shutdown": {
+  "zh": "关机",
+  "en": "Shutdown",
+  "ar": "إيقاف التشغيل"
+ },
+ "home_wifi": {
+  "zh": "WiFi",
+  "en": "WiFi",
+  "ar": "WiFi"
+ },
+ "home_clients": {
+  "zh": "客户端",
+  "en": "Clients",
+  "ar": "العملاء"
+ },
+ "add_router_title": {
+  "zh": "添加路由器",
+  "en": "Add router",
+  "ar": "إضافة راوتر"
+ },
+ "add_router_address": {
+  "zh": "路由器地址",
+  "en": "Router address",
+  "ar": "عنوان الراوتر"
+ },
+ "add_router_address_hint": {
+  "zh": "例如：192.168.1.1",
+  "en": "e.g. 192.168.1.1",
+  "ar": "مثال: 192.168.1.1"
+ },
+ "add_router_username": {
+  "zh": "用户名",
+  "en": "Username",
+  "ar": "اسم المستخدم"
+ },
+ "add_router_username_hint": {
+  "zh": "默认：root",
+  "en": "Default: root",
+  "ar": "الافتراضي: root"
+ },
+ "add_router_password": {
+  "zh": "密码",
+  "en": "Password",
+  "ar": "كلمة المرور"
+ },
+ "add_router_password_hint": {
+  "zh": "请输入密码",
+  "en": "Enter password",
+  "ar": "أدخل كلمة المرور"
+ },
+ "add_router_connect": {
+  "zh": "连接",
+  "en": "Connect",
+  "ar": "اتصال"
+ },
+ "add_router_connecting": {
+  "zh": "连接中...",
+  "en": "Connecting...",
+  "ar": "جارٍ الاتصال..."
+ },
+ "add_router_success": {
+  "zh": "连接成功",
+  "en": "Connected successfully",
+  "ar": "تم الاتصال بنجاح"
+ },
+ "add_router_failed": {
+  "zh": "连接失败",
+  "en": "Connection failed",
+  "ar": "فشل الاتصال"
+ },
+ "add_router_name": {
+  "zh": "设备名称",
+  "en": "Device name",
+  "ar": "اسم الجهاز"
+ },
+ "add_router_name_hint": {
+  "zh": "可选，自定义名称",
+  "en": "Optional custom name",
+  "ar": "اختياري، اسم مخصص"
+ },
+ "devices_title": {
+  "zh": "我的设备",
+  "en": "My devices",
+  "ar": "أجهزتي"
+ },
+ "devices_add": {
+  "zh": "添加设备",
+  "en": "Add device",
+  "ar": "إضافة جهاز"
+ },
+ "plugins_title": {
+  "zh": "插件管理",
+  "en": "Manage plugins",
+  "ar": "إدارة الإضافات"
+ },
+ "plugins_installed": {
+  "zh": "已安装",
+  "en": "Installed",
+  "ar": "مثبتة"
+ },
+ "plugins_available": {
+  "zh": "可安装",
+  "en": "Available",
+  "ar": "متاحة"
+ },
+ "profile_title": {
+  "zh": "我的",
+  "en": "Profile",
+  "ar": "حسابي"
+ },
+ "profile_settings": {
+  "zh": "设置",
+  "en": "Settings",
+  "ar": "الإعدادات"
+ },
+ "profile_about": {
+  "zh": "关于",
+  "en": "About",
+  "ar": "حول"
+ },
+ "profile_version": {
+  "zh": "版本",
+  "en": "Version",
+  "ar": "الإصدار"
+ },
+ "widget_router_status_description": {
+  "zh": "显示路由器在线状态",
+  "en": "Shows the online status of the router",
+  "ar": "يعرض حالة اتصال الراوتر"
+ },
+ "widget_network_speed_description": {
+  "zh": "显示实时上传下载速度",
+  "en": "Shows real-time upload and download speeds",
+  "ar": "يعرض سرعة الرفع والتنزيل في الوقت الفعلي"
+ },
+ "common_confirm": {
+  "zh": "确定",
+  "en": "OK",
+  "ar": "موافق"
+ },
+ "common_cancel": {
+  "zh": "取消",
+  "en": "Cancel",
+  "ar": "إلغاء"
+ },
+ "common_delete": {
+  "zh": "删除",
+  "en": "Delete",
+  "ar": "حذف"
+ },
+ "common_edit": {
+  "zh": "编辑",
+  "en": "Edit",
+  "ar": "تعديل"
+ },
+ "common_save": {
+  "zh": "保存",
+  "en": "Save",
+  "ar": "حفظ"
+ },
+ "common_back": {
+  "zh": "返回",
+  "en": "Back",
+  "ar": "رجوع"
+ },
+ "common_retry": {
+  "zh": "重试",
+  "en": "Retry",
+  "ar": "إعادة المحاولة"
+ },
+ "common_loading": {
+  "zh": "加载中...",
+  "en": "Loading...",
+  "ar": "جارٍ التحميل..."
+ },
+ "common_empty": {
+  "zh": "暂无数据",
+  "en": "No data",
+  "ar": "لا توجد بيانات"
+ },
+ "common_success": {
+  "zh": "操作成功",
+  "en": "Success",
+  "ar": "تمت العملية بنجاح"
+ },
+ "common_failed": {
+  "zh": "操作失败",
+  "en": "Failed",
+  "ar": "فشلت العملية"
+ },
+ "common_complete": {
+  "zh": "完成",
+  "en": "Done",
+  "ar": "تم"
+ },
+ "common_restore": {
+  "zh": "恢复",
+  "en": "Restore",
+  "ar": "استعادة"
+ },
+ "advanced_title": {
+  "zh": "高级设置",
+  "en": "Advanced settings",
+  "ar": "إعدادات متقدمة"
+ },
+ "advanced_reboot_confirm": {
+  "zh": "确定要重启路由器吗？重启期间网络将中断。",
+  "en": "Reboot the router? The network will be down during the reboot.",
+  "ar": "هل تريد إعادة تشغيل الراوتر؟ ستنقطع الشبكة أثناء إعادة التشغيل."
+ },
+ "advanced_shutdown_confirm": {
+  "zh": "确定要关闭路由器吗？关闭后需要手动开机。",
+  "en": "Shut down the router? You will need to turn it on manually.",
+  "ar": "هل تريد إيقاف تشغيل الراوتر؟ ستحتاج إلى تشغيله يدويا بعد ذلك."
+ },
+ "backup_title": {
+  "zh": "配置备份",
+  "en": "Config backup",
+  "ar": "نسخة احتياطية للإعدادات"
+ },
+ "ddns_delete_title": {
+  "zh": "删除DDNS配置",
+  "en": "Delete DDNS configuration",
+  "ar": "حذف إعدادات DDNS"
+ },
+ "ddns_delete_confirm": {
+  "zh": "确定要删除DDNS配置吗？",
+  "en": "Delete this DDNS configuration?",
+  "ar": "هل تريد حذف إعدادات DDNS؟"
+ },
+ "system_title": {
+  "zh": "系统信息",
+  "en": "System info",
+  "ar": "معلومات النظام"
+ },
+ "wifi_title": {
+  "zh": "WiFi设置",
+  "en": "WiFi settings",
+  "ar": "إعدادات WiFi"
+ },
+ "firmware_title": {
+  "zh": "固件升级",
+  "en": "Firmware upgrade",
+  "ar": "ترقية البرنامج الثابت"
+ },
+ "terminal_title": {
+  "zh": "终端",
+  "en": "Terminal",
+  "ar": "الطرفية"
+ },
+ "diagnostic_title": {
+  "zh": "智能诊断",
+  "en": "Smart diagnostics",
+  "ar": "التشخيص الذكي"
+ },
+ "traffic_title": {
+  "zh": "流量统计",
+  "en": "Traffic statistics",
+  "ar": "إحصائيات حركة البيانات"
+ },
+ "device_manager_title": {
+  "zh": "设备管理",
+  "en": "Device manager",
+  "ar": "إدارة الأجهزة"
+ },
+ "notification_title": {
+  "zh": "通知设置",
+  "en": "Notification settings",
+  "ar": "إعدادات الإشعارات"
+ },
+ "widget_config_title": {
+  "zh": "小部件配置",
+  "en": "Widget configuration",
+  "ar": "إعدادات الأدوات"
+ },
+ "common_close": {
+  "zh": "关闭",
+  "en": "Close",
+  "ar": "إغلاق"
+ },
+ "common_uninstall": {
+  "zh": "卸载",
+  "en": "Uninstall",
+  "ar": "إلغاء التثبيت"
+ },
+ "common_update": {
+  "zh": "更新",
+  "en": "Update",
+  "ar": "تحديث"
+ },
+ "common_install": {
+  "zh": "安装",
+  "en": "Install",
+  "ar": "تثبيت"
+ },
+ "common_execute": {
+  "zh": "执行",
+  "en": "Execute",
+  "ar": "تنفيذ"
+ },
+ "common_clear": {
+  "zh": "清空",
+  "en": "Clear",
+  "ar": "مسح"
+ },
+ "common_clear_cache": {
+  "zh": "清除缓存",
+  "en": "Clear cache",
+  "ar": "مسح التخزين المؤقت"
+ },
+ "common_one_click_fix": {
+  "zh": "一键修复",
+  "en": "One-tap fix",
+  "ar": "إصلاح بنقرة واحدة"
+ },
+ "common_confirm_upgrade": {
+  "zh": "确认升级",
+  "en": "Confirm upgrade",
+  "ar": "تأكيد الترقية"
+ },
+ "common_scan_channel": {
+  "zh": "扫描信道",
+  "en": "Scan channels",
+  "ar": "فحص القنوات"
+ },
+ "status_updating": {
+  "zh": "更新中...",
+  "en": "Updating...",
+  "ar": "جارٍ التحديث..."
+ },
+ "status_installing": {
+  "zh": "安装中...",
+  "en": "Installing...",
+  "ar": "جارٍ التثبيت..."
+ },
+ "status_uninstalling": {
+  "zh": "卸载中...",
+  "en": "Uninstalling...",
+  "ar": "جارٍ إلغاء التثبيت..."
+ },
+ "status_scanning": {
+  "zh": "扫描中...",
+  "en": "Scanning...",
+  "ar": "جارٍ الفحص..."
+ },
+ "form_username": {
+  "zh": "用户名",
+  "en": "Username",
+  "ar": "اسم المستخدم"
+ },
+ "form_password": {
+  "zh": "密码",
+  "en": "Password",
+  "ar": "كلمة المرور"
+ },
+ "form_name": {
+  "zh": "名称",
+  "en": "Name",
+  "ar": "الاسم"
+ },
+ "form_domain": {
+  "zh": "域名",
+  "en": "Domain",
+  "ar": "اسم النطاق"
+ },
+ "form_url": {
+  "zh": "URL地址",
+  "en": "URL",
+  "ar": "عنوان URL"
+ },
+ "form_provider": {
+  "zh": "服务商",
+  "en": "Provider",
+  "ar": "مزود الخدمة"
+ },
+ "form_network_interface": {
+  "zh": "网络接口",
+  "en": "Network interface",
+  "ar": "واجهة الشبكة"
+ },
+ "form_connection_timeout": {
+  "zh": "连接超时",
+  "en": "Connection timeout",
+  "ar": "مهلة الاتصال"
+ },
+ "form_retry_count": {
+  "zh": "重试次数",
+  "en": "Retry count",
+  "ar": "عدد مرات إعادة المحاولة"
+ },
+ "form_refresh_interval": {
+  "zh": "刷新间隔",
+  "en": "Refresh interval",
+  "ar": "فاصل التحديث"
+ },
+ "form_traffic_unit": {
+  "zh": "流量单位",
+  "en": "Traffic unit",
+  "ar": "وحدة حركة البيانات"
+ },
+ "setting_language": {
+  "zh": "语言设置",
+  "en": "Language settings",
+  "ar": "إعدادات اللغة"
+ },
+ "setting_theme": {
+  "zh": "主题设置",
+  "en": "Theme settings",
+  "ar": "إعدادات المظهر"
+ },
+ "setting_widget": {
+  "zh": "桌面小部件",
+  "en": "Home screen widgets",
+  "ar": "أدوات الشاشة الرئيسية"
+ },
+ "setting_wifi_enhanced": {
+  "zh": "WiFi增强",
+  "en": "WiFi booster",
+  "ar": "تعزيز WiFi"
+ },
+ "dialog_delete_device": {
+  "zh": "删除设备",
+  "en": "Delete device",
+  "ar": "حذف الجهاز"
+ },
+ "dialog_clear_cache_confirm": {
+  "zh": "确定要清除所有缓存数据吗？",
+  "en": "Clear all cached data?",
+  "ar": "هل تريد مسح جميع بيانات التخزين المؤقت؟"
+ },
+ "dialog_firmware_upgrade_confirm": {
+  "zh": "确定要升级固件吗？升级过程中请勿断电，升级完成后路由器将自动重启。",
+  "en": "Upgrade the firmware? Do not disconnect the power during the process. The router will reboot automatically when the upgrade is complete.",
+  "ar": "هل تريد ترقية البرنامج الثابت؟ لا تفصل مصدر الطاقة أثناء العملية، وسيتم إعادة تشغيل الراوتر تلقائيا بعد اكتمال الترقية."
+ },
+ "dialog_delete_port_forward_confirm": {
+  "zh": "确定要删除端口转发规则「%1$s」吗？",
+  "en": "Delete the port forwarding rule “%1$s”?",
+  "ar": "هل تريد حذف قاعدة إعادة توجيه المنفذ «%1$s»؟"
+ },
+ "dialog_delete_router_confirm": {
+  "zh": "确定要删除「%1$s」吗？\\n删除后需要重新添加。",
+  "en": "Delete “%1$s”?\\nYou will need to add it again.",
+  "ar": "هل تريد حذف «%1$s»؟\\nبعد الحذف سوف تحتاج إلى إضافته مرة أخرى."
+ },
+ "dialog_kill_process_confirm": {
+  "zh": "确定要结束进程「%1$s」(PID: %2$d) 吗？",
+  "en": "End the process “%1$s” (PID: %2$d)?",
+  "ar": "هل تريد إنهاء العملية «%1$s» (PID: %2$d)؟"
+ },
+ "firewall_rule_name": {
+  "zh": "规则名称",
+  "en": "Rule name",
+  "ar": "اسم القاعدة"
+ },
+ "firewall_protocol": {
+  "zh": "协议",
+  "en": "Protocol",
+  "ar": "البروتوكول"
+ },
+ "firewall_external_port": {
+  "zh": "外部端口",
+  "en": "External port",
+  "ar": "المنفذ الخارجي"
+ },
+ "firewall_internal_ip": {
+  "zh": "内部IP",
+  "en": "Internal IP",
+  "ar": "عنوان IP الداخلي"
+ },
+ "firewall_internal_port": {
+  "zh": "内部端口",
+  "en": "Internal port",
+  "ar": "المنفذ الداخلي"
+ },
+ "common_add": {
+  "zh": "添加",
+  "en": "Add",
+  "ar": "إضافة"
+ },
+ "dialog_delete_ddns_confirm": {
+  "zh": "确定要删除DDNS配置「%1$s」吗？",
+  "en": "Delete the DDNS configuration “%1$s”?",
+  "ar": "هل تريد حذف إعدادات DDNS «%1$s»؟"
+ }
+}

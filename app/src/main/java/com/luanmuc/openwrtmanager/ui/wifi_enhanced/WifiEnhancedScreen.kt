@@ -28,6 +28,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.luanmuc.openwrtmanager.data.model.WifiBand
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * WiFi增强页面
@@ -52,7 +53,7 @@ fun WifiEnhancedScreen(
                 title = { Text(stringResource(R.string.setting_wifi_enhanced)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                        Icon(Icons.Default.ArrowBack, contentDescription = Loc.s(R.string.s0244))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -74,7 +75,7 @@ fun WifiEnhancedScreen(
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 
                 SectionTitle(
-                    title = "WiFi定时",
+                    title = Loc.s(R.string.s0808),
                     icon = Icons.Default.Schedule
                 )
                 
@@ -107,7 +108,7 @@ fun WifiEnhancedScreen(
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 
                 SectionTitle(
-                    title = "访客网络",
+                    title = Loc.s(R.string.s0464),
                     icon = Icons.Default.Smartphone
                 )
                 
@@ -137,7 +138,7 @@ fun WifiEnhancedScreen(
             // 信道分析
             item {
                 SectionTitle(
-                    title = "信道分析",
+                    title = Loc.s(R.string.s0809),
                     icon = Icons.Default.SignalWifi4Bar
                 )
                 
@@ -191,7 +192,7 @@ fun WifiEnhancedScreen(
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 
                 SectionTitle(
-                    title = "发射功率",
+                    title = Loc.s(R.string.s0810),
                     icon = Icons.Default.SignalWifi4Bar
                 )
                 
@@ -342,7 +343,7 @@ private fun GuestNetworkCard(
                 ) {
                     Icon(
                         Icons.Default.Smartphone,
-                        contentDescription = "访客网络",
+                        contentDescription = Loc.s(R.string.s0464),
                         tint = if (config.enabled) MiTheme.Primary else MiTheme.TextTertiary,
                         modifier = Modifier.size(20.dp)
                     )
@@ -353,7 +354,7 @@ private fun GuestNetworkCard(
                 // 信息
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "访客网络",
+                        text = Loc.s(R.string.s0464),
                         color = MiTheme.TextPrimary,
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Medium
@@ -387,12 +388,12 @@ private fun GuestNetworkCard(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "最大客户端数",
+                        text = Loc.s(R.string.s0811),
                         color = MiTheme.TextSecondary,
                         style = MaterialTheme.typography.bodySmall
                     )
                     Text(
-                        text = "${config.maxClients} 台",
+                        text = Loc.s(R.string.s0812, config.maxClients),
                         color = MiTheme.TextPrimary,
                         style = MaterialTheme.typography.bodySmall,
                         fontWeight = FontWeight.Medium
@@ -406,12 +407,12 @@ private fun GuestNetworkCard(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "客户端隔离",
+                        text = Loc.s(R.string.s0813),
                         color = MiTheme.TextSecondary,
                         style = MaterialTheme.typography.bodySmall
                     )
                     Text(
-                        text = if (config.isolated) "已开启" else "已关闭",
+                        text = if (config.isolated) Loc.s(R.string.s0463) else Loc.s(R.string.s0465),
                         color = if (config.isolated) MiTheme.Success else MiTheme.TextTertiary,
                         style = MaterialTheme.typography.bodySmall,
                         fontWeight = FontWeight.Medium
@@ -509,14 +510,14 @@ private fun ChannelItemCard(
             // 信道信息
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "信道 ${channel.channel}",
+                    text = Loc.s(R.string.s0814, channel.channel),
                     color = MiTheme.TextPrimary,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Medium
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = "${channel.frequency} MHz · 利用率 ${channel.utilization}%",
+                    text = Loc.s(R.string.s0815, channel.frequency, channel.utilization),
                     color = MiTheme.TextSecondary,
                     style = MaterialTheme.typography.bodySmall
                 )
@@ -524,7 +525,7 @@ private fun ChannelItemCard(
             
             // 活跃站点数
             Text(
-                text = "${channel.activeStations} 台",
+                text = Loc.s(R.string.s0812, channel.activeStations),
                 color = MiTheme.TextTertiary,
                 style = MaterialTheme.typography.bodySmall
             )
@@ -565,7 +566,7 @@ private fun TxPowerCard(
                 ) {
                     Icon(
                         Icons.Default.SignalWifi4Bar,
-                        contentDescription = "发射功率",
+                        contentDescription = Loc.s(R.string.s0810),
                         tint = MiTheme.Primary,
                         modifier = Modifier.size(20.dp)
                     )
@@ -576,7 +577,7 @@ private fun TxPowerCard(
                 // 信息
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "发射功率",
+                        text = Loc.s(R.string.s0810),
                         color = MiTheme.TextPrimary,
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Medium

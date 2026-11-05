@@ -11,6 +11,8 @@ import com.luanmuc.openwrtmanager.util.DebugMode
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlinx.coroutines.delay
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 终端Repository
@@ -123,7 +125,7 @@ class TerminalRepository private constructor(private val context: Context) {
                     name = obj.optString("name", ""),
                     command = obj.optString("command", ""),
                     description = obj.optString("description", ""),
-                    category = obj.optString("category", "常用")
+                    category = obj.optString("category", Loc.s(R.string.s0015))
                 )
             }
         } catch (e: Exception) {
@@ -138,59 +140,59 @@ class TerminalRepository private constructor(private val context: Context) {
         return listOf(
             QuickCommand(
                 id = "q1",
-                name = "查看系统信息",
+                name = Loc.s(R.string.s0220),
                 command = "uname -a",
-                description = "显示系统内核信息",
-                category = "系统"
+                description = Loc.s(R.string.s0221),
+                category = Loc.s(R.string.s0222)
             ),
             QuickCommand(
                 id = "q2",
-                name = "查看内存使用",
+                name = Loc.s(R.string.s0223),
                 command = "free -h",
-                description = "显示内存使用情况",
-                category = "系统"
+                description = Loc.s(R.string.s0224),
+                category = Loc.s(R.string.s0222)
             ),
             QuickCommand(
                 id = "q3",
-                name = "查看磁盘空间",
+                name = Loc.s(R.string.s0225),
                 command = "df -h",
-                description = "显示磁盘使用情况",
-                category = "系统"
+                description = Loc.s(R.string.s0226),
+                category = Loc.s(R.string.s0222)
             ),
             QuickCommand(
                 id = "q4",
-                name = "查看网络连接",
+                name = Loc.s(R.string.s0227),
                 command = "netstat -tlnp",
-                description = "显示监听端口",
-                category = "网络"
+                description = Loc.s(R.string.s0228),
+                category = Loc.s(R.string.s0174)
             ),
             QuickCommand(
                 id = "q5",
-                name = "查看路由表",
+                name = Loc.s(R.string.s0229),
                 command = "route -n",
-                description = "显示路由表",
-                category = "网络"
+                description = Loc.s(R.string.s0230),
+                category = Loc.s(R.string.s0174)
             ),
             QuickCommand(
                 id = "q6",
-                name = "查看进程",
+                name = Loc.s(R.string.s0231),
                 command = "ps aux",
-                description = "显示所有进程",
-                category = "系统"
+                description = Loc.s(R.string.s0232),
+                category = Loc.s(R.string.s0222)
             ),
             QuickCommand(
                 id = "q7",
-                name = "重启路由器",
+                name = Loc.s(R.string.s0233),
                 command = "reboot",
-                description = "重启路由器",
-                category = "系统"
+                description = Loc.s(R.string.s0233),
+                category = Loc.s(R.string.s0222)
             ),
             QuickCommand(
                 id = "q8",
-                name = "查看CPU信息",
+                name = Loc.s(R.string.s0234),
                 command = "cat /proc/cpuinfo",
-                description = "显示CPU信息",
-                category = "系统"
+                description = Loc.s(R.string.s0235),
+                category = Loc.s(R.string.s0222)
             )
         )
     }
@@ -234,7 +236,7 @@ class TerminalRepository private constructor(private val context: Context) {
         
         // 真实模式：通过LuCI RPC执行命令
         return try {
-            val output = luciRepository.executeCommand(command) ?: "命令执行失败"
+            val output = luciRepository.executeCommand(command) ?: Loc.s(R.string.s0236)
             val endTime = System.currentTimeMillis()
             CommandHistory(
                 id = endTime,
@@ -249,7 +251,7 @@ class TerminalRepository private constructor(private val context: Context) {
             CommandHistory(
                 id = endTime,
                 command = command,
-                output = "错误: ${e.message ?: "未知错误"}",
+                output = Loc.s(R.string.s0237, e.message ?: Loc.s(R.string.s0115)),
                 exitCode = -1,
                 timestamp = startTime,
                 duration = endTime - startTime
@@ -344,7 +346,7 @@ class TerminalRepository private constructor(private val context: Context) {
                   cat /etc/openwrt_release - 版本信息
             """.trimIndent()
             command == "clear" || command == "cls" -> ""
-            else -> "命令执行完成\n$command"
+            else -> Loc.s(R.string.s0238, command)
         }
     }
     

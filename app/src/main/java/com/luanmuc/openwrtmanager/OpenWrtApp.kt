@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
+import com.luanmuc.openwrtmanager.util.Loc
 import com.luanmuc.openwrtmanager.util.NetworkMonitor
 import com.luanmuc.openwrtmanager.util.AppNotificationManager
 import com.luanmuc.openwrtmanager.util.LogUtils
@@ -15,6 +16,8 @@ class OpenWrtApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        // 初始化本地化（必须在其他组件之前，支持英语/阿拉伯语）
+        Loc.init(this)
         // 初始化日志工具（release版本禁用调试日志）
         LogUtils.isDebugEnabled = BuildConfig.DEBUG
         // 初始化全局异常处理

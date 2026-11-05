@@ -34,6 +34,8 @@ import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.ui.components.MiColors
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * WebView插件容器页面
@@ -69,7 +71,7 @@ fun WebViewPluginScreen(
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = Color.White
                         )
                     }
@@ -78,7 +80,7 @@ fun WebViewPluginScreen(
                     IconButton(onClick = { webView?.reload() }) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
-                            contentDescription = "刷新",
+                            contentDescription = Loc.s(R.string.s0322),
                             tint = Color.White
                         )
                     }
@@ -179,7 +181,7 @@ fun WebViewPluginScreen(
                                 ) {
                                     super.onReceivedError(view, request, error)
                                     if (request?.isForMainFrame == true) {
-                                        errorMessage = error?.description?.toString() ?: "加载失败"
+                                        errorMessage = error?.description?.toString() ?: Loc.s(R.string.s0329)
                                     }
                                 }
                             }
@@ -249,7 +251,7 @@ fun WebViewPluginScreen(
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                             Text(
-                                text = "加载失败",
+                                text = Loc.s(R.string.s0329),
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MiTheme.TextPrimary
@@ -263,7 +265,7 @@ fun WebViewPluginScreen(
                             )
                             Spacer(modifier = Modifier.height(24.dp))
                             MiButton(
-                                text = "重新加载",
+                                text = Loc.s(R.string.s0775),
                                 onClick = {
                                     errorMessage = null
                                     webView?.reload()

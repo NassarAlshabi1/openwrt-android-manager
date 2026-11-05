@@ -64,6 +64,7 @@ import com.luanmuc.openwrtmanager.ui.components.MiPrimaryButton
 import com.luanmuc.openwrtmanager.ui.components.MiLinearProgress
 import com.luanmuc.openwrtmanager.ui.components.MiTextField
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 添加路由器页面 - 小米路由器风格
@@ -89,12 +90,12 @@ fun AddRouterScreen(
     Scaffold(
         topBar = {
             MiTopAppBar(
-                title = if (uiState.isEditMode) "编辑路由器" else stringResource(R.string.add_router_title),
+                title = if (uiState.isEditMode) Loc.s(R.string.s0243) else stringResource(R.string.add_router_title),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             Icons.Default.ArrowBack,
-                            contentDescription = "返回",
+                            contentDescription = Loc.s(R.string.s0244),
                             tint = MiTheme.TextPrimary
                         )
                     }
@@ -133,14 +134,14 @@ fun AddRouterScreen(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "连接你的 OpenWrt 路由器",
+                    text = Loc.s(R.string.s0245),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = MiTheme.TextPrimary
                 )
                 Spacer(modifier = Modifier.height(6.dp))
                 Text(
-                    text = "通过 LuCI API 安全连接",
+                    text = Loc.s(R.string.s0246),
                     fontSize = 14.sp,
                     color = MiTheme.TextTertiary
                 )
@@ -152,7 +153,7 @@ fun AddRouterScreen(
                 onValueChange = { viewModel.onNameChange(it) },
                 label = stringResource(R.string.add_router_name),
                 placeholder = stringResource(R.string.add_router_name_hint),
-                supportingText = "可选，留空将自动获取",
+                supportingText = Loc.s(R.string.s0247),
                 leadingIcon = {
                     Icon(
                         Icons.Default.Label,
@@ -204,7 +205,7 @@ fun AddRouterScreen(
                 onValueChange = { viewModel.onPasswordChange(it) },
                 label = stringResource(R.string.add_router_password),
                 placeholder = stringResource(R.string.add_router_password_hint),
-                supportingText = "可选，无密码路由器可留空",
+                supportingText = Loc.s(R.string.s0248),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 visualTransformation = if (passwordVisible) VisualTransformation.None
                 else PasswordVisualTransformation(),
@@ -221,7 +222,7 @@ fun AddRouterScreen(
                         Icon(
                             imageVector = if (passwordVisible) Icons.Default.Visibility
                             else Icons.Default.VisibilityOff,
-                            contentDescription = if (passwordVisible) "隐藏密码" else "显示密码",
+                            contentDescription = if (passwordVisible) Loc.s(R.string.s0249) else Loc.s(R.string.s0250),
                             tint = MiTheme.TextTertiary,
                             modifier = Modifier.size(20.dp)
                         )
@@ -277,7 +278,7 @@ fun AddRouterScreen(
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
-                                    text = "正在同步数据...",
+                                    text = Loc.s(R.string.s0251),
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Medium,
                                     color = MiTheme.TextPrimary
@@ -303,7 +304,7 @@ fun AddRouterScreen(
                         )
                         Spacer(modifier = Modifier.height(6.dp))
                         Text(
-                            text = "${uiState.preloadCurrent}/${uiState.preloadTotal} 项",
+                            text = Loc.s(R.string.s0252, uiState.preloadCurrent, uiState.preloadTotal),
                             fontSize = 12.sp,
                             color = MiTheme.TextTertiary,
                             textAlign = TextAlign.End,
@@ -356,14 +357,14 @@ fun AddRouterScreen(
                     Spacer(modifier = Modifier.width(10.dp))
                     Column {
                         Text(
-                            text = "安全连接",
+                            text = Loc.s(R.string.s0253),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Medium,
                             color = MiTheme.TextPrimary
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
-                            text = "密码加密存储，仅用于本地认证",
+                            text = Loc.s(R.string.s0254),
                             fontSize = 12.sp,
                             color = MiTheme.TextTertiary
                         )

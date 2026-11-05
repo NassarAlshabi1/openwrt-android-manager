@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 class PluginDependencyViewModel(application: Application) : BaseViewModel(application) {
 
@@ -65,7 +67,7 @@ class PluginDependencyViewModel(application: Application) : BaseViewModel(applic
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    error = e.message ?: "检测失败",
+                    error = e.message ?: Loc.s(R.string.s0568),
                     isLoading = false
                 )
             }
@@ -77,10 +79,10 @@ class PluginDependencyViewModel(application: Application) : BaseViewModel(applic
         if (status.isInstalled) return
 
         if (DebugMode.isDebugMode) {
-            _uiState.value = _uiState.value.copy(installingIndex = index, installProgress = 10, installMessage = "正在更新软件源...")
+            _uiState.value = _uiState.value.copy(installingIndex = index, installProgress = 10, installMessage = Loc.s(R.string.s0141))
             viewModelScope.launch {
                 kotlinx.coroutines.delay(800)
-                _uiState.value = _uiState.value.copy(installProgress = 50, installMessage = "正在安装...")
+                _uiState.value = _uiState.value.copy(installProgress = 50, installMessage = Loc.s(R.string.s0318))
                 kotlinx.coroutines.delay(1200)
                 val newStatuses = _uiState.value.pluginStatuses.toMutableList()
                 newStatuses[index] = status.copy(isInstalled = true)
@@ -88,7 +90,7 @@ class PluginDependencyViewModel(application: Application) : BaseViewModel(applic
                     pluginStatuses = newStatuses,
                     installingIndex = -1,
                     installProgress = 100,
-                    installMessage = "安装成功"
+                    installMessage = Loc.s(R.string.s0145)
                 )
             }
             return
@@ -108,7 +110,7 @@ class PluginDependencyViewModel(application: Application) : BaseViewModel(applic
                     _uiState.value = _uiState.value.copy(pluginStatuses = newStatuses)
                 }
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(installMessage = "安装异常：${e.message}")
+                _uiState.value = _uiState.value.copy(installMessage = Loc.s(R.string.s0147, e.message))
             } finally {
                 _uiState.value = _uiState.value.copy(installingIndex = -1)
             }

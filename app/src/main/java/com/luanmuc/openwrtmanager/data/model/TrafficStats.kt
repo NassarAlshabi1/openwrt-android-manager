@@ -1,5 +1,8 @@
 package com.luanmuc.openwrtmanager.data.model
 
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
+
 /**
  * 流量统计数据
  */
@@ -38,9 +41,16 @@ data class TrafficHistoryPoint(
 /**
  * 流量统计周期
  */
-enum class TrafficPeriod(val displayName: String) {
-    TODAY("今日"),
-    WEEK("本周"),
-    MONTH("本月"),
-    YEAR("本年")
+enum class TrafficPeriod {
+    TODAY,
+    WEEK,
+    MONTH,
+    YEAR;
+    val displayName: String
+        get() = when (this) {
+            TODAY -> Loc.s(R.string.enum_046)
+            WEEK -> Loc.s(R.string.enum_047)
+            MONTH -> Loc.s(R.string.enum_048)
+            YEAR -> Loc.s(R.string.enum_049)
+        }
 }

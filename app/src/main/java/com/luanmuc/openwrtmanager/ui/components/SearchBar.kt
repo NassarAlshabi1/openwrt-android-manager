@@ -37,6 +37,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 搜索栏组件
@@ -46,7 +48,7 @@ fun SearchBar(
     query: String,
     onQueryChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    placeholder: String = "搜索...",
+    placeholder: String = Loc.s(R.string.s0325),
     onSearch: (() -> Unit)? = null,
     onClear: (() -> Unit)? = null
 ) {
@@ -98,7 +100,7 @@ fun SearchTextField(
     query: String,
     onQueryChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    placeholder: String = "搜索...",
+    placeholder: String = Loc.s(R.string.s0325),
     onSearch: (() -> Unit)? = null,
     singleLine: Boolean = true
 ) {
@@ -166,9 +168,9 @@ fun SearchResultCount(
     ) {
         Text(
             text = if (keyword.isNotEmpty()) {
-                "找到 $count 个「$keyword」相关结果"
+                Loc.s(R.string.s0326, count, keyword)
             } else {
-                "共 $count 项"
+                Loc.s(R.string.s0327, count)
             },
             style = MaterialTheme.typography.bodySmall,
             color = MiTheme.TextSecondary

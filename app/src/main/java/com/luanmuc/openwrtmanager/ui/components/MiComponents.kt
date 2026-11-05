@@ -18,6 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 // ========== 小米风格颜色 ==========
 object MiColors {
@@ -687,7 +689,7 @@ fun MiEmptyState(
 // ========== 小米风格加载状态 ==========
 @Composable
 fun MiLoadingState(
-    text: String = "加载中...",
+    text: String = Loc.s(R.string.s0312),
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -742,7 +744,7 @@ fun MiErrorState(
             color = MiColors.TextSecondary
         )
         Spacer(modifier = Modifier.height(16.dp))
-        MiTextButton(text = "重试", onClick = onRetry)
+        MiTextButton(text = Loc.s(R.string.s0313), onClick = onRetry)
     }
 }
 

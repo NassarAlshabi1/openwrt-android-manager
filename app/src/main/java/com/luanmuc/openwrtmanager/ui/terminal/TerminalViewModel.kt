@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 终端ViewModel
@@ -73,7 +75,7 @@ class TerminalViewModel(application: Application) : BaseViewModel(application) {
                 _quickCommands.value = quickCommands
                 
                 // 初始化终端输出
-                _terminalOutput.value = "OpenWrt 终端\n欢迎使用 OpenWrt 管家终端\n输入 'help' 查看可用命令\n\n"
+                _terminalOutput.value = Loc.s(R.string.s0770)
                 
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -116,7 +118,7 @@ class TerminalViewModel(application: Application) : BaseViewModel(application) {
                 _commandHistory.value = history
                 
             } catch (e: Exception) {
-                _terminalOutput.value += "错误: ${e.message}\n"
+                _terminalOutput.value += Loc.s(R.string.s0771, e.message)
             } finally {
                 _isExecuting.value = false
             }

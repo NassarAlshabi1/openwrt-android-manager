@@ -32,6 +32,7 @@ import com.luanmuc.openwrtmanager.data.model.DiagnosticCategory
 import com.luanmuc.openwrtmanager.data.model.DiagnosticStatus
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 智能诊断增强页面
@@ -64,7 +65,7 @@ fun DiagnosticEnhancedScreen(
                 title = { Text(stringResource(R.string.diagnostic_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                        Icon(Icons.Default.ArrowBack, contentDescription = Loc.s(R.string.s0244))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -129,7 +130,7 @@ fun DiagnosticEnhancedScreen(
                 Spacer(modifier = Modifier.height(MiDimens.itemSpacing))
                 
                 SectionTitle(
-                    title = "优化建议",
+                    title = Loc.s(R.string.s0378),
                     icon = Icons.Default.AutoFixHigh
                 )
                 
@@ -156,7 +157,7 @@ fun DiagnosticEnhancedScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "暂无优化建议",
+                            text = Loc.s(R.string.s0399),
                             color = MiTheme.TextTertiary,
                             style = MaterialTheme.typography.bodyMedium
                         )
@@ -227,7 +228,7 @@ private fun ScoreCard(
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = "分",
+                            text = Loc.s(R.string.s0400),
                             color = MiTheme.TextSecondary,
                             style = MaterialTheme.typography.bodySmall
                         )
@@ -238,7 +239,7 @@ private fun ScoreCard(
             Spacer(modifier = Modifier.height(16.dp))
             
             Text(
-                text = if (isScanning) "正在检测中..." else status.displayName,
+                text = if (isScanning) Loc.s(R.string.s0401) else status.displayName,
                 color = MiTheme.TextPrimary,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Medium
@@ -260,7 +261,7 @@ private fun ScoreCard(
                     modifier = Modifier.size(18.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(if (isScanning) "检测中..." else "开始全面体检")
+                Text(if (isScanning) Loc.s(R.string.s0402) else Loc.s(R.string.s0403))
             }
         }
     }
@@ -301,7 +302,7 @@ private fun CategoryTabs(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "全部",
+                    text = Loc.s(R.string.s0404),
                     color = if (selectedCategory == null) androidx.compose.ui.graphics.Color.White else MiTheme.TextPrimary,
                     style = MaterialTheme.typography.bodySmall,
                     fontWeight = if (selectedCategory == null) FontWeight.Medium else FontWeight.Normal
@@ -463,7 +464,7 @@ private fun SuggestionCard(
                 
                 // 优先级
                 Text(
-                    text = "优先级: ${suggestion.priority}",
+                    text = Loc.s(R.string.s0405, suggestion.priority),
                     color = MiTheme.TextTertiary,
                     style = MaterialTheme.typography.bodySmall
                 )

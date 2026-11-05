@@ -1,5 +1,8 @@
 package com.luanmuc.openwrtmanager.util
 
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
+
 /**
  * 网络诊断工具
  * 智能检测网络问题并给出修复建议
@@ -64,8 +67,8 @@ object NetworkDiagnostic {
                 DiagnosticIssue(
                     type = IssueType.CONNECTION,
                     severity = Severity.CRITICAL,
-                    description = "无法连接到路由器",
-                    suggestion = "请检查路由器地址、用户名和密码是否正确"
+                    description = Loc.s(R.string.s0915),
+                    suggestion = Loc.s(R.string.s0916)
                 )
             )
             return DiagnosticResult(false, issues, suggestions)
@@ -77,11 +80,11 @@ object NetworkDiagnostic {
                 DiagnosticIssue(
                     type = IssueType.CPU_USAGE,
                     severity = Severity.WARNING,
-                    description = "CPU使用率过高: ${String.format("%.1f%%", routerStatus.cpuUsage)}",
-                    suggestion = "建议检查是否有进程占用过多CPU资源，可尝试重启路由器"
+                    description = Loc.s(R.string.s0917, String.format("%.1f%%", routerStatus.cpuUsage)),
+                    suggestion = Loc.s(R.string.s0918)
                 )
             )
-            suggestions.add("CPU使用率过高，可能影响网络性能")
+            suggestions.add(Loc.s(R.string.s0919))
         }
 
         // 检查内存使用率
@@ -94,11 +97,11 @@ object NetworkDiagnostic {
                 DiagnosticIssue(
                     type = IssueType.MEMORY_USAGE,
                     severity = Severity.WARNING,
-                    description = "内存使用率过高: ${String.format("%.1f%%", memoryUsage)}",
-                    suggestion = "建议关闭不必要的服务或插件，释放内存"
+                    description = Loc.s(R.string.s0920, String.format("%.1f%%", memoryUsage)),
+                    suggestion = Loc.s(R.string.s0921)
                 )
             )
-            suggestions.add("内存使用率过高，可能导致设备运行缓慢")
+            suggestions.add(Loc.s(R.string.s0922))
         }
 
         // 检查存储使用率
@@ -111,11 +114,11 @@ object NetworkDiagnostic {
                 DiagnosticIssue(
                     type = IssueType.STORAGE_USAGE,
                     severity = Severity.WARNING,
-                    description = "存储空间不足: ${String.format("%.1f%%", storageUsage)}",
-                    suggestion = "建议清理不必要的文件和日志，释放存储空间"
+                    description = Loc.s(R.string.s0923, String.format("%.1f%%", storageUsage)),
+                    suggestion = Loc.s(R.string.s0924)
                 )
             )
-            suggestions.add("存储空间不足，可能影响系统正常运行")
+            suggestions.add(Loc.s(R.string.s0925))
         }
 
         // 检查运行时间
@@ -124,11 +127,11 @@ object NetworkDiagnostic {
                 DiagnosticIssue(
                     type = IssueType.UPTIME,
                     severity = Severity.INFO,
-                    description = "设备已连续运行超过30天",
-                    suggestion = "建议定期重启路由器，以保持最佳性能"
+                    description = Loc.s(R.string.s0926),
+                    suggestion = Loc.s(R.string.s0927)
                 )
             )
-            suggestions.add("设备运行时间较长，建议定期重启")
+            suggestions.add(Loc.s(R.string.s0928))
         }
 
         // 检查WAN连接
@@ -137,17 +140,17 @@ object NetworkDiagnostic {
                 DiagnosticIssue(
                     type = IssueType.CONNECTION,
                     severity = Severity.ERROR,
-                    description = "WAN口未连接",
-                    suggestion = "请检查WAN口网线是否插好，以及宽带是否正常"
+                    description = Loc.s(R.string.s0929),
+                    suggestion = Loc.s(R.string.s0930)
                 )
             )
-            suggestions.add("WAN连接异常，无法访问互联网")
+            suggestions.add(Loc.s(R.string.s0931))
         }
 
         val isHealthy = issues.none { it.severity == Severity.ERROR || it.severity == Severity.CRITICAL }
 
         if (isHealthy && issues.isEmpty()) {
-            suggestions.add("网络状态良好，一切正常")
+            suggestions.add(Loc.s(R.string.s0932))
         }
 
         return DiagnosticResult(isHealthy, issues, suggestions)

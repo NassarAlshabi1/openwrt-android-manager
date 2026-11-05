@@ -20,6 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 空状态组件
@@ -80,7 +82,7 @@ fun EmptyState(
 @Composable
 fun LoadingState(
     modifier: Modifier = Modifier,
-    message: String = "加载中..."
+    message: String = Loc.s(R.string.s0312)
 ) {
     Column(
         modifier = modifier
@@ -115,7 +117,7 @@ fun ErrorState(
     description: String = "",
     modifier: Modifier = Modifier,
     retryAction: (() -> Unit)? = null,
-    retryText: String = "重试"
+    retryText: String = Loc.s(R.string.s0313)
 ) {
     Column(
         modifier = modifier
@@ -172,8 +174,8 @@ fun ErrorState(
 @Composable
 fun OfflineState(
     modifier: Modifier = Modifier,
-    message: String = "网络连接已断开",
-    description: String = "请检查网络连接后重试"
+    message: String = Loc.s(R.string.s0314),
+    description: String = Loc.s(R.string.s0315)
 ) {
     ErrorState(
         icon = Icons.Default.WifiOff,

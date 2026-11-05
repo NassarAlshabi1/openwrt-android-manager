@@ -1,5 +1,8 @@
 package com.luanmuc.openwrtmanager.data.model
 
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
+
 /**
  * LuCI ubus RPC 请求封装
  * 基于 OpenWrt rpcd ubus JSON-RPC 2.0 协议
@@ -200,10 +203,16 @@ data class RepoInfo(
 /**
  * 软件源类型
  */
-enum class RepoType(val displayName: String) {
-    OFFICIAL_MIRROR("官方镜像源"),
-    THIRD_PARTY("第三方插件源"),
-    CUSTOM("自定义源")
+enum class RepoType {
+    OFFICIAL_MIRROR,
+    THIRD_PARTY,
+    CUSTOM;
+    val displayName: String
+        get() = when (this) {
+            OFFICIAL_MIRROR -> Loc.s(R.string.enum_072)
+            THIRD_PARTY -> Loc.s(R.string.enum_073)
+            CUSTOM -> Loc.s(R.string.enum_074)
+        }
 }
 
 /**
@@ -332,22 +341,37 @@ data class FullSystemInfo(
 /**
  * 包管理器类型
  */
-enum class PackageManagerType(val displayName: String) {
-    OPKG("OPKG"),
-    APK("APK"),
-    UNKNOWN("未知")
+enum class PackageManagerType {
+    OPKG,
+    APK,
+    UNKNOWN;
+    val displayName: String
+        get() = when (this) {
+            OPKG -> "OPKG"
+            APK -> "APK"
+            UNKNOWN -> Loc.s(R.string.enum_075)
+        }
 }
 
 /**
  * 架构类型
  */
-enum class ArchitectureType(val displayName: String, val opkgArch: String, val apkArch: String) {
-    X86_64("x86_64", "x86_64", "x86_64"),
-    ARMV7("armv7", "arm_cortex-a7_neon-vfpv4", "armv7"),
-    AARCH64("aarch64", "aarch64_cortex-a53", "aarch64"),
-    MIPSEL("mipsel", "mipsel_24kc", "mipsel"),
-    MIPS("mips", "mips_24kc", "mips"),
-    UNKNOWN("未知", "all", "all")
+enum class ArchitectureType(val opkgArch: String, val apkArch: String) {
+    X86_64("x86_64", "x86_64"),
+    ARMV7("arm_cortex-a7_neon-vfpv4", "armv7"),
+    AARCH64("aarch64_cortex-a53", "aarch64"),
+    MIPSEL("mipsel_24kc", "mipsel"),
+    MIPS("mips_24kc", "mips"),
+    UNKNOWN("all", "all");
+    val displayName: String
+        get() = when (this) {
+            X86_64 -> "x86_64"
+            ARMV7 -> "armv7"
+            AARCH64 -> "aarch64"
+            MIPSEL -> "mipsel"
+            MIPS -> "mips"
+            UNKNOWN -> Loc.s(R.string.enum_075)
+        }
 }
 
 /**
@@ -365,15 +389,26 @@ data class RepoPreset(
 /**
  * 软件源预设类型
  */
-enum class RepoPresetType(val displayName: String) {
-    OFFICIAL("官方源"),
-    TSINGHUA("清华源"),
-    USTC("中科大源"),
-    ALIYUN("阿里云源"),
-    KENZOK8("kenzok8源"),
-    LIENOL("lienol源"),
-    IMMORTALWRT("ImmortalWrt源"),
-    CUSTOM("自定义")
+enum class RepoPresetType {
+    OFFICIAL,
+    TSINGHUA,
+    USTC,
+    ALIYUN,
+    KENZOK8,
+    LIENOL,
+    IMMORTALWRT,
+    CUSTOM;
+    val displayName: String
+        get() = when (this) {
+            OFFICIAL -> Loc.s(R.string.enum_076)
+            TSINGHUA -> Loc.s(R.string.enum_077)
+            USTC -> Loc.s(R.string.enum_078)
+            ALIYUN -> Loc.s(R.string.enum_079)
+            KENZOK8 -> Loc.s(R.string.enum_080)
+            LIENOL -> Loc.s(R.string.enum_081)
+            IMMORTALWRT -> Loc.s(R.string.enum_082)
+            CUSTOM -> Loc.s(R.string.enum_083)
+        }
 }
 
 
@@ -449,13 +484,22 @@ data class PortStatus(
 /**
  * 网口类型
  */
-enum class PortType(val displayName: String) {
-    WAN("WAN"),
-    LAN("LAN"),
-    WIFI("WiFi"),
-    SFP("SFP"),
-    USB("USB"),
-    UNKNOWN("未知")
+enum class PortType {
+    WAN,
+    LAN,
+    WIFI,
+    SFP,
+    USB,
+    UNKNOWN;
+    val displayName: String
+        get() = when (this) {
+            WAN -> "WAN"
+            LAN -> "LAN"
+            WIFI -> "WiFi"
+            SFP -> "SFP"
+            USB -> "USB"
+            UNKNOWN -> Loc.s(R.string.enum_075)
+        }
 }
 
 /**

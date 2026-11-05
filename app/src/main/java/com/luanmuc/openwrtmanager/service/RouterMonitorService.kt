@@ -18,6 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 路由器监控服务
@@ -87,8 +88,8 @@ class RouterMonitorService : Service() {
         val channelId = AppNotificationManager.CHANNEL_ROUTER_STATUS
         
         return NotificationCompat.Builder(this, channelId)
-            .setContentTitle("路由器监控中")
-            .setContentText("正在监控路由器在线状态")
+            .setContentTitle(Loc.s(R.string.s0240))
+            .setContentText(Loc.s(R.string.s0241))
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setOngoing(true)
@@ -155,7 +156,7 @@ class RouterMonitorService : Service() {
         handler.post {
             try {
                 AppNotificationManager.showRouterOfflineNotification(
-                    routerName = "OpenWrt 路由器"
+                    routerName = Loc.s(R.string.s0242)
                 )
             } catch (e: Exception) {
                 LogUtils.e(TAG, "发送离线通知失败", e)
@@ -170,7 +171,7 @@ class RouterMonitorService : Service() {
         handler.post {
             try {
                 AppNotificationManager.showRouterOnlineNotification(
-                    routerName = "OpenWrt 路由器"
+                    routerName = Loc.s(R.string.s0242)
                 )
             } catch (e: Exception) {
                 LogUtils.e(TAG, "发送在线通知失败", e)

@@ -15,6 +15,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 插件详情ViewModel
@@ -75,7 +77,7 @@ class PluginDetailViewModel(application: Application) : BaseViewModel(applicatio
                 _reviews.value = reviews
                 
             } catch (e: Exception) {
-                _error.value = e.message ?: "加载失败"
+                _error.value = e.message ?: Loc.s(R.string.s0329)
                 e.printStackTrace()
             } finally {
                 _isLoading.value = false
@@ -95,7 +97,7 @@ class PluginDetailViewModel(application: Application) : BaseViewModel(applicatio
                 // 调试模式：模拟安装
                 if (DebugMode.isDebugMode) {
                     DebugMode.simulateDelay(2000)
-                    _operationResult.value = "安装成功"
+                    _operationResult.value = Loc.s(R.string.s0145)
                     _pluginDetail.value = _pluginDetail.value?.copy(isInstalled = true)
                     return@launch
                 }
@@ -104,13 +106,13 @@ class PluginDetailViewModel(application: Application) : BaseViewModel(applicatio
                 if (success) {
                     // 清除缓存
                     clearPackageCache()
-                    _operationResult.value = "安装成功"
+                    _operationResult.value = Loc.s(R.string.s0145)
                     _pluginDetail.value = _pluginDetail.value?.copy(isInstalled = true)
                 } else {
-                    _error.value = "安装失败"
+                    _error.value = Loc.s(R.string.s0579)
                 }
             } catch (e: Exception) {
-                _error.value = "安装失败: ${e.message}"
+                _error.value = Loc.s(R.string.s0580, e.message)
             } finally {
                 _isInstalling.value = false
             }
@@ -129,7 +131,7 @@ class PluginDetailViewModel(application: Application) : BaseViewModel(applicatio
                 // 调试模式：模拟卸载
                 if (DebugMode.isDebugMode) {
                     DebugMode.simulateDelay(1500)
-                    _operationResult.value = "卸载成功"
+                    _operationResult.value = Loc.s(R.string.s0581)
                     _pluginDetail.value = _pluginDetail.value?.copy(isInstalled = false)
                     return@launch
                 }
@@ -138,13 +140,13 @@ class PluginDetailViewModel(application: Application) : BaseViewModel(applicatio
                 if (success) {
                     // 清除缓存
                     clearPackageCache()
-                    _operationResult.value = "卸载成功"
+                    _operationResult.value = Loc.s(R.string.s0581)
                     _pluginDetail.value = _pluginDetail.value?.copy(isInstalled = false)
                 } else {
-                    _error.value = "卸载失败"
+                    _error.value = Loc.s(R.string.s0582)
                 }
             } catch (e: Exception) {
-                _error.value = "卸载失败: ${e.message}"
+                _error.value = Loc.s(R.string.s0583, e.message)
             } finally {
                 _isInstalling.value = false
             }
@@ -163,7 +165,7 @@ class PluginDetailViewModel(application: Application) : BaseViewModel(applicatio
                 // 调试模式：模拟更新
                 if (DebugMode.isDebugMode) {
                     DebugMode.simulateDelay(2500)
-                    _operationResult.value = "更新成功"
+                    _operationResult.value = Loc.s(R.string.s0340)
                     _pluginDetail.value = _pluginDetail.value?.copy(
                         isUpdateAvailable = false,
                         version = _pluginDetail.value?.latestVersion ?: ""
@@ -176,16 +178,16 @@ class PluginDetailViewModel(application: Application) : BaseViewModel(applicatio
                 if (success) {
                     // 清除缓存
                     clearPackageCache()
-                    _operationResult.value = "更新成功"
+                    _operationResult.value = Loc.s(R.string.s0340)
                     _pluginDetail.value = _pluginDetail.value?.copy(
                         isUpdateAvailable = false,
                         version = _pluginDetail.value?.latestVersion ?: ""
                     )
                 } else {
-                    _error.value = "更新失败"
+                    _error.value = Loc.s(R.string.s0259)
                 }
             } catch (e: Exception) {
-                _error.value = "更新失败: ${e.message}"
+                _error.value = Loc.s(R.string.s0584, e.message)
             } finally {
                 _isInstalling.value = false
             }

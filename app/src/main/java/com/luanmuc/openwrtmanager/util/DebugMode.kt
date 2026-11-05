@@ -6,6 +6,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlin.random.Random
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 调试模式（演示模式）工具类
@@ -568,25 +570,25 @@ object DebugMode {
                 NetworkDiagnostic.DiagnosticIssue(
                     type = NetworkDiagnostic.IssueType.WIFI_SIGNAL,
                     severity = NetworkDiagnostic.Severity.WARNING,
-                    description = "2.4G WiFi当前使用信道6，周围有多个WiFi使用相同信道，建议切换到信道1或11",
-                    suggestion = "切换到信道1或11"
+                    description = Loc.s(R.string.s0871),
+                    suggestion = Loc.s(R.string.s0872)
                 ),
                 NetworkDiagnostic.DiagnosticIssue(
                     type = NetworkDiagnostic.IssueType.CONNECTION,
                     severity = NetworkDiagnostic.Severity.INFO,
-                    description = "检测到新版本 OpenWrt 23.05.2 可用，建议及时更新以获取安全补丁和新功能",
-                    suggestion = "更新固件"
+                    description = Loc.s(R.string.s0873),
+                    suggestion = Loc.s(R.string.s0874)
                 ),
                 NetworkDiagnostic.DiagnosticIssue(
                     type = NetworkDiagnostic.IssueType.CPU_USAGE,
                     severity = NetworkDiagnostic.Severity.INFO,
-                    description = "CPU使用率正常，系统运行良好",
+                    description = Loc.s(R.string.s0875),
                     suggestion = ""
                 )
             ),
             suggestions = listOf(
-                "建议切换WiFi信道以获得更好的信号",
-                "建议及时更新固件以获取最新安全补丁"
+                Loc.s(R.string.s0876),
+                Loc.s(R.string.s0877)
             )
         )
     }
@@ -643,7 +645,7 @@ object DebugMode {
     fun getDemoRouter(): Router {
         return Router(
             id = "demo-router",
-            name = "演示路由器",
+            name = Loc.s(R.string.s0878),
             address = "192.168.1.1",
             username = "root",
             encryptedPassword = "",
@@ -752,7 +754,7 @@ object DebugMode {
                     signal = 0,
                     isOnline = true,
                     isBlocked = false,
-                    note = "台式机"
+                    note = Loc.s(R.string.s0879)
                 ),
                 DeviceInfo(
                     ip = "192.168.1.15",
@@ -822,7 +824,7 @@ object DebugMode {
                     signal = 0,
                     isOnline = true,
                     isBlocked = false,
-                    note = "监控摄像头"
+                    note = Loc.s(R.string.s0880)
                 ),
                 DeviceInfo(
                     ip = "192.168.1.20",
@@ -850,7 +852,7 @@ object DebugMode {
                     signal = 0,
                     isOnline = true,
                     isBlocked = false,
-                    note = "群晖NAS"
+                    note = Loc.s(R.string.s0881)
                 )
             )
 
@@ -858,7 +860,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-i18n-base-zh-cn",
                     version = "23.05.0",
-                    description = "LuCI 简体中文语言包 - 基础包",
+                    description = Loc.s(R.string.s0882),
                     size = 262144L,
                     installed = true,
                     category = "system",
@@ -867,7 +869,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-opkg",
                     version = "23.05.0",
-                    description = "软件包管理器 - 管理路由器上的所有软件包，支持安装、卸载、更新等操作",
+                    description = Loc.s(R.string.s0883),
                     size = 65536L,
                     installed = true,
                     category = "system",
@@ -876,7 +878,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-firewall",
                     version = "23.05.0",
-                    description = "防火墙配置 - 管理端口转发、流量规则、区域设置等防火墙功能",
+                    description = Loc.s(R.string.s0884),
                     size = 131072L,
                     installed = true,
                     category = "network",
@@ -885,7 +887,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-ddns",
                     version = "2.4.0",
-                    description = "动态DNS配置 - 支持多种DDNS服务提供商，自动更新域名解析",
+                    description = Loc.s(R.string.s0885),
                     size = 98304L,
                     installed = true,
                     category = "network",
@@ -894,7 +896,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-upnp",
                     version = "23.05.0",
-                    description = "UPnP配置 - 通用即插即用，让内网设备自动配置端口映射",
+                    description = Loc.s(R.string.s0886),
                     size = 49152L,
                     installed = true,
                     category = "network",
@@ -903,7 +905,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-wol",
                     version = "23.05.0",
-                    description = "网络唤醒 - 通过网络发送魔术包唤醒局域网内的电脑",
+                    description = Loc.s(R.string.s0887),
                     size = 32768L,
                     installed = true,
                     category = "network",
@@ -912,7 +914,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-sqm",
                     version = "1.6.0",
-                    description = "智能队列管理 - SQM QoS流量控制，优化网络延迟和带宽分配",
+                    description = Loc.s(R.string.s0888),
                     size = 81920L,
                     installed = true,
                     category = "network",
@@ -921,7 +923,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-statistics",
                     version = "23.05.0",
-                    description = "流量统计 - 收集并展示网络流量、CPU、内存等系统统计数据",
+                    description = Loc.s(R.string.s0889),
                     size = 163840L,
                     installed = true,
                     category = "admin",
@@ -933,7 +935,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-aria2",
                     version = "1.36.0",
-                    description = "Aria2下载管理器 - 支持HTTP/FTP/BitTorrent的多线程下载工具",
+                    description = Loc.s(R.string.s0890),
                     size = 131072L,
                     installed = false,
                     category = "network",
@@ -942,7 +944,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-transmission",
                     version = "4.0.0",
-                    description = "Transmission BT客户端 - 轻量级BitTorrent下载客户端",
+                    description = Loc.s(R.string.s0891),
                     size = 163840L,
                     installed = false,
                     category = "network",
@@ -951,7 +953,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-samba4",
                     version = "4.18.0",
-                    description = "Samba4网络共享 - 文件和打印机共享服务，兼容Windows网络邻居",
+                    description = Loc.s(R.string.s0892),
                     size = 98304L,
                     installed = false,
                     category = "network",
@@ -960,7 +962,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-minidlna",
                     version = "1.3.0",
-                    description = "MiniDLNA媒体服务器 - DLNA/UPnP媒体服务器，让电视、手机播放路由器上的视频音乐",
+                    description = Loc.s(R.string.s0893),
                     size = 65536L,
                     installed = false,
                     category = "multimedia",
@@ -969,7 +971,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-openvpn",
                     version = "2.5.0",
-                    description = "OpenVPN配置 - 开源VPN解决方案，支持服务端和客户端模式",
+                    description = Loc.s(R.string.s0894),
                     size = 196608L,
                     installed = false,
                     category = "network",
@@ -978,7 +980,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-wireguard",
                     version = "1.0.0",
-                    description = "WireGuard VPN - 现代、快速、安全的VPN隧道技术",
+                    description = Loc.s(R.string.s0895),
                     size = 81920L,
                     installed = false,
                     category = "network",
@@ -987,7 +989,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-mwan3",
                     version = "2.11.0",
-                    description = "多WAN负载均衡 - 多条宽带线路负载均衡和故障转移",
+                    description = Loc.s(R.string.s0896),
                     size = 147456L,
                     installed = false,
                     category = "network",
@@ -996,7 +998,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-snmpd",
                     version = "5.9.0",
-                    description = "SNMP服务 - 简单网络管理协议，用于网络监控系统",
+                    description = Loc.s(R.string.s0897),
                     size = 73728L,
                     installed = false,
                     category = "admin",
@@ -1005,7 +1007,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-nlbwmon",
                     version = "2023.09.12",
-                    description = "网络带宽监控 - 按设备统计带宽使用情况，支持按日/月查看",
+                    description = Loc.s(R.string.s0898),
                     size = 57344L,
                     installed = false,
                     category = "admin",
@@ -1014,7 +1016,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-ntpc",
                     version = "23.05.0",
-                    description = "NTP时间同步 - 网络时间协议客户端，自动同步系统时间",
+                    description = Loc.s(R.string.s0899),
                     size = 40960L,
                     installed = false,
                     category = "system",
@@ -1023,7 +1025,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-uhttpd",
                     version = "2023.06.25",
-                    description = "uHTTPd Web服务器 - OpenWrt内置的轻量级Web服务器配置",
+                    description = Loc.s(R.string.s0900),
                     size = 49152L,
                     installed = false,
                     category = "system",
@@ -1032,7 +1034,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-acl",
                     version = "23.05.0",
-                    description = "访问控制列表 - 管理LuCI的用户权限和访问控制",
+                    description = Loc.s(R.string.s0901),
                     size = 65536L,
                     installed = false,
                     category = "system",
@@ -1041,7 +1043,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-adblock",
                     version = "4.1.5",
-                    description = "广告过滤 - 自动屏蔽广告域名，支持多种广告源列表",
+                    description = Loc.s(R.string.s0902),
                     size = 114688L,
                     installed = false,
                     category = "network",
@@ -1050,7 +1052,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-ttyd",
                     version = "1.7.3",
-                    description = "Web终端 - 在浏览器中使用命令行终端",
+                    description = Loc.s(R.string.s0903),
                     size = 45056L,
                     installed = false,
                     category = "utilities",
@@ -1059,7 +1061,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-hd-idle",
                     version = "23.05.0",
-                    description = "硬盘休眠 - 硬盘空闲时自动进入休眠模式，节省电量",
+                    description = Loc.s(R.string.s0904),
                     size = 36864L,
                     installed = false,
                     category = "system",
@@ -1068,7 +1070,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-vsftpd",
                     version = "23.05.0",
-                    description = "FTP服务器 - 轻量级FTP服务器，支持虚拟用户和权限控制",
+                    description = Loc.s(R.string.s0905),
                     size = 53248L,
                     installed = false,
                     category = "network",
@@ -1077,7 +1079,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-udpxy",
                     version = "2023.02.06",
-                    description = "UDPXY组播转单播 - 将IPTV组播流转换为单播，方便各种设备观看",
+                    description = Loc.s(R.string.s0906),
                     size = 40960L,
                     installed = false,
                     category = "multimedia",
@@ -1086,7 +1088,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-frps",
                     version = "0.52.0",
-                    description = "Frp服务端 - 内网穿透服务端，让外网访问内网服务",
+                    description = Loc.s(R.string.s0907),
                     size = 90112L,
                     installed = false,
                     category = "network",
@@ -1095,7 +1097,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-frpc",
                     version = "0.52.0",
-                    description = "Frp客户端 - 内网穿透客户端，连接到Frp服务器实现内网穿透",
+                    description = Loc.s(R.string.s0908),
                     size = 86016L,
                     installed = false,
                     category = "network",
@@ -1104,7 +1106,7 @@ object DebugMode {
                 PackageInfo(
                     name = "luci-app-zerotier",
                     version = "1.12.2",
-                    description = "ZeroTier虚拟网络 - 全球范围的虚拟局域网，轻松组建异地虚拟内网",
+                    description = Loc.s(R.string.s0909),
                     size = 73728L,
                     installed = false,
                     category = "network",
@@ -1119,8 +1121,8 @@ object DebugMode {
             )
 
             ddnsConfigs = listOf(
-                DdnsConfig(name = "myddns", service = "no-ip.com", domain = "myhome.ddns.net", username = "user@example.com", password = "", interfaceName = "wan", enabled = true, status = "正常"),
-                DdnsConfig(name = "aliyun", service = "aliyun.com", domain = "home.example.com", username = "access_key", password = "", interfaceName = "wan", enabled = false, status = "已禁用")
+                DdnsConfig(name = "myddns", service = "no-ip.com", domain = "myhome.ddns.net", username = "user@example.com", password = "", interfaceName = "wan", enabled = true, status = Loc.s(R.string.s0502)),
+                DdnsConfig(name = "aliyun", service = "aliyun.com", domain = "home.example.com", username = "access_key", password = "", interfaceName = "wan", enabled = false, status = Loc.s(R.string.s0334))
             )
         }
     }
@@ -1187,7 +1189,7 @@ object DebugMode {
             md5 = "abc123def456",
             sha256 = "sha256hash123456",
             downloadUrl = "https://example.com/firmware.bin",
-            changelog = "• 修复了若干已知问题\n• 提升了系统稳定性\n• 更新了部分插件版本\n• 优化了网络性能",
+            changelog = Loc.s(R.string.s0910),
             isNewer = true
         )
     }

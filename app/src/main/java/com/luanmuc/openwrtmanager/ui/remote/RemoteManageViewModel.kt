@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 远程管理 ViewModel
@@ -156,7 +158,7 @@ class RemoteManageViewModel(application: Application) : BaseViewModel(applicatio
     fun testRemoteConnection() {
         val state = _uiState.value
         if (state.remoteAddress.isBlank()) {
-            _uiState.value = state.copy(testResult = "请先填写远程地址", testSuccess = false)
+            _uiState.value = state.copy(testResult = Loc.s(R.string.s0722), testSuccess = false)
             return
         }
 
@@ -176,13 +178,13 @@ class RemoteManageViewModel(application: Application) : BaseViewModel(applicatio
                     if (result.isNotBlank() && !result.contains("error", ignoreCase = true)) {
                         _uiState.value = _uiState.value.copy(
                             isTesting = false,
-                            testResult = "远程连接测试成功！",
+                            testResult = Loc.s(R.string.s0723),
                             testSuccess = true
                         )
                     } else {
                         _uiState.value = _uiState.value.copy(
                             isTesting = false,
-                            testResult = "连接失败：${result.ifEmpty { "未知错误" }}",
+                            testResult = Loc.s(R.string.s0724, result.ifEmpty { Loc.s(R.string.s0115) }),
                             testSuccess = false
                         )
                     }
@@ -190,7 +192,7 @@ class RemoteManageViewModel(application: Application) : BaseViewModel(applicatio
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     isTesting = false,
-                    testResult = "连接失败：${e.message}",
+                    testResult = Loc.s(R.string.s0724, e.message),
                     testSuccess = false
                 )
             }

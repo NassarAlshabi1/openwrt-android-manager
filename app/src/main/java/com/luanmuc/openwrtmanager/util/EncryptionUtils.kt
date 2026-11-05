@@ -7,6 +7,8 @@ import java.security.SecureRandom
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 加密工具类
@@ -358,10 +360,10 @@ object EncryptionUtils {
      */
     fun getPasswordStrengthDescription(strength: PasswordStrength): String {
         return when (strength) {
-            PasswordStrength.VERY_WEAK -> "非常弱"
-            PasswordStrength.WEAK -> "弱"
-            PasswordStrength.MEDIUM -> "中等"
-            PasswordStrength.STRONG -> "强"
+            PasswordStrength.VERY_WEAK -> Loc.s(R.string.s0911)
+            PasswordStrength.WEAK -> Loc.s(R.string.s0912)
+            PasswordStrength.MEDIUM -> Loc.s(R.string.s0913)
+            PasswordStrength.STRONG -> Loc.s(R.string.s0914)
         }
     }
     

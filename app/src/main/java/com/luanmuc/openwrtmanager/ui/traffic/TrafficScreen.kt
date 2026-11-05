@@ -26,6 +26,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.luanmuc.openwrtmanager.data.model.TrafficPeriod
 import com.luanmuc.openwrtmanager.ui.components.MiDimens
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 流量统计页面
@@ -47,7 +48,7 @@ fun TrafficScreen(
                 title = { Text(stringResource(R.string.traffic_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                        Icon(Icons.Default.ArrowBack, contentDescription = Loc.s(R.string.s0244))
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -95,7 +96,7 @@ fun TrafficScreen(
                 ) {
                     // 下载流量
                     TrafficDetailCard(
-                        title = "下载",
+                        title = Loc.s(R.string.s0505),
                         icon = Icons.Default.Download,
                         total = when (selectedPeriod) {
                             TrafficPeriod.TODAY -> trafficStats.todayRx
@@ -109,7 +110,7 @@ fun TrafficScreen(
                     
                     // 上传流量
                     TrafficDetailCard(
-                        title = "上传",
+                        title = Loc.s(R.string.s0506),
                         icon = Icons.Default.Upload,
                         total = when (selectedPeriod) {
                             TrafficPeriod.TODAY -> trafficStats.todayTx
@@ -128,7 +129,7 @@ fun TrafficScreen(
             // 设备流量排行标题
             item {
                 Text(
-                    text = "设备流量排行",
+                    text = Loc.s(R.string.s0772),
                     color = MiTheme.TextSecondary,
                     style = MaterialTheme.typography.titleSmall,
                     modifier = Modifier.padding(vertical = 8.dp)
@@ -156,7 +157,7 @@ fun TrafficScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "暂无设备流量数据",
+                            text = Loc.s(R.string.s0773),
                             color = MiTheme.TextTertiary,
                             style = MaterialTheme.typography.bodyMedium
                         )
@@ -256,7 +257,7 @@ private fun TrafficOverviewCard(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "${period.displayName}总流量",
+                text = Loc.s(R.string.s0774, period.displayName),
                 color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.8f),
                 style = MaterialTheme.typography.bodyMedium
             )
@@ -274,7 +275,7 @@ private fun TrafficOverviewCard(
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "下载",
+                        text = Loc.s(R.string.s0505),
                         color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.7f),
                         style = MaterialTheme.typography.bodySmall
                     )
@@ -295,7 +296,7 @@ private fun TrafficOverviewCard(
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "上传",
+                        text = Loc.s(R.string.s0506),
                         color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.7f),
                         style = MaterialTheme.typography.bodySmall
                     )

@@ -6,6 +6,8 @@ import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 通知设置ViewModel
@@ -44,22 +46,22 @@ class NotificationViewModel(application: Application) : BaseViewModel(applicatio
         val demoHistory = listOf(
             NotificationHistoryItem(
                 id = 1,
-                title = "路由器已在线",
-                content = "OpenWrt 路由器已恢复连接",
+                title = Loc.s(R.string.s0562),
+                content = Loc.s(R.string.s0563),
                 time = System.currentTimeMillis() - 3600000,
                 type = NotificationType.ROUTER_STATUS
             ),
             NotificationHistoryItem(
                 id = 2,
-                title = "新设备上线",
-                content = "iPhone-15-Pro 已连接到网络",
+                title = Loc.s(R.string.s0564),
+                content = Loc.s(R.string.s0565),
                 time = System.currentTimeMillis() - 7200000,
                 type = NotificationType.DEVICE_EVENT
             ),
             NotificationHistoryItem(
                 id = 3,
-                title = "固件更新可用",
-                content = "发现新版本 23.05.2，建议升级",
+                title = Loc.s(R.string.s0566),
+                content = Loc.s(R.string.s0567),
                 time = System.currentTimeMillis() - 86400000,
                 type = NotificationType.FIRMWARE
             )
@@ -110,9 +112,16 @@ data class NotificationHistoryItem(
 /**
  * 通知类型
  */
-enum class NotificationType(val displayName: String) {
-    ROUTER_STATUS("路由器状态"),
-    FIRMWARE("固件更新"),
-    NETWORK_ALERT("网络告警"),
-    DEVICE_EVENT("设备事件")
+enum class NotificationType {
+    ROUTER_STATUS,
+    FIRMWARE,
+    NETWORK_ALERT,
+    DEVICE_EVENT;
+    val displayName: String
+        get() = when (this) {
+            ROUTER_STATUS -> Loc.s(R.string.enum_004)
+            FIRMWARE -> Loc.s(R.string.enum_017)
+            NETWORK_ALERT -> Loc.s(R.string.enum_018)
+            DEVICE_EVENT -> Loc.s(R.string.enum_019)
+        }
 }

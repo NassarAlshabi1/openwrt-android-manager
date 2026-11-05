@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 时间工具类
@@ -34,7 +36,7 @@ object TimeUtils {
      * 格式化秒数为可读时间
      */
     fun formatSeconds(seconds: Long): String {
-        if (seconds < 0) return "0秒"
+        if (seconds < 0) return Loc.s(R.string.s0949)
         
         val days = TimeUnit.SECONDS.toDays(seconds)
         val hours = TimeUnit.SECONDS.toHours(seconds) % 24
@@ -42,10 +44,10 @@ object TimeUtils {
         val secs = seconds % 60
         
         return when {
-            days > 0 -> "${days}天${hours}小时"
-            hours > 0 -> "${hours}小时${minutes}分钟"
-            minutes > 0 -> "${minutes}分钟${secs}秒"
-            else -> "${secs}秒"
+            days > 0 -> Loc.s(R.string.s0521, days, hours)
+            hours > 0 -> Loc.s(R.string.s0522, hours, minutes)
+            minutes > 0 -> Loc.s(R.string.s0849, minutes, secs)
+            else -> Loc.s(R.string.s0644, secs)
         }
     }
     
@@ -69,13 +71,13 @@ object TimeUtils {
         val days = hours / 24
         
         return when {
-            seconds < 60 -> "刚刚"
-            minutes < 60 -> "${minutes}分钟前"
-            hours < 24 -> "${hours}小时前"
-            days < 7 -> "${days}天前"
-            days < 30 -> "${days / 7}周前"
-            days < 365 -> "${days / 30}个月前"
-            else -> "${days / 365}年前"
+            seconds < 60 -> Loc.s(R.string.s0841)
+            minutes < 60 -> Loc.s(R.string.s0842, minutes)
+            hours < 24 -> Loc.s(R.string.s0843, hours)
+            days < 7 -> Loc.s(R.string.s0844, days)
+            days < 30 -> Loc.s(R.string.s0950, days / 7)
+            days < 365 -> Loc.s(R.string.s0951, days / 30)
+            else -> Loc.s(R.string.s0952, days / 365)
         }
     }
     

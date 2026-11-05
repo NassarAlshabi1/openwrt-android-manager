@@ -1,5 +1,8 @@
 package com.luanmuc.openwrtmanager.data.model
 
+import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.Loc
+
 /**
  * WiFi定时配置
  */
@@ -17,9 +20,14 @@ data class WifiSchedule(
 /**
  * 定时动作
  */
-enum class WifiScheduleAction(val displayName: String) {
-    DISABLE("关闭WiFi"),
-    ENABLE("开启WiFi")
+enum class WifiScheduleAction {
+    DISABLE,
+    ENABLE;
+    val displayName: String
+        get() = when (this) {
+            DISABLE -> Loc.s(R.string.enum_050)
+            ENABLE -> Loc.s(R.string.enum_051)
+        }
 }
 
 /**
@@ -60,10 +68,18 @@ enum class WifiBand(val displayName: String, val frequencyRange: String) {
 /**
  * WiFi信号强度等级
  */
-enum class WifiSignalLevel(val displayName: String, val minDbm: Int) {
-    EXCELLENT("优秀", -50),
-    GOOD("良好", -60),
-    FAIR("一般", -70),
-    WEAK("较弱", -80),
-    BAD("很差", -100)
+enum class WifiSignalLevel(val minDbm: Int) {
+    EXCELLENT(-50),
+    GOOD(-60),
+    FAIR(-70),
+    WEAK(-80),
+    BAD(-100);
+    val displayName: String
+        get() = when (this) {
+            EXCELLENT -> Loc.s(R.string.enum_042)
+            GOOD -> Loc.s(R.string.enum_031)
+            FAIR -> Loc.s(R.string.enum_043)
+            WEAK -> Loc.s(R.string.enum_052)
+            BAD -> Loc.s(R.string.enum_045)
+        }
 }
