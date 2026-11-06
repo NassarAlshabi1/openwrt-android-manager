@@ -3,6 +3,7 @@ name: OpenWrt管家 - 云端编译
 on:
   push:
     branches: [ main ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
@@ -282,16 +283,29 @@ jobs:
         id: build_release
         run: |
           echo "=== 开始Release编译 ==="
-          ./gradlew assembleRelease             --info             --stacktrace             --no-daemon             --build-cache             2>&1 | tee build_release.log
+          ./gradlew assembleRelease \
+            --info \
+            --stacktrace \
+            --no-daemon \
+            --build-cache \
+            2>&1 | tee build_release.log
 
           echo ""
           echo "=== Release编译结果 ==="
-          if [ -f "app/build/outputs/apk/release/app-release-unsigned.apk" ] || [ -f "app/build/outputs/apk/release/app-release.apk" ]; then
-            echo "✅ Release编译成功！"
+          if [ -f "app/build/outputs/apk/release/app-release.apk" ]; then
+            echo "✅ Release编译成功！(signed)"
             ls -lh app/build/outputs/apk/release/
+            echo "RELEASE_APK_SIZE=$(stat -c%s app/build/outputs/apk/release/app-release.apk)" >> $GITHUB_ENV
+            echo "RELEASE_APK_FILE=app-release.apk" >> $GITHUB_ENV
+          elif [ -f "app/build/outputs/apk/release/app-release-unsigned.apk" ]; then
+            echo "✅ Release编译成功！(unsigned)"
+            ls -lh app/build/outputs/apk/release/
+            echo "RELEASE_APK_SIZE=$(stat -c%s app/build/outputs/apk/release/app-release-unsigned.apk)" >> $GITHUB_ENV
+            echo "RELEASE_APK_FILE=app-release-unsigned.apk" >> $GITHUB_ENV
           else
-            echo "⚠️ Release编译产物未找到，检查输出目录"
+            echo "❌ Release编译失败，APK文件未找到"
             ls -la app/build/outputs/apk/ 2>/dev/null || echo "无APK输出目录"
+            exit 1
           fi
 
       - name: 编译失败时输出错误日志
@@ -321,24 +335,37 @@ jobs:
         if: success()
         run: |
           SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
-          VERSION_NAME="v2.3.0-dev"
+          VERSION_NAME="v2.4.0"
           APK_NAME="OpenWrtManager_${VERSION_NAME}_${SHORT_SHA}_debug.apk"
+          RELEASE_APK_NAME="OpenWrtManager_${VERSION_NAME}_${SHORT_SHA}_release.apk"
 
-          cp app/build/outputs/apk/debug/app-debug.apk "app/build/outputs/apk/debug/$APK_NAME"
+          cp "app/build/outputs/apk/debug/app-debug.apk" "app/build/outputs/apk/debug/$APK_NAME"
+          cp "app/build/outputs/apk/release/${RELEASE_APK_FILE}" "app/build/outputs/apk/release/$RELEASE_APK_NAME"
 
           echo "APK_NAME=$APK_NAME" >> $GITHUB_ENV
           echo "APK_PATH=app/build/outputs/apk/debug/$APK_NAME" >> $GITHUB_ENV
+          echo "RELEASE_APK_NAME=$RELEASE_APK_NAME" >> $GITHUB_ENV
+          echo "RELEASE_APK_PATH=app/build/outputs/apk/release/$RELEASE_APK_NAME" >> $GITHUB_ENV
 
-          echo "APK 文件名: $APK_NAME"
-          ls -lh app/build/outputs/apk/debug/
+          echo "Debug APK 文件名: $APK_NAME"
+          echo "Release APK 文件名: $RELEASE_APK_NAME"
+          ls -lh app/build/outputs/apk/debug/ app/build/outputs/apk/release/
 
       # ==================== 第十步：上传 Artifacts ====================
-      - name: 上传 APK 到 Artifacts
+      - name: 上传 Debug APK 到 Artifacts
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.APK_NAME }}
           path: ${{ env.APK_PATH }}
+          retention-days: 30
+
+      - name: 上传 Release APK 到 Artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.RELEASE_APK_NAME }}
+          path: ${{ env.RELEASE_APK_PATH }}
           retention-days: 30
 
       # ==================== 第十一步：编译后信息 ====================
@@ -349,8 +376,11 @@ jobs:
           echo "       编译完成！"
           echo "========================================"
           echo ""
-          echo "📦 APK 文件名: ${{ env.APK_NAME }}"
-          echo "📏 APK 大小: $(numfmt --to=iec $APK_SIZE)"
+          echo "📦 Debug APK: ${{ env.APK_NAME }}"
+          echo "📏 Debug APK 大小: $(numfmt --to=iec $APK_SIZE)"
+          echo ""
+          echo "📦 Release APK: ${{ env.RELEASE_APK_NAME }}"
+          echo "📏 Release APK 大小: $(numfmt --to=iec $RELEASE_APK_SIZE)"
           echo "🔧 提交哈希: ${{ github.sha }}"
           echo "📅 编译时间: $(date '+%Y-%m-%d %H:%M:%S')"
           echo ""
@@ -360,7 +390,7 @@ jobs:
           echo "=== 编译耗时 ==="
           echo "请查看工作流运行时间"
           echo ""
-          echo "🎉 编译成功！APK 已上传到 Artifacts"
+          echo "🎉 编译成功！Debug 和 Release APK 已上传到 Artifacts"
 
       # ==================== 第十二步：创建 Release ====================
       - name: 创建 Release
@@ -368,19 +398,23 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           name: Release ${{ github.ref_name }}
-          files: ${{ env.APK_PATH }}
+          files: |
+            ${{ env.RELEASE_APK_PATH }}
+            ${{ env.APK_PATH }}
           generate_release_notes: true
           body: |
             ## OpenWrt管家 ${{ github.ref_name }}
 
             ### 📦 下载
-            - **APK**: ${{ env.APK_NAME }}
+            - **Release APK (推荐)**: ${{ env.RELEASE_APK_NAME }}
+            - **Debug APK**: ${{ env.APK_NAME }}
 
             ### 🔧 构建信息
             - 提交: ${{ github.sha }}
-            - 编译时间: ${{ github.event.head_commit.timestamp }}
+            - 编译时间: UTC
 
             ### 📋 变更内容
-            ${{ github.event.head_commit.message }}
+            - 界面本地化：阿拉伯语 + 英语
+            - 新增 OpenWrt 23.05.0 - 23.05.6 版本支持
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
