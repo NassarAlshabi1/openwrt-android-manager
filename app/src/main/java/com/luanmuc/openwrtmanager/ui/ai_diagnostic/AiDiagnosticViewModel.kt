@@ -160,6 +160,10 @@ class AiDiagnosticViewModel(application: Application) : BaseViewModel(applicatio
 
     // ==================== Internals ====================
 
+    override fun refreshData() {
+        // Base refresh hook: no periodic data to reload in the AI chat screen.
+    }
+
     private fun ensureKey(): Boolean {
         if (isConfigured) return true
         _error.value = Loc.s(R.string.ai_err_no_key)
