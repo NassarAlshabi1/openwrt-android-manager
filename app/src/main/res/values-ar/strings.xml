@@ -1267,4 +1267,32 @@
     <string name="offline_save">حفظ</string>
     <string name="offline_refresh_index">تحديث الفهرس</string>
     <string name="offline_select_hint">اختر الحزم لتثبيتها دون اتصال. تُحل الاعتماديات تلقائياً.</string>
+
+    <!-- Raw diagnostic commands -->
+    <string name="diagcmd_title">أوامر التشخيص</string>
+    <string name="diagcmd_subtitle">تشغيل أوامر تشخيصية على الراوتر وعرض مخرجاتها الخام: اسم المضيف، جيران الشبكة (Mesh)، مساراتها، الواجهات اللاسلكية وجدول التوجيه. تُكتشف واجهات Mesh تلقائياً.</string>
+    <string name="diagcmd_run_all">تشغيل جميع الأوامر</string>
+    <string name="diagcmd_running_all">جارٍ التشغيل…</string>
+    <string name="diagcmd_rerun">إعادة التشغيل</string>
+    <string name="diagcmd_copy">نسخ التقرير</string>
+    <string name="diagcmd_copied">تم نسخ التقرير إلى الحافظة</string>
+    <string name="diagcmd_share">مشاركة التقرير</string>
+    <string name="diagcmd_section_hostname">اسم المضيف</string>
+    <string name="diagcmd_section_mesh_neighbors">جيران الشبكة (%1$s)</string>
+    <string name="diagcmd_section_mesh_paths">مسارات الشبكة (%1$s)</string>
+    <string name="diagcmd_section_wireless">الواجهات اللاسلكية</string>
+    <string name="diagcmd_section_routes">جدول التوجيه</string>
+    <string name="diagcmd_status_idle">لم يُشغَّل</string>
+    <string name="diagcmd_status_running">جارٍ التشغيل…</string>
+    <string name="diagcmd_status_done">اكتمل</string>
+    <string name="diagcmd_status_failed">فشل</string>
+    <string name="diagcmd_no_output">لا مخرجات</string>
+    <string name="diagcmd_err_run">فشل تشغيل الأوامر: %1$s</string>
+    <string name="diagcmd_ai_title">تحليل الذكاء الاصطناعي</string>
+    <string name="diagcmd_ai_desc">أرسل تقرير التشخيص المجمّع إلى Gemini للتحليل واقتراح الحلول.</string>
+    <string name="diagcmd_ai_button">تحليل عبر Gemini</string>
+    <string name="diagcmd_ai_again">تحليل مرة أخرى</string>
+    <string name="diagcmd_ai_running">Gemini يحلّل التقرير…</string>
+    <string name="diagcmd_ai_request">حلّل مخرجات أوامر التشخيص هذه من راوتر OpenWrt الخاص بي (اسم المضيف، جيران الشبكة، مساراتها، الواجهات اللاسلكية وجدول التوجيه) وأخبرني إن كان هناك خلل.</string>
+    <string name="diagcmd_ai_no_data">شغّل الأوامر أولاً</string>
 </resources>

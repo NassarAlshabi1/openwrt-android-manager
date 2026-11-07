@@ -129,6 +129,7 @@ fun ProfileScreen(
     onNavigateToRemoteManage: () -> Unit = {},
     onNavigateToPluginDependency: () -> Unit = {},
     onNavigateToAiDiagnostic: () -> Unit = {},
+    onNavigateToDiagnosticCommands: () -> Unit = {},
     onDebugModeToggled: (Boolean) -> Unit = {}
 ) {
     val context = LocalContext.current
@@ -175,7 +176,8 @@ fun ProfileScreen(
                 onNavigateToPlugins = onNavigateToPlugins,
                 onNavigateToRemoteManage = onNavigateToRemoteManage,
                 onNavigateToPluginDependency = onNavigateToPluginDependency,
-                onNavigateToAiDiagnostic = onNavigateToAiDiagnostic
+                onNavigateToAiDiagnostic = onNavigateToAiDiagnostic,
+                onNavigateToDiagnosticCommands = onNavigateToDiagnosticCommands
             )
             
             Spacer(modifier = Modifier.height(20.dp))
@@ -222,7 +224,8 @@ fun ToolsGrid(
     onNavigateToPlugins: () -> Unit,
     onNavigateToRemoteManage: () -> Unit,
     onNavigateToPluginDependency: () -> Unit,
-    onNavigateToAiDiagnostic: () -> Unit
+    onNavigateToAiDiagnostic: () -> Unit,
+    onNavigateToDiagnosticCommands: () -> Unit
 ) {
     MiCard(
         modifier = Modifier
@@ -381,6 +384,12 @@ fun ToolsGrid(
                     title = Loc.s(R.string.s0632),
                     gradient = MiColors.GradientGreen,
                     onClick = onNavigateToPluginDependency
+                )
+                ToolItem(
+                    icon = Icons.Default.Code,
+                    title = Loc.s(R.string.diagcmd_title),
+                    gradient = MiColors.GradientPurple,
+                    onClick = onNavigateToDiagnosticCommands
                 )
             }
         }

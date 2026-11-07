@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.CloudDownload
+import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Devices
 import androidx.compose.material.icons.filled.Extension
 import androidx.compose.material.icons.filled.Home
@@ -37,6 +38,7 @@ import com.luanmuc.openwrtmanager.ui.advanced.AdvancedScreen
 import com.luanmuc.openwrtmanager.ui.backup.BackupScreen
 import com.luanmuc.openwrtmanager.ui.devicemanager.DeviceManagerScreen
 import com.luanmuc.openwrtmanager.ui.diagnostic.DiagnosticScreen
+import com.luanmuc.openwrtmanager.ui.diagnostic_commands.DiagnosticCommandsScreen
 import com.luanmuc.openwrtmanager.ui.diagnostic_enhanced.DiagnosticEnhancedScreen
 import com.luanmuc.openwrtmanager.ui.ai_diagnostic.AiDiagnosticScreen
 import com.luanmuc.openwrtmanager.ui.terminal.TerminalScreen
@@ -102,6 +104,7 @@ sealed class Screen(val route: String, val label: Int, val icon: ImageVector, va
     data object PluginDependency : Screen("plugin_dependency", 0, Icons.Filled.Extension, Icons.Filled.Extension)
     data object AiDiagnostic : Screen("ai_diagnostic", 0, Icons.Filled.AutoAwesome, Icons.Filled.AutoAwesome)
     data object OfflinePackages : Screen("offline_packages", 0, Icons.Filled.CloudDownload, Icons.Filled.CloudDownload)
+    data object DiagnosticCommands : Screen("diagnostic_commands", 0, Icons.Filled.Code, Icons.Filled.Code)
 }
 
 val bottomNavItems = listOf(
@@ -228,7 +231,8 @@ fun MainScreen() {
                     onNavigateToPlugins = { navController.navigate(Screen.Plugins.route) },
                     onNavigateToRemoteManage = { navController.navigate(Screen.RemoteManage.route) },
                     onNavigateToPluginDependency = { navController.navigate(Screen.PluginDependency.route) },
-                    onNavigateToAiDiagnostic = { navController.navigate(Screen.AiDiagnostic.route) }
+                    onNavigateToAiDiagnostic = { navController.navigate(Screen.AiDiagnostic.route) },
+                    onNavigateToDiagnosticCommands = { navController.navigate(Screen.DiagnosticCommands.route) }
                 )
             }
             composable(Screen.AddRouter.route) {
@@ -304,6 +308,11 @@ fun MainScreen() {
             }
             composable(Screen.OfflinePackages.route) {
                 OfflinePackagesScreen(
+                    onBack = { navController.popBackStack() }
+                )
+            }
+            composable(Screen.DiagnosticCommands.route) {
+                DiagnosticCommandsScreen(
                     onBack = { navController.popBackStack() }
                 )
             }

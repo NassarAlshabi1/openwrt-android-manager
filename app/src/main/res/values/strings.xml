@@ -1267,4 +1267,32 @@
     <string name="offline_save">Save</string>
     <string name="offline_refresh_index">Refresh index</string>
     <string name="offline_select_hint">Pick packages to install offline. Dependencies are resolved automatically.</string>
+
+    <!-- Raw diagnostic commands -->
+    <string name="diagcmd_title">Diagnostic Commands</string>
+    <string name="diagcmd_subtitle">Runs diagnostic commands on the router and shows the raw output: hostname, mesh neighbors, mesh paths, wireless interfaces and routes. Mesh interfaces are detected automatically.</string>
+    <string name="diagcmd_run_all">Run all commands</string>
+    <string name="diagcmd_running_all">Running…</string>
+    <string name="diagcmd_rerun">Run again</string>
+    <string name="diagcmd_copy">Copy report</string>
+    <string name="diagcmd_copied">Report copied to clipboard</string>
+    <string name="diagcmd_share">Share report</string>
+    <string name="diagcmd_section_hostname">Hostname</string>
+    <string name="diagcmd_section_mesh_neighbors">Mesh neighbors (%1$s)</string>
+    <string name="diagcmd_section_mesh_paths">Mesh paths (%1$s)</string>
+    <string name="diagcmd_section_wireless">Wireless interfaces</string>
+    <string name="diagcmd_section_routes">Routing table</string>
+    <string name="diagcmd_status_idle">Not run</string>
+    <string name="diagcmd_status_running">Running…</string>
+    <string name="diagcmd_status_done">Done</string>
+    <string name="diagcmd_status_failed">Failed</string>
+    <string name="diagcmd_no_output">no output</string>
+    <string name="diagcmd_err_run">Failed to run commands: %1$s</string>
+    <string name="diagcmd_ai_title">AI analysis</string>
+    <string name="diagcmd_ai_desc">Send the collected diagnostic report to Gemini for analysis and fix suggestions.</string>
+    <string name="diagcmd_ai_button">Analyze with Gemini</string>
+    <string name="diagcmd_ai_again">Analyze again</string>
+    <string name="diagcmd_ai_running">Gemini is analyzing the report…</string>
+    <string name="diagcmd_ai_request">Analyze these diagnostic command outputs from my OpenWrt router (hostname, mesh neighbors, mesh paths, wireless interfaces and routes) and tell me if anything is wrong.</string>
+    <string name="diagcmd_ai_no_data">Run the commands first</string>
 </resources>

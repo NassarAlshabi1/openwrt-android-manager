@@ -36,7 +36,8 @@ class AiDiagnosticRepository private constructor(private val context: Context) {
         const val LOG_LINES = 30
         const val PROCESSES = 12
         const val DHCP_CLIENTS = 20
-        const val SNAPSHOT_CHARS = 9000
+        const val SNAPSHOT_CHARS = 14000
+        const val MESH_SECTION_CHARS = 1500
     }
 
     // ==================== Public API ====================
@@ -201,6 +202,8 @@ class AiDiagnosticRepository private constructor(private val context: Context) {
         val processes = async { runCatching { luciRepository.getProcessList() }.getOrNull() }
         val pingTest = async { runCatching { luciRepository.executeCommand("ping -c 4 -W 2 8.8.8.8") }.getOrNull() }
         val dnsTest = async { runCatching { luciRepository.executeCommand("nslookup openwrt.org") }.getOrNull() }
+        val iwDev = async { runCatching { luciRepository.executeCommand("iw dev 2>&1") }.getOrNull() }
+        val routes = async { runCatching { luciRepository.executeCommand("ip route 2>&1") }.getOrNull() }
 
         val sb = StringBuilder()
         sb.append("=== ROUTER SNAPSHOT ===\n")
@@ -254,6 +257,33 @@ class AiDiagnosticRepository private constructor(private val context: Context) {
         // --- WiFi ---
         sb.append("\n\n[WiFi (iwinfo)]\n")
         sb.append((wifiStatus.await()?.trim()?.take(1500)) ?: "unavailable\n")
+
+        // --- Wireless interfaces & mesh (802.11s) ---
+        val iwDevOut = iwDev.await()
+        sb.append("\n\n[Wireless interfaces (iw dev)]\n")
+        sb.append((iwDevOut?.trim()?.take(1500)) ?: "unavailable\n")
+
+        val meshIfaces = com.luanmuc.openwrtmanager.util.IwParser.parseMeshInterfaces(iwDevOut)
+        if (meshIfaces.isEmpty()) {
+            sb.append("\n(no 802.11s mesh interface detected)\n")
+        } else {
+            meshIfaces.forEach { iface ->
+                val neighbors = runCatching {
+                    luciRepository.executeCommand("iw dev $iface station dump 2>&1")
+                }.getOrNull()
+                val paths = runCatching {
+                    luciRepository.executeCommand("iw dev $iface mpath dump 2>&1")
+                }.getOrNull()
+                sb.append("\n\n[Mesh neighbors - $iface (station dump)]\n")
+                sb.append((neighbors?.trim()?.take(Limits.MESH_SECTION_CHARS)) ?: "unavailable\n")
+                sb.append("\n\n[Mesh paths - $iface (mpath dump)]\n")
+                sb.append((paths?.trim()?.take(Limits.MESH_SECTION_CHARS)) ?: "unavailable\n")
+            }
+        }
+
+        // --- Routes ---
+        sb.append("\n\n[Routes (ip route)]\n")
+        sb.append((routes.await()?.trim()?.take(1000)) ?: "unavailable\n")
 
         // --- DHCP clients ---
         sb.append("\n\n[DHCP clients]\n")
