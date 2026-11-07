@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.Dns
 import androidx.compose.material.icons.filled.Info
@@ -127,6 +128,7 @@ fun ProfileScreen(
     onNavigateToPlugins: () -> Unit = {},
     onNavigateToRemoteManage: () -> Unit = {},
     onNavigateToPluginDependency: () -> Unit = {},
+    onNavigateToAiDiagnostic: () -> Unit = {},
     onDebugModeToggled: (Boolean) -> Unit = {}
 ) {
     val context = LocalContext.current
@@ -172,7 +174,8 @@ fun ProfileScreen(
                 onNavigateToWidgetConfig = onNavigateToWidgetConfig,
                 onNavigateToPlugins = onNavigateToPlugins,
                 onNavigateToRemoteManage = onNavigateToRemoteManage,
-                onNavigateToPluginDependency = onNavigateToPluginDependency
+                onNavigateToPluginDependency = onNavigateToPluginDependency,
+                onNavigateToAiDiagnostic = onNavigateToAiDiagnostic
             )
             
             Spacer(modifier = Modifier.height(20.dp))
@@ -218,7 +221,8 @@ fun ToolsGrid(
     onNavigateToWidgetConfig: () -> Unit,
     onNavigateToPlugins: () -> Unit,
     onNavigateToRemoteManage: () -> Unit,
-    onNavigateToPluginDependency: () -> Unit
+    onNavigateToPluginDependency: () -> Unit,
+    onNavigateToAiDiagnostic: () -> Unit
 ) {
     MiCard(
         modifier = Modifier
@@ -282,6 +286,12 @@ fun ToolsGrid(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
+                ToolItem(
+                    icon = Icons.Default.AutoAwesome,
+                    title = Loc.s(R.string.ai_tool_title),
+                    gradient = MiColors.GradientPurple,
+                    onClick = onNavigateToAiDiagnostic
+                )
                 ToolItem(
                     icon = Icons.Default.BugReport,
                     title = Loc.s(R.string.s0368),

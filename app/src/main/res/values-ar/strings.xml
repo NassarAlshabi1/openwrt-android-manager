@@ -1176,4 +1176,29 @@
     <string name="version_detail_format">الحالي: %1$s (المدعوم: %2$s)</string>
     <string name="supported_versions_title">إصدارات OpenWrt المدعومة</string>
     <string name="supported_versions_list">OpenWrt 23.05.0 – 23.05.6 (يقبل أيضاً صيغة 23.5.x)</string>
+
+    <!-- التشخيص بالذكاء الاصطناعي (Gemini) -->
+    <string name="ai_tool_title">تشخيص AI</string>
+    <string name="ai_diagnostic_title">التشخيص بالذكاء الاصطناعي (Gemini)</string>
+    <string name="ai_clear_chat">مسح المحادثة</string>
+    <string name="ai_setup_title">ربط Gemini AI</string>
+    <string name="ai_setup_desc">الصق مفتاح API من Google AI Studio لتفعيل التشخيص الذكي للراوتر. احصل على مفتاح مجاني من aistudio.google.com/apikey</string>
+    <string name="ai_show">إظهار</string>
+    <string name="ai_hide">إخفاء</string>
+    <string name="ai_save_key">حفظ المفتاح</string>
+    <string name="ai_setup_privacy">يُخزَّن المفتاح على هذا الجهاز فقط ويُرسَل مباشرةً إلى Google.</string>
+    <string name="ai_empty_title">شخّص راوترك بالذكاء الاصطناعي</string>
+    <string name="ai_empty_desc">سيحلّل Gemini حالة راوترك (النظام، WAN، التخزين، الواي فاي، السجلات) ويقترح الإصلاحات. يمكنك أيضاً طرح أسئلة متابعة.</string>
+    <string name="ai_start_diagnosis">ابدأ التشخيص الذكي</string>
+    <string name="ai_smart_diagnosis">تشخيص ذكي</string>
+    <string name="ai_attach_router_data">بيانات الراوتر</string>
+    <string name="ai_input_hint">اسأل عن راوترك…</string>
+    <string name="ai_send">إرسال</string>
+    <string name="ai_collecting_data">جارٍ جمع بيانات الراوتر…</string>
+    <string name="ai_thinking">Gemini يحلّل…</string>
+    <string name="ai_ready_hint">Gemini AI جاهز. ابدأ تشخيصاً ذكياً أو اسأل سؤالاً عن راوترك.</string>
+    <string name="ai_diagnosis_request">قم بتشخيص شامل لراوتري من فضلك.</string>
+    <string name="ai_err_no_key">أضف مفتاح Gemini API أولاً</string>
+    <string name="ai_err_collect">فشل جمع بيانات الراوتر: %1$s</string>
+    <string name="ai_err_request">فشل طلب Gemini: %1$s</string>
 </resources>

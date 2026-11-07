@@ -1176,4 +1176,29 @@
     <string name="version_detail_format">Current: %1$s (supported: %2$s)</string>
     <string name="supported_versions_title">Supported OpenWrt versions</string>
     <string name="supported_versions_list">OpenWrt 23.05.0 – 23.05.6 (also accepts the 23.5.x notation)</string>
+
+    <!-- AI (Gemini) diagnostics -->
+    <string name="ai_tool_title">AI Diagnosis</string>
+    <string name="ai_diagnostic_title">AI Diagnosis (Gemini)</string>
+    <string name="ai_clear_chat">Clear conversation</string>
+    <string name="ai_setup_title">Connect Gemini AI</string>
+    <string name="ai_setup_desc">Paste your Google AI Studio API key to enable AI router diagnostics. Get a free key at aistudio.google.com/apikey</string>
+    <string name="ai_show">Show</string>
+    <string name="ai_hide">Hide</string>
+    <string name="ai_save_key">Save key</string>
+    <string name="ai_setup_privacy">The key is stored only on this device and sent directly to Google.</string>
+    <string name="ai_empty_title">Diagnose your router with AI</string>
+    <string name="ai_empty_desc">Gemini will analyze your router status (system, WAN, storage, WiFi, logs) and suggest fixes. You can also ask follow-up questions.</string>
+    <string name="ai_start_diagnosis">Start smart diagnosis</string>
+    <string name="ai_smart_diagnosis">Smart diagnosis</string>
+    <string name="ai_attach_router_data">Router data</string>
+    <string name="ai_input_hint">Ask about your router…</string>
+    <string name="ai_send">Send</string>
+    <string name="ai_collecting_data">Collecting router data…</string>
+    <string name="ai_thinking">Gemini is analyzing…</string>
+    <string name="ai_ready_hint">Gemini AI is ready. Start a smart diagnosis or ask a question about your router.</string>
+    <string name="ai_diagnosis_request">Please run a full diagnosis on my router.</string>
+    <string name="ai_err_no_key">Add your Gemini API key first</string>
+    <string name="ai_err_collect">Failed to collect router data: %1$s</string>
+    <string name="ai_err_request">Gemini request failed: %1$s</string>
 </resources>

@@ -282,6 +282,12 @@ jobs:
             exit 1
           fi
 
+      - name: 运行单元测试
+        run: |
+          echo "=== 运行单元测试 ==="
+          ./gradlew testDebugUnitTest --stacktrace --no-daemon 2>&1 | tee test.log
+          echo "✅ 单元测试通过"
+
       - name: 编译 Release APK
         id: build_release
         run: |
@@ -338,7 +344,7 @@ jobs:
         if: success()
         run: |
           SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
-          VERSION_NAME="v2.4.0"
+          VERSION_NAME="v2.5.0"
           APK_NAME="OpenWrtManager_${VERSION_NAME}_${SHORT_SHA}_debug.apk"
           RELEASE_APK_NAME="OpenWrtManager_${VERSION_NAME}_${SHORT_SHA}_release.apk"
 
@@ -417,6 +423,7 @@ jobs:
             - 编译时间: UTC
 
             ### 📋 变更内容
+            - 新增：AI 智能诊断（Google Gemini）
             - 界面本地化：阿拉伯语 + 英语
             - 新增 OpenWrt 23.05.0 - 23.05.6 版本支持
         env:

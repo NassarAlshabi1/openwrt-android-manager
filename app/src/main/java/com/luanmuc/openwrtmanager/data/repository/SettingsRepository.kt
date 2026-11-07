@@ -170,6 +170,33 @@ class SettingsRepository private constructor() {
         prefs.edit().clear().apply()
     }
 
+    // ==================== AI 诊断（Gemini） ====================
+
+    /**
+     * Gemini API key (user-provided, from Google AI Studio).
+     * Stored locally only; used for the AI router diagnostics feature.
+     */
+    var geminiApiKey: String
+        get() = prefs.getString(KEY_GEMINI_API_KEY, "") ?: ""
+        set(value) {
+            prefs.edit().putString(KEY_GEMINI_API_KEY, value.trim()).apply()
+        }
+
+    val isGeminiConfigured: Boolean
+        get() = geminiApiKey.isNotBlank()
+
+    /**
+     * Gemini model id override (default gemini-2.0-flash).
+     */
+    var geminiModel: String
+        get() = prefs.getString(KEY_GEMINI_MODEL, com.luanmuc.openwrtmanager.data.api.GeminiClient.DEFAULT_MODEL)
+                ?: com.luanmuc.openwrtmanager.data.api.GeminiClient.DEFAULT_MODEL
+        set(value) {
+            prefs.edit().putString(KEY_GEMINI_MODEL, value.trim().ifEmpty {
+                com.luanmuc.openwrtmanager.data.api.GeminiClient.DEFAULT_MODEL
+            }).apply()
+        }
+
     companion object {
         private const val PREFS_NAME = "settings_prefs"
 
@@ -193,6 +220,8 @@ class SettingsRepository private constructor() {
         private const val KEY_PRELOAD_PLUGINS = "preload_plugins"
         private const val KEY_PRELOAD_DEVICES = "preload_devices"
         private const val KEY_PRELOAD_FIREWALL = "preload_firewall"
+        private const val KEY_GEMINI_API_KEY = "gemini_api_key"
+        private const val KEY_GEMINI_MODEL = "gemini_model"
 
         @Volatile
         private var instance: SettingsRepository? = null
