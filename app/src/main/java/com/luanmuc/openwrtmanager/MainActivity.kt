@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.filled.Devices
 import androidx.compose.material.icons.filled.Extension
 import androidx.compose.material.icons.filled.Home
@@ -50,6 +51,7 @@ import com.luanmuc.openwrtmanager.ui.firewall.FirewallScreen
 import com.luanmuc.openwrtmanager.ui.home.HomeScreen
 import com.luanmuc.openwrtmanager.ui.network.NetworkScreen
 import com.luanmuc.openwrtmanager.ui.notification.NotificationScreen
+import com.luanmuc.openwrtmanager.ui.offline.OfflinePackagesScreen
 import com.luanmuc.openwrtmanager.ui.plugin_detail.PluginDetailScreen
 import com.luanmuc.openwrtmanager.ui.plugins.PluginsScreen
 import com.luanmuc.openwrtmanager.ui.plugins.RepoScreen
@@ -99,6 +101,7 @@ sealed class Screen(val route: String, val label: Int, val icon: ImageVector, va
     data object RemoteManage : Screen("remote_manage", 0, Icons.Filled.Devices, Icons.Filled.Devices)
     data object PluginDependency : Screen("plugin_dependency", 0, Icons.Filled.Extension, Icons.Filled.Extension)
     data object AiDiagnostic : Screen("ai_diagnostic", 0, Icons.Filled.AutoAwesome, Icons.Filled.AutoAwesome)
+    data object OfflinePackages : Screen("offline_packages", 0, Icons.Filled.CloudDownload, Icons.Filled.CloudDownload)
 }
 
 val bottomNavItems = listOf(
@@ -202,7 +205,8 @@ fun MainScreen() {
                             navController.navigate(Screen.WebViewPlugin.route + "?url=$url&title=${pkg.name}")
                         }
                     },
-                    onNavigateToRepos = { navController.navigate(Screen.Repos.route) }
+                    onNavigateToRepos = { navController.navigate(Screen.Repos.route) },
+                    onNavigateToOfflineInstall = { navController.navigate(Screen.OfflinePackages.route) }
                 )
             }
             composable(Screen.Profile.route) {
@@ -295,6 +299,11 @@ fun MainScreen() {
             }
             composable(Screen.AiDiagnostic.route) {
                 AiDiagnosticScreen(
+                    onBack = { navController.popBackStack() }
+                )
+            }
+            composable(Screen.OfflinePackages.route) {
+                OfflinePackagesScreen(
                     onBack = { navController.popBackStack() }
                 )
             }

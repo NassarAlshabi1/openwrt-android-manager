@@ -2468,6 +2468,53 @@ class LuciRepository {
     }
 
     /**
+     * 执行系统命令并返回完整结果（退出码 + stdout + stderr）
+     * 用于离线安装等需要判断命令成败的场景
+     */
+    suspend fun execCommandFull(command: String): ExecResult {
+        val result = callUbus(
+            "file", "exec", mapOf(
+                "command" to "/bin/sh",
+                "params" to listOf("-c", command)
+            )
+        )
+        return ExecResult(
+            code = (result["code"] as? Number)?.toInt() ?: -1,
+            stdout = result["stdout"]?.toString() ?: "",
+            stderr = result["stderr"]?.toString() ?: ""
+        )
+    }
+
+    /**
+     * 向路由器写入文件（ubus file write，data 为 base64）
+     * 支持分块追加写入，用于离线安装时上传 .ipk 文件
+     *
+     * @param path 远程目标路径，如 /tmp/offline-pkgs/xxx.ipk
+     * @param dataBase64 base64 编码的数据块
+     * @param append false 时创建/覆盖文件，true 时追加
+     * @param mode 文件权限（十进制，如 420 = 0644），仅创建时生效
+     */
+    suspend fun writeRemoteFile(
+        path: String,
+        dataBase64: String,
+        append: Boolean,
+        mode: Int? = null
+    ): Boolean {
+        val params = mutableMapOf<String, Any>(
+            "path" to path,
+            "data" to dataBase64,
+            "append" to append
+        )
+        mode?.let { params["mode"] = it }
+        return try {
+            callUbus("file", "write", params)
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    /**
      * 检测功能所需插件是否安装
      */
     suspend fun isPackageInstalled(packageName: String): Boolean {
@@ -2568,6 +2615,25 @@ class LuciException(
     override val message: String,
     val type: ErrorType = ErrorType.UNKNOWN
 ) : Exception(message)
+
+
+/**
+ * 远程命令执行完整结果
+ */
+data class ExecResult(
+    val code: Int,
+    val stdout: String,
+    val stderr: String
+) {
+    val combinedOutput: String
+        get() = buildString {
+            if (stdout.isNotBlank()) append(stdout.trim())
+            if (stderr.isNotBlank()) {
+                if (isNotEmpty()) append('\n')
+                append(stderr.trim())
+            }
+        }
+}
 
 
 /**

@@ -26,6 +26,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Sort
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.filled.Storage
 import androidx.compose.material.icons.filled.InstallMobile
 import androidx.compose.material.icons.filled.SystemUpdate
@@ -93,7 +94,8 @@ import com.luanmuc.openwrtmanager.util.Loc
 fun PluginsScreen(
     viewModel: PluginsViewModel = viewModel(),
     onPluginClick: (PackageInfo) -> Unit = {},
-    onNavigateToRepos: () -> Unit = {}
+    onNavigateToRepos: () -> Unit = {},
+    onNavigateToOfflineInstall: () -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -183,6 +185,27 @@ fun PluginsScreen(
                                 leadingIcon = {
                                     Icon(
                                         Icons.Default.InstallMobile,
+                                        contentDescription = null,
+                                        tint = MiTheme.Primary,
+                                        modifier = Modifier.size(20.dp)
+                                    )
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        Loc.s(R.string.offline_title),
+                                        color = MiTheme.TextPrimary,
+                                        fontSize = 14.sp
+                                    )
+                                },
+                                onClick = {
+                                    showMoreMenu = false
+                                    onNavigateToOfflineInstall()
+                                },
+                                leadingIcon = {
+                                    Icon(
+                                        Icons.Default.CloudDownload,
                                         contentDescription = null,
                                         tint = MiTheme.Primary,
                                         modifier = Modifier.size(20.dp)
