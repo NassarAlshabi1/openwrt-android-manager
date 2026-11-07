@@ -314,12 +314,12 @@ class AiDiagnosticRepository private constructor(private val context: Context) {
                 "قِدر خطورتها، واعطِ خطوات إصلاح واضحة."
 
         private const val PROMPT_ATTACH_EN =
-            "(Attached: current router state snapshot for context."
-                + " Use it silently; answer the user's question.)"
+            "(Attached: current router state snapshot for context. " +
+                "Use it silently; answer the user's question.)"
 
         private const val PROMPT_ATTACH_AR =
-            "(مرفق: لقطة حالة الراوتر الحالية للسياق."
-                + " استخدمها بصمت؛ وأجب عن سؤال المستخدم.)"
+            "(مرفق: لقطة حالة الراوتر الحالية للسياق. " +
+                "استخدمها بصمت؛ وأجب عن سؤال المستخدم.)"
 
         @Volatile
         private var instance: AiDiagnosticRepository? = null
