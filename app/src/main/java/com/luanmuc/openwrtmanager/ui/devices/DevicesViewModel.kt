@@ -12,7 +12,6 @@ import com.luanmuc.openwrtmanager.data.model.Router
 import com.luanmuc.openwrtmanager.data.repository.CacheRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
-import com.luanmuc.openwrtmanager.util.DebugMode
 
 /**
  * 设备页 ViewModel
@@ -26,8 +25,7 @@ class DevicesViewModel(application: Application) : BaseViewModel(application) {
     data class DevicesUiState(
         val routers: List<Router> = emptyList(),
         val activeRouterId: String? = null,
-        val isLoading: Boolean = true,
-        val isDemoMode: Boolean = false
+        val isLoading: Boolean = true
     )
 
     init {
@@ -40,8 +38,7 @@ class DevicesViewModel(application: Application) : BaseViewModel(application) {
             repository.routers.collect { routers ->
                 _uiState.value = _uiState.value.copy(
                     routers = routers,
-                    isLoading = false,
-                    isDemoMode = DebugMode.isDebugMode
+                    isLoading = false
                 )
             }
         }
@@ -62,49 +59,27 @@ class DevicesViewModel(application: Application) : BaseViewModel(application) {
                     CacheRepository.getInstance(getApplication()).clearRouterCache(oldRouterId)
                 } catch (_: Exception) {}
             }
-            // 如果是演示路由器，开启演示模式
-            if (DebugMode.isDemoRouter(routerId)) {
-                DebugMode.enableDemoMode()
-                repository.setActiveRouter(routerId)
-            } else {
-                DebugMode.disableDemoMode()
-                repository.setActiveRouter(routerId)
-                // 切换到真实路由器时，更新LuciRepository地址并重新登录
-                try {
-                    val router = repository.getRouterById(routerId)
-                    if (router != null) {
-                        val luci = LuciRepository.getInstance(getApplication())
-                        luci.logout()
-                        luci.login(router.address, router.username, router.encryptedPassword)
-                    }
-                } catch (e: Exception) {
-                    // 登录失败不影响切换，后续操作会自动重试
+            repository.setActiveRouter(routerId)
+            // 切换路由器时，更新LuciRepository地址并重新登录
+            try {
+                val router = repository.getRouterById(routerId)
+                if (router != null) {
+                    val luci = LuciRepository.getInstance(getApplication())
+                    luci.logout()
+                    luci.login(router.address, router.username, router.encryptedPassword)
                 }
+            } catch (e: Exception) {
+                // 登录失败不影响切换，后续操作会自动重试
             }
         }
     }
 
     fun deleteRouter(routerId: String) {
         viewModelScope.launch {
-            // 演示路由器不能删除
-            if (DebugMode.isDemoRouter(routerId)) {
-                return@launch
-            }
             repository.removeRouter(routerId)
             if (_uiState.value.activeRouterId == routerId) {
                 repository.setActiveRouter(null)
             }
-        }
-    }
-
-    /**
-     * 添加演示路由器
-     */
-    fun addDemoRouter() {
-        viewModelScope.launch {
-            DebugMode.enableDemoMode()
-            repository.setActiveRouter("demo-router")
-            loadRouters()
         }
     }
 

@@ -2,8 +2,11 @@ package com.luanmuc.openwrtmanager.ui.diagnostic_commands
 
 import android.content.Intent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
@@ -11,7 +14,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.CheckBox
+import androidx.compose.material.icons.filled.CheckBoxOutlineBlank
 import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.icons.filled.IndeterminateCheckBox
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Share
@@ -24,8 +30,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
@@ -37,12 +45,14 @@ import com.luanmuc.openwrtmanager.ui.components.MiTheme
 import com.luanmuc.openwrtmanager.util.Loc
 
 /**
- * Raw diagnostic-commands screen.
+ * Diagnostic-commands screen.
  *
- * Runs the reference diagnostic script on the router and shows the raw
- * output of each section: hostname, mesh neighbors (per discovered mesh
- * interface), mesh paths, wireless interfaces and routes.
- * The report can be copied, shared, or analyzed with Gemini AI.
+ * Shows the full catalog of read-only diagnostic commands grouped by
+ * category. The user selects which commands to run — individually, per
+ * category or via presets — and every command card explains what it
+ * collects and when it is useful. Selected commands run on the router and
+ * their raw output is shown per section; the report can be copied, shared,
+ * or analyzed with Gemini AI.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -53,8 +63,9 @@ fun DiagnosticCommandsScreen(
     val context = LocalContext.current
     val clipboard = LocalClipboardManager.current
 
+    val selectedIds by viewModel.selectedIds.collectAsState()
     val sections by viewModel.sections.collectAsState()
-    val isRunningAll by viewModel.isRunningAll.collectAsState()
+    val isRunning by viewModel.isRunning.collectAsState()
     val aiAnswer by viewModel.aiAnswer.collectAsState()
     val isAiAnalyzing by viewModel.isAiAnalyzing.collectAsState()
     val error by viewModel.error.collectAsState()
@@ -133,7 +144,7 @@ fun DiagnosticCommandsScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            if (isRunningAll) {
+            if (isRunning) {
                 LinearProgressIndicator(
                     modifier = Modifier.fillMaxWidth(),
                     color = MiTheme.Primary
@@ -150,23 +161,55 @@ fun DiagnosticCommandsScreen(
                 ),
                 verticalArrangement = Arrangement.spacedBy(MiDimens.itemSpacing)
             ) {
-                // ==================== Intro + run all ====================
-                item { IntroCard(isRunning = isRunningAll, onRunAll = { viewModel.runAll() }) }
-
-                // ==================== Command sections ====================
-                items(
-                    count = sections.size,
-                    key = { sections[it].id }
-                ) { index ->
-                    SectionCard(
-                        section = sections[index],
-                        enabled = !isRunningAll,
-                        onRun = { viewModel.runSection(sections[index].id) }
+                // ==================== Intro: presets + run ====================
+                item {
+                    IntroCard(
+                        selectedCount = selectedIds.size,
+                        isRunning = isRunning,
+                        onRunSelected = { viewModel.runSelected() },
+                        onSelectAll = { viewModel.selectAll() },
+                        onClearAll = { viewModel.clearSelection() },
+                        onApplyPreset = { viewModel.applyPreset(it) }
                     )
                 }
 
+                // ==================== Command catalog by category ====================
+                DiagCategory.entries.forEach { category ->
+                    val catCommands = DiagCommandCatalog.byCategory[category].orEmpty()
+
+                    item(key = "cat_${category.name}") {
+                        CategoryCard(
+                            category = category,
+                            commands = catCommands,
+                            selectedIds = selectedIds,
+                            enabled = !isRunning,
+                            onToggleCategory = { selected ->
+                                viewModel.setCategorySelected(category, selected)
+                            },
+                            onToggleCommand = { id -> viewModel.toggleCommand(id) }
+                        )
+                    }
+                }
+
+                // ==================== Results ====================
+                if (sections.isNotEmpty()) {
+                    item(key = "results_header") {
+                        ResultsHeader()
+                    }
+                    items(
+                        count = sections.size,
+                        key = { sections[it].id }
+                    ) { index ->
+                        SectionCard(
+                            section = sections[index],
+                            enabled = !isRunning,
+                            onRun = { viewModel.runSection(sections[index].id) }
+                        )
+                    }
+                }
+
                 // ==================== AI analysis ====================
-                item {
+                item(key = "ai_card") {
                     AiAnalysisCard(
                         hasResult = viewModel.hasAnyResult,
                         isAnalyzing = isAiAnalyzing,
@@ -183,10 +226,18 @@ fun DiagnosticCommandsScreen(
 // ==================== Components ====================
 
 /**
- * Header card: short description + primary "run all" button.
+ * Header card: description, selection presets, select all / clear and the
+ * primary "run selected" button.
  */
 @Composable
-private fun IntroCard(isRunning: Boolean, onRunAll: () -> Unit) {
+private fun IntroCard(
+    selectedCount: Int,
+    isRunning: Boolean,
+    onRunSelected: () -> Unit,
+    onSelectAll: () -> Unit,
+    onClearAll: () -> Unit,
+    onApplyPreset: (DiagPreset) -> Unit
+) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(MiDimens.cardRadius),
@@ -219,10 +270,83 @@ private fun IntroCard(isRunning: Boolean, onRunAll: () -> Unit) {
                 color = MiTheme.TextSecondary,
                 lineHeight = 18.sp
             )
+
             Spacer(modifier = Modifier.height(12.dp))
+
+            // Presets
+            Text(
+                text = Loc.s(R.string.diagcmd_presets_label),
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Medium,
+                color = MiTheme.TextSecondary
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                DiagPreset.entries.forEach { preset ->
+                    AssistChip(
+                        onClick = { onApplyPreset(preset) },
+                        label = {
+                            Text(
+                                text = Loc.s(preset.labelRes),
+                                fontSize = 12.sp
+                            )
+                        },
+                        shape = RoundedCornerShape(16.dp),
+                        border = androidx.compose.foundation.BorderStroke(
+                            1.dp, MiTheme.Primary.copy(alpha = 0.4f)
+                        ),
+                        colors = AssistChipDefaults.assistChipColors(
+                            labelColor = MiTheme.Primary
+                        )
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(
+                    onClick = onSelectAll,
+                    enabled = !isRunning,
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp)
+                ) {
+                    Icon(
+                        Icons.Default.CheckBox,
+                        contentDescription = null,
+                        modifier = Modifier.size(14.dp)
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(Loc.s(R.string.diagcmd_select_all), fontSize = 12.sp)
+                }
+                TextButton(
+                    onClick = onClearAll,
+                    enabled = !isRunning && selectedCount > 0,
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp)
+                ) {
+                    Icon(
+                        Icons.Default.CheckBoxOutlineBlank,
+                        contentDescription = null,
+                        modifier = Modifier.size(14.dp)
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(Loc.s(R.string.diagcmd_clear_all), fontSize = 12.sp)
+                }
+            }
+
+            Spacer(modifier = Modifier.height(4.dp))
+
             Button(
-                onClick = onRunAll,
-                enabled = !isRunning,
+                onClick = onRunSelected,
+                enabled = !isRunning && selectedCount > 0,
+                modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(containerColor = MiTheme.Primary)
             ) {
                 if (isRunning) {
@@ -241,7 +365,7 @@ private fun IntroCard(isRunning: Boolean, onRunAll: () -> Unit) {
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(
                     text = if (isRunning) Loc.s(R.string.diagcmd_running_all)
-                    else Loc.s(R.string.diagcmd_run_all),
+                    else Loc.s(R.string.diagcmd_run_selected, selectedCount),
                     fontSize = 13.sp
                 )
             }
@@ -250,7 +374,185 @@ private fun IntroCard(isRunning: Boolean, onRunAll: () -> Unit) {
 }
 
 /**
- * One diagnostic command and its raw output.
+ * One category: header with select-all-in-category toggle and the list of
+ * selectable command cards.
+ */
+@Composable
+private fun CategoryCard(
+    category: DiagCategory,
+    commands: List<DiagCommandDef>,
+    selectedIds: Set<String>,
+    enabled: Boolean,
+    onToggleCategory: (Boolean) -> Unit,
+    onToggleCommand: (String) -> Unit
+) {
+    val state = when {
+        commands.isEmpty() -> false
+        commands.all { it.id in selectedIds } -> true
+        commands.none { it.id in selectedIds } -> false
+        else -> null
+    }
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(MiDimens.cardRadius),
+        colors = CardDefaults.cardColors(containerColor = MiTheme.CardBackground)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+        ) {
+            // Category header
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(enabled = enabled, role = Role.Checkbox) { onToggleCategory(state != true) }
+                    .padding(horizontal = 16.dp, vertical = 6.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TriStateIcon(
+                    state = state,
+                    enabled = enabled,
+                    onClick = { onToggleCategory(state != true) }
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = Loc.s(category.titleRes),
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MiTheme.TextPrimary,
+                    modifier = Modifier.weight(1f)
+                )
+                Text(
+                    text = "${commands.count { it.id in selectedIds }}/${commands.size}",
+                    fontSize = 12.sp,
+                    color = MiTheme.TextSecondary
+                )
+            }
+
+            // Commands
+            commands.forEach { def ->
+                CommandRow(
+                    def = def,
+                    selected = def.id in selectedIds,
+                    enabled = enabled,
+                    onToggle = { onToggleCommand(def.id) }
+                )
+            }
+        }
+    }
+}
+
+/**
+ * Checkbox-style icon supporting the partial (indeterminate) state.
+ */
+@Composable
+private fun TriStateIcon(
+    state: Boolean?,
+    enabled: Boolean,
+    onClick: () -> Unit
+) {
+    val (icon, tint) = when (state) {
+        true -> Icons.Default.CheckBox to MiTheme.Primary
+        false -> Icons.Default.CheckBoxOutlineBlank to MiTheme.TextSecondary
+        null -> Icons.Default.IndeterminateCheckBox to MiTheme.Primary.copy(alpha = 0.6f)
+    }
+    Icon(
+        imageVector = icon,
+        contentDescription = null,
+        tint = if (enabled) tint else MiTheme.TextTertiary,
+        modifier = Modifier
+            .size(22.dp)
+            .clickable(enabled = enabled, role = Role.Checkbox) { onClick() }
+    )
+}
+
+/**
+ * One selectable command: checkbox + title + the command itself (always
+ * left-to-right monospace) + the explanation of what it collects and when
+ * to select it.
+ */
+@Composable
+private fun CommandRow(
+    def: DiagCommandDef,
+    selected: Boolean,
+    enabled: Boolean,
+    onToggle: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(enabled = enabled, role = Role.Checkbox) { onToggle() }
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.Top
+    ) {
+        Checkbox(
+            checked = selected,
+            onCheckedChange = null,
+            enabled = enabled,
+            modifier = Modifier.size(20.dp)
+        )
+        Spacer(modifier = Modifier.width(10.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = Loc.s(def.titleRes),
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Medium,
+                color = if (selected) MiTheme.TextPrimary else MiTheme.TextSecondary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = def.command,
+                style = TextStyle(
+                    fontFamily = FontFamily.Monospace,
+                    textDirection = TextDirection.Ltr,
+                    fontSize = 11.sp
+                ),
+                color = MiTheme.Primary,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = MiTheme.Background,
+                        shape = RoundedCornerShape(6.dp)
+                    )
+                    .padding(horizontal = 8.dp, vertical = 4.dp)
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = Loc.s(def.descRes),
+                fontSize = 12.sp,
+                color = MiTheme.TextTertiary,
+                lineHeight = 16.sp
+            )
+        }
+    }
+}
+
+/** Divider-style header above the executed results. */
+@Composable
+private fun ResultsHeader() {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(top = 4.dp)
+    ) {
+        Box(
+            modifier = Modifier
+                .size(8.dp)
+                .background(MiTheme.Primary, CircleShape)
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(
+            text = Loc.s(R.string.diagcmd_results_title),
+            fontSize = 14.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = MiTheme.TextPrimary
+        )
+    }
+}
+
+/**
+ * One executed diagnostic command and its raw output.
  */
 @Composable
 private fun SectionCard(
@@ -324,7 +626,7 @@ private fun SectionCard(
                     text = Loc.s(R.string.diagcmd_status_idle),
                     fontSize = 12.sp,
                     color = MiTheme.TextSecondary,
-                    fontStyle = androidx.compose.ui.text.font.FontStyle.Italic
+                    fontStyle = FontStyle.Italic
                 )
                 DiagSectionStatus.RUNNING -> Row(verticalAlignment = Alignment.CenterVertically) {
                     CircularProgressIndicator(

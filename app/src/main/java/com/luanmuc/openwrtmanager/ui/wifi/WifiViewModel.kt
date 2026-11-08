@@ -13,7 +13,6 @@ import com.luanmuc.openwrtmanager.data.repository.CacheRepository
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 import com.luanmuc.openwrtmanager.R
 import com.luanmuc.openwrtmanager.util.Loc
@@ -96,9 +95,6 @@ class WifiViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             try {
                 // 调试模式不使用缓存
-                if (DebugMode.isDebugMode) {
-                    return@launch
-                }
 
                 val activeRouter = getActiveRouter() ?: return@launch
 
@@ -142,47 +138,6 @@ class WifiViewModel(application: Application) : BaseViewModel(application) {
 
             try {
                 // 调试模式：使用假数据
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(800)
-                    val wifi2g = WifiConfig(
-                        enabled = true,
-                        ssid = "OpenWrt-2.4G",
-                        password = "12345678",
-                        channel = "auto",
-                        bandwidth = "20",
-                        txpower = "20",
-                        encryption = "psk2"
-                    )
-                    val wifi5g = WifiConfig(
-                        enabled = true,
-                        ssid = "OpenWrt-5G",
-                        password = "12345678",
-                        channel = "auto",
-                        bandwidth = "80",
-                        txpower = "23",
-                        encryption = "psk2"
-                    )
-                    val guestWifi = WifiConfig(
-                        enabled = false,
-                        ssid = "OpenWrt-Guest",
-                        password = "guest123",
-                        channel = "auto",
-                        bandwidth = "20",
-                        txpower = "10",
-                        encryption = "psk2"
-                    )
-                    _uiState.value = _uiState.value.copy(
-                        wifi2g = wifi2g,
-                        wifi5g = wifi5g,
-                        guestWifi = guestWifi,
-                        has5g = true,
-                        isLoading = false,
-                        isFromCache = false,
-                        isOfflineMode = false,
-                        error = null
-                    )
-                    return@launch
-                }
 
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
@@ -317,14 +272,6 @@ class WifiViewModel(application: Application) : BaseViewModel(application) {
 
             try {
                 // 调试模式：模拟保存
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(1000)
-                    _uiState.value = _uiState.value.copy(
-                        isSaving = false,
-                        success = Loc.s(R.string.s0807)
-                    )
-                    return@launch
-                }
 
                 val config = when (band) {
                     "2g" -> _uiState.value.wifi2g

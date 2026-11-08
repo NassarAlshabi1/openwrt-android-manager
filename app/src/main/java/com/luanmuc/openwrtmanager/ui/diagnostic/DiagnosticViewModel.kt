@@ -12,7 +12,6 @@ import com.luanmuc.openwrtmanager.data.model.Router
 import com.luanmuc.openwrtmanager.data.model.RouterStatus
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 import com.luanmuc.openwrtmanager.util.NetworkDiagnostic
 import com.luanmuc.openwrtmanager.R
@@ -59,64 +58,6 @@ class DiagnosticViewModel(application: Application) : BaseViewModel(application)
             )
             try {
                 // 调试模式：使用假数据
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(500)
-                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0380))
-                    DebugMode.simulateDelay(500)
-                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0381))
-                    DebugMode.simulateDelay(500)
-                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0382))
-                    DebugMode.simulateDelay(500)
-                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0383))
-                    DebugMode.simulateDelay(500)
-                    _uiState.value = _uiState.value.copy(currentStep = Loc.s(R.string.s0384))
-                    DebugMode.simulateDelay(500)
-
-                    // 生成假的诊断结果
-                    val issues = listOf(
-                        NetworkDiagnostic.DiagnosticIssue(
-                            type = NetworkDiagnostic.IssueType.CPU_USAGE,
-                            severity = NetworkDiagnostic.Severity.WARNING,
-                            description = Loc.s(R.string.s0385),
-                            suggestion = Loc.s(R.string.s0386)
-                        ),
-                        NetworkDiagnostic.DiagnosticIssue(
-                            type = NetworkDiagnostic.IssueType.MEMORY_USAGE,
-                            severity = NetworkDiagnostic.Severity.INFO,
-                            description = Loc.s(R.string.s0387),
-                            suggestion = Loc.s(R.string.s0388)
-                        ),
-                        NetworkDiagnostic.DiagnosticIssue(
-                            type = NetworkDiagnostic.IssueType.STORAGE_USAGE,
-                            severity = NetworkDiagnostic.Severity.WARNING,
-                            description = Loc.s(R.string.s0389),
-                            suggestion = Loc.s(R.string.s0390)
-                        ),
-                        NetworkDiagnostic.DiagnosticIssue(
-                            type = NetworkDiagnostic.IssueType.UPTIME,
-                            severity = NetworkDiagnostic.Severity.INFO,
-                            description = Loc.s(R.string.s0391),
-                            suggestion = Loc.s(R.string.s0392)
-                        )
-                    )
-
-                    val result = NetworkDiagnostic.DiagnosticResult(
-                        isHealthy = true,
-                        issues = issues,
-                        suggestions = listOf(
-                            Loc.s(R.string.s0393),
-                            Loc.s(R.string.s0394),
-                            Loc.s(R.string.s0395)
-                        )
-                    )
-
-                    _uiState.value = _uiState.value.copy(
-                        isRunning = false,
-                        result = result,
-                        currentStep = ""
-                    )
-                    return@launch
-                }
 
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {

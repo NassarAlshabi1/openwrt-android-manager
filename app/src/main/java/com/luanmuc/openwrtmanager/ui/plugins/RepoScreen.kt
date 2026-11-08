@@ -56,7 +56,6 @@ import com.luanmuc.openwrtmanager.ui.components.MiListItem
 import com.luanmuc.openwrtmanager.ui.components.MiSwitch
 import com.luanmuc.openwrtmanager.ui.components.MiTheme
 import com.luanmuc.openwrtmanager.ui.components.MiTopAppBar
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.Loc
 
 /**

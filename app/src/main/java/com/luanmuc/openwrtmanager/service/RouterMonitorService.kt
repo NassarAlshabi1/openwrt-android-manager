@@ -11,8 +11,8 @@ import android.os.IBinder
 import android.os.Looper
 import androidx.core.app.NotificationCompat
 import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.util.AppNotificationManager
-import com.luanmuc.openwrtmanager.util.DebugMode
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -123,19 +123,17 @@ class RouterMonitorService : Service() {
     }
     
     /**
-     * 检查路由器状态
+     * 检查路由器状态（真实 ubus 调用，失败即视为离线）
      */
     private suspend fun checkRouterStatus() {
-        // 演示模式下模拟状态变化
-        val isOnline = if (DebugMode.isDebugMode) {
-            // 模拟：90%概率在线，10%概率离线
-            Math.random() > 0.1
-        } else {
-            // 真实模式：这里应该调用LuciRepository检查状态
-            // 暂时返回true，后续完善真实API对接
+        val luciRepository = LuciRepository.getInstance(this)
+        val isOnline = try {
+            luciRepository.getRouterStatus()
             true
+        } catch (e: Exception) {
+            false
         }
-        
+
         // 状态变化时发送通知
         if (!isFirstCheck && isOnline != lastOnlineState) {
             if (isOnline) {
@@ -144,7 +142,7 @@ class RouterMonitorService : Service() {
                 sendOfflineNotification()
             }
         }
-        
+
         lastOnlineState = isOnline
         isFirstCheck = false
     }

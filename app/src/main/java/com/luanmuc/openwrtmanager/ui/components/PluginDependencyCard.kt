@@ -15,7 +15,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.luanmuc.openwrtmanager.data.model.PluginInstallStatus
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.R
 import com.luanmuc.openwrtmanager.util.Loc
 

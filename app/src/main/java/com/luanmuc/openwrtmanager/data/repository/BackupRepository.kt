@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import com.luanmuc.openwrtmanager.data.model.BackupRecord
 import com.luanmuc.openwrtmanager.data.model.BackupType
 import com.luanmuc.openwrtmanager.data.model.RestoreProgress
-import com.luanmuc.openwrtmanager.util.DebugMode
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
@@ -34,9 +33,6 @@ class BackupRepository private constructor(private val context: Context) {
      * 获取备份列表
      */
     fun getBackupList(): List<BackupRecord> {
-        if (DebugMode.isDebugMode) {
-            return getFakeBackupList()
-        }
         
         val json = prefs.getString("backup_list", null) ?: return emptyList()
         return try {
@@ -69,23 +65,6 @@ class BackupRepository private constructor(private val context: Context) {
         description: String = "",
         type: BackupType = BackupType.FULL
     ): BackupRecord? {
-        if (DebugMode.isDebugMode) {
-            delay(2000)
-            val record = BackupRecord(
-                id = UUID.randomUUID().toString(),
-                name = name,
-                description = description,
-                createdAt = System.currentTimeMillis(),
-                size = (512 + Math.random() * 512).toLong() * 1024,  // 512KB - 1MB
-                routerName = "OpenWrt-Router",
-                firmwareVersion = "23.05.0",
-                backupType = type,
-                filePath = "",
-                isEncrypted = false
-            )
-            saveBackupRecord(record)
-            return record
-        }
         
         // 真实模式：调用路由器备份接口
         return try {
@@ -115,32 +94,6 @@ class BackupRepository private constructor(private val context: Context) {
      * 恢复配置
      */
     suspend fun restoreBackup(backupId: String): RestoreProgress {
-        if (DebugMode.isDebugMode) {
-            // 模拟恢复过程
-            val steps = listOf(
-                Loc.s(R.string.s0016),
-                Loc.s(R.string.s0017),
-                Loc.s(R.string.s0018),
-                Loc.s(R.string.s0019),
-                Loc.s(R.string.s0020),
-                Loc.s(R.string.s0021),
-                Loc.s(R.string.s0022),
-                Loc.s(R.string.s0023)
-            )
-            
-            for (i in steps.indices) {
-                delay(500)
-            }
-            
-            return RestoreProgress(
-                currentStep = steps.size,
-                totalSteps = steps.size,
-                currentStepName = Loc.s(R.string.s0024),
-                percentage = 100,
-                isCompleted = true,
-                error = null
-            )
-        }
         
         // 真实模式：恢复配置（需要上传备份文件并执行sysupgrade -r）
         return RestoreProgress(

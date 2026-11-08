@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.viewModelScope
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -47,29 +46,17 @@ class RemoteManageViewModel(application: Application) : BaseViewModel(applicatio
      */
     fun loadRemoteConfig() {
         viewModelScope.launch {
-            if (DebugMode.isDebugMode) {
-                // 调试模式：使用演示路由器的配置
-                val demoRouter = DebugMode.getDemoRouter()
-                _uiState.value = _uiState.value.copy(
-                    remoteEnabled = demoRouter.remoteEnabled,
-                    remoteAddress = demoRouter.remoteAddress,
-                    remotePort = demoRouter.remotePort,
-                    remoteProtocol = demoRouter.remoteProtocol,
-                    autoSwitchRemote = demoRouter.autoSwitchRemote
-                )
-            } else {
-                val activeRouterId = routerRepository.getActiveRouterId()
-                if (activeRouterId != null) {
-                    val router = routerRepository.getRouterById(activeRouterId)
-                    if (router != null) {
-                        _uiState.value = _uiState.value.copy(
-                            remoteEnabled = router.remoteEnabled,
-                            remoteAddress = router.remoteAddress,
-                            remotePort = router.remotePort,
-                            remoteProtocol = router.remoteProtocol,
-                            autoSwitchRemote = router.autoSwitchRemote
-                        )
-                    }
+            val activeRouterId = routerRepository.getActiveRouterId()
+            if (activeRouterId != null) {
+                val router = routerRepository.getRouterById(activeRouterId)
+                if (router != null) {
+                    _uiState.value = _uiState.value.copy(
+                        remoteEnabled = router.remoteEnabled,
+                        remoteAddress = router.remoteAddress,
+                        remotePort = router.remotePort,
+                        remoteProtocol = router.remoteProtocol,
+                        autoSwitchRemote = router.autoSwitchRemote
+                    )
                 }
             }
             // 检测当前网络环境

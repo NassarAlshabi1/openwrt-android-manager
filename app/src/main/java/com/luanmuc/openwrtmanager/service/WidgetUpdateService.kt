@@ -7,7 +7,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.widget.NetworkSpeedWidget
 import com.luanmuc.openwrtmanager.widget.RouterStatusWidget
 import kotlinx.coroutines.CoroutineScope

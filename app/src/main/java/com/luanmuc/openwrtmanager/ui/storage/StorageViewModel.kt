@@ -8,7 +8,6 @@ import com.luanmuc.openwrtmanager.data.repository.CacheRepository
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -67,29 +66,10 @@ class StorageViewModel(application: Application) : BaseViewModel(application) {
 
     private fun observeRouters() {
         viewModelScope.launch {
-            kotlinx.coroutines.flow.combine(
-                routerRepository.routers,
-                DebugMode.isDebugModeFlow
-            ) { routers, isDebugMode ->
-                Pair(routers, isDebugMode)
-            }.collect { (routers, isDebugMode) ->
+            routerRepository.routers.collect { routers ->
                 _uiState.value = _uiState.value.copy(hasRouter = routers.isNotEmpty())
 
-                if (isDebugMode && _uiState.value.isFromCache) {
-                    _uiState.value = _uiState.value.copy(
-                        storageTotal = 0,
-                        storageUsed = 0,
-                        storageFree = 0,
-                        isFromCache = false
-                    )
-                }
-
-                val shouldLoad = if (isDebugMode) {
-                    _uiState.value.storageTotal == 0L
-                } else {
-                    routers.isNotEmpty() && _uiState.value.storageTotal == 0L
-                }
-                if (shouldLoad) {
+                if (routers.isNotEmpty() && _uiState.value.storageTotal == 0L) {
                     loadFromCache()
                     loadStorageInfo()
                 }
@@ -100,8 +80,6 @@ class StorageViewModel(application: Application) : BaseViewModel(application) {
     private fun loadFromCache() {
         viewModelScope.launch {
             try {
-                if (DebugMode.isDebugMode) return@launch
-
                 val activeRouter = getActiveRouter() ?: return@launch
 
                 val cachedStatus = cacheRepository.getCacheEvenExpired(
@@ -149,31 +127,6 @@ class StorageViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true, error = null)
             try {
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(800)
-                    val fakeStatus = DebugMode.getFakeRouterStatus()
-                    val fakeMounts = DebugMode.getFakeMountPoints()
-                    _uiState.value = _uiState.value.copy(
-                        storageTotal = fakeStatus.storageTotal,
-                        storageUsed = fakeStatus.storageUsed,
-                        storageFree = fakeStatus.storageFree,
-                        memoryTotal = fakeStatus.memoryTotal,
-                        memoryUsed = fakeStatus.memoryUsed,
-                        memoryFree = fakeStatus.memoryFree,
-                        memoryCached = fakeStatus.memoryCached,
-                        memoryBuffered = fakeStatus.memoryBuffered,
-                        uptime = fakeStatus.uptime,
-                        loadAverage = fakeStatus.loadAverage,
-                        cpuUsage = fakeStatus.cpuUsage,
-                        temperature = fakeStatus.temperature,
-                        mountPoints = fakeMounts,
-                        isLoading = false,
-                        isFromCache = false,
-                        isOfflineMode = false,
-                        error = null
-                    )
-                    return@launch
-                }
 
                 val activeRouter = getActiveRouter() ?: return@launch
                 val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)

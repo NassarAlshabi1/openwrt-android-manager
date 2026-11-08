@@ -9,7 +9,6 @@ import com.luanmuc.openwrtmanager.data.model.DiagnosticSuggestion
 import com.luanmuc.openwrtmanager.data.model.FullDiagnosticResult
 import com.luanmuc.openwrtmanager.data.model.NetworkQuality
 import com.luanmuc.openwrtmanager.data.model.NetworkQualityResult
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.OpenWrtVersions
 import kotlinx.coroutines.delay
 import com.luanmuc.openwrtmanager.R
@@ -26,11 +25,6 @@ class DiagnosticRepository private constructor(private val context: Context) {
      * 执行全面体检
      */
     suspend fun runFullDiagnostic(): FullDiagnosticResult {
-        if (DebugMode.isDebugMode) {
-            // 模拟检测过程
-            delay(2000)
-            return getFakeDiagnosticResult()
-        }
         
         // 真实模式：执行各项检测
         val items = mutableListOf<DiagnosticItem>()
@@ -126,10 +120,6 @@ class DiagnosticRepository private constructor(private val context: Context) {
      * 检测网络质量
      */
     suspend fun checkNetworkQuality(): NetworkQualityResult {
-        if (DebugMode.isDebugMode) {
-            delay(1500)
-            return getFakeNetworkQualityResult()
-        }
         
         // 真实模式：执行网络质量检测（ping测试）
         return try {
@@ -160,9 +150,6 @@ class DiagnosticRepository private constructor(private val context: Context) {
      * 获取优化建议
      */
     suspend fun getOptimizationSuggestions(): List<DiagnosticSuggestion> {
-        if (DebugMode.isDebugMode) {
-            return getFakeSuggestions()
-        }
         
         return emptyList()
     }
@@ -171,10 +158,6 @@ class DiagnosticRepository private constructor(private val context: Context) {
      * 自动修复问题
      */
     suspend fun autoFix(suggestionId: String): Boolean {
-        if (DebugMode.isDebugMode) {
-            delay(1000)
-            return true
-        }
         
         return false
     }

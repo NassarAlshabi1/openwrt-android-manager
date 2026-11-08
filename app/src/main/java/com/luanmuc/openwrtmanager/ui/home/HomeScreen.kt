@@ -26,7 +26,6 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Info
 import com.luanmuc.openwrtmanager.ui.components.DualLineChart
-import com.luanmuc.openwrtmanager.util.DebugMode
 import androidx.compose.material.icons.filled.Devices
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Extension
@@ -401,11 +400,6 @@ fun HomeContent(
         // 离线提示条
         OfflineBanner(isOffline = isOffline)
         
-        // 演示模式提示条
-        if (DebugMode.isDebugMode) {
-            DemoModeBanner()
-        }
-        
         // 长按进入编辑模式提示
         if (!isEditMode) {
             Row(
@@ -562,44 +556,6 @@ fun HomeContent(
         }
         
         Spacer(modifier = Modifier.height(8.dp))
-    }
-}
-
-/**
- * 演示模式提示条
- */
-@Composable
-fun DemoModeBanner() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(
-                color = MiColors.Warning.copy(alpha = 0.1f),
-                shape = RoundedCornerShape(12.dp)
-            )
-            .padding(horizontal = 16.dp, vertical = 12.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            imageVector = Icons.Default.Info,
-            contentDescription = null,
-            tint = MiColors.Warning,
-            modifier = Modifier.size(20.dp)
-        )
-        Spacer(modifier = Modifier.width(12.dp))
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = Loc.s(R.string.s0497),
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium,
-                color = MiColors.Warning
-            )
-            Text(
-                text = Loc.s(R.string.s0498),
-                fontSize = 12.sp,
-                color = MiTheme.TextSecondary
-            )
-        }
     }
 }
 

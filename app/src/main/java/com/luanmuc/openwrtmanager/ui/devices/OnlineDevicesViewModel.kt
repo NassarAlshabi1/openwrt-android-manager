@@ -13,7 +13,6 @@ import com.luanmuc.openwrtmanager.data.repository.CacheRepository
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 import com.luanmuc.openwrtmanager.R
 import com.luanmuc.openwrtmanager.util.Loc
@@ -55,23 +54,12 @@ class OnlineDevicesViewModel(application: Application) : BaseViewModel(applicati
         loadDevices()
     }
 
-
     private fun observeRouters() {
         viewModelScope.launch {
-            kotlinx.coroutines.flow.combine(
-                routerRepository.routers,
-                DebugMode.isDebugModeFlow
-            ) { routers, isDebugMode ->
-                Pair(routers, isDebugMode)
-            }.collect { (routers, isDebugMode) ->
+            routerRepository.routers.collect { routers ->
                 _uiState.value = _uiState.value.copy(hasRouter = routers.isNotEmpty())
-                
-                // 调试模式变化时，清空现有数据强制重新加载
-                if (isDebugMode && _uiState.value.devices.isNotEmpty() && _uiState.value.isFromCache) {
-                    _uiState.value = _uiState.value.copy(devices = emptyList(), isFromCache = false)
-                }
-                
-                if ((routers.isNotEmpty() || isDebugMode) && _uiState.value.devices.isEmpty()) {
+
+                if (routers.isNotEmpty() && _uiState.value.devices.isEmpty()) {
                     // 先加载缓存
                     loadFromCache()
                     // 然后从网络加载
@@ -88,9 +76,6 @@ class OnlineDevicesViewModel(application: Application) : BaseViewModel(applicati
         viewModelScope.launch {
             try {
                 // 调试模式不使用缓存
-                if (DebugMode.isDebugMode) {
-                    return@launch
-                }
 
                 val activeRouter = getActiveRouter() ?: return@launch
 
@@ -130,18 +115,6 @@ class OnlineDevicesViewModel(application: Application) : BaseViewModel(applicati
 
             try {
                 // 调试模式：使用假数据
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(800)
-                    val devices = DebugMode.getFakeOnlineDevices()
-                    _uiState.value = _uiState.value.copy(
-                        devices = sortDevices(devices, _uiState.value.sortBy),
-                        isLoading = false,
-                        isFromCache = false,
-                        isOfflineMode = false,
-                        error = null
-                    )
-                    return@launch
-                }
 
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {

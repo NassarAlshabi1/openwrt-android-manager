@@ -61,7 +61,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import android.widget.Toast
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.Loc
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -129,8 +128,7 @@ fun ProfileScreen(
     onNavigateToRemoteManage: () -> Unit = {},
     onNavigateToPluginDependency: () -> Unit = {},
     onNavigateToAiDiagnostic: () -> Unit = {},
-    onNavigateToDiagnosticCommands: () -> Unit = {},
-    onDebugModeToggled: (Boolean) -> Unit = {}
+    onNavigateToDiagnosticCommands: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -188,7 +186,7 @@ fun ProfileScreen(
             
             Spacer(modifier = Modifier.height(20.dp))
             
-            AboutCard(onDebugModeToggled = onDebugModeToggled)
+            AboutCard()
         }
         
     }
@@ -1159,12 +1157,7 @@ fun SettingsList() {
 }
 
 @Composable
-fun AboutCard(
-    onDebugModeToggled: (Boolean) -> Unit = {}
-) {
-    val context = LocalContext.current
-    val scope = rememberCoroutineScope()
-    var clickCount by remember { mutableIntStateOf(0) }
+fun AboutCard() {
     
     MiCard(
         modifier = Modifier
@@ -1201,21 +1194,7 @@ fun AboutCard(
             Text(
                 text = Loc.s(R.string.s0671),
                 fontSize = 13.sp,
-                color = MiTheme.TextTertiary,
-                modifier = Modifier.clickable {
-                    clickCount++
-                    if (clickCount >= 5) {
-                        clickCount = 0
-                        val enabled = !DebugMode.isDebugMode
-                        DebugMode.toggle()
-                        onDebugModeToggled(enabled)
-                        Toast.makeText(
-                            context,
-                            if (enabled) Loc.s(R.string.s0672) else Loc.s(R.string.s0673),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
+                color = MiTheme.TextTertiary
             )
         }
     }

@@ -90,7 +90,6 @@ fun DevicesScreen(
         if (uiState.routers.isEmpty() && !uiState.isLoading) {
             EmptyDevicesView(
                 onAddRouter = onAddRouter,
-                onDemoMode = { viewModel.addDemoRouter() },
                 modifier = Modifier.padding(padding)
             )
         } else {
@@ -163,7 +162,6 @@ fun DevicesScreen(
 @Composable
 fun EmptyDevicesView(
     onAddRouter: () -> Unit,
-    onDemoMode: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -205,14 +203,6 @@ fun EmptyDevicesView(
             text = stringResource(R.string.devices_add),
             onClick = onAddRouter
         )
-        Spacer(modifier = Modifier.height(16.dp))
-        TextButton(onClick = onDemoMode) {
-            Text(
-                text = Loc.s(R.string.s0353),
-                fontSize = 14.sp,
-                color = MiTheme.Primary
-            )
-        }
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = Loc.s(R.string.s0354),

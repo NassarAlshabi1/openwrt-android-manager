@@ -7,94 +7,95 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import com.luanmuc.openwrtmanager.R
+import com.luanmuc.openwrtmanager.util.AppNotificationManager
 import com.luanmuc.openwrtmanager.util.Loc
 
 /**
  * 通知设置ViewModel
+ *
+ * 渠道开关真实控制 AppNotificationManager 是否发出对应通知；
+ * 通知历史来自 AppNotificationManager 记录的真实通知。
  */
 class NotificationViewModel(application: Application) : BaseViewModel(application) {
-    
+
     // 通知开关状态
     private val _notificationEnabled = MutableStateFlow(true)
     val notificationEnabled: StateFlow<Boolean> = _notificationEnabled.asStateFlow()
-    
+
     // 各个渠道的开关状态
-    private val _routerStatusEnabled = MutableStateFlow(true)
+    private val _routerStatusEnabled = MutableStateFlow(AppNotificationManager.isRouterStatusEnabled())
     val routerStatusEnabled: StateFlow<Boolean> = _routerStatusEnabled.asStateFlow()
-    
-    private val _firmwareEnabled = MutableStateFlow(true)
+
+    private val _firmwareEnabled = MutableStateFlow(AppNotificationManager.isFirmwareEnabled())
     val firmwareEnabled: StateFlow<Boolean> = _firmwareEnabled.asStateFlow()
-    
-    private val _networkAlertEnabled = MutableStateFlow(true)
+
+    private val _networkAlertEnabled = MutableStateFlow(AppNotificationManager.isNetworkAlertEnabled())
     val networkAlertEnabled: StateFlow<Boolean> = _networkAlertEnabled.asStateFlow()
-    
-    private val _deviceEventEnabled = MutableStateFlow(true)
+
+    private val _deviceEventEnabled = MutableStateFlow(AppNotificationManager.isDeviceEventEnabled())
     val deviceEventEnabled: StateFlow<Boolean> = _deviceEventEnabled.asStateFlow()
-    
-    // 通知历史记录
+
+    // 通知历史记录（真实记录）
     private val _notificationHistory = MutableStateFlow<List<NotificationHistoryItem>>(emptyList())
     val notificationHistory: StateFlow<List<NotificationHistoryItem>> = _notificationHistory.asStateFlow()
-    
+
     init {
         initNetworkMonitor()
-        // 加载演示数据
-        loadDemoData()
+        loadHistory()
     }
-    
-    private fun loadDemoData() {
-        // 演示模式的通知历史
-        val demoHistory = listOf(
+
+    /** 从 AppNotificationManager 加载真实通知历史 */
+    private fun loadHistory() {
+        _notificationHistory.value = AppNotificationManager.getHistory().map { r ->
             NotificationHistoryItem(
-                id = 1,
-                title = Loc.s(R.string.s0562),
-                content = Loc.s(R.string.s0563),
-                time = System.currentTimeMillis() - 3600000,
-                type = NotificationType.ROUTER_STATUS
-            ),
-            NotificationHistoryItem(
-                id = 2,
-                title = Loc.s(R.string.s0564),
-                content = Loc.s(R.string.s0565),
-                time = System.currentTimeMillis() - 7200000,
-                type = NotificationType.DEVICE_EVENT
-            ),
-            NotificationHistoryItem(
-                id = 3,
-                title = Loc.s(R.string.s0566),
-                content = Loc.s(R.string.s0567),
-                time = System.currentTimeMillis() - 86400000,
-                type = NotificationType.FIRMWARE
+                id = r.id.toInt(),
+                title = r.title,
+                content = r.content,
+                time = r.time,
+                type = parseType(r.type)
             )
-        )
-        _notificationHistory.value = demoHistory
+        }
     }
-    
+
+    private fun parseType(type: String): NotificationType = when (type) {
+        AppNotificationManager.TYPE_FIRMWARE -> NotificationType.FIRMWARE
+        AppNotificationManager.TYPE_NETWORK_ALERT -> NotificationType.NETWORK_ALERT
+        AppNotificationManager.TYPE_DEVICE_EVENT -> NotificationType.DEVICE_EVENT
+        else -> NotificationType.ROUTER_STATUS
+    }
+
     fun setNotificationEnabled(enabled: Boolean) {
         _notificationEnabled.value = enabled
     }
-    
+
     fun setRouterStatusEnabled(enabled: Boolean) {
         _routerStatusEnabled.value = enabled
+        AppNotificationManager.setRouterStatusEnabled(enabled)
     }
-    
+
     fun setFirmwareEnabled(enabled: Boolean) {
         _firmwareEnabled.value = enabled
+        AppNotificationManager.setFirmwareEnabled(enabled)
     }
-    
+
     fun setNetworkAlertEnabled(enabled: Boolean) {
         _networkAlertEnabled.value = enabled
+        AppNotificationManager.setNetworkAlertEnabled(enabled)
     }
-    
+
     fun setDeviceEventEnabled(enabled: Boolean) {
         _deviceEventEnabled.value = enabled
+        AppNotificationManager.setDeviceEventEnabled(enabled)
     }
-    
+
     fun clearHistory() {
+        AppNotificationManager.clearHistory()
         _notificationHistory.value = emptyList()
     }
 
     override fun refreshData() {
-        // 基类统一刷新接口
+        // 基类统一刷新接口：重新读取真实历史
+        loadHistory()
     }
 }
 

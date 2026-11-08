@@ -15,7 +15,6 @@ import com.luanmuc.openwrtmanager.data.repository.LuciException
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 import com.luanmuc.openwrtmanager.R
 import com.luanmuc.openwrtmanager.util.Loc
@@ -95,27 +94,21 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
             try {
                 combine(
                     routerRepository.routers,
-                    routerRepository.activeRouterId,
-                    DebugMode.isDebugModeFlow
-                ) { routers, activeId, isDebugMode ->
+                    routerRepository.activeRouterId
+                ) { routers, activeId ->
                     val activeRouter = if (activeId != null) {
                         routers.find { it.id == activeId } ?: routers.firstOrNull()
                     } else {
                         routers.firstOrNull()
                     }
-                    Triple(routers, activeRouter, isDebugMode)
-                }.collect { (routers, activeRouter, isDebugMode) ->
+                    routers to activeRouter
+                }.collect { (routers, activeRouter) ->
                     try {
                         _uiState.value = _uiState.value.copy(
                             activeRouter = activeRouter,
                             hasRouter = routers.isNotEmpty()
                         )
-                        
-                        // 调试模式变化时，清空现有数据强制重新加载
-                        if (isDebugMode && _uiState.value.routerStatus != null && !DebugMode.isDemoRouter(activeRouter?.id ?: "")) {
-                            _uiState.value = _uiState.value.copy(routerStatus = null)
-                        }
-                        
+
                         if (activeRouter != null && _uiState.value.routerStatus == null) {
                             // 先加载缓存
                             loadFromCache(activeRouter)
@@ -139,11 +132,6 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     private fun loadFromCache(router: Router) {
         viewModelScope.launch {
             try {
-                // 调试模式不使用缓存
-                if (DebugMode.isDebugMode) {
-                    return@launch
-                }
-
                 val cachedStatus = cacheRepository.getCacheEvenExpired(
                     CacheRepository.KEY_ROUTER_STATUS,
                     router.id,
@@ -207,56 +195,6 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
         _uiState.value.activeRouter?.let { router ->
             viewModelScope.launch {
                 try {
-                    // 调试模式：使用假数据
-                    if (DebugMode.isDebugMode) {
-                        DebugMode.simulateDelay(300)
-                        val status = DebugMode.getFakeRouterStatus()
-                        val wan = DebugMode.getFakeWanStatus()
-                        val devices = DebugMode.getFakeOnlineDevices()
-                        val now = System.currentTimeMillis()
-
-                        val newCpuPoint = CpuDataPoint(time = now, usage = status.cpuUsage + (Math.random() * 10 - 5).toFloat())
-                        val cpuHistory = (_uiState.value.cpuHistory + newCpuPoint).takeLast(20)
-
-                        val wanRx = wan.rxBytes + (Math.random() * 100000).toLong()
-                        val wanTx = wan.txBytes + (Math.random() * 50000).toLong()
-                        val newTrafficPoint = TrafficDataPoint(time = now, rx = wanRx, tx = wanTx)
-                        val trafficHistory = (_uiState.value.trafficHistory + newTrafficPoint).takeLast(20)
-
-                        // 计算实时速度
-                        val lastPoint = _uiState.value.trafficHistory.lastOrNull()
-                        val downloadSpeed = if (lastPoint != null && now > lastPoint.time) {
-                            val timeDiff = (now - lastPoint.time) / 1000.0
-                            if (timeDiff > 0) {
-                                ((wanRx - lastPoint.rx) / timeDiff).toLong()
-                            } else 0
-                        } else 0
-
-                        val uploadSpeed = if (lastPoint != null && now > lastPoint.time) {
-                            val timeDiff = (now - lastPoint.time) / 1000.0
-                            if (timeDiff > 0) {
-                                ((wanTx - lastPoint.tx) / timeDiff).toLong()
-                            } else 0
-                        } else 0
-
-                        _uiState.value = _uiState.value.copy(
-                            routerStatus = status.copy(
-                                cpuUsage = newCpuPoint.usage,
-                                onlineDevices = devices.size
-                            ),
-                            wanStatus = wan.copy(rxBytes = wanRx, txBytes = wanTx),
-                            onlineDevices = devices,
-                            cpuHistory = cpuHistory,
-                            trafficHistory = trafficHistory,
-                            downloadSpeed = downloadSpeed,
-                            uploadSpeed = uploadSpeed,
-                            isFromCache = false,
-                            isOfflineMode = false,
-                            error = null
-                        )
-                        return@launch
-                    }
-
                     val password = EncryptionUtil.decrypt(router.encryptedPassword)
                     if (!luciRepository.isLoggedIn()) {
                         luciRepository.login(router.address, router.username, password)
@@ -353,43 +291,6 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
             )
 
             try {
-                // 调试模式：使用假数据
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(800)
-                    val status = DebugMode.getFakeRouterStatus()
-                    val wan = DebugMode.getFakeWanStatus()
-                    val devices = DebugMode.getFakeOnlineDevices()
-                    val now = System.currentTimeMillis()
-
-                    val cpuHistory = listOf(CpuDataPoint(time = now, usage = status.cpuUsage))
-                    val trafficHistory = listOf(
-                        TrafficDataPoint(
-                            time = now,
-                            rx = wan.rxBytes,
-                            tx = wan.txBytes
-                        )
-                    )
-
-                    val portStatus = DebugMode.getFakePortStatus()
-                    val deviceCapabilities = DebugMode.getFakeDeviceCapabilities()
-                    
-                    _uiState.value = _uiState.value.copy(
-                        routerStatus = status,
-                        wanStatus = wan,
-                        onlineDevices = devices,
-                        portStatus = portStatus,
-                        deviceCapabilities = deviceCapabilities,
-                        isLoading = false,
-                        isRefreshing = false,
-                        cpuHistory = cpuHistory,
-                        trafficHistory = trafficHistory,
-                        isFromCache = false,
-                        isOfflineMode = false,
-                        error = null
-                    )
-                    return@launch
-                }
-
                 val password = EncryptionUtil.decrypt(router.encryptedPassword)
                 luciRepository.login(router.address, router.username, password)
 
@@ -512,10 +413,6 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     fun reboot() {
         viewModelScope.launch {
             try {
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(1000)
-                    return@launch
-                }
                 luciRepository.reboot()
                 // 重启后清除缓存
                 _uiState.value.activeRouter?.let { router ->
@@ -533,10 +430,6 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     fun shutdown() {
         viewModelScope.launch {
             try {
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(1000)
-                    return@launch
-                }
                 luciRepository.shutdown()
                 // 关机后清除缓存
                 _uiState.value.activeRouter?.let { router ->

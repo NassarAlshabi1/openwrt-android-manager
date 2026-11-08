@@ -7,7 +7,6 @@ import com.luanmuc.openwrtmanager.data.model.WifiBand
 import com.luanmuc.openwrtmanager.data.model.WifiChannelInfo
 import com.luanmuc.openwrtmanager.data.model.WifiSchedule
 import com.luanmuc.openwrtmanager.data.model.WifiScheduleAction
-import com.luanmuc.openwrtmanager.util.DebugMode
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlinx.coroutines.delay
@@ -95,9 +94,6 @@ class WifiConfigRepository private constructor(private val context: Context) {
      * 获取访客网络配置
      */
     suspend fun getGuestNetworkConfig(): GuestNetworkConfig {
-        if (DebugMode.isDebugMode) {
-            return getFakeGuestConfig()
-        }
         
         // 真实模式：从路由器获取
         return GuestNetworkConfig()
@@ -107,10 +103,6 @@ class WifiConfigRepository private constructor(private val context: Context) {
      * 启用访客网络
      */
     suspend fun enableGuestNetwork(config: GuestNetworkConfig): Boolean {
-        if (DebugMode.isDebugMode) {
-            delay(1000)
-            return true
-        }
         
         return false
     }
@@ -119,10 +111,6 @@ class WifiConfigRepository private constructor(private val context: Context) {
      * 禁用访客网络
      */
     suspend fun disableGuestNetwork(): Boolean {
-        if (DebugMode.isDebugMode) {
-            delay(1000)
-            return true
-        }
         
         return false
     }
@@ -131,10 +119,6 @@ class WifiConfigRepository private constructor(private val context: Context) {
      * 扫描WiFi信道
      */
     suspend fun scanWifiChannels(band: WifiBand): List<WifiChannelInfo> {
-        if (DebugMode.isDebugMode) {
-            delay(2000)
-            return getFakeChannelInfo(band)
-        }
         
         return emptyList()
     }
@@ -143,10 +127,6 @@ class WifiConfigRepository private constructor(private val context: Context) {
      * 设置WiFi发射功率
      */
     suspend fun setTxPower(interfaceName: String, power: Int): Boolean {
-        if (DebugMode.isDebugMode) {
-            delay(500)
-            return true
-        }
         
         return false
     }
@@ -155,10 +135,6 @@ class WifiConfigRepository private constructor(private val context: Context) {
      * 设置WiFi信道
      */
     suspend fun setChannel(interfaceName: String, channel: Int): Boolean {
-        if (DebugMode.isDebugMode) {
-            delay(500)
-            return true
-        }
         
         return false
     }

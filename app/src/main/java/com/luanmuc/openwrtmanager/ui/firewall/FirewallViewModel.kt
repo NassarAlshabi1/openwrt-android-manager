@@ -13,7 +13,6 @@ import com.luanmuc.openwrtmanager.data.repository.CacheRepository
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 import com.luanmuc.openwrtmanager.R
 import com.luanmuc.openwrtmanager.util.Loc
@@ -75,9 +74,6 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             try {
                 // 调试模式不使用缓存
-                if (DebugMode.isDebugMode) {
-                    return@launch
-                }
 
                 val activeRouter = getActiveRouter() ?: return@launch
 
@@ -118,18 +114,6 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
 
             try {
                 // 调试模式：使用假数据
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(600)
-                    val portForwards = DebugMode.getFakePortForwards()
-                    _uiState.value = _uiState.value.copy(
-                        portForwards = portForwards,
-                        isLoading = false,
-                        isFromCache = false,
-                        isOfflineMode = false,
-                        error = null
-                    )
-                    return@launch
-                }
 
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
@@ -200,15 +184,6 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             try {
                 // 调试模式：模拟删除
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(500)
-                    val portForwards = _uiState.value.portForwards.filter { it.name != name }
-                    _uiState.value = _uiState.value.copy(
-                        portForwards = portForwards,
-                        success = Loc.s(R.string.s0415)
-                    )
-                    return@launch
-                }
 
                 // 删除端口转发规则
                 luciRepository.deletePortForward(name)
@@ -236,15 +211,6 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             try {
                 // 调试模式：模拟添加
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(800)
-                    val portForwards = _uiState.value.portForwards + rule
-                    _uiState.value = _uiState.value.copy(
-                        portForwards = portForwards,
-                        success = Loc.s(R.string.s0416)
-                    )
-                    return@launch
-                }
 
                 // 添加端口转发规则
                 luciRepository.addPortForward(rule)
@@ -278,20 +244,6 @@ class FirewallViewModel(application: Application) : BaseViewModel(application) {
                     _uiState.value = _uiState.value.copy(
                         isLoading = false,
                         error = Loc.s(R.string.s0417)
-                    )
-                    return@launch
-                }
-
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(800)
-                    // 演示模式：更新本地列表
-                    val updatedList = _uiState.value.portForwards.map {
-                        if (it.name == ruleName) rule.copy(name = ruleName) else it
-                    }
-                    _uiState.value = _uiState.value.copy(
-                        isLoading = false,
-                        portForwards = updatedList,
-                        success = Loc.s(R.string.s0418)
                     )
                     return@launch
                 }

@@ -7,11 +7,9 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import com.luanmuc.openwrtmanager.data.model.Router
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 
 private val Context.dataStore by preferencesDataStore(name = "routers")
@@ -27,23 +25,12 @@ class RouterRepository(private val context: Context) {
 
     /**
      * 获取所有路由器列表（Flow）
-     * 如果开启了演示模式，会自动添加演示路由器
      */
-    val routers: Flow<List<Router>> = kotlinx.coroutines.flow.combine(
-        context.dataStore.data,
-        DebugMode.isDebugModeFlow
-    ) { preferences, isDebugMode ->
+    val routers: Flow<List<Router>> = context.dataStore.data.map { preferences ->
         try {
             val json = preferences[routersKey] ?: "[]"
             val type = object : TypeToken<List<Router>>() {}.type
-            val routerList: List<Router> = gson.fromJson(json, type) ?: emptyList()
-            
-            // 如果开启了演示模式，添加演示路由器到列表开头
-            if (isDebugMode) {
-                listOf(DebugMode.getDemoRouter()) + routerList
-            } else {
-                routerList
-            }
+            gson.fromJson(json, type) ?: emptyList()
         } catch (e: Exception) {
             e.printStackTrace()
             emptyList()
@@ -111,10 +98,6 @@ class RouterRepository(private val context: Context) {
      * 根据ID获取路由器
      */
     suspend fun getRouterById(routerId: String): Router? {
-        // 如果是演示路由器，直接返回
-        if (DebugMode.isDemoRouter(routerId)) {
-            return DebugMode.getDemoRouter()
-        }
         return getRoutersList().find { it.id == routerId }?.let { router ->
             // 解密密码
             router.copy(encryptedPassword = EncryptionUtil.decrypt(router.encryptedPassword))
@@ -135,7 +118,6 @@ class RouterRepository(private val context: Context) {
 
     /**
      * 获取路由器列表（一次性读取）
-     * 如果开启了演示模式，会自动添加演示路由器
      */
     suspend fun getRoutersList(): List<Router> {
         return try {
@@ -144,14 +126,8 @@ class RouterRepository(private val context: Context) {
             val type = object : TypeToken<List<Router>>() {}.type
             val list: List<Router> = (gson.fromJson(json, type) as? List<Router>) ?: emptyList()
             // 解密所有密码
-            val decryptedList = list.map { router ->
+            list.map { router ->
                 router.copy(encryptedPassword = EncryptionUtil.decrypt(router.encryptedPassword))
-            }
-            // 如果开启了演示模式，添加演示路由器到列表开头
-            if (DebugMode.isDebugMode) {
-                listOf(DebugMode.getDemoRouter()) + decryptedList
-            } else {
-                decryptedList
             }
         } catch (e: Exception) {
             e.printStackTrace()

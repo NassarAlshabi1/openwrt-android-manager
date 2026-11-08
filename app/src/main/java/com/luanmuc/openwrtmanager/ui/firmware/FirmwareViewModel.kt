@@ -12,7 +12,6 @@ import com.luanmuc.openwrtmanager.data.model.FirmwareInfo
 import com.luanmuc.openwrtmanager.data.model.FirmwareRelease
 import com.luanmuc.openwrtmanager.data.model.FirmwareUpgradeState
 import com.luanmuc.openwrtmanager.data.model.FirmwareUpgradeConfig
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.data.model.Router
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
@@ -86,14 +85,6 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
      */
     fun loadFirmwareInfo() {
         viewModelScope.launch {
-            if (DebugMode.isDebugMode) {
-                // 调试模式：使用假数据
-                val fakeInfo = DebugMode.getFakeFirmwareInfo()
-                _uiState.value = _uiState.value.copy(
-                    firmwareInfo = fakeInfo
-                )
-                return@launch
-            }
 
             try {
                 val info = luciRepository.getFirmwareInfo()
@@ -118,18 +109,6 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
                 upgradeState = FirmwareUpgradeState.CHECKING,
                 error = null
             )
-
-            if (DebugMode.isDebugMode) {
-                // 调试模式：模拟检测
-                delay(2000)
-                val fakeRelease = DebugMode.getFakeLatestFirmware()
-                _uiState.value = _uiState.value.copy(
-                    isChecking = false,
-                    latestRelease = fakeRelease,
-                    upgradeState = FirmwareUpgradeState.IDLE
-                )
-                return@launch
-            }
 
             try {
                 val release = luciRepository.checkLatestFirmware(_uiState.value.config.repoUrl)
@@ -159,26 +138,6 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
                 downloadProgress = 0,
                 error = null
             )
-
-            if (DebugMode.isDebugMode) {
-                // 调试模式：模拟下载
-                for (i in 1..100) {
-                    delay(50)
-                    _uiState.value = _uiState.value.copy(
-                        downloadProgress = i,
-                        downloadSpeed = (1024 * 1024 + Math.random() * 1024 * 1024).toLong()
-                    )
-                }
-                _uiState.value = _uiState.value.copy(
-                    isDownloading = false,
-                    upgradeState = FirmwareUpgradeState.VERIFYING
-                )
-                delay(1000)
-                _uiState.value = _uiState.value.copy(
-                    upgradeState = FirmwareUpgradeState.IDLE
-                )
-                return@launch
-            }
 
             try {
                 val release = _uiState.value.latestRelease
@@ -233,25 +192,6 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
                 flashProgress = 0,
                 error = null
             )
-
-            if (DebugMode.isDebugMode) {
-                // 调试模式：模拟刷写
-                for (i in 1..100) {
-                    delay(100)
-                    _uiState.value = _uiState.value.copy(
-                        flashProgress = i
-                    )
-                }
-                _uiState.value = _uiState.value.copy(
-                    isFlashing = false,
-                    upgradeState = FirmwareUpgradeState.REBOOTING
-                )
-                delay(3000)
-                _uiState.value = _uiState.value.copy(
-                    upgradeState = FirmwareUpgradeState.SUCCESS
-                )
-                return@launch
-            }
 
             try {
                 val success = luciRepository.flashFirmware(
@@ -335,26 +275,6 @@ class FirmwareViewModel(application: Application) : BaseViewModel(application) {
                     _uiState.value = _uiState.value.copy(
                         isDownloading = false,
                         error = Loc.s(R.string.s0455)
-                    )
-                    return@launch
-                }
-
-                if (DebugMode.isDebugMode) {
-                    // 演示模式：模拟上传进度
-                    for (i in 1..10) {
-                        delay(200)
-                        _uiState.value = _uiState.value.copy(downloadProgress = i * 10)
-                    }
-                    _uiState.value = _uiState.value.copy(
-                        isDownloading = false,
-                        downloadProgress = 100,
-                        upgradeState = FirmwareUpgradeState.VERIFYING,
-                        error = null
-                    )
-                    delay(500)
-                    _uiState.value = _uiState.value.copy(
-                        upgradeState = FirmwareUpgradeState.IDLE,
-                        success = Loc.s(R.string.s0456)
                     )
                     return@launch
                 }

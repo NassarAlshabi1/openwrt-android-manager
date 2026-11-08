@@ -15,7 +15,6 @@ import com.luanmuc.openwrtmanager.data.repository.CacheRepository
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 import com.luanmuc.openwrtmanager.R
 import com.luanmuc.openwrtmanager.util.Loc
@@ -57,15 +56,6 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
      * 检测DDNS插件依赖
      */
     fun checkPluginDependency() {
-        if (DebugMode.isDebugMode) {
-            _uiState.value = _uiState.value.copy(
-                pluginStatus = PluginInstallStatus(
-                    dependency = PluginDependencies.DDNS,
-                    isInstalled = true
-                )
-            )
-            return
-        }
         viewModelScope.launch {
             try {
                 val luci = LuciRepository.getInstance(getApplication())
@@ -81,23 +71,6 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
      * 安装DDNS插件
      */
     fun installPlugin(onDone: (Boolean) -> Unit = {}) {
-        if (DebugMode.isDebugMode) {
-            _uiState.value = _uiState.value.copy(isInstallingPlugin = true, installProgress = 50, installMessage = Loc.s(R.string.s0318))
-            viewModelScope.launch {
-                kotlinx.coroutines.delay(1500)
-                _uiState.value = _uiState.value.copy(
-                    isInstallingPlugin = false,
-                    installProgress = 100,
-                    installMessage = Loc.s(R.string.s0145),
-                    pluginStatus = PluginInstallStatus(
-                        dependency = PluginDependencies.DDNS,
-                        isInstalled = true
-                    )
-                )
-                onDone(true)
-            }
-            return
-        }
         viewModelScope.launch {
             try {
                 _uiState.value = _uiState.value.copy(isInstallingPlugin = true, installProgress = 0, installMessage = "")
@@ -135,13 +108,6 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             try {
                 _uiState.value = _uiState.value.copy(isLoading = true, error = null, success = null)
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(500)
-                    val configs = _uiState.value.ddnsConfigs.toMutableList()
-                    configs.add(config.copy(name = "ddns_${System.currentTimeMillis()}"))
-                    _uiState.value = _uiState.value.copy(ddnsConfigs = configs, isLoading = false, success = Loc.s(R.string.s0338))
-                    return@launch
-                }
                 val activeRouter = getActiveRouter() ?: return@launch
                 val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
                 if (!luciRepository.isLoggedIn()) {
@@ -167,12 +133,6 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             try {
                 _uiState.value = _uiState.value.copy(isLoading = true, error = null, success = null)
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(500)
-                    val configs = _uiState.value.ddnsConfigs.filter { it.name != sectionName }
-                    _uiState.value = _uiState.value.copy(ddnsConfigs = configs, isLoading = false, success = Loc.s(R.string.s0297))
-                    return@launch
-                }
                 val activeRouter = getActiveRouter() ?: return@launch
                 val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
                 if (!luciRepository.isLoggedIn()) {
@@ -198,14 +158,6 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             try {
                 _uiState.value = _uiState.value.copy(isLoading = true, error = null, success = null)
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(500)
-                    val configs = _uiState.value.ddnsConfigs.map {
-                        if (it.name == sectionName) config.copy(name = sectionName) else it
-                    }
-                    _uiState.value = _uiState.value.copy(ddnsConfigs = configs, isLoading = false, success = Loc.s(R.string.s0340))
-                    return@launch
-                }
                 val activeRouter = getActiveRouter() ?: return@launch
                 val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
                 if (!luciRepository.isLoggedIn()) {
@@ -252,11 +204,6 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
     private fun loadFromCache() {
         viewModelScope.launch {
             try {
-                // 调试模式不使用缓存
-                if (DebugMode.isDebugMode) {
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter() ?: return@launch
 
                 val cachedConfigs = cacheRepository.getCacheEvenExpired(
@@ -295,20 +242,6 @@ class DdnsViewModel(application: Application) : BaseViewModel(application) {
             )
 
             try {
-                // 调试模式：使用假数据
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(600)
-                    val configs = DebugMode.getFakeDdnsConfigs()
-                    _uiState.value = _uiState.value.copy(
-                        ddnsConfigs = configs,
-                        isLoading = false,
-                        isFromCache = false,
-                        isOfflineMode = false,
-                        error = null
-                    )
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
                     val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)

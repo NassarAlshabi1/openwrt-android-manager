@@ -7,7 +7,6 @@ import com.luanmuc.openwrtmanager.data.model.DeviceGroup
 import com.luanmuc.openwrtmanager.data.model.DeviceHistory
 import com.luanmuc.openwrtmanager.data.model.DeviceNote
 import com.luanmuc.openwrtmanager.data.model.SpeedLimitConfig
-import com.luanmuc.openwrtmanager.util.DebugMode
 import org.json.JSONArray
 import org.json.JSONObject
 import com.luanmuc.openwrtmanager.R
@@ -116,9 +115,6 @@ class DeviceManagerRepository private constructor(private val context: Context) 
      * 获取设备历史记录
      */
     fun getDeviceHistory(mac: String? = null, limit: Int = 50): List<DeviceHistory> {
-        if (DebugMode.isDebugMode) {
-            return getFakeDeviceHistory()
-        }
         
         val allHistory = mutableListOf<DeviceHistory>()
         // 从prefs中加载历史记录
@@ -172,17 +168,6 @@ class DeviceManagerRepository private constructor(private val context: Context) 
      * 拉黑设备
      */
     suspend fun blockDevice(mac: String): Boolean {
-        if (DebugMode.isDebugMode) {
-            // 演示模式：直接修改本地备注
-            val note = getDeviceNote(mac) ?: DeviceNote(mac = mac)
-            saveDeviceNote(note.copy(isBlocked = true))
-            addDeviceHistory(DeviceHistory(
-                mac = mac,
-                eventType = DeviceEventType.BLOCKED,
-                timestamp = System.currentTimeMillis()
-            ))
-            return true
-        }
         
         // 真实模式：调用防火墙规则拉黑设备
         return try {
@@ -206,16 +191,6 @@ class DeviceManagerRepository private constructor(private val context: Context) 
      * 解除拉黑
      */
     suspend fun unblockDevice(mac: String): Boolean {
-        if (DebugMode.isDebugMode) {
-            val note = getDeviceNote(mac) ?: DeviceNote(mac = mac)
-            saveDeviceNote(note.copy(isBlocked = false))
-            addDeviceHistory(DeviceHistory(
-                mac = mac,
-                eventType = DeviceEventType.UNBLOCKED,
-                timestamp = System.currentTimeMillis()
-            ))
-            return true
-        }
         
         return try {
             val success = luciRepository.unblockDevice(mac)
@@ -238,16 +213,6 @@ class DeviceManagerRepository private constructor(private val context: Context) 
      * 设置设备限速
      */
     suspend fun setSpeedLimit(mac: String, uploadLimit: Int, downloadLimit: Int): Boolean {
-        if (DebugMode.isDebugMode) {
-            val note = getDeviceNote(mac) ?: DeviceNote(mac = mac)
-            saveDeviceNote(note.copy(speedLimit = downloadLimit))
-            addDeviceHistory(DeviceHistory(
-                mac = mac,
-                eventType = DeviceEventType.SPEED_LIMITED,
-                timestamp = System.currentTimeMillis()
-            ))
-            return true
-        }
         
         return try {
             // 检测tc命令是否可用
@@ -281,16 +246,6 @@ class DeviceManagerRepository private constructor(private val context: Context) 
      * 取消限速
      */
     suspend fun removeSpeedLimit(mac: String): Boolean {
-        if (DebugMode.isDebugMode) {
-            val note = getDeviceNote(mac) ?: DeviceNote(mac = mac)
-            saveDeviceNote(note.copy(speedLimit = 0))
-            addDeviceHistory(DeviceHistory(
-                mac = mac,
-                eventType = DeviceEventType.SPEED_UNLIMITED,
-                timestamp = System.currentTimeMillis()
-            ))
-            return true
-        }
         
         return try {
             // 检测tc命令是否可用

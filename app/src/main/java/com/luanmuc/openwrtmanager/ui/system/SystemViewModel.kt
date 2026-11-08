@@ -12,7 +12,6 @@ import com.luanmuc.openwrtmanager.data.model.ProcessInfo
 import com.luanmuc.openwrtmanager.data.model.FullSystemInfo
 import com.luanmuc.openwrtmanager.data.model.PackageManagerType
 import com.luanmuc.openwrtmanager.data.model.RepoPreset
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.data.model.Router
 import com.luanmuc.openwrtmanager.data.repository.CacheRepository
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
@@ -64,37 +63,32 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
         initNetworkMonitor()
         observeRouters()
         startRealtimeMonitoring()
-        // 调试模式下设置初始CPU内存值
-        if (DebugMode.isDebugMode) {
-            _uiState.value = _uiState.value.copy(
-                cpuUsage = 35f,
-                memoryUsage = 52f,
-                cpuHistory = listOf(30f, 35f, 32f, 38f, 35f),
-                memoryHistory = listOf(48f, 50f, 52f, 51f, 52f)
-            )
-        }
     }
     
     /**
-     * 启动实时监控（CPU、内存）
+     * 启动实时监控（CPU、内存）—— 从路由器读取真实数据
      */
     private fun startRealtimeMonitoring() {
         viewModelScope.launch {
             while (true) {
-                if (DebugMode.isDebugMode) {
-                    // 调试模式：生成假数据
-                    val newCpu = (30 + Math.random() * 40).toFloat()
-                    val newMemory = (40 + Math.random() * 30).toFloat()
-                    
-                    val newCpuHistory = (_uiState.value.cpuHistory + newCpu).takeLast(30)
-                    val newMemoryHistory = (_uiState.value.memoryHistory + newMemory).takeLast(30)
-                    
-                    _uiState.value = _uiState.value.copy(
-                        cpuUsage = newCpu,
-                        memoryUsage = newMemory,
-                        cpuHistory = newCpuHistory,
-                        memoryHistory = newMemoryHistory
-                    )
+                try {
+                    if (luciRepository.isLoggedIn()) {
+                        val status = luciRepository.getRouterStatus()
+                        val newCpuHistory = (_uiState.value.cpuHistory + status.cpuUsage).takeLast(30)
+                        val memPercent = if (status.memoryTotal > 0) {
+                            status.memoryUsed * 100f / status.memoryTotal
+                        } else 0f
+                        val newMemoryHistory = (_uiState.value.memoryHistory + memPercent).takeLast(30)
+
+                        _uiState.value = _uiState.value.copy(
+                            cpuUsage = status.cpuUsage,
+                            memoryUsage = memPercent,
+                            cpuHistory = newCpuHistory,
+                            memoryHistory = newMemoryHistory
+                        )
+                    }
+                } catch (e: Exception) {
+                    // 监控失败时保留上一帧数据，下一轮重试
                 }
                 delay(2000) // 每2秒更新一次
             }
@@ -108,30 +102,14 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
 
     private fun observeRouters() {
         viewModelScope.launch {
-            kotlinx.coroutines.flow.combine(
-                routerRepository.routers,
-                DebugMode.isDebugModeFlow
-            ) { routers, isDebugMode ->
-                Pair(routers, isDebugMode)
-            }.collect { (routers, isDebugMode) ->
+            routerRepository.routers.collect { routers ->
                 _uiState.value = _uiState.value.copy(hasRouter = routers.isNotEmpty())
-                
-                // 调试模式变化时，清空缓存数据强制重新加载
-                if (isDebugMode && (_uiState.value.logsFromCache || _uiState.value.processesFromCache)) {
-                    _uiState.value = _uiState.value.copy(
-                        logs = emptyList(),
-                        processes = emptyList(),
-                        systemInfo = FullSystemInfo(),
-                        logsFromCache = false,
-                        processesFromCache = false
-                    )
-                }
-                
-                if (routers.isNotEmpty() || isDebugMode) {
-                    // 先加载缓存（演示模式跳过）
+
+                if (routers.isNotEmpty()) {
+                    // 先加载缓存
                     loadLogsFromCache()
                     loadProcessesFromCache()
-                    // 然后从网络加载（演示模式使用假数据）
+                    // 然后从网络加载
                     loadLogs()
                     loadProcesses()
                     // 加载系统信息
@@ -161,11 +139,6 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
     private fun loadLogsFromCache() {
         viewModelScope.launch {
             try {
-                // 调试模式不使用缓存
-                if (DebugMode.isDebugMode) {
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter() ?: return@launch
 
                 val cachedLogs = cacheRepository.getCacheEvenExpired(
@@ -200,11 +173,6 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
     private fun loadProcessesFromCache() {
         viewModelScope.launch {
             try {
-                // 调试模式不使用缓存
-                if (DebugMode.isDebugMode) {
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter() ?: return@launch
 
                 val cachedProcesses = cacheRepository.getCacheEvenExpired(
@@ -242,20 +210,6 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
             )
 
             try {
-                // 调试模式：使用假数据
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(600)
-                    val logs = DebugMode.getFakeSystemLog()
-                    _uiState.value = _uiState.value.copy(
-                        logs = logs,
-                        isLoadingLogs = false,
-                        logsFromCache = false,
-                        isOfflineMode = false,
-                        error = null
-                    )
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
                     val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
@@ -329,20 +283,6 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
             )
 
             try {
-                // 调试模式：使用假数据
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(800)
-                    val processes = DebugMode.getFakeProcessList()
-                    _uiState.value = _uiState.value.copy(
-                        processes = processes.sortedByDescending { it.cpu },
-                        isLoadingProcesses = false,
-                        processesFromCache = false,
-                        isOfflineMode = false,
-                        error = null
-                    )
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
                     val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
@@ -410,14 +350,6 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
     fun killProcess(pid: Int) {
         viewModelScope.launch {
             try {
-                // 调试模式：模拟杀死进程
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(500)
-                    val processes = _uiState.value.processes.filter { it.pid != pid }
-                    _uiState.value = _uiState.value.copy(processes = processes)
-                    return@launch
-                }
-
                 luciRepository.killProcess(pid)
                 // 杀死进程后清除缓存并重新加载
                 val activeRouter = getActiveRouter()
@@ -455,21 +387,6 @@ class SystemViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoadingSystemInfo = true)
             try {
-                if (DebugMode.isDebugMode) {
-                    // 调试模式：使用假数据
-                    val fakeInfo = DebugMode.getFakeFullSystemInfo()
-                    val presetRepos = luciRepository.getPresetRepos(fakeInfo)
-                    _uiState.value = _uiState.value.copy(
-                        systemInfo = fakeInfo,
-                        isLoadingSystemInfo = false,
-                        installedPackagesCount = DebugMode.getFakeInstalledPackages().size,
-                        availablePackagesCount = DebugMode.getFakeAvailablePackages().size,
-                        reposCount = DebugMode.getFakeRepos().size,
-                        presetRepos = presetRepos
-                    )
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter() ?: return@launch
 
                 // 从缓存加载

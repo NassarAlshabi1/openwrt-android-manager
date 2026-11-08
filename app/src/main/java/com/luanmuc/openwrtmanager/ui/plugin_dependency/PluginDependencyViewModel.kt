@@ -6,7 +6,6 @@ import com.luanmuc.openwrtmanager.data.model.PluginDependencies
 import com.luanmuc.openwrtmanager.data.model.PluginInstallStatus
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
-import com.luanmuc.openwrtmanager.util.DebugMode
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -38,23 +37,6 @@ class PluginDependencyViewModel(application: Application) : BaseViewModel(applic
     }
 
     fun checkDependencies() {
-        if (DebugMode.isDebugMode) {
-            _uiState.value = _uiState.value.copy(isLoading = true)
-            viewModelScope.launch {
-                kotlinx.coroutines.delay(500)
-                val fakeStatuses = PluginDependencies.ALL.mapIndexed { index, dep ->
-                    PluginInstallStatus(
-                        dependency = dep,
-                        isInstalled = index != 1 && index != 2
-                    )
-                }
-                _uiState.value = _uiState.value.copy(
-                    pluginStatuses = fakeStatuses,
-                    isLoading = false
-                )
-            }
-            return
-        }
 
         viewModelScope.launch {
             try {
@@ -77,24 +59,6 @@ class PluginDependencyViewModel(application: Application) : BaseViewModel(applic
     fun installPlugin(index: Int) {
         val status = _uiState.value.pluginStatuses.getOrNull(index) ?: return
         if (status.isInstalled) return
-
-        if (DebugMode.isDebugMode) {
-            _uiState.value = _uiState.value.copy(installingIndex = index, installProgress = 10, installMessage = Loc.s(R.string.s0141))
-            viewModelScope.launch {
-                kotlinx.coroutines.delay(800)
-                _uiState.value = _uiState.value.copy(installProgress = 50, installMessage = Loc.s(R.string.s0318))
-                kotlinx.coroutines.delay(1200)
-                val newStatuses = _uiState.value.pluginStatuses.toMutableList()
-                newStatuses[index] = status.copy(isInstalled = true)
-                _uiState.value = _uiState.value.copy(
-                    pluginStatuses = newStatuses,
-                    installingIndex = -1,
-                    installProgress = 100,
-                    installMessage = Loc.s(R.string.s0145)
-                )
-            }
-            return
-        }
 
         viewModelScope.launch {
             try {

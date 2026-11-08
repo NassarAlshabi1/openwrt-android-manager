@@ -15,7 +15,6 @@ import com.luanmuc.openwrtmanager.data.repository.CacheRepository
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 import com.luanmuc.openwrtmanager.R
 import com.luanmuc.openwrtmanager.util.Loc
@@ -105,35 +104,13 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
 
     private fun observeRouters() {
         viewModelScope.launch {
-            kotlinx.coroutines.flow.combine(
-                routerRepository.routers,
-                DebugMode.isDebugModeFlow
-            ) { routers, isDebugMode ->
-                Pair(routers, isDebugMode)
-            }.collect { (routers, isDebugMode) ->
+            routerRepository.routers.collect { routers ->
                 _uiState.value = _uiState.value.copy(hasRouter = routers.isNotEmpty())
-                
-                // 调试模式变化时，清空现有数据强制重新加载
-                if (isDebugMode && (_uiState.value.isFromCache || _uiState.value.installedPackages.isNotEmpty())) {
-                    _uiState.value = _uiState.value.copy(
-                        installedPackages = emptyList(),
-                        availablePackages = emptyList(),
-                        isFromCache = false
-                    )
-                }
-                
-                // 演示模式下也需要加载数据
-                val shouldLoad = if (isDebugMode) {
-                    _uiState.value.installedPackages.isEmpty()
-                } else {
-                    routers.isNotEmpty() && _uiState.value.installedPackages.isEmpty()
-                }
-                if (shouldLoad) {
-                    // 先加载缓存（演示模式跳过）
+
+                if (routers.isNotEmpty() && _uiState.value.installedPackages.isEmpty()) {
+                    // 先加载缓存，然后从网络刷新，并加载系统信息
                     loadFromCache()
-                    // 然后从网络加载（演示模式使用假数据）
                     loadPackages()
-                    // 加载系统信息
                     loadSystemInfo()
                 }
             }
@@ -146,11 +123,6 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
     private fun loadFromCache() {
         viewModelScope.launch {
             try {
-                // 调试模式不使用缓存
-                if (DebugMode.isDebugMode) {
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter() ?: return@launch
 
                 val cachedInstalled = cacheRepository.getCacheEvenExpired(
@@ -195,22 +167,6 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
             )
 
             try {
-                // 调试模式：使用假数据
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(800)
-                    val installed = DebugMode.getFakeInstalledPackages()
-                    val available = DebugMode.getFakeAvailablePackages()
-                    _uiState.value = _uiState.value.copy(
-                        installedPackages = installed,
-                        availablePackages = available,
-                        isLoading = false,
-                        isFromCache = false,
-                        isOfflineMode = false,
-                        error = null
-                    )
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
                     val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
@@ -293,11 +249,7 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
 
                 // 架构验证
                 if (pkg != null) {
-                    val isValid = if (DebugMode.isDebugMode) {
-                        DebugMode.simulateArchitectureValidation(name, _uiState.value.systemInfo.architecture)
-                    } else {
-                        luciRepository.validatePackageArchitecture(pkg, _uiState.value.systemInfo)
-                    }
+                    val isValid = luciRepository.validatePackageArchitecture(pkg, _uiState.value.systemInfo)
 
                     if (!isValid) {
                         _uiState.value = _uiState.value.copy(
@@ -306,23 +258,6 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
                         )
                         return@launch
                     }
-                }
-
-                // 调试模式：模拟安装
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(1500)
-                    val installed = _uiState.value.installedPackages.toMutableList()
-                    val available = _uiState.value.availablePackages.toMutableList()
-                    val pkgToInstall = available.find { it.name == name }
-                    if (pkgToInstall != null) {
-                        available.remove(pkgToInstall)
-                        installed.add(pkgToInstall.copy(installed = true))
-                    }
-                    _uiState.value = _uiState.value.copy(
-                        installedPackages = installed,
-                        availablePackages = available
-                    )
-                    return@launch
                 }
 
                 val success = luciRepository.installPackage(name)
@@ -355,23 +290,6 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(actionLoading = name)
             try {
-                // 调试模式：模拟卸载
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(1000)
-                    val installed = _uiState.value.installedPackages.toMutableList()
-                    val available = _uiState.value.availablePackages.toMutableList()
-                    val pkg = installed.find { it.name == name }
-                    if (pkg != null) {
-                        installed.remove(pkg)
-                        available.add(pkg.copy(installed = false))
-                    }
-                    _uiState.value = _uiState.value.copy(
-                        installedPackages = installed,
-                        availablePackages = available
-                    )
-                    return@launch
-                }
-
                 val success = luciRepository.removePackage(name)
                 if (success) {
                     // 卸载成功后刷新并清除缓存
@@ -502,14 +420,6 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isUpdatingRepo = true, error = null)
             try {
-                // 调试模式：模拟更新
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(2000)
-                    _uiState.value = _uiState.value.copy(isUpdatingRepo = false)
-                    loadPackages()
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
                     val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
@@ -547,15 +457,6 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
     fun loadRepos() {
         viewModelScope.launch {
             try {
-                // 调试模式：使用假数据
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(500)
-                    _uiState.value = _uiState.value.copy(
-                        repos = DebugMode.getFakeRepos()
-                    )
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
                     val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
@@ -578,15 +479,6 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
     fun addRepo(name: String, url: String, enabled: Boolean = true) {
         viewModelScope.launch {
             try {
-                // 调试模式：模拟添加
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(500)
-                    val repos = _uiState.value.repos.toMutableList()
-                    repos.add(RepoInfo(name = name, url = url, enabled = enabled))
-                    _uiState.value = _uiState.value.copy(repos = repos)
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
                     val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
@@ -611,14 +503,6 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
     fun removeRepo(name: String) {
         viewModelScope.launch {
             try {
-                // 调试模式：模拟删除
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(500)
-                    val repos = _uiState.value.repos.filter { it.name != name }
-                    _uiState.value = _uiState.value.copy(repos = repos)
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
                     val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
@@ -643,16 +527,6 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
     fun toggleRepo(name: String, enabled: Boolean) {
         viewModelScope.launch {
             try {
-                // 调试模式：模拟切换
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(300)
-                    val repos = _uiState.value.repos.map { repo ->
-                        if (repo.name == name) repo.copy(enabled = enabled) else repo
-                    }
-                    _uiState.value = _uiState.value.copy(repos = repos)
-                    return@launch
-                }
-
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
                     val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
@@ -737,6 +611,8 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
 
     /**
      * 安装本地IPK文件
+     *
+     * 真实实现：分块 base64 上传到路由器 /tmp，然后用 opkg 安装。
      */
     fun installIpk(fileName: String, fileData: ByteArray) {
         viewModelScope.launch {
@@ -745,39 +621,81 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
                 uploadProgress = 0
             )
             try {
-                // 调试模式：模拟上传和安装
-                if (DebugMode.isDebugMode) {
-                    for (i in 0..100 step 10) {
-                        DebugMode.simulateDelay(100)
-                        _uiState.value = _uiState.value.copy(uploadProgress = i)
-                    }
-                    DebugMode.simulateDelay(1000)
+                val activeRouter = getActiveRouter()
+                if (activeRouter == null) {
                     _uiState.value = _uiState.value.copy(
                         isUploadingIpk = false,
-                        uploadProgress = 100
+                        error = Loc.s(R.string.offline_no_router)
                     )
-                    loadPackages()
+                    return@launch
+                }
+                if (!luciRepository.isLoggedIn()) {
+                    val password = EncryptionUtil.decrypt(activeRouter.encryptedPassword)
+                    luciRepository.login(activeRouter.address, activeRouter.username, password)
+                }
+
+                val safeName = fileName.substringAfterLast('/').filter { !it.isWhitespace() }
+                if (safeName.isBlank()) {
+                    _uiState.value = _uiState.value.copy(
+                        isUploadingIpk = false,
+                        error = Loc.s(R.string.s0579)
+                    )
                     return@launch
                 }
 
-                // 真实环境：通过HTTP上传IPK并安装
-                // 注意：由于LuCI ubus API不直接支持文件上传，
-                // 这里需要通过其他方式实现（如使用cgi-bin上传）
-                // 暂时使用模拟进度
-                val activeRouter = getActiveRouter()
-                if (activeRouter != null) {
-                    // 模拟上传进度
-                    for (i in 0..100 step 20) {
-                        kotlinx.coroutines.delay(200)
-                        _uiState.value = _uiState.value.copy(uploadProgress = i)
-                    }
-                    
-                    // 这里应该调用真实的上传和安装API
-                    // 由于API限制，暂时只做UI展示
-                    _uiState.value = _uiState.value.copy(
-                        isUploadingIpk = false,
-                        uploadProgress = 100
+                val remotePath = "/tmp/$safeName"
+
+                // 分块 base64 上传（真实进度）
+                val chunkSize = 24 * 1024
+                var offset = 0
+                var chunkIndex = 0
+                while (offset < fileData.size) {
+                    val end = minOf(offset + chunkSize, fileData.size)
+                    val b64 = android.util.Base64.encodeToString(
+                        fileData.copyOfRange(offset, end),
+                        android.util.Base64.NO_WRAP
                     )
+                    val ok = luciRepository.writeRemoteFile(
+                        path = remotePath,
+                        dataBase64 = b64,
+                        append = chunkIndex > 0,
+                        mode = 420 // 0644
+                    )
+                    if (!ok) {
+                        runCatching { luciRepository.execCommandFull("rm -f $remotePath") }
+                        _uiState.value = _uiState.value.copy(
+                            isUploadingIpk = false,
+                            uploadProgress = 0,
+                            error = Loc.s(R.string.plugins_ipk_upload_failed)
+                        )
+                        return@launch
+                    }
+                    offset = end
+                    chunkIndex++
+                    _uiState.value = _uiState.value.copy(
+                        uploadProgress = (offset * 100 / fileData.size).coerceIn(0, 99)
+                    )
+                }
+
+                // 真实 opkg 安装
+                val exec = luciRepository.execCommandFull("opkg install $remotePath 2>&1; rm -f $remotePath")
+                val output = (exec.stdout + "\n" + exec.stderr).trim()
+                val success = exec.code == 0 &&
+                        !output.contains("Collected errors") &&
+                        !output.contains("Cannot install package", ignoreCase = true)
+
+                _uiState.value = _uiState.value.copy(
+                    isUploadingIpk = false,
+                    uploadProgress = 100,
+                    error = if (success) null else (output.ifBlank { Loc.s(R.string.s0579) })
+                )
+                if (success) {
+                    val router = getActiveRouter()
+                    router?.let {
+                        cacheRepository.deleteCache(CacheRepository.KEY_INSTALLED_PACKAGES, it.id)
+                        cacheRepository.deleteCache(CacheRepository.KEY_AVAILABLE_PACKAGES, it.id)
+                    }
+                    loadPackages()
                 }
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
@@ -806,14 +724,6 @@ class PluginsViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoadingSystemInfo = true)
             try {
-                if (DebugMode.isDebugMode) {
-                    _uiState.value = _uiState.value.copy(
-                        systemInfo = DebugMode.getFakeFullSystemInfo(),
-                        isLoadingSystemInfo = false
-                    )
-                    return@launch
-                }
-
                 val info = luciRepository.getFullSystemInfo()
                 _uiState.value = _uiState.value.copy(
                     systemInfo = info,

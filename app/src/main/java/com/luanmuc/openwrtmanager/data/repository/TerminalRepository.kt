@@ -7,7 +7,6 @@ import com.luanmuc.openwrtmanager.data.model.CursorStyle
 import com.luanmuc.openwrtmanager.data.model.QuickCommand
 import com.luanmuc.openwrtmanager.data.model.TerminalConfig
 import com.luanmuc.openwrtmanager.data.model.TerminalTheme
-import com.luanmuc.openwrtmanager.util.DebugMode
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlinx.coroutines.delay
@@ -55,9 +54,6 @@ class TerminalRepository private constructor(private val context: Context) {
      * 获取命令历史记录
      */
     fun getCommandHistory(limit: Int = 50): List<CommandHistory> {
-        if (DebugMode.isDebugMode) {
-            return getFakeHistory()
-        }
         
         val json = prefs.getString("command_history", null) ?: return emptyList()
         return try {
@@ -220,19 +216,6 @@ class TerminalRepository private constructor(private val context: Context) {
     suspend fun executeCommand(command: String): CommandHistory {
         val startTime = System.currentTimeMillis()
         
-        if (DebugMode.isDebugMode) {
-            delay(500 + Math.random().toLong() * 500)
-            val output = getFakeCommandOutput(command)
-            val endTime = System.currentTimeMillis()
-            return CommandHistory(
-                id = endTime,
-                command = command,
-                output = output,
-                exitCode = 0,
-                timestamp = startTime,
-                duration = endTime - startTime
-            )
-        }
         
         // 真实模式：通过LuCI RPC执行命令
         return try {

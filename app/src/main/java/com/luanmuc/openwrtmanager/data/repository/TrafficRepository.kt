@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import com.luanmuc.openwrtmanager.data.model.DeviceTraffic
 import com.luanmuc.openwrtmanager.data.model.TrafficHistoryPoint
 import com.luanmuc.openwrtmanager.data.model.TrafficStats
-import com.luanmuc.openwrtmanager.util.DebugMode
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.max
 
@@ -31,9 +30,6 @@ class TrafficRepository private constructor(private val context: Context) {
      * 获取流量统计数据
      */
     suspend fun getTrafficStats(routerId: String): TrafficStats {
-        if (DebugMode.isDebugMode) {
-            return getFakeTrafficStats()
-        }
         
         // 真实模式：从历史记录计算
         val history = getTrafficHistory(routerId)
@@ -124,9 +120,6 @@ class TrafficRepository private constructor(private val context: Context) {
      * 获取设备流量排行
      */
     suspend fun getDeviceTrafficRanking(routerId: String): List<DeviceTraffic> {
-        if (DebugMode.isDebugMode) {
-            return getFakeDeviceTraffic()
-        }
         
         val devices = deviceTrafficCache[routerId]?.values?.toList() ?: emptyList()
         return devices.sortedByDescending { it.totalBytes }

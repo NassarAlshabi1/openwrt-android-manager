@@ -8,6 +8,7 @@ import com.luanmuc.openwrtmanager.data.model.DeviceTraffic
 import com.luanmuc.openwrtmanager.data.model.TrafficPeriod
 import com.luanmuc.openwrtmanager.data.model.TrafficStats
 import com.luanmuc.openwrtmanager.data.repository.TrafficRepository
+import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 class TrafficViewModel(application: Application) : BaseViewModel(application) {
     
     private val trafficRepository = TrafficRepository.getInstance(application)
+    private val routerRepository = RouterRepository.getInstance(application)
     
     // 加载状态
     private val _isLoading = MutableStateFlow(true)
@@ -36,12 +38,26 @@ class TrafficViewModel(application: Application) : BaseViewModel(application) {
     private val _deviceRanking = MutableStateFlow<List<DeviceTraffic>>(emptyList())
     val deviceRanking: StateFlow<List<DeviceTraffic>> = _deviceRanking.asStateFlow()
     
-    // 当前路由器ID（演示模式用固定值）
-    private val routerId = "demo_router"
+    // 当前活动路由器ID
+    private var routerId: String = ""
     
     init {
         initNetworkMonitor()
+        loadRouterId()
         loadTrafficData()
+    }
+
+    private fun loadRouterId() {
+        viewModelScope.launch {
+            try {
+                val routers = routerRepository.getRoutersList()
+                val activeId = routerRepository.getActiveRouterId()
+                val active = routers.find { it.id == activeId } ?: routers.firstOrNull()
+                active?.let { routerId = it.id }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
     
     fun loadTrafficData() {

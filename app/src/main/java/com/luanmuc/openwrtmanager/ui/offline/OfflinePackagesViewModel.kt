@@ -14,7 +14,6 @@ import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.OfflinePackageRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 import com.luanmuc.openwrtmanager.util.Loc
 import com.luanmuc.openwrtmanager.util.OpenWrtVersions
@@ -134,23 +133,6 @@ class OfflinePackagesViewModel(application: Application) : BaseViewModel(applica
                     ?: OfflinePackageRepository.DEFAULT_MIRROR
             )
 
-            if (DebugMode.isDebugMode) {
-                indexEntries = fakeIndex()
-                _uiState.value = _uiState.value.copy(
-                    phase = OfflinePhase.IDLE,
-                    router = OfflineRouterContext(
-                        version = "23.05.5",
-                        architecture = "mipsel_24kc",
-                        kernelRelease = "5.15.167-1-144de9e5c1a8813b724b14faa054d9f0",
-                        target = "ramips/mt7621"
-                    ),
-                    installedNames = setOf("libc", "busybox", "luci-base", "uhttpd", "rpcd"),
-                    indexCount = indexEntries.size
-                )
-                refreshLocalFiles()
-                return@launch
-            }
-
             try {
                 val active = ensureLogin()
                 if (active == null) {
@@ -202,7 +184,6 @@ class OfflinePackagesViewModel(application: Application) : BaseViewModel(applica
     }
 
     private suspend fun loadInstalled() {
-        if (DebugMode.isDebugMode) return
         runCatching {
             val installed = offlineRepository.getInstalledPackageNames()
             if (installed.isNotEmpty()) {
@@ -358,8 +339,7 @@ class OfflinePackagesViewModel(application: Application) : BaseViewModel(applica
 
         // 选中包涉及内核模块且 kmods 索引未加载时，按需拉取
         if (resolution.missingKmods.isNotEmpty() &&
-            !state.kmodsLoaded && !state.kmodsUnavailable &&
-            !DebugMode.isDebugMode
+            !state.kmodsLoaded && !state.kmodsUnavailable
         ) {
             viewModelScope.launch {
                 runCatching {
@@ -384,36 +364,6 @@ class OfflinePackagesViewModel(application: Application) : BaseViewModel(applica
         val state = _uiState.value
         val resolution = state.resolution ?: return
         if (resolution.toDownload.isEmpty()) return
-
-        // 调试模式：模拟下载进度
-        if (DebugMode.isDebugMode) {
-            opJob = viewModelScope.launch {
-                _uiState.value = state.copy(
-                    phase = OfflinePhase.DOWNLOADING,
-                    opError = null,
-                    opResult = null,
-                    opLog = emptyList(),
-                    downloadedBytes = 0,
-                    totalBytes = resolution.totalBytes
-                )
-                val steps = 10
-                for (i in 1..steps) {
-                    DebugMode.simulateDelay(180)
-                    val target = resolution.toDownload[(i - 1) * resolution.toDownload.size / steps]
-                    _uiState.value = _uiState.value.copy(
-                        downloadedBytes = resolution.totalBytes * i / steps,
-                        currentFile = target.filename
-                    )
-                }
-                _uiState.value = _uiState.value.copy(
-                    phase = OfflinePhase.IDLE,
-                    currentFile = null,
-                    downloadedNames = state.downloadedNames + resolution.toDownload.map { it.name }.toSet()
-                )
-                if (thenInstall) simulateInstall(resolution)
-            }
-            return
-        }
 
         opJob = viewModelScope.launch {
             try {
@@ -483,12 +433,6 @@ class OfflinePackagesViewModel(application: Application) : BaseViewModel(applica
         val state = _uiState.value
         val resolution = state.resolution ?: return
 
-        // 调试模式：直接模拟安装
-        if (DebugMode.isDebugMode) {
-            opJob = viewModelScope.launch { simulateInstall(resolution) }
-            return
-        }
-
         val router = effectiveRouter(state)
         val dir = offlineRepository.ipkDir(router)
 
@@ -525,11 +469,6 @@ class OfflinePackagesViewModel(application: Application) : BaseViewModel(applica
                 phase = OfflinePhase.FAILED,
                 opError = Loc.s(R.string.offline_missing_kmods, resolution.missingKmods.joinToString(", "))
             )
-            return
-        }
-
-        if (DebugMode.isDebugMode) {
-            simulateInstall(resolution)
             return
         }
 
@@ -642,73 +581,4 @@ class OfflinePackagesViewModel(application: Application) : BaseViewModel(applica
     //  调试模式
     // =====================================================================
 
-    private fun fakeIndex(): List<OfflinePackageEntry> {
-        fun entry(
-            name: String, version: String, depends: List<String>,
-            size: Long, feed: String = "luci", arch: String = "all",
-            description: String = ""
-        ) = OfflinePackageEntry(
-            name = name, version = version, depends = depends,
-            filename = "${name}_${version}_${arch}.ipk", size = size,
-            installedSize = size * 3, architecture = arch, section = "luci",
-            description = description.ifBlank { "$name (demo)" }, feed = feed
-        )
-        return listOf(
-            entry("luci", "git-25.222.75657", listOf("luci-light", "luci-app-opkg"), 968, description = "Standard OpenWrt set"),
-            entry("luci-light", "git-25.222.75657", listOf("uhttpd", "uhttpd-mod-ubus", "rpcd", "rpcd-mod-file", "rpcd-mod-ucode", "luci-base"), 968, description = "LuCI with minimal dependencies"),
-            entry("luci-base", "git-25.222.75657", listOf("libc", "libubus20220927", "libuci20130104", "rpcd", "rpcd-mod-file", "uhttpd-mod-ubus", "ucode", "ucode-mod-fs", "ucode-mod-uci"), 102531, description = "LuCI core runtime"),
-            entry("luci-app-firewall", "git-25.222.75657", listOf("luci-base", "firewall4"), 8486, description = "Firewall configuration app"),
-            entry("luci-app-opkg", "git-25.222.75657", listOf("luci-base"), 16384, description = "Package manager app"),
-            entry("luci-app-samba4", "git-25.222.75657", listOf("luci-base", "samba4-server"), 12288, description = "Samba4 file sharing"),
-            entry("luci-app-wireguard", "git-25.222.75657", listOf("luci-base", "kmod-wireguard", "wireguard-tools"), 10240, description = "WireGuard VPN app"),
-            entry("luci-app-adblock", "git-25.222.75657", listOf("luci-base", "adblock"), 20480, description = "Ad blocking"),
-            entry("luci-app-sqm", "git-25.222.75657", listOf("luci-base", "sqm-scripts"), 9216, description = "Smart Queue Management"),
-            entry("luci-app-ttyd", "git-25.222.75657", listOf("luci-base", "ttyd"), 8192, description = "Web terminal"),
-            entry("uhttpd", "2023-06-25-demo", listOf("libc", "libubox20220927", "libubus20220927"), 65536, feed = "base", arch = "mipsel_24kc", description = "uHTTPd web server"),
-            entry("rpcd", "2023-06-25-demo", listOf("libc", "libubox20220927", "libubus20220927", "libblobmsg-json20220927"), 49152, feed = "base", arch = "mipsel_24kc", description = "RPC daemon"),
-            entry("samba4-server", "4.18.9-1-demo", listOf("libc", "libpopt", "libzstd"), 5242880, feed = "packages", arch = "mipsel_24kc", description = "Samba4 server"),
-            entry("wireguard-tools", "1.0.20210914-1-demo", listOf("libc", "kmod-wireguard"), 163840, feed = "packages", arch = "mipsel_24kc", description = "WireGuard CLI tools"),
-            entry("adblock", "4.2.2-r7-demo", listOf("libc", "busybox"), 131072, feed = "packages", arch = "mipsel_24kc", description = "AdBlock handler script"),
-            entry("sqm-scripts", "1.5.1-demo", listOf("libc", "tc-tiny"), 98304, feed = "packages", arch = "mipsel_24kc", description = "SQM scripts"),
-            entry("kmod-wireguard", "5.15.167-1-demo", listOf("kernel"), 77824, feed = "kmods", arch = "mipsel_24kc", description = "WireGuard kernel module"),
-            entry("firewall4", "2023-06-25-demo", listOf("libc", "nftables-json", "ucode", "ucode-mod-fs", "ucode-mod-uci"), 114688, feed = "base", arch = "mipsel_24kc", description = "nftables firewall"),
-            entry("ttyd", "1.7.7-1-demo", listOf("libc", "libwebsockets-4.0"), 90112, feed = "packages", arch = "mipsel_24kc", description = "Web terminal server")
-        )
-    }
-
-    private suspend fun simulateInstall(resolution: OfflineResolution) {
-        _uiState.value = _uiState.value.copy(
-            phase = OfflinePhase.UPLOADING,
-            uploadedBytes = 0,
-            uploadTotal = resolution.totalBytes,
-            opLog = listOf("demo mode")
-        )
-        val steps = 8
-        for (i in 1..steps) {
-            DebugMode.simulateDelay(220)
-            _uiState.value = _uiState.value.copy(
-                uploadedBytes = resolution.totalBytes * i / steps
-            )
         }
-        _uiState.value = _uiState.value.copy(
-            phase = OfflinePhase.INSTALLING,
-            opLog = _uiState.value.opLog + resolution.toDownload.joinToString("\n") { "Installing ${it.name} (${it.version}) to /tmp/offline-pkgs..." }
-        )
-        DebugMode.simulateDelay(600)
-        _uiState.value = _uiState.value.copy(
-            opLog = _uiState.value.opLog + "Configuring packages... done."
-        )
-        DebugMode.simulateDelay(400)
-        _uiState.value = _uiState.value.copy(
-            phase = OfflinePhase.DONE,
-            opResult = OfflineInstallResult(
-                success = true,
-                output = "demo install complete",
-                installedCount = resolution.toDownload.size
-            ),
-            installedNames = _uiState.value.installedNames + resolution.toDownload.map { it.name },
-            selected = emptySet(),
-            resolution = null
-        )
-    }
-}

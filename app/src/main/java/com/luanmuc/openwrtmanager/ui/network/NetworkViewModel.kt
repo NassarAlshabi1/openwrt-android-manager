@@ -12,7 +12,6 @@ import com.luanmuc.openwrtmanager.data.repository.CacheRepository
 import com.luanmuc.openwrtmanager.data.repository.LuciRepository
 import com.luanmuc.openwrtmanager.data.repository.RouterRepository
 import com.luanmuc.openwrtmanager.ui.base.BaseViewModel
-import com.luanmuc.openwrtmanager.util.DebugMode
 import com.luanmuc.openwrtmanager.util.EncryptionUtil
 import com.luanmuc.openwrtmanager.R
 import com.luanmuc.openwrtmanager.util.Loc
@@ -102,9 +101,6 @@ class NetworkViewModel(application: Application) : BaseViewModel(application) {
         viewModelScope.launch {
             try {
                 // 调试模式不使用缓存
-                if (DebugMode.isDebugMode) {
-                    return@launch
-                }
 
                 val activeRouter = getActiveRouter() ?: return@launch
 
@@ -157,29 +153,6 @@ class NetworkViewModel(application: Application) : BaseViewModel(application) {
 
             try {
                 // 调试模式：使用假数据
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(800)
-                    _uiState.value = _uiState.value.copy(
-                        lanIp = "192.168.1.1",
-                        lanNetmask = "255.255.255.0",
-                        lanDhcpEnabled = true,
-                        lanDhcpStart = "100",
-                        lanDhcpLimit = "150",
-                        lanDhcpLease = "12h",
-                        wanProto = "dhcp",
-                        wanIp = "192.168.0.100",
-                        wanNetmask = "255.255.255.0",
-                        wanGateway = "192.168.0.1",
-                        wanDns = "8.8.8.8",
-                        wanUsername = "",
-                        wanPassword = "",
-                        isLoading = false,
-                        isFromCache = false,
-                        isOfflineMode = false,
-                        error = null
-                    )
-                    return@launch
-                }
 
                 val activeRouter = getActiveRouter()
                 if (activeRouter != null) {
@@ -303,14 +276,6 @@ class NetworkViewModel(application: Application) : BaseViewModel(application) {
 
             try {
                 // 调试模式：模拟保存
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(1000)
-                    _uiState.value = _uiState.value.copy(
-                        isSaving = false,
-                        success = Loc.s(R.string.s0546)
-                    )
-                    return@launch
-                }
 
                 // 保存LAN配置
                 luciRepository.setUciConfig("network", "lan", "ipaddr", _uiState.value.lanIp)
@@ -373,14 +338,6 @@ class NetworkViewModel(application: Application) : BaseViewModel(application) {
 
             try {
                 // 调试模式：模拟保存
-                if (DebugMode.isDebugMode) {
-                    DebugMode.simulateDelay(1000)
-                    _uiState.value = _uiState.value.copy(
-                        isSaving = false,
-                        success = Loc.s(R.string.s0548)
-                    )
-                    return@launch
-                }
 
                 // 保存WAN配置
                 luciRepository.setUciConfig("network", "wan", "proto", _uiState.value.wanProto)
